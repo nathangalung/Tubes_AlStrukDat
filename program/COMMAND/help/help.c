@@ -6,22 +6,21 @@
 void help(boolean isStart)
 {
     printf("\
-    ██╗  ██╗███████╗██╗     ██████╗ \n\
-    ██║  ██║██╔════╝██║     ██╔══██╗\n\
-    ███████║█████╗  ██║     ██████╔╝\n\
-    ██╔══██║██╔══╝  ██║     ██╔═══╝ \n\
-    ██║  ██║███████╗███████╗██║     \n\
-    ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝     \n\
+    ██╗  ██╗███████╗██╗     ██████╗     ██╗    ██╗ █████╗ ██╗   ██╗ █████╗ ███╗   ██╗ ██████╗ ██╗    ██╗ █████╗ ██╗   ██╗███████╗\n\
+    ██║  ██║██╔════╝██║     ██╔══██╗    ██║    ██║██╔══██╗╚██╗ ██╔╝██╔══██╗████╗  ██║██╔════╝ ██║    ██║██╔══██╗██║   ██║██╔════╝\n\
+    ███████║█████╗  ██║     ██████╔╝    ██║ █╗ ██║███████║ ╚████╔╝ ███████║██╔██╗ ██║██║  ███╗██║ █╗ ██║███████║██║   ██║█████╗  \n\
+    ██╔══██║██╔══╝  ██║     ██╔═══╝     ██║███╗██║██╔══██║  ╚██╔╝  ██╔══██║██║╚██╗██║██║   ██║██║███╗██║██╔══██║╚██╗ ██╔╝██╔══╝  \n\
+    ██║  ██║███████╗███████╗██║         ╚███╔███╔╝██║  ██║   ██║   ██║  ██║██║ ╚████║╚██████╔╝╚███╔███╔╝██║  ██║ ╚████╔╝ ███████╗\n\
+    ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝          ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═╝  ╚═══╝  ╚══════╝\n\
     ");
-    printf("=====[Menu Help WayangWave]===== \n");
     if (!isStart) // perintah dipanggil sebelum memasuki sesi
     {
-        printf("\t1. START -> Untuk masuk sesi baru \n");
+        printf("1. START -> Untuk masuk sesi baru \n");
         printf("\t2. LOAD -> Untuk memulai sesi berdasarkan file konfigurasi \n");
     }
     else // perintah dipanggil setelah memasuki sesi
     {
-        printf("\t1. LIST -> Untuk menampilkan daftar playlist, list penyanyi, list album, dan list lagu \n");    
+        printf("1. LIST -> Untuk menampilkan daftar playlist, list penyanyi, list album, dan list lagu \n");    
         printf("\t2. PLAY -> Untuk memutar lagu atau playlist yang dipilih \n");
         printf("\t3. QUEUE -> Untuk memanipulasi queue lagu \n");
         printf("\t4. SONG -> Untuk melakukan navigasi lagu yang ada pada queue \n");
