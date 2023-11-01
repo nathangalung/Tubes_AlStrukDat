@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 
-#include "program/ADT/mesinkarakter.h"
-#include "program/ADT/mesinkata.h"
+#include "program/ADT/charmachine.h"
+#include "program/ADT/wordmachine.h"
 
 boolean cmp_word(Word a, Word b);
 

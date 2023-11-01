@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-#include "../../boolean.h"
 #include "charmachine.h"
 
 char currentChar;
