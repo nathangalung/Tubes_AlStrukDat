@@ -1,4 +1,7 @@
+#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include "console.h"
 
@@ -16,7 +19,6 @@ int main()
     Word quit = {"QUIT", 4};
     Word help = {"HELP", 4};
     Word defaults = {"DEFAULT", 7};
-    Word playlist = {"PLAYLIST", 8};
     Word swap = {"SWAP", 4};
     Word remove = {"REMOVE", 6};
     Word clear = {"CLEAR", 5};
@@ -35,8 +37,7 @@ int main()
     {
         printf(">> ");
         IgnoreBlanks();
-        IgnoreNewline();
-        STARTWORDINPUT();
+        STARTWORD();
         Word command = currentWord;
         if (cmp_word(command, start))
         {
@@ -244,7 +245,7 @@ int main()
             }
             else
             {
-                
+
             }
         }
         else

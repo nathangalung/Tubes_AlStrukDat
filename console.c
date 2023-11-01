@@ -1,4 +1,7 @@
+#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include "console.h"
 
@@ -45,5 +48,5 @@ Word split_word(Word a)
     }
     a.Length = length;
 
-    return (a, temp);
+    return (a);
 }

@@ -3,12 +3,11 @@
 
 #include <stdio.h>
 
-#include "boolean.h"
 #include "program/ADT/mesinkarakter.h"
 #include "program/ADT/mesinkata.h"
 
-boolean cmpWord(Word a, Word b);
+boolean cmp_word(Word a, Word b);
 
-boolean cmp2Word(Word a, Word b);
+Word split_word(Word a);
 
 #endif

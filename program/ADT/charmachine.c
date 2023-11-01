@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include <string.h>
 
-#include "mesinkarakter.h"
+#include "../../boolean.h"
+#include "charmachine.h"
 
 char currentChar;
 boolean EOP;
