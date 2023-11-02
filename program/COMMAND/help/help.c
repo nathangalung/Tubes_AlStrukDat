@@ -17,6 +17,8 @@ void help(boolean isStart)
     {
         printf("1. START -> Untuk masuk sesi baru \n");
         printf("\t2. LOAD -> Untuk memulai sesi berdasarkan file konfigurasi \n");
+        printf("\t3. HELP -> Untuk menampilkan bantuan \n");
+        printf("\t4. QUIT -> Untuk keluar dari aplikasi \n");
     }
     else // perintah dipanggil setelah memasuki sesi
     {
@@ -27,7 +29,8 @@ void help(boolean isStart)
         printf("\t5. PLAYLIST -> Untuk melakukan basic command playlist seperti create, add, swap, remove, dan delete \n");
         printf("\t6. STATUS -> Untuk menampilkan lagu yang sedang dimainkan serta queue song yang ada dan playlist lagu diputar \n");
         printf("\t7. SAVE -> Untuk menyimpan state aplikasi terbaru \n");
-        printf("\t8. QUIT -> Untuk keluar dari aplikasi \n");
+        printf("\t8. HELP -> Untuk menampilkan bantuan \n");
+        printf("\t9. QUIT -> Untuk keluar dari aplikasi \n");
     }
 }
 
