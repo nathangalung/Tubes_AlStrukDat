@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include "boolean.h"
-#include "list.h"
+#include "static_list.h"
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor: create list kosong */
