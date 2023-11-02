@@ -1,7 +1,4 @@
-/* file list.c */
-
 #include <stdio.h>
-#include "boolean.h"
 #include "static_list.h"
 
 /* ********** KONSTRUKTOR ********** */
@@ -11,10 +8,11 @@ List MakeList()
 /* F.S. Terbentuk list L kosong dengan kapasitas MaxEl */
 {
     /* KAMUS LOKAL */
-    int i = 0;
-    /* ALGORITMA */
+    int i;
     List L;
-    for (i; i < MaxEl; i++)
+
+    /* ALGORITMA */
+    for (i = FirstIdxList(L); i <= LastIdxList(L); i++)
     {
         L.A[i] = Mark;
     }
@@ -26,12 +24,12 @@ List MakeList()
 boolean IsListEmpty(List L)
 /* Mengirimkan true jika list L kosong, mengirimkan false jika tidak */
 {
-    return (Length(L) == 0);
+    return (LengthList(L) == 0);
 }
 
 /* *** Menghasilkan sebuah elemen *** */
 ElType Get(List L, IdxType i)
-/* Prekondisi : list tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
+/* Prekondisi : list tidak kosong, i antara FirstIdxList(L)..LastIdxList(L) */
 /* Mengirimkan elemen list yang ke-i */
 {
     return (L.A[i]);
@@ -42,7 +40,7 @@ void Set(List *L, IdxType i, ElType v)
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
 {
-    L -> A[i] = v;
+    L->A[i] = v;
 }
 
 /* ********** SELEKTOR ********** */
@@ -53,8 +51,9 @@ int LengthList(List L)
 {
     /* KAMUS LOKAL */
     int i, count = 0;
+
     /* ALGORITMA */
-    for (i = FirstIdx(L); i <= LastIdx(L); i++)
+    for (i = FirstIdxList(L); i <= LastIdxList(L); i++)
     {
         if (L.A[i] != Mark)
         {
@@ -77,43 +76,45 @@ IdxType LastIdxList(List L)
 /* Mengirimkan indeks elemen terakhir */
 {
     /* KAMUS LOKAL */
-    int i = FirstIdx(L);
+    int i = FirstIdxList(L);
+
     /* ALGORITMA */
     while (i <= MaxEl - 1 && L.A[i] != Mark)
     {
         i++;
     }
-    return i-1;
+    return i - 1;
 }
 
 /* ********** Test Indeks yang valid ********** */
-boolean IsIdxListValid (List L, IdxType i)
+boolean IsIdxListValid(List L, IdxType i)
 /* Prekondisi : i sembarang */
-/* Mengirimkan true jika i adalah indeks yang valid utk ukuran list */
-/* yaitu antara indeks yang terdefinisi untuk container*/
+/* Mengirimkan true jika i adalah indeks yang valid untuk ukuran list */
+/* yaitu antara indeks yang terdefinisi untuk container */
 {
-    return (FirstIdx(L) <= i && i <= LastIdx(L));
+    return (FirstIdxList(L) <= i && i <= LastIdxList(L));
 }
 
-boolean IsIdxListEff (List L, IdxType i)
-/* Prekondisi : i sembarang*/
-/* Mengirimkan true jika i adalah indeks yang terdefinisi utk list */
-/* yaitu antara FirstIdx(L)..LastIdx(L) */
+boolean IsIdxListEff(List L, IdxType i)
+/* Prekondisi : i sembarang */
+/* Mengirimkan true jika i adalah indeks yang terdefinisi untuk list */
+/* yaitu antara FirstIdxList(L)..LastIdxList(L) */
 {
-    return (FirstIdx(L) <= i && i <= LastIdx(L) && L.A[i] != Mark);   
+    return (FirstIdxList(L) <= i && i <= LastIdxList(L) && L.A[i] != Mark);
 }
 
 /* ********** Operasi-operasi ********** */
 boolean SearchList(List L, ElType X)
 /* Prekondisi : X sembarang */
 /* Mengirimkan true jika terdapat elemen X di dalam list */
-/* yaitu antara FirstIdx(L)..LastIdx(L) */
+/* yaitu antara FirstIdxList(L)..LastIdxList(L) */
 {
     /* KAMUS LOKAL */
-    int i = FirstIdx(L);
+    int i = FirstIdxList(L);
     boolean ketemu = false;
+
     /* ALGORITMA */
-    while (i <= LastIdx(L) && ketemu == false)
+    while (i <= LastIdxList(L) && ketemu == false)
     {
         if (L.A[i] == X)
         {
@@ -130,31 +131,33 @@ void InsertFirstList(List *L, ElType X)
 {
     /* KAMUS LOKAL */
     int i;
+
     /* ALGORITMA */
-    if (Length(*L) < MaxEl)
+    if (LengthList(*L) < MaxEl)
     {
-        for (i = LastIdx(*L); i >= FirstIdx(*L); i--)
+        for (i = LastIdxList(*L); i >= FirstIdxList(*L); i--)
         {
-            L -> A[i+1] = L -> A[i];
+            L->A[i + 1] = L->A[i];
         }
-        L -> A[FirstIdx(*L)] = X;
+        L->A[FirstIdxList(*L)] = X;
     }
 }
 
 void InsertListAt(List *L, ElType X, IdxType i)
-/* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
+/* I.S. L terdefinisi, tidak kosong, i merupakan indeks logik yang valid di L. */
 /* F.S. v disisipkan dalam L pada indeks ke-i (bukan menimpa elemen di i). */
 {
     /* KAMUS LOKAL */
     int j;
+
     /* ALGORITMA */
-    if (Length(*L) < MaxEl && IsIdxEff(*L,i))
+    if (LengthList(*L) < MaxEl && IsIdxListEff(*L, i))
     {
-        for (j = LastIdx(*L); j >= i; j--)
+        for (j = LastIdxList(*L); j >= i; j--)
         {
-            L -> A[j+1] = L-> A[j];
+            L->A[j + 1] = L->A[j];
         }
-        L -> A[i] = X;
+        L->A[i] = X;
     }
 }
 
@@ -164,10 +167,10 @@ void InsertLastList(List *L, ElType X)
 {
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    if (Length(*L) < MaxEl)
+    if (LengthList(*L) < MaxEl)
     {
-        L -> A[Length(*L)] = X;   
-    } 
+        L->A[LengthList(*L)] = X;
+    }
 }
 
 void DeleteFirstList(List *L)
@@ -176,31 +179,33 @@ void DeleteFirstList(List *L)
 {
     /* KAMUS LOKAL */
     int i;
+
     /* ALGORITMA */
-    if(!IsEmpty(*L))
+    if (!IsListEmpty(*L))
     {
-        for (i = FirstIdx(*L); i < LastIdx(*L); i++)
+        for (i = FirstIdxList(*L); i < LastIdxList(*L); i++)
         {
-            L -> A[i] = L -> A[i + 1];
+            L->A[i] = L->A[i + 1];
         }
-        L -> A[LastIdx(*L)] = Mark;
+        L->A[LastIdxList(*L)] = Mark;
     }
 }
 
 void DeleteListAt(List *L, IdxType i)
-/* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
+/* I.S. L terdefinisi, tidak kosong, i merupakan indeks logik yang valid di L. */
 /* F.S. Elemen L pada indeks ke-i dihapus dari L. */
 {
     /* KAMUS LOKAL */
     int j;
+
     /* ALGORITMA */
-    if (!IsEmpty(*L) && IsIdxEff(*L, i))
+    if (!IsListEmpty(*L) && IsIdxListEff(*L, i))
     {
-        for (j = i; j < LastIdx(*L); j++)
+        for (j = i; j < LastIdxList(*L); j++)
         {
-            L -> A[j] = L -> A[j + 1];
+            L->A[j] = L->A[j + 1];
         }
-        L -> A[LastIdx(*L)] = Mark;
+        L->A[LastIdxList(*L)] = Mark;
     }
 }
 
@@ -208,10 +213,10 @@ void DeleteLastList(List *L)
 /* I.S. L terdefinisi, tidak kosong. */
 /* F.S. F diset dengan elemen terakhir L, elemen terakhir L dihapus dari L. */
 {
-    if(!IsEmpty(*L))
+    if (!IsListEmpty(*L))
     {
-        L -> A[LastIdx(*L)] = Mark;
-    }    
+        L->A[LastIdxList(*L)] = Mark;
+    }
 }
 
 List ConcatList(List L1, List L2)
@@ -222,16 +227,17 @@ List ConcatList(List L1, List L2)
 {
     /* KAMUS LOKAL */
     List L = MakeList();
-    int i = FirstIdx(L1), j = FirstIdx(L2);
+    int i = FirstIdxList(L1), j = FirstIdxList(L2);
+
     /* ALGORITMA */
-    while (i <= LastIdx(L1) && L1.A[i] != Mark)
+    while (i <= LastIdxList(L1) && L1.A[i] != Mark)
     {
-        InsertLast(&L, L1.A[i]);
+        InsertLastList(&L, L1.A[i]);
         i++;
     }
-    while (j <= LastIdx(L2) && L2.A[j] != Mark)
+    while (j <= LastIdxList(L2) && L2.A[j] != Mark)
     {
-        InsertLast(&L, L2.A[j]);
+        InsertLastList(&L, L2.A[j]);
         j++;
     }
     return L;

@@ -1,4 +1,4 @@
-/* file list.h */
+/* file static_list.h */
 
 /* MODUL LIST INTEGER */
 /* Berisi definisi dan semua primitif pemrosesan list integer */
@@ -7,7 +7,7 @@
 #ifndef ADTList1
 #define ADTList1
 
-#include "boolean.h"
+#include "../../boolean.h"
 
 /* Kamus Umum */
 #define MaxEl 100
