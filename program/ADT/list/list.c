@@ -1,154 +1,238 @@
-/* FILE list.c */
+/* file list.c */
 
 #include <stdio.h>
+#include "boolean.h"
 #include "list.h"
 
 /* ********** KONSTRUKTOR ********** */
-/* Konstruktor : create tabel kosong */
-void CreateEmptyList(TabInt *T)
+/* Konstruktor: create list kosong */
+List MakeList()
 /* I.S. sembarang */
-/* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMax-IdxMin+1 */
+/* F.S. Terbentuk list L kosong dengan kapasitas MaxEl */
 {
-  T->Neff = 0;
+    /* KAMUS LOKAL */
+    int i = 0;
+    /* ALGORITMA */
+    List L;
+    for (i; i < MaxEl; i++)
+    {
+        L.A[i] = Mark;
+    }
+    return L;
+}
+
+/* ********** TEST KOSONG/PENUH ********** */
+/* *** Test list kosong *** */
+boolean IsEmpty(List L)
+/* Mengirimkan true jika list L kosong, mengirimkan false jika tidak */
+{
+    return (Length(L) == 0);
+}
+
+/* *** Menghasilkan sebuah elemen *** */
+ElType Get(List L, IdxType i)
+/* Prekondisi : list tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
+/* Mengirimkan elemen list yang ke-i */
+{
+    return (L.A[i]);
+}
+
+/* *** Selektor SET : Mengubah nilai list dan elemen list *** */
+void Set(List *L, IdxType i, ElType v)
+/* I.S. T terdefinisi, sembarang */
+/* F.S. Elemen T yang ke-i bernilai v */
+{
+    L -> A[i] = v;
 }
 
 /* ********** SELEKTOR ********** */
 /* *** Banyaknya elemen *** */
-int NbElmt(TabInt T)
-/* Mengirimkan banyaknya elemen efektif tabel */
-/* Mengirimkan nol jika tabel kosong */
-/* *** Daya tampung container *** */
+int Length(List L)
+/* Mengirimkan banyaknya elemen efektif list */
+/* Mengirimkan nol jika list kosong */
 {
-  return T.Neff;
+    /* KAMUS LOKAL */
+    int i, count = 0;
+    /* ALGORITMA */
+    for (i = FirstIdx(L); i <= LastIdx(L); i++)
+    {
+        if (L.A[i] != Mark)
+        {
+            count++;
+        }
+    }
+    return count;
 }
 
-int MaxNbEl(TabInt T)
-/* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
 /* *** Selektor INDEKS *** */
-{
-  return IdxMax;
-}
-
-IdxType GetFirstIdx(TabInt T)
-/* Prekondisi : Tabel T tidak kosong */
+IdxType FirstIdx(List L)
+/* Prekondisi : list L tidak kosong */
 /* Mengirimkan indeks elemen pertama */
 {
-  return IdxMin;
+    return 0;
 }
 
-IdxType GetLastIdx(TabInt T)
-/* Prekondisi : Tabel T tidak kosong */
+IdxType LastIdx(List L)
+/* Prekondisi : list L tidak kosong */
 /* Mengirimkan indeks elemen terakhir */
-/* *** Menghasilkan sebuah elemen *** */
 {
-  return T.Neff;
-}
-
-ElType GetElmt(TabInt T, IdxType i)
-/* Prekondisi : Tabel tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
-/* Mengirimkan elemen tabel yang ke-i */
-{
-  return T.TI[i];
-}
-
-/* *** Selektor SET : Mengubah nilai TABEL dan elemen tabel *** */
-/* Untuk type private/limited private pada bahasa tertentu */
-void SetTab(TabInt Tin, TabInt *Tout)
-/* I.S. Tin terdefinisi, sembarang */
-/* F.S. Tout berisi salinan Tin */
-/* Assignment THsl -> Tin */
-{
-  /* KAMUS LOKAL*/
-  int i;
-  /* ALGORITMA */
-  for (i = IdxMin; i <= Tin.Neff; i++)
-  {
-    Tout->TI[i] = Tin.TI[i];
-  }
-  Tout->Neff = Tin.Neff;
-}
-
-void SetEl(TabInt *T, IdxType i, ElType v)
-/* I.S. T terdefinisi, sembarang */
-/* F.S. Elemen T yang ke-i bernilai v */
-/* Mengeset nilai elemen tabel yang ke-i sehingga bernilai v */
-{
-  /* KAMUS LOKAL */
-  /* ALGORITMA */
-  // printf("first idx %d last idx %d and idx is %d\n", GetFirstIdx(*T), GetLastIdx(*T), i);
-    // Mapping dari Index Min yang program (1) menjadi Index Min asli (0)
-    // printf("i: %d v: %d\n", i, v);
-  T->TI[i] = v;
-  if (i == GetLastIdx(*T) + 1)
-  {
-    T->Neff++;
-  }
-}
-
-void SetNeff(TabInt *T, IdxType N)
-/* I.S. T terdefinisi, sembarang */
-/* F.S. Nilai indeks efektif T bernilai N */
-/* Mengeset nilai indeks elemen efektif sehingga bernilai N */
-{
-  T->Neff = N;
+    /* KAMUS LOKAL */
+    int i = FirstIdx(L);
+    /* ALGORITMA */
+    while (i <= MaxEl - 1 && L.A[i] != Mark)
+    {
+        i++;
+    }
+    return i-1;
 }
 
 /* ********** Test Indeks yang valid ********** */
-boolean IsIdxValid(TabInt T, IdxType i)
+boolean IsIdxValid (List L, IdxType i)
 /* Prekondisi : i sembarang */
-/* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
-/* yaitu antara indeks yang terdefinisi utk container*/
+/* Mengirimkan true jika i adalah indeks yang valid utk ukuran list */
+/* yaitu antara indeks yang terdefinisi untuk container*/
 {
-  return (IdxMin <= i && i <= IdxMax);
+    return (FirstIdx(L) <= i && i <= LastIdx(L));
 }
 
-boolean IsIdxEff(TabInt T, IdxType i)
+boolean IsIdxEff (List L, IdxType i)
 /* Prekondisi : i sembarang*/
-/* Mengirimkan true jika i adalah indeks yang terdefinisi utk tabel */
-/* yaitu antara FirstIdx(T)..LastIdx(T) */
+/* Mengirimkan true jika i adalah indeks yang terdefinisi utk list */
+/* yaitu antara FirstIdx(L)..LastIdx(L) */
 {
-  return (GetFirstIdx(T) <= i && i <= GetLastIdx(T));
+    return (FirstIdx(L) <= i && i <= LastIdx(L) && L.A[i] != Mark);   
 }
 
-/* ********** TEST KOSONG/PENUH ********** */
-/* *** Test tabel kosong *** */
-boolean IsEmptyList(TabInt T)
-/* Mengirimkan true jika tabel T kosong, mengirimkan false jika tidak */
-/* *** Test tabel penuh *** */
+/* ********** Operasi-operasi ********** */
+boolean Search(List L, ElType X)
+/* Prekondisi : X sembarang */
+/* Mengirimkan true jika terdapat elemen X di dalam list */
+/* yaitu antara FirstIdx(L)..LastIdx(L) */
 {
-  return (NbElmt(T) == 0);
-}
-
-boolean IsFullList(TabInt T)
-/* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
-{
-  return (NbElmt(T) == MaxNbEl(T));
-}
-
-/* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
-void TulisIsiList(TabInt T)
-/* Proses : Menuliskan isi tabel dengan traversal */
-/* I.S. T boleh kosong */
-/* F.S. Jika T tidak kosong : indeks dan elemen tabel ditulis berderet ke bawah */
-/* Jika isi tabel [1,2,3] maka akan diprint
-1:1
-2:2
-3:3
-*/
-/* Jika T kosong : Hanya menulis "Tabel kosong" */
-{
-  /* KAMUS LOKAL */
-  int i;
-  /* ALGORITMA */
-  if (IsEmpty(T))
-  {
-    printf("Tabel kosong\n");
-  }
-  else
-  {
-    for (i = GetFirstIdx(T); i <= GetLastIdx(T); i++)
+    /* KAMUS LOKAL */
+    int i = FirstIdx(L);
+    boolean ketemu = false;
+    /* ALGORITMA */
+    while (i <= LastIdx(L) && ketemu == false)
     {
-      printf("%d:%d\n", i, GetElmt(T, i));
+        if (L.A[i] == X)
+        {
+            ketemu = true;
+        }
+        i++;
     }
-  }
+    return ketemu;
+}
+
+void InsertFirst(List *L, ElType X)
+/* I.S. L terdefinisi, mungkin kosong. */
+/* F.S. v menjadi elemen pertama L. */
+{
+    /* KAMUS LOKAL */
+    int i;
+    /* ALGORITMA */
+    if (Length(*L) < MaxEl)
+    {
+        for (i = LastIdx(*L); i >= FirstIdx(*L); i--)
+        {
+            L -> A[i+1] = L -> A[i];
+        }
+        L -> A[FirstIdx(*L)] = X;
+    }
+}
+
+void InsertAt(List *L, ElType X, IdxType i)
+/* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
+/* F.S. v disisipkan dalam L pada indeks ke-i (bukan menimpa elemen di i). */
+{
+    /* KAMUS LOKAL */
+    int j;
+    /* ALGORITMA */
+    if (Length(*L) < MaxEl && IsIdxEff(*L,i))
+    {
+        for (j = LastIdx(*L); j >= i; j--)
+        {
+            L -> A[j+1] = L-> A[j];
+        }
+        L -> A[i] = X;
+    }
+}
+
+void InsertLast(List *L, ElType X)
+/* I.S. L terdefinisi, mungkin kosong. */
+/* F.S. v menjadi elemen terakhir L. */
+{
+    /* KAMUS LOKAL */
+    /* ALGORITMA */
+    if (Length(*L) < MaxEl)
+    {
+        L -> A[Length(*L)] = X;   
+    } 
+}
+
+void DeleteFirst(List *L)
+/* I.S. L terdefinisi, tidak kosong. */
+/* F.S. F diset dengan elemen pertama L, elemen pertama L dihapus dari L. */
+{
+    /* KAMUS LOKAL */
+    int i;
+    /* ALGORITMA */
+    if(!IsEmpty(*L))
+    {
+        for (i = FirstIdx(*L); i < LastIdx(*L); i++)
+        {
+            L -> A[i] = L -> A[i + 1];
+        }
+        L -> A[LastIdx(*L)] = Mark;
+    }
+}
+
+void DeleteAt(List *L, IdxType i)
+/* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
+/* F.S. Elemen L pada indeks ke-i dihapus dari L. */
+{
+    /* KAMUS LOKAL */
+    int j;
+    /* ALGORITMA */
+    if (!IsEmpty(*L) && IsIdxEff(*L, i))
+    {
+        for (j = i; j < LastIdx(*L); j++)
+        {
+            L -> A[j] = L -> A[j + 1];
+        }
+        L -> A[LastIdx(*L)] = Mark;
+    }
+}
+
+void DeleteLast(List *L)
+/* I.S. L terdefinisi, tidak kosong. */
+/* F.S. F diset dengan elemen terakhir L, elemen terakhir L dihapus dari L. */
+{
+    if(!IsEmpty(*L))
+    {
+        L -> A[LastIdx(*L)] = Mark;
+    }    
+}
+
+List Concat(List L1, List L2)
+/* Prekondisi : L1 dan L2 tidak kosong */
+/* Mengirimkan sebuah List yang merupakan gabungan dari L1 dan L2 */
+/* Urutan elemen terisi dari L1, lalu L2 */
+/* Contoh : L1 : [1, 2]; L2 : [3, 4]; Mengembalikan [1, 2, 3, 4] */
+{
+    /* KAMUS LOKAL */
+    List L = MakeList();
+    int i = FirstIdx(L1), j = FirstIdx(L2);
+    /* ALGORITMA */
+    while (i <= LastIdx(L1) && L1.A[i] != Mark)
+    {
+        InsertLast(&L, L1.A[i]);
+        i++;
+    }
+    while (j <= LastIdx(L2) && L2.A[j] != Mark)
+    {
+        InsertLast(&L, L2.A[j]);
+        j++;
+    }
+    return L;
 }

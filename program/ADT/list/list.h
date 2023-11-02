@@ -1,107 +1,116 @@
-/* FILE list.h */
+/* file list.h */
+
+/* MODUL LIST INTEGER */
+/* Berisi definisi dan semua primitif pemrosesan list integer */
+/* Penempatan elemen selalu rapat kiri */
+
+#ifndef ADTList1
+#define ADTList1
 
 #include "boolean.h"
 
-#ifndef ARRAY_H
-#define ARRAY_H
-
 /* Kamus Umum */
-
-#define IdxMax 100
-#define IdxMin 1
-#define IdxUndef -999 /* indeks tak terdefinisi*/
+#define MaxEl 100
+#define Mark -9999  /* Nilai tak terdefinisi */
+#define InvalidIdx -1  /* Indeks tak terdefinisi */
 
 /* Definisi elemen dan koleksi objek */
-typedef int IdxType;
-typedef int ElType;
+#define IdxType int
+#define ElType int
 
-typedef struct
-	{
-		ElType TI [IdxMax-IdxMin+1]; /* memori tempat penyimpan elemen (container) */
-		int Neff; /* banyaknya elemen efektif */
-	} TabInt;
+typedef struct {
+	ElType A[MaxEl];  /* Memori tempat penyimpanan elemen (container) */
+} List;
 
-/* Indeks yang digunakan [IdxMin..IdxMax] */
-/* Jika T adalah TabInt, cara deklarasi dan akses: */
-/* Deklarasi : T : TabInt */
+#define List(i) L.A(i)
+
+/* Indeks yang digunakan seberapa banyak memori itu terisi */
+/* Jika L adalah List, cara deklarasi dan akses: */
+/* Deklarasi: L : List */
 /* Maka cara akses:
- * T.Neff untuk mengetahui banyaknya elemen
- * T.TI untuk mengakses seluruh nilai elemen tabel
- * T.TI[i] untuk mengakses elemen ke-i */
-/* Definisi :
- * Tabel kosong: T.Neff = 0
- * Definisi elemen pertama : T.TI[i] dengan i=1
- * Definisi elemen terakhir yang terdefinisi: T.TI[i] dengan i=T.Neff */
+ * L.A untuk mengakses seluruh nilai elemen list
+ * L.A[i] untuk mengakses elemen ke-i */
 
 /* ********** KONSTRUKTOR ********** */
-/* Konstruktor : create tabel kosong */
-void CreateEmptyList (TabInt *T);
+/* Konstruktor: create list kosong */
+List MakeList();
 /* I.S. sembarang */
-/* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMax-IdxMin+1 */
+/* F.S. Terbentuk list L kosong dengan kapasitas MaxEl */
+
+/* ********** TEST KOSONG/PENUH ********** */
+/* *** Test list kosong *** */
+boolean IsEmpty(List L);
+/* Mengirimkan true jika list L kosong, mengirimkan false jika tidak */
+
+/* *** Menghasilkan sebuah elemen *** */
+ElType Get(List L, IdxType i);
+/* Prekondisi : list tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
+/* Mengirimkan elemen list yang ke-i */
+
+/* *** Selektor SET : Mengubah nilai list dan elemen list *** */
+void Set(List *L, IdxType i, ElType v);
+/* I.S. T terdefinisi, sembarang */
+/* F.S. Elemen T yang ke-i bernilai v */
 
 /* ********** SELEKTOR ********** */
 /* *** Banyaknya elemen *** */
-int NbElmt (TabInt T);
-/* Mengirimkan banyaknya elemen efektif tabel */
-/* Mengirimkan nol jika tabel kosong */
-/* *** Daya tampung container *** */
-int MaxNbEl (TabInt T);
-/* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
-/* *** Selektor INDEKS *** */
-IdxType GetFirstIdx (TabInt T);
-/* Prekondisi : Tabel T tidak kosong */
-/* Mengirimkan indeks elemen pertama */
-IdxType GetLastIdx (TabInt T);
-/* Prekondisi : Tabel T tidak kosong */
-/* Mengirimkan indeks elemen terakhir */
-/* *** Menghasilkan sebuah elemen *** */
-ElType GetElmt (TabInt T, IdxType i);
-/* Prekondisi : Tabel tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
-/* Mengirimkan elemen tabel yang ke-i */
+int Length(List L);
+/* Mengirimkan banyaknya elemen efektif list */
+/* Mengirimkan nol jika list kosong */
 
-/* *** Selektor SET : Mengubah nilai TABEL dan elemen tabel *** */
-/* Untuk type private/limited private pada bahasa tertentu */
-void SetTab (TabInt Tin, TabInt *Tout);
-/* I.S. Tin terdefinisi, sembarang */
-/* F.S. Tout berisi salinan Tin */
-/* Assignment THsl -> Tin */
-void SetEl (TabInt *T, IdxType i, ElType v);
-/* I.S. T terdefinisi, sembarang */
-/* F.S. Elemen T yang ke-i bernilai v */
-/* Mengeset nilai elemen tabel yang ke-i sehingga bernilai v */
-void SetNeff (TabInt *T, IdxType N);
-/* I.S. T terdefinisi, sembarang */
-/* F.S. Nilai indeks efektif T bernilai N */
-/* Mengeset nilai indeks elemen efektif sehingga bernilai N */
+/* *** Selektor INDEKS *** */
+IdxType FirstIdx(List L);
+/* Prekondisi : list L tidak kosong */
+/* Mengirimkan indeks elemen pertama */
+
+IdxType LastIdx(List L);
+/* Prekondisi : list L tidak kosong */
+/* Mengirimkan indeks elemen terakhir */
 
 /* ********** Test Indeks yang valid ********** */
-boolean IsIdxValid (TabInt T, IdxType i);
+boolean IsIdxValid (List L, IdxType i);
 /* Prekondisi : i sembarang */
-/* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
-/* yaitu antara indeks yang terdefinisi utk container*/
-boolean IsIdxEff (TabInt T, IdxType i);
+/* Mengirimkan true jika i adalah indeks yang valid utk ukuran list */
+/* yaitu antara indeks yang terdefinisi untuk container*/
+
+boolean IsIdxEff (List L, IdxType i);
 /* Prekondisi : i sembarang*/
-/* Mengirimkan true jika i adalah indeks yang terdefinisi utk tabel */
-/* yaitu antara FirstIdx(T)..LastIdx(T) */
+/* Mengirimkan true jika i adalah indeks yang terdefinisi utk list */
+/* yaitu antara FirstIdx(L)..LastIdx(L) */
 
-/* ********** TEST KOSONG/PENUH ********** */
-/* *** Test tabel kosong *** */
-boolean IsEmptyList (TabInt T);
-/* Mengirimkan true jika tabel T kosong, mengirimkan false jika tidak */
-/* *** Test tabel penuh *** */
-boolean IsFullList (TabInt T);
-/* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
+/* ********** Operasi-operasi ********** */
+boolean Search(List L, ElType X);
+/* Prekondisi : X sembarang */
+/* Mengirimkan true jika terdapat elemen X di dalam list */
+/* yaitu antara FirstIdx(L)..LastIdx(L) */
 
-/* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
-void TulisIsiList (TabInt T);
-/* Proses : Menuliskan isi tabel dengan traversal */
-/* I.S. T boleh kosong */
-/* F.S. Jika T tidak kosong : indeks dan elemen tabel ditulis berderet ke bawah */
-/* Jika isi tabel [1,2,3] maka akan diprint
-1:1
-2:2
-3:3
-*/
-/* Jika T kosong : Hanya menulis "Tabel kosong" */
+void InsertFirst(List *L, ElType X);
+/* I.S. L terdefinisi, mungkin kosong. */
+/* F.S. v menjadi elemen pertama L. */
 
+void InsertAt(List *L, ElType X, IdxType i);
+/* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
+/* F.S. v disisipkan dalam L pada indeks ke-i (bukan menimpa elemen di i). */
+
+void InsertLast(List *L, ElType X);
+/* I.S. L terdefinisi, mungkin kosong. */
+/* F.S. v menjadi elemen terakhir L. */
+
+void DeleteFirst(List *L);
+/* I.S. L terdefinisi, tidak kosong. */
+/* F.S. F diset dengan elemen pertama L, elemen pertama L dihapus dari L. */
+
+void DeleteAt(List *L, IdxType i);
+/* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
+/* F.S. Elemen L pada indeks ke-i dihapus dari L. */
+
+void DeleteLast(List *L);
+/* I.S. L terdefinisi, tidak kosong. */
+/* F.S. F diset dengan elemen terakhir L, elemen terakhir L dihapus dari L. */
+
+List Concat(List L1, List L2);
+/* Prekondisi : L1 dan L2 tidak kosong */
+/* Mengirimkan sebuah List yang merupakan gabungan dari L1 dan L2 */
+/* Urutan elemen terisi dari L1, lalu L2 */
+/* Contoh : L1 : [1, 2]; L2 : [3, 4]; Mengembalikan [1, 2, 3, 4] */
 #endif
