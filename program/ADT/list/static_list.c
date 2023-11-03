@@ -1,3 +1,5 @@
+/* file static_list.c */
+
 #include <stdio.h>
 #include "static_list.h"
 
