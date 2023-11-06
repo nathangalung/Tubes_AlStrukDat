@@ -11,9 +11,9 @@ DynamicList MakeListDynamic()
 /* F.S. Terbentuk list L kosong dengan kapasitas MaxEl */
 {
     /* KAMUS LOKAL */
-    List L;
+    DynamicList L;
     /* ALGORITMA */
-    L.A = (ElType *) malloc (MaxEl * sizeof(ElType));
+    L.A = (ElType *)malloc(MaxEl * sizeof(ElType));
     if (L.A != NULL)
     {
         L.Neff = 0;
