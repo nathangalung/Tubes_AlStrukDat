@@ -11,8 +11,8 @@ StaticList MakeStaticList()
 {
     /* KAMUS LOKAL */
     int i;
-    List L;
-
+    StaticList L = MakeList(); // Inisialisasi list kosong
+    
     /* ALGORITMA */
     for (i = FirstIdxList(L); i <= LastIdxList(L); i++)
     {
@@ -221,14 +221,14 @@ void DeleteLastList(StaticList *L)
     }
 }
 
-List ConcatList(StaticList L1, StaticList L2)
+StaticList ConcatList(StaticList L1, StaticList L2)
 /* Prekondisi : L1 dan L2 tidak kosong */
 /* Mengirimkan sebuah List yang merupakan gabungan dari L1 dan L2 */
 /* Urutan elemen terisi dari L1, lalu L2 */
 /* Contoh : L1 : [1, 2]; L2 : [3, 4]; Mengembalikan [1, 2, 3, 4] */
 {
     /* KAMUS LOKAL */
-    List L = MakeList();
+    StaticList L = MakeList();
     int i = FirstIdxList(L1), j = FirstIdxList(L2);
 
     /* ALGORITMA */

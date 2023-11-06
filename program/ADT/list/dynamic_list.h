@@ -53,3 +53,4 @@ boolean IsListFullDynamic(List L);
 int LengthListDynamic(List L);
 /* Mengirimkan banyaknya elemen efektif list */
 /* Mengirimkan nol jika list kosong */
+#endif
