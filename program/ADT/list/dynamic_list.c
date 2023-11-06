@@ -6,7 +6,7 @@
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor: create list kosong  */
-List MakeListDynamic()
+DynamicList MakeListDynamic()
 /* I.S. sembarang */
 /* F.S. Terbentuk list L kosong dengan kapasitas MaxEl */
 {
@@ -22,7 +22,7 @@ List MakeListDynamic()
 }
 
 /* ********** DESTRUKTOR ********** */
-void DealokasiDynamic(List *L)
+void DealokasiDynamic(DynamicList *L)
 /* I.S. L terdefinisi; */
 /* F.S. (L) dikembalikan ke system, melakukan dealokasi/pengembalian */
 /* memori ke system */
@@ -33,14 +33,14 @@ void DealokasiDynamic(List *L)
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test list kosong *** */
-boolean IsListEmptyDynamic(List L)
+boolean IsListEmptyDynamic(DynamicList L)
 /* Mengirimkan true jika list L kosong, mengirimkan false jika tidak */
 {
     return (L.Neff == 0);
 }
 
 /* *** Menghasilkan sebuah elemen *** */
-ElType GetDynamic(List L, IdxType i)
+ElType GetDynamic(DynamicList L, IdxType i)
 /* Prekondisi : list tidak kosong, i antara FirstIdxList(L)..LastIdxList(L) */
 /* Mengirimkan elemen list yang ke-i */
 {
@@ -48,7 +48,7 @@ ElType GetDynamic(List L, IdxType i)
 }
 
 /* *** Test list penuh *** */
-boolean IsListFullDynamic(List L)
+boolean IsListFullDynamic(DynamicList L)
 /* Mengirimkan true jika list L penuh, mengirimkan false jika tidak */
 {
     return (L.Neff == MaxEl);
@@ -56,7 +56,7 @@ boolean IsListFullDynamic(List L)
 
 /* ********** SELEKTOR ********** */
 /* *** Banyaknya elemen *** */
-int LengthListDynamic(List L)
+int LengthListDynamic(DynamicList L)
 /* Mengirimkan banyaknya elemen efektif list */
 /* Mengirimkan nol jika list kosong */
 {
