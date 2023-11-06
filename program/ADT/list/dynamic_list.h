@@ -14,7 +14,7 @@ typedef struct
 {
     ElType *A;
     int Neff;
-} List;
+} DynamicList;
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor: create list kosong  */
