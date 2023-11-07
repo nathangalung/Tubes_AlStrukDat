@@ -35,4 +35,4 @@ int main()
     {
         int idxElemenHapus = -1;
         for (int i = 0; i < LengthListDynamic(L1); i++)
-       
+    }
