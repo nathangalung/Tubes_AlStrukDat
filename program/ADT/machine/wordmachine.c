@@ -90,7 +90,7 @@ void CopyWordInput()
     currentWord.Length = i;
 }
 
-void CopyWordFile()
+Word CopyWordFile()
 {
     int i = 0;
 
@@ -101,4 +101,6 @@ void CopyWordFile()
         i++;
     }
     currentWord.Length = i;
+
+    return (currentWord);
 }

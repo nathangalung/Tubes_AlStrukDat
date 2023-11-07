@@ -12,7 +12,10 @@
 extern char currentChar;
 extern boolean EOP;
 
-void START();
+
+void StartInput();
+
+void StartFile(char *filename);
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
    Pita baca diambil dari stdin.
@@ -21,7 +24,9 @@ void START();
           Jika currentChar != MARK maka EOP akan padam (false)
           Jika currentChar = MARK maka EOP akan menyala (true) */
 
-void ADV();
+void AdvInput();
+
+void AdvFile();
 /* Pita dimajukan satu karakter.
    I.S. : Karakter pada jendela = currentChar, currentChar != MARK
    F.S. : currentChar adalah karakter berikutnya dari currentChar yang lama,
