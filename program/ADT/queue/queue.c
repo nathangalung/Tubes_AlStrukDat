@@ -85,35 +85,47 @@ void dequeue(Queue *q, Word *val){
 
 /* *** Display Queue *** */
 void displayQueue(Queue q){
-/* Proses : Menuliskan isi Queue dengan traversal, Queue ditulis di antara kurung 
-   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
-   karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */
+/* Proses : Menuliskan isi Queue dengan traversal, setiap elemen queue ditulis dalam line berbeda sesuai dengan urutannya.
+   Setiap elemen ditampilkan dengan format : <Urutan ke berapa>. <Nama Penyanyi> - <Nama Lagu> - <Nama Album>
+   Pada file config, setiap data lagu dipisahkan menggunakan semicolon (;) dan diakhiri newline */
 /* I.S. q boleh kosong */
-/* F.S. Jika q tidak kosong: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika Queue kosong : menulis [] */
+/* F.S. Jika q tidak kosong: Queue :
+                             1.e1
+                             2.e2
+                             ...
+                             n.en */
+/* Contoh : jika ada dua elemen berisikan lagu Arctic Monkeys - R U MINE? - AM dan BLACKPINK - WHISTLE - SQUARE ONE,
+            akan dicetak: Queue:
+                          1. Arctic Monkeys - R U Mine? - AM
+                          2. BLACKPINK - WHISTLE - SQUARE ONE
+*/
+/* Jika Queue kosong : menulis Your queue is empty. */
     if (isQueueEmpty(q)){
-        printf("[]\n");
+        printf("Your queue is empty.\n");
     } else {
-        int i;
-        printf("[");
-        if (IDX_HEAD(q) > IDX_TAIL(q)){
-            for (i=IDX_HEAD(q); i <= CAPACITY-1; i++){
-                printf("%d", q.buffer[i]);
-                printf(",");
-            } for (i=0; i <= IDX_TAIL(q); i++){
-                printf("%d", q.buffer[i]);
-                if (i != IDX_TAIL(q)) {
+        int i, urutan;
+        printf("Queue:\n");
+        for (urutan = 1; urutan <= lengthQueue(q); i++) {
+            printf("%d.", urutan);
+            if (IDX_HEAD(q) > IDX_TAIL(q)){
+                for (i=IDX_HEAD(q); i <= CAPACITY-1; i++){
+                    printf("%d", q.buffer[i]);
                     printf(",");
+                } for (i=0; i <= IDX_TAIL(q); i++){
+                    printf("%d", q.buffer[i]);
+                    if (i != IDX_TAIL(q)) {
+                        printf(",");
+                    }
+                }
+            } else {
+                for (i=IDX_HEAD(q); i <= IDX_TAIL(q); i++){
+                    printf("%d", q.buffer[i]);
+                    if (i != IDX_TAIL(q)) {
+                        printf(",");
+                    }
                 }
             }
-        } else {
-            for (i=IDX_HEAD(q); i <= IDX_TAIL(q); i++){
-                printf("%d", q.buffer[i]);
-                if (i != IDX_TAIL(q)) {
-                    printf(",");
-                }
-            }
-        } printf("]\n");
+        }
+        printf("]\n");
     }
 }
