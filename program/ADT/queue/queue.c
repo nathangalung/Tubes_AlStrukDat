@@ -23,7 +23,7 @@ boolean isQueueEmpty(Queue q){
 boolean isQueueFull(Queue q){
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu ketika IDX_HEAD=0 dan IDX_TAIL=CAPACITY-1 */
-    return (length(q) == CAPACITY-1);
+    return (lengthQueue(q) == CAPACITY-1);
 }
 
 int lengthQueue(Queue q){
@@ -32,7 +32,7 @@ int lengthQueue(Queue q){
     int length;
 
     /* ALGORITMA */
-    if (isEmpty(q)) {
+    if (isQueueEmpty(q)) {
         length = 0;
     } else if (IDX_TAIL(q) >= IDX_HEAD(q)){ /*Ketika tail berada di belakang head*/
         length = (IDX_TAIL(q) - IDX_HEAD(q)) + 1;
@@ -44,13 +44,13 @@ int lengthQueue(Queue q){
 }
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, ElType val){
+void enqueue(Queue *q, Word val){
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur".
         Jika q penuh semu, maka perlu dilakukan aksi penggeseran "maju" elemen-elemen q
         menjadi rata kiri untuk membuat ruang kosong bagi TAIL baru  */
-    if (isEmpty(*q)){
+    if (isQueueEmpty(*q)){
         IDX_HEAD(*q) = 0;
         IDX_TAIL(*q) = 0;
     } else {
@@ -69,7 +69,7 @@ void enqueue(Queue *q, ElType val){
     TAIL(*q) = val;
 }
 
-void dequeue(Queue *q, ElType *val){
+void dequeue(Queue *q, Word *val){
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
@@ -92,7 +92,7 @@ void displayQueue(Queue q){
 /* F.S. Jika q tidak kosong: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
-    if (isEmpty(q)){
+    if (isQueueEmpty(q)){
         printf("[]\n");
     } else {
         int i;

@@ -9,43 +9,96 @@ void IgnoreBlanks()
 {
     while (currentChar == BLANK)
     {
-        ADV();
+        AdvInput();
     }
 }
 
-void STARTWORD()
+void IgnoreNewlines()
 {
-    START();
-    ADVWORD();
+    while (currentChar == NEWLINE)
+    {
+        AdvFile();
+    }
 }
 
-void ADVWORD()
+void StartWordInput()
 {
+    StartInput();
     IgnoreBlanks();
-    if (currentChar == MARK)
+    if (IsEOP())
     {
         EndWord = true;
     }
     else
     {
         EndWord = false;
-        CopyWord();
+        CopyWordInput();
+    }
+}
+
+void StartWordFile(char *filename)
+{
+    StartFile(filename);
+    if (currentChar == NEWLINE)
+    {
+        EndWord = true;
+    }
+    else
+    {
+        EndWord = false;
+        AdvWordFile();
+    }
+}
+
+void AdvWordInput()
+{
+    IgnoreBlanks();
+    if (currentChar == BLANK)
+    {
+        EndWord = true;
+    }
+    else
+    {
+        CopyWordInput();
         IgnoreBlanks();
     }
 }
 
-void CopyWord()
+void AdvWordFile()
+{
+    if (currentChar == NEWLINE)
+    {
+        EndWord = true;
+    }
+    else
+    {
+        CopyWordFile();
+        IgnoreNewlines();
+    }
+}
+
+void CopyWordInput()
 {
     int i = 0;
 
-    while ((currentChar != MARK) && (currentChar != BLANK))
+    while ((!IsEOP()) && (currentChar != BLANK))
     {
-        if (i < NMax)
-        {
-            currentWord.TabWord[i] = currentChar;
-            i++;
-        }
-        ADV();
+        currentWord.TabWord[i] = currentChar;
+        AdvInput();
+        i++;
+    }
+    currentWord.Length = i;
+}
+
+void CopyWordFile()
+{
+    int i = 0;
+
+    while ((!EOP) && currentChar != NEWLINE)
+    {
+        currentWord.TabWord[i] = currentChar;
+        AdvFile();
+        i++;
     }
     currentWord.Length = i;
 }

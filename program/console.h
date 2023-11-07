@@ -3,10 +3,16 @@
 
 #include <stdio.h>
 
-#include "program/ADT/charmachine.h"
-#include "program/ADT/wordmachine.h"
+#include "ADT/charmachine.h"
+#include "ADT/queue/queue.h"
+#include "ADT/wordmachine.h"
+#include "boolean.h"
 
-boolean cmp_word(Word a, Word b);
+boolean word_cmp(Word a, Word b);
+
+int word_to_int(Word word);
+
+Word string_to_word(char *s);
 
 Word split_word(Word a);
 

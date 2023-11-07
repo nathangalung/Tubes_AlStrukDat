@@ -4,29 +4,58 @@
 #include <time.h>
 
 #include "console.h"
+#include "ADT/machine/wordmachine.h"
 
 
-boolean cmp_word(Word a, Word b)
+boolean word_cmp(Word word_1, Word word_2)
 {
-    boolean found = true;
-    int i = 0;
-
-    if (a.Length != b.Length)
+    boolean found = false;
+    int check = 0;
+    if (word_1.Length == word_2.Length)
     {
-        found = false;
-    }
-    else
-    {
-        while (((a.TabWord[i] != MARK) || (a.TabWord[i] != BLANK)) && (found = true))
+        found = true;
+        while (check < word_1.Length && found)
         {
-            if (a.TabWord[i] != b.TabWord[i])
+            if (word_1.TabWord[check] != word_2.TabWord[check])
             {
                 found = false;
+            }
+            else
+            {
+                check++;
             }
         }
     }
 
     return (found);
+}
+
+int word_to_int(Word word)
+{
+    int val = 0;
+    int i;
+    for (i = 0; i < word.Length; i++)
+    {
+        val = val * 10 + (int)(word.TabWord[i] % 48);
+    }
+
+    return (val);
+}
+
+Word string_to_word(char *string)
+{
+    Word command;
+
+    int i;
+
+    while (string[i] != "\0")
+    {
+        command.TabWord[i] = string[i];
+        i++;
+    }
+    command.Length = i;
+
+    return command;
 }
 
 Word split_word(Word a)
@@ -49,4 +78,46 @@ Word split_word(Word a)
     a.Length = length;
 
     return (a);
+}
+
+void load_queue(Queue queue)
+{
+    int count, i;
+
+    if (!EOP)
+    {
+        count = word_to_int(currentWord);
+        for (i = 0; i < count; i++)
+        {
+            ADVWORD();
+            enqueue(&queue, currentWord);
+        }
+        ADVWORD();
+    }
+}
+
+void load_history(Stack stack)
+{
+    int count, i;
+
+    if (!EOP)
+    {
+        count = word_to_int(currentWord);
+        for (i = 0; i < count; i++)
+        {
+            ADVWORD();
+            enqueue(&stack, currentWord);
+        }
+        ADVWORD();
+    }
+}
+
+void load_set(Set set)
+{
+    
+}
+
+void load_map(Map map)
+{
+    
 }

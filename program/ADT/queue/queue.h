@@ -4,16 +4,16 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include "boolean.h"
+#include "../../boolean.h"
+#include "../wordmachine.h"
 #include <stdlib.h>
 
 #define IDX_UNDEF -1
 #define CAPACITY 100
 
 /* Definisi elemen dan address */
-typedef int ElType;
 typedef struct {
-	ElType buffer[CAPACITY]; 
+	Word buffer[CAPACITY]; 
 	int idxHead;
 	int idxTail;
 } Queue;
@@ -45,12 +45,12 @@ int lengthQueue(Queue q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, ElType val);
+void enqueue(Queue *q, Word val);
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void dequeue(Queue *q, ElType *val);
+void dequeue(Queue *q, Word *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
