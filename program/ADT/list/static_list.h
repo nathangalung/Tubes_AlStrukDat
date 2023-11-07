@@ -20,7 +20,7 @@
 
 typedef struct {
 	ElType A[MaxEl];  /* Memori tempat penyimpanan elemen (container) */
-} List;
+} StaticList;
 
 #define List(i) L.A(i)
 

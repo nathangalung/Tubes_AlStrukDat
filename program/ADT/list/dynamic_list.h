@@ -14,7 +14,7 @@ typedef struct
 {
     ElType *A;
     int Neff;
-} List;
+} DynamicList;
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor: create list kosong  */
@@ -53,5 +53,8 @@ boolean IsListFullDynamic(List L);
 int LengthListDynamic(List L);
 /* Mengirimkan banyaknya elemen efektif list */
 /* Mengirimkan nol jika list kosong */
+<<<<<<< HEAD
 
+=======
+>>>>>>> d4334d0c46d527b1268a3836b5c752715433264e
 #endif
