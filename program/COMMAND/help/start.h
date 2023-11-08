@@ -2,9 +2,11 @@
 #define __START_H__
 
 #include "../ADT/machine/wordmachine.h"
-#include "../ADT/queue/queue.h"
 #include "../ADT/list/static_list.h"
+#include "../ADT/list/dynamic_list.h"
+#include "../ADT/setmap/set.h"
+#include "../ADT/setmap/map.h"
 
-void start(List artist, Set album, Map album_artist, Map song_album, List user);
+void start(Set *album, Map *album_artist, Map *song_album, DynamicList *user);
 
 #endif

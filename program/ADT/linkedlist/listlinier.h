@@ -6,21 +6,21 @@
 #ifndef listlinier_H
 #define listlinier_H
 
-#include "../boolean.h"
-#include "wordmachine.h"
+#include "../../boolean.h"
+#include "../machine/wordmachine.h"
 
 /* Definisi Node : */
 typedef Word ElType;
 typedef struct node* Address;
 typedef struct node {
-    ElType info;
+    Word info;
     Address next;
 } Node;
 
 #define INFO(p) (p)->info
 #define NEXT(p) (p)->next
 
-Address newNode(ElType val);
+Address newNode(Word val);
 
 /* Definisi List : */
 /* List kosong : FIRST(l) = NULL */

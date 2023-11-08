@@ -1,87 +1,71 @@
 #include <stdio.h>
 
 #include "load.h"
-#include "../console.h"
 
-void load(char *filename, Set album, Map album_artist, Map song_album, List user, Queue *queue, Stack *history, DynamicList *playlist)
+void load(Word filename, Set *album, Map *album_artist, Map *song_album, DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist)
 {
-    int count_artist, count_album, count_song, count_user, count_queue, count_history, count_playlist;
-    Word name_artist, name_album, name_song, name_playlist;
-
-    StartWordFile(concat("../FILE_CONFIG/", filename));
-    count_artist = word_to_int(currentWord);
+    StartWordNewline(filename);
+    int count_artist = word_to_int(currentWord);
 
     for (int i=0; i<count_artist; i++)
     {
-        AdvWordInput();
-        count_album = word_to_int(currentWord);
-        AdvWordFile();
-        name_artist = currentWord;
-        artist.A[i] = name_artist;
-
+        int count_album = read_word_count();
+        
+        Word name_artist = read_line_name();
+        
         for (int j=0; j<count_album; j++)
         {
-            AdvWordInput();
-            count_song = word_to_int(currentWord);
-            AdvWordFile();
-            name_album = currentWord;
-            Insert(&album_artist, name_album, name_artist);
+            int count_song = read_word_count();
+
+            Word name_album = read_line_name();
+            InsertMap(album_artist, name_album, name_artist);
+            InsertSet(album, name_album);
 
             for (int k=0; k<count_song; k++)
-            {
-                AdvWordFile();
-                name_song = currentWord;
-                Insert(&song_album, name_song, name_album);
+            {                                           
+                Word name_song = read_line_name();
+                InsertMap(album_artist, name_song, name_album);
             }
         }
     }
 
-    AdvWordFile();
-    count_user = word_to_int(currentWord);
+    int count_user = read_line_count();
 
     for(int i=0; i<count_user; i++)
     {
-        AdvWordFile();
-        user.A[i] = currentWord;
-        user.Neff++;
+        Word name_user = read_line_name();
+        InsertLastDynamic(user, name_user);
     }
 
-    for(int i=0; i<count_user; i++)
+    for(int i = 0; i < count_user; i++)
     {
-        AdvWordFile();
-        count_queue = word_to_int(currentWord);
+        int count_queue = read_line_count();
 
         for(int j=0; j<count_queue; j++)
         {
-            AdvWordFile();
-            enqueue(&queue, currentWord);
+            Word name_queue = read_line_name();
+            Enqueue(queue, name_queue);
         }
 
-        AdvWordFile();
-        count_history = word_to_int(currentWord);
+        int count_history = read_line_count();
 
         for(int j=0; j<count_history; j++)
         {
-            AdvWordFile();
-            push();
+            Word name_history = read_line_name();
+            PushStack(history, name_history);
         }
 
-        AdvWordFile();
-        count_playlist = word_to_int(currentWord);
+        int count_playlist = read_line_count();
 
-        for(int j=0; j<count_playlist; j++)
+        for(int j = 0; j < count_playlist; j++)
         {
-            AdvWordInput();
-            count_song = word_to_int(currentWord);
-            AdvWordFile();
-            name_playlist = currentWord;
-            playlist.A[j] = name_playlist;
-            playlist.Neff++;
+            int count_song = read_word_count();
+            Word name_playlist = read_line_name();
+            InsertLastDynamic(playlist, name_playlist);
 
-            for(int k=0; k<count_song; k++)
+            for(int k = 0; k < count_song; k++)
             {
-                AdvWordFile();
-                name_song = currentWord;
+                Word name_song = read_line_name();
             }
         }
     }

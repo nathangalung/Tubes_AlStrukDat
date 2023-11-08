@@ -8,19 +8,25 @@ boolean EOP;
 static FILE *pita;
 static int retval;
 
-void StartInput()
+void StartMark()
 {
     pita = stdin;
-    AdvInput();
+    AdvMark();
 }
 
-void StartFile(char *filename)
+void StartBlank()
 {
-    pita = fopen(filename, "r");
-    AdvFile();
+    pita = stdin;
+    AdvBlank();
+}
+
+void StartNewline(Word filename)
+{
+    pita = fopen(filename.TabWord, "r");
+    AdvNewline();
 }
  
-void AdvInput()
+void AdvMark()
 {
     if (pita == NULL)
     {
@@ -38,7 +44,7 @@ void AdvInput()
     }
 }
 
-void AdvFile()
+void AdvBlank()
 {
     if (pita == NULL)
     {
@@ -56,12 +62,57 @@ void AdvFile()
     }
 }
 
-char GetCC()
+void AdvNewline()
 {
-    return (currentChar);
+    if (pita == NULL)
+    {
+        EOP = true;
+    }
+    else
+    {
+        retval = fscanf(pita, "%c", &currentChar);
+        EOP = feof(pita);
+
+        if (EOP)
+        {
+            fclose(pita);
+        }
+    }
 }
 
-boolean IsEOP()
+
+boolean IsEOPMark()
 {
-    return (currentChar == MARK);
+    if (EOP)
+    {
+        return (EOP);
+    }
+    else
+    {
+        return (currentChar == MARK);
+    }
+}
+
+boolean IsEOPBlank()
+{
+    if (EOP)
+    {
+        return (EOP);
+    }
+    else
+    {
+        return (currentChar == BLANK);
+    }
+}
+
+boolean IsEOPNewline()
+{
+    if (EOP)
+    {
+        return (EOP);
+    }
+    else
+    {
+        return (currentChar == NEWLINE);
+    }
 }

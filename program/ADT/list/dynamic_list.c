@@ -2,63 +2,46 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "dynamic_list.h"
 
-/* ********** KONSTRUKTOR ********** */
-/* Konstruktor: create list kosong  */
-DynamicList MakeListDynamic()
-/* I.S. sembarang */
-/* F.S. Terbentuk list L kosong dengan kapasitas MaxEl */
+void CreateEmptyDynamic(DynamicList *list)
 {
-    /* KAMUS LOKAL */
-    DynamicList L;
-    /* ALGORITMA */
-    L.A = (ElType *)malloc(MaxEl * sizeof(ElType));
-    if (L.A != NULL)
+    list->A = (Word *)malloc(MaxEl * sizeof(Word));
+    if (list->A != NULL)
     {
-        L.Neff = 0;
+        list->Neff = 0;
     }
-    return L;
 }
 
-/* ********** DESTRUKTOR ********** */
-void DealokasiDynamic(DynamicList *L)
-/* I.S. L terdefinisi; */
-/* F.S. (L) dikembalikan ke system, melakukan dealokasi/pengembalian */
-/* memori ke system */
+void DealokasiDynamic(DynamicList *list)
 {
-    free(L->A);
-    L->Neff = 0;
+    free(list->A);
+    list->Neff = 0;
 }
 
-/* ********** TEST KOSONG/PENUH ********** */
-/* *** Test list kosong *** */
-boolean IsListEmptyDynamic(DynamicList L)
-/* Mengirimkan true jika list L kosong, mengirimkan false jika tidak */
+boolean IsListEmptyDynamic(DynamicList list)
 {
-    return (L.Neff == 0);
+    return (list.Neff == 0);
 }
 
-/* *** Menghasilkan sebuah elemen *** */
-ElType GetDynamic(DynamicList L, IdxType i)
-/* Prekondisi : list tidak kosong, i antara FirstIdxList(L)..LastIdxList(L) */
-/* Mengirimkan elemen list yang ke-i */
+Word GetDynamic(DynamicList list, IdxType i)
 {
-    return (L.A[i]);
+    return (list.A[i]);
 }
 
-/* *** Test list penuh *** */
-boolean IsListFullDynamic(DynamicList L)
-/* Mengirimkan true jika list L penuh, mengirimkan false jika tidak */
+boolean IsListFullDynamic(DynamicList list)
 {
-    return (L.Neff == MaxEl);
+    return (list.Neff == MaxEl);
 }
 
-/* ********** SELEKTOR ********** */
-/* *** Banyaknya elemen *** */
-int LengthListDynamic(DynamicList L)
-/* Mengirimkan banyaknya elemen efektif list */
-/* Mengirimkan nol jika list kosong */
+int LengthListDynamic(DynamicList list)
 {
-    return (L.Neff);
+    return (list.Neff);
+}
+
+void InsertLastDynamic(DynamicList *list, Word word)
+{
+    list->A[list->Neff] = word;
+    list->Neff++;
 }

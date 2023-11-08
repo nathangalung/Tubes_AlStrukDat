@@ -2,46 +2,39 @@
 
 #include "start.h"
 
-void start(List artist, Set album, Map album_artist, Map song_album, List user)
+void start(Set *album, Map *album_artist, Map *song_album, DynamicList *user)
 {
-    int count_artist, count_album, count_song, count_user;
-    Word name_artist, name_album, name_song;
-
-    StartWordFile("../FILE_CONFIG/default.txt");
-    count_artist = word_to_int(currentWord);
+    Word filename = {"FILE_CONFIG/default.txt", 23};
+    StartWordNewline(filename);
+    int count_artist = word_to_int(currentWord);
 
     for (int i=0; i<count_artist; i++)
     {
-        AdvWordInput();
-        count_album = word_to_int(currentWord);
-        AdvWordFile();
-        name_artist = currentWord;
-        artist.A[i] = name_artist;
-
+        int count_album = read_word_count();
+        
+        Word name_artist = read_line_name();
+        
         for (int j=0; j<count_album; j++)
         {
-            AdvWordInput();
-            count_song = word_to_int(currentWord);
-            AdvWordFile();
-            name_album = currentWord;
-            Insert(&album_artist, name_album, name_artist);
+            int count_song = read_word_count();
+
+            Word name_album = read_line_name();
+            InsertMap(album_artist, name_album, name_artist);
+            InsertSet(album, name_album);
 
             for (int k=0; k<count_song; k++)
-            {
-                AdvWordFile();
-                name_song = currentWord;
-                Insert(&song_album, name_song, name_album);
+            {                                           
+                Word name_song = read_line_name();
+                InsertMap(album_artist, name_song, name_album);
             }
         }
     }
 
-    AdvWordFile();
-    count_user = word_to_int(currentWord);
+    int count_user = read_line_count();
 
     for(int i=0; i<count_user; i++)
     {
-        AdvWordFile();
-        user.A[i] = currentWord;
-        user.Neff++;
+        Word name_user = read_line_name();
+        InsertLastDynamic(user, name_user);
     }
 }

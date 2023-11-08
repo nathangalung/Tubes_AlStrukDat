@@ -35,29 +35,22 @@ int main()
     Set album;
     Map album_artist;
     Map song_album;
-    LinkedList playlist_cont;
     DynamicList user;
 
     boolean run = true;
-    boolean welcome = true;
     boolean sesi = false;
 
     while (run)
     {
-        char *command_str[100];
-        char *filename[100];
-
         printf(">> ");
-        gets(command_str);
-        Word command = string_to_word(command_str);
-        STARTWORD(command);
+        StartWordMark();
+        Word command = currentWord;
+
         if (word_cmp(command, start_cmp))
         {
-            if (welcome)
+            if (!sesi)
             {
-                *filename = "default.txt";
-                start(filename, artist, album, song);
-                welcome = false;
+                start(&album, &album_artist, &song_album, &user);
                 sesi = true;
             }
             else
@@ -67,13 +60,11 @@ int main()
         }
         else if (word_cmp(command, load_cmp))
         {
-            if (welcome)
+            if (!sesi)
             {
-                filename = Word ;
-
                 split_word(command);
-                void load();
-                welcome = false;
+                Word filename = command;
+                load(filename, &album, &album_artist, &song_album, &user, &queue, &history, &playlist);
                 sesi = true;
             }
             else
@@ -255,16 +246,14 @@ int main()
         }
         else if (word_cmp(command, quit_cmp))
         {
-            if (welcome)
+            if (!sesi)
             {
-                welcome = false;
                 run = false;
 
                 void quit_welcome();
             }
-            else if (welcome)
+            else if (sesi)
             {
-                welcome = true;
                 sesi = false;
 
                 void quit_sesi();
@@ -276,7 +265,7 @@ int main()
         }
         else if (word_cmp(command, help_cmp))
         {
-            if (welcome)
+            if (!sesi)
             {
                 void help_welcome();
             }
