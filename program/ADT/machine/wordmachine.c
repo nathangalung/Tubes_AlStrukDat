@@ -33,6 +33,8 @@ void StartWordMark()
 {
     StartMark();
     IgnoreMarks();
+    IgnoreBlanks();
+    IgnoreNewlines();
     if (IsEOPMark())
     {
         EndWord = true;
@@ -47,7 +49,9 @@ void StartWordMark()
 void StartWordBlank()
 {
     StartBlank();
+    IgnoreMarks();
     IgnoreBlanks();
+    IgnoreNewlines();
     if (IsEOPBlank())
     {
         EndWord = true;
@@ -62,6 +66,8 @@ void StartWordBlank()
 void StartWordNewline(Word filename)
 {
     StartNewline(filename);
+    IgnoreMarks();
+    IgnoreBlanks();
     IgnoreNewlines();
     if (IsEOPNewline())
     {

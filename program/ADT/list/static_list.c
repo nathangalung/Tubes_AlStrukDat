@@ -34,7 +34,7 @@ int LengthList(StaticList list)
 
     for (i = FirstIdxList(list); i <= LastIdxList(list); i++)
     {
-        if (!word_cmp(list.A[i], string_to_word(MarkStatic)))
+        if (!cmp_word_1(list.A[i], string_to_word(MarkStatic)))
         {
             count++;
         }
@@ -51,7 +51,7 @@ IdxType LastIdxList(StaticList list)
 {
     int i = FirstIdxList(list);
 
-    while ((i <= MaxEl - 1) && (!word_cmp(list.A[i], string_to_word(MarkStatic))))
+    while ((i <= MaxEl - 1) && (!cmp_word_1(list.A[i], string_to_word(MarkStatic))))
     {
         i++;
     }
@@ -66,7 +66,7 @@ boolean IsIdxListValid(StaticList list, IdxType i)
 
 boolean IsIdxListEff(StaticList list, IdxType i)
 {
-    return ((FirstIdxList(list) <= i) && (i <= LastIdxList(list)) && (!word_cmp(list.A[i], string_to_word(MarkStatic))));
+    return ((FirstIdxList(list) <= i) && (i <= LastIdxList(list)) && (!cmp_word_1(list.A[i], string_to_word(MarkStatic))));
 }
 
 boolean SearchList(StaticList list, Word word)
@@ -163,12 +163,12 @@ StaticList ConcatList(StaticList list1, StaticList list2)
     CreateEmptyStatic(&list);
     int i = FirstIdxList(list1), j = FirstIdxList(list2);
 
-    while ((i <= LastIdxList(list1)) && (!word_cmp(list1.A[i], string_to_word(MarkStatic))))
+    while ((i <= LastIdxList(list1)) && (!cmp_word_1(list1.A[i], string_to_word(MarkStatic))))
     {
         InsertLastList(&list, list1.A[i]);
         i++;
     }
-    while ((j <= LastIdxList(list2)) && (!word_cmp(list2.A[i], string_to_word(MarkStatic))))
+    while ((j <= LastIdxList(list2)) && (!cmp_word_1(list2.A[i], string_to_word(MarkStatic))))
     {
         InsertLastList(&list, list2.A[j]);
         j++;

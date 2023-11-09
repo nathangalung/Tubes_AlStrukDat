@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 #include "map.h"
 
 void CreateEmptyMap(Map *map)
@@ -42,9 +43,13 @@ Word ValueMap(Map map, Word k)
 
 void InsertMap(Map *map, Word k, Word v)
 {
-    map->Elements[map->Count].Key = k;
-    map->Elements[map->Count].Value = v;
-    map->Count++;
+    if (!IsMemberMap((*map), k))
+    {
+        map->Elements[map->Count].Key = k;
+        map->Elements[map->Count].Value = v;
+        map->Count++;
+    }
+    
 }
 
 void DeleteMap(Map *map, Word k)
@@ -74,7 +79,7 @@ boolean IsMemberMap(Map map, Word k)
 {
     for (int i = 0; i < map.Count; i++)
     {
-        if (true)
+        if (cmp_word_1(map.Elements[i].Key, k))
         {
             return (true);
         }

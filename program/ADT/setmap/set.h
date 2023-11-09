@@ -1,7 +1,9 @@
 #ifndef __SET_H__
 #define __SET_H__
+
 #include "../../boolean.h"
 #include "../machine/wordmachine.h"
+#include "../../console.h"
 
 /* MODUL Set
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri

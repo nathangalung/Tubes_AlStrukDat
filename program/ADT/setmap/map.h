@@ -3,6 +3,7 @@
 
 #include "../../boolean.h"
 #include "../machine/wordmachine.h"
+#include "../../console.h"
 
 /* MODUL Map
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri

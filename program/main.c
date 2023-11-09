@@ -28,7 +28,7 @@ int main()
     Word add_cmp = {"ADD", 3};
     Word delete_cmp = {"DELETE", 6};
     Word album_cmp = {"ALBUM", 5};
-    StaticList artist;
+
     DynamicList playlist;
     Queue queue;
     Stack history;
@@ -37,6 +37,14 @@ int main()
     Map song_album;
     DynamicList user;
 
+    CreateEmptyDynamic(&user);
+    CreateEmptyMap(&album_artist);
+    CreateEmptyMap(&song_album);
+    CreateEmptySet(&album);
+    CreateEmptyQueue(&queue);
+    CreateEmptyStack(&history);
+    CreateEmptyDynamic(&playlist);
+    
     boolean run = true;
     boolean sesi = false;
 
@@ -44,46 +52,50 @@ int main()
     {
         printf(">> ");
         StartWordMark();
+        IgnoreBlanks();
+        IgnoreNewlines();
         Word command = currentWord;
 
-        if (word_cmp(command, start_cmp))
+        if (cmp_word_1(command, start_cmp))
         {
             if (!sesi)
             {
                 start(&album, &album_artist, &song_album, &user);
                 sesi = true;
+                printf("start");
             }
             else
             {
                 printf("Command tidak bisa dieksekusi!\n");
             }
         }
-        else if (word_cmp(command, load_cmp))
+        else if (cmp_word_2(command, load_cmp))
         {
             if (!sesi)
             {
-                split_word(command);
+                command = split_word(command);
                 Word filename = command;
                 load(filename, &album, &album_artist, &song_album, &user, &queue, &history, &playlist);
                 sesi = true;
+                printf("load");
             }
             else
             {
                 printf("Command tidak bisa dieksekusi!\n");
             }
         }
-        else if (word_cmp(command, list_cmp))
+        else if (word_cmp_2(command, list_cmp))
         {
             if (sesi)
             {
-                split_word(command);
-                if (word_cmp(command, default_cmp))
+                command = split_word(command);
+                if (word_cmp_1(command, default_cmp))
                 {
-                    void list_default();
+                    printf("list default berhasil");
                 }
-                else if (word_cmp(command, playlist_cmp))
+                else if (word_cmp_1(command, playlist_cmp))
                 {
-                    void list_playlist();
+                    printf("list playlist berhasil");
                 }
                 else
                 {
@@ -95,18 +107,18 @@ int main()
                 printf("Command tidak bisa dieksekusi!\n");
             }
         }
-        else if (word_cmp(command, play_cmp))
+        else if (word_cmp_2(command, play_cmp))
         {
             if (sesi)
             {
-                split_word(command);
-                if (word_cmp(command, song_cmp))
+                command = split_word(command);
+                if (word_cmp_1(command, song_cmp))
                 {
-                    void play_song();
+                    printf("play song");
                 }
-                else if (word_cmp(command, playlist_cmp))
+                else if (word_cmp_1(command, playlist_cmp))
                 {
-                    void play_playlist();
+                    printf("play playlist");
                 }
                 else
                 {
@@ -118,30 +130,33 @@ int main()
                 printf("Command tidak bisa dieksekusi!\n");
             }
         }
-        else if (word_cmp(command, queue_cmp))
+        else if (word_cmp_2(command, queue_cmp))
         {
             if (sesi)
             {
-                split_word(command);
-                if (word_cmp(command, song_cmp))
+                command = split_word(command);
+                if (word_cmp_1(command, song_cmp))
                 {
-                    void queue_song();
+                    printf("queue song");
                 }
-                else if (word_cmp(command, playlist_cmp))
+                else if (word_cmp_1(command, playlist_cmp))
                 {
-                    void queue_playlist();
+                    printf("queue playlist");
                 }
-                else if (word_cmp(command, swap_cmp))
+                else if (word_cmp_2(command, swap_cmp))
                 {
-                    void queue_swap();
+                    command = split_word(command);
+                    printf("queue swap");
+                    
                 }
-                else if (word_cmp(command, remove_cmp))
+                else if (word_cmp_2(command, remove_cmp))
                 {
-                    void queue_remove();
+                    command = split_word(command);
+                    printf("queue remove");
                 }
-                else if (word_cmp(command, clear_cmp))
+                else if (word_cmp_1(command, clear_cmp))
                 {
-                    void queue_clear();
+                    printf("queue clear");
                 }
                 else
                 {
@@ -153,18 +168,18 @@ int main()
                 printf("Command tidak bisa dieksekusi!\n");
             }
         }
-        else if (word_cmp(command, song_cmp))
+        else if (word_cmp_2(command, song_cmp))
         {
             if (sesi)
             {
-                split_word(command);
-                if (word_cmp(command, next_cmp))
+                command = split_word(command);
+                if (word_cmp_1(command, next_cmp))
                 {
-                    void song_next();
+                    printf("song next");
                 }
-                else if (word_cmp(command, previous_cmp))
+                else if (word_cmp_1(command, previous_cmp))
                 {
-                    void song_previous();
+                    printf("song previous");
                 }
                 else
                 {
@@ -176,41 +191,44 @@ int main()
                 printf("Command tidak bisa dieksekusi!\n");
             }
         }
-        else if (word_cmp(command, playlist_cmp))
+        else if (word_cmp_2(command, playlist_cmp))
         {
             if (sesi)
             {
-                split_word(command);
-                if (word_cmp(command, create_cmp))
+                command = split_word(command);
+                if (word_cmp_1(command, create_cmp))
                 {
-                    void playlist_create();
+                    printf("playlist create");
                 }
-                else if (word_cmp(command, add_cmp))
+                else if (word_cmp_2(command, add_cmp))
                 {
-                    if (word_cmp(command, song_cmp))
+                    command = split_word(command);
+                    if (word_cmp_1(command, song_cmp))
                     {
-
+                        printf("playlist add song");
                     }
-                    else if (word_cmp(command, album_cmp))
+                    else if (word_cmp_1(command, album_cmp))
                     {
-
+                        printf("playlist add album");
                     }
                     else
                     {
                         printf("Command tidak diketahui!\n");
                     }
                 }
-                else if (word_cmp(command, swap_cmp))
+                else if (word_cmp_2(command, swap_cmp))
                 {
-                    void playlist_swap();
+                    command = split_word(command);
+                    printf("playlist swap");
                 }
-                else if (word_cmp(command, remove_cmp))
+                else if (word_cmp_2(command, remove_cmp))
                 {
-                    void playlist_remove();
+                    command = split_word(command);
+                    printf("playlist remove");
                 }
-                else if (word_cmp(command, delete_cmp))
+                else if (word_cmp_1(command, delete_cmp))
                 {
-                    void playlist_delete();
+                    printf("playlist delete");
                 }
                 else
                 {
@@ -222,56 +240,58 @@ int main()
                 printf("Command tidak bisa dieksekusi!\n");
             }
         }
-        else if (word_cmp(command, status_cmp))
+        else if (word_cmp_1(command, status_cmp))
         {
             if (sesi)
             {
-                void status();
+                printf("status");
             }
             else
             {
                 printf("Command tidak bisa dieksekusi!\n");
             }
         }
-        else if (word_cmp(command, save_cmp))
+        else if (word_cmp_2(command, save_cmp))
         {
             if (sesi)
             {
-                void save();
+                command = split_word(command);
+                printf("save");
+
             }
             else
             {
                 printf("Command tidak bisa dieksekusi!\n");
             }
         }
-        else if (word_cmp(command, quit_cmp))
+        else if (word_cmp_1(command, quit_cmp))
         {
             if (!sesi)
             {
                 run = false;
 
-                void quit_welcome();
+                printf("quit program");
             }
             else if (sesi)
             {
                 sesi = false;
 
-                void quit_sesi();
+                printf("quit sesi");
             }
             else
             {
                 printf("Command tidak bisa dieksekusi!\n");
             }
         }
-        else if (word_cmp(command, help_cmp))
+        else if (word_cmp_1(command, help_cmp))
         {
             if (!sesi)
             {
-                void help_welcome();
+                printf("help program");
             }
             else
             {
-                void help_sesi();
+                printf("help sesi");
             }
         }
         else
@@ -279,6 +299,4 @@ int main()
             printf("Command tidak diketahui!\n");
         }
     }
-
-    return 0;
 }
