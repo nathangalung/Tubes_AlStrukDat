@@ -148,12 +148,14 @@ Word concat(Word word_1, Word word_2)
     for(int i=0; i<word_1.Length; i++)
     {
         word.TabWord[j] = word_1.TabWord[i];
+        word.Length++;
         j++;
     }
 
     for(int i=0; i<word_2.Length; i++)
     {
         word.TabWord[j] = word_2.TabWord[i];
+        word.Length++;
         j++;
     }
 

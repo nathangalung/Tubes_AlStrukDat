@@ -34,7 +34,7 @@ void DeleteSet(Set *set, Word word)
 
     while ((i < set->Count) && (!found))
     {
-        if (cmp_word_1(set->Elements[i], word))
+        if (CompareWordSet(set->Elements[i], word))
         {
             found = true;
         }
@@ -59,11 +59,31 @@ boolean IsMemberSet(Set set, Word word)
 {
     for (int i = 0; i < set.Count; i++)
     {
-        if (cmp_word_1(set.Elements[i], word))
+        if (CompareWordSet(set.Elements[i], word))
         {
             return (true);
         }
     }
 
     return (false);
+}
+
+boolean CompareWordSet(Word word_1, Word word_2)
+{
+    if (word_1.Length != word_2.Length)
+    {
+        return false;
+    }
+    else
+    {
+        for (int i = 0; i < word_2.Length; i++)
+        {
+            if (word_1.TabWord[i] != word_2.TabWord[i])
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
 }

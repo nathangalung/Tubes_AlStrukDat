@@ -4,8 +4,9 @@
 
 void load(Word filename, Set *album, Map *album_artist, Map *song_album, DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist)
 {
-    Word cd = {"FILE_CONFIG/", 12};
-    filename = concat(cd, filename);
+    Word dir = {"FILE_CONFIG/", 12};
+    filename = concat(dir, filename);
+
     StartWordNewline(filename);
     int count_artist = word_to_int(currentWord);
 
@@ -30,6 +31,20 @@ void load(Word filename, Set *album, Map *album_artist, Map *song_album, Dynamic
             }
         }
     }
+
+    for (int i = 0; i<LengthQueue(*queue); i++)
+    {
+    }
+
+    for (int i = 0; i<LengthQueue(*queue); i++)
+    {
+    }
+
+
+    for (int i = 0; i<LengthQueue(*queue); i++)
+    {
+    }
+
 
     int count_user = read_line_count();
 

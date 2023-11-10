@@ -3,7 +3,6 @@
 
 #include "../../boolean.h"
 #include "../machine/wordmachine.h"
-#include "../../console.h"
 
 /* MODUL Set
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
@@ -54,5 +53,7 @@ void DeleteSet(Set *set, Word word);
 
 boolean IsMemberSet(Set set, Word word);
 /* Mengembalikan true jika Elmt adalah member dari S */
+
+boolean CompareWordSet(Word word_1, Word word_2);
 
 #endif
