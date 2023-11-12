@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "boolean.h"
 
-void help(boolean isStart)
+void help(boolean sesi)
 {
     printf("\
     ██╗  ██╗███████╗██╗     ██████╗     ██╗    ██╗ █████╗ ██╗   ██╗ █████╗ ███╗   ██╗ ██████╗ ██╗    ██╗ █████╗ ██╗   ██╗███████╗\n\
@@ -13,7 +13,7 @@ void help(boolean isStart)
     ██║  ██║███████╗███████╗██║         ╚███╔███╔╝██║  ██║   ██║   ██║  ██║██║ ╚████║╚██████╔╝╚███╔███╔╝██║  ██║ ╚████╔╝ ███████╗\n\
     ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝          ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═╝  ╚═══╝  ╚══════╝\n\
     ");
-    if (!isStart) // perintah dipanggil sebelum memasuki sesi
+    if (!sesi) // perintah dipanggil sebelum memasuki sesi
     {
         printf("1. START -> Untuk masuk sesi baru \n");
         printf("\t2. LOAD -> Untuk memulai sesi berdasarkan file konfigurasi \n");
