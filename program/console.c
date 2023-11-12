@@ -4,19 +4,39 @@
 #include <time.h>
 
 #include "console.h"
-#include "ADT/machine/wordmachine.h"
-
 
 boolean word_cmp(Word word_1, Word word_2)
 {
+    Word temp;
     boolean found = false;
     int check = 0;
-    if (word_1.Length == word_2.Length)
+    int count = 0;
+    
+    while ((count < word_1.Length) && (!found))
+    {
+        if (word_1.TabWord[count] == BLANK)
+        {
+            found = true;
+            count--;
+
+        }
+        temp.TabWord[count] = word_1.TabWord[count];
+        count++;
+        temp.Length = count;
+    }
+
+    for (int o=0; o<temp.Length; o++)
+    {
+        printf("%c", temp.TabWord[o]);
+    }
+    printf("\n");
+
+    if (temp.Length == word_2.Length)
     {
         found = true;
-        while (check < word_1.Length && found)
+        while ((check < word_1.Length) && (found))
         {
-            if (word_1.TabWord[check] != word_2.TabWord[check])
+            if (temp.TabWord[check] != word_2.TabWord[check])
             {
                 found = false;
             }
@@ -48,7 +68,7 @@ Word string_to_word(char *string)
 
     int i;
 
-    while (string[i] != "\0")
+    while (string[i] != '\0')
     {
         command.TabWord[i] = string[i];
         i++;
@@ -58,66 +78,106 @@ Word string_to_word(char *string)
     return command;
 }
 
-Word split_word(Word a)
+Word split_word(Word word)
 {
-    Word temp;
+    Word new_word;
     int length = 0, i = 0;
 
-    while (a.TabWord[i] != BLANK)
+    while (word.TabWord[i] != BLANK)
     {
         i++;
     }
 
     int j = i + 1;
 
-    while (a.TabWord[j] != MARK)
+    while (word.TabWord[j] != MARK)
     {
-        a.TabWord[length] = a.TabWord[j];
+        new_word.TabWord[length] = word.TabWord[j];
         length++, j++;
     }
-    a.Length = length;
+    new_word.Length = length;
 
-    return (a);
+    return (new_word);
 }
 
-void load_queue(Queue queue)
+Word read_line_name()
 {
-    int count, i;
+    AdvWordNewline();
+    Word name_item = currentWord;
 
-    if (!EOP)
+    return (name_item);
+}
+
+int read_word_count()
+{
+    AdvWordBlank();
+    int count_item = word_to_int(currentWord);
+
+    return (count_item);
+}
+
+int read_line_count()
+{
+    AdvWordNewline();
+    int count_item = word_to_int(currentWord);
+
+    return (count_item);
+}
+
+Word concat(Word word_1, Word word_2)
+{
+    Word word;
+    int j = 0;
+    for(int i=0; i<word_1.Length; i++)
     {
-        count = word_to_int(currentWord);
-        for (i = 0; i < count; i++)
-        {
-            ADVWORD();
-            enqueue(&queue, currentWord);
-        }
-        ADVWORD();
+        word.TabWord[j] = word_1.TabWord[i];
+        j++;
     }
-}
 
-void load_history(Stack stack)
-{
-    int count, i;
-
-    if (!EOP)
+    for(int i=0; i<word_2.Length; i++)
     {
-        count = word_to_int(currentWord);
-        for (i = 0; i < count; i++)
-        {
-            ADVWORD();
-            enqueue(&stack, currentWord);
-        }
-        ADVWORD();
+        word.TabWord[j] = word_2.TabWord[i];
+        j++;
     }
+
+    return (word);
 }
 
-void load_set(Set set)
+int check_command(Word word)
 {
-    
-}
+    Word start_cmp = {"START", 5};
+    Word load_cmp = {"LOAD", 4};
+    Word list_cmp = {"LIST", 4};
+    Word play_cmp = {"PLAY", 4};
+    Word queue_cmp = {"QUEUE", 5};
+    Word song_cmp = {"SONG", 4};
+    Word playlist_cmp = {"PLAYLIST", 8};
+    Word status_cmp = {"STATUS", 6};
+    Word save_cmp = {"SAVE", 4};
+    Word quit_cmp = {"QUIT", 4};
+    Word help_cmp = {"HELP", 4};
+    Word default_cmp = {"DEFAULT", 7};
+    Word swap_cmp = {"SWAP", 4};
+    Word remove_cmp = {"REMOVE", 6};
+    Word clear_cmp = {"CLEAR", 5};
+    Word next_cmp = {"NEXT", 4};
+    Word previous_cmp = {"PREVIOUS", 8};
+    Word create_cmp = {"CREATE", 6};
+    Word add_cmp = {"ADD", 3};
+    Word delete_cmp = {"DELETE", 6};
+    Word album_cmp = {"ALBUM", 5};
 
-void load_map(Map map)
-{
-    
+    if (word_cmp(word, start_cmp))
+    {
+        return 1;
+    }
+    else if (word_cmp(word, load_cmp))
+    {
+        return 2;
+    }
+    else
+    {
+        return 0;
+    }
+
 }

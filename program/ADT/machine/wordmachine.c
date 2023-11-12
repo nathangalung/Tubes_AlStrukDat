@@ -5,11 +5,19 @@
 boolean EndWord;
 Word currentWord;
 
+void IgnoreMarks()
+{
+    while (currentChar == MARK)
+    {
+        AdvMark();
+    }
+}
+
 void IgnoreBlanks()
 {
     while (currentChar == BLANK)
     {
-        AdvInput();
+        AdvBlank();
     }
 }
 
@@ -17,90 +25,138 @@ void IgnoreNewlines()
 {
     while (currentChar == NEWLINE)
     {
-        AdvFile();
+        AdvNewline();
     }
 }
 
-void StartWordInput()
+void StartWordMark()
 {
-    StartInput();
-    IgnoreBlanks();
-    if (IsEOP())
+    StartMark();
+    IgnoreMarks();
+    if (IsEOPMark())
     {
         EndWord = true;
     }
     else
     {
         EndWord = false;
-        CopyWordInput();
+        CopyWordMark();
     }
 }
 
-void StartWordFile(char *filename)
+void StartWordBlank()
 {
-    StartFile(filename);
-    if (currentChar == NEWLINE)
+    StartBlank();
+    IgnoreBlanks();
+    if (IsEOPBlank())
     {
         EndWord = true;
     }
     else
     {
         EndWord = false;
-        AdvWordFile();
+        CopyWordBlank();
     }
 }
 
-void AdvWordInput()
+void StartWordNewline(Word filename)
 {
-    IgnoreBlanks();
-    if (currentChar == BLANK)
+    StartNewline(filename);
+    IgnoreNewlines();
+    if (IsEOPNewline())
     {
         EndWord = true;
     }
     else
     {
-        CopyWordInput();
+        EndWord = false;
+        CopyWordNewline();
+    }
+}
+
+void AdvWordMark()
+{
+    IgnoreMarks();
+    IgnoreBlanks();
+    IgnoreNewlines();
+    if (IsEOPMark())
+    {
+        EndWord = true;
+    }
+    else
+    {
+        CopyWordMark();
+        IgnoreMarks();
+    }
+}
+
+void AdvWordBlank()
+{
+    IgnoreMarks();
+    IgnoreBlanks();
+    IgnoreNewlines();
+    if (IsEOPBlank())
+    {
+        EndWord = true;
+    }
+    else
+    {
+        CopyWordBlank();
         IgnoreBlanks();
     }
 }
 
-void AdvWordFile()
+void AdvWordNewline()
 {
-    if (currentChar == NEWLINE)
+    IgnoreMarks();
+    IgnoreBlanks();
+    IgnoreNewlines();
+    if (IsEOPNewline())
     {
         EndWord = true;
     }
     else
     {
-        CopyWordFile();
+        CopyWordNewline();
         IgnoreNewlines();
     }
 }
 
-void CopyWordInput()
+void CopyWordMark()
 {
     int i = 0;
 
-    while ((!IsEOP()) && (currentChar != BLANK))
+    while (!IsEOPMark())
     {
         currentWord.TabWord[i] = currentChar;
-        AdvInput();
+        AdvMark();
         i++;
     }
     currentWord.Length = i;
 }
 
-Word CopyWordFile()
+void CopyWordBlank()
 {
     int i = 0;
 
-    while ((!EOP) && currentChar != NEWLINE)
+    while (!IsEOPBlank())
     {
         currentWord.TabWord[i] = currentChar;
-        AdvFile();
+        AdvBlank();
         i++;
     }
     currentWord.Length = i;
+}
 
-    return (currentWord);
+void CopyWordNewline()
+{
+    int i = 0;
+
+    while (!IsEOPNewline())
+    {
+        currentWord.TabWord[i] = currentChar;
+        AdvNewline();
+        i++;
+    }
+    currentWord.Length = i;
 }

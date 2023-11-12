@@ -1,23 +1,19 @@
-#ifndef set_H
-#define set_H
-#include <stdio.h>
-#include "../boolean.h"
-#include "wordmachine.h"
+#ifndef __SET_H__
+#define __SET_H__
+#include "../../boolean.h"
+#include "../machine/wordmachine.h"
 
 /* MODUL Set
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 */
 
-#define Nil 0
-#define MaxEl 100
-
-typedef Word infotype;
-typedef int address;
+#define NilSet 0
+#define MaxElSet 100
 
 typedef struct
 {
-    infotype Elements[MaxEl];
-    address Count;
+    Word Elements[MaxElSet];
+    int Count;
 } Set;
 
 /* Definisi Set S kosong : S.Count = Nil */
@@ -27,34 +23,34 @@ typedef struct
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmptyset(Set *S);
+void CreateEmptySet(Set *set);
 /* I.S. Sembarang */
 /* F.S. Membuat sebuah Set S kosong berkapasitas MaxEl */
 /* Ciri Set kosong : count bernilai Nil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmptyset(Set S);
+boolean IsEmptySet(Set set);
 /* Mengirim true jika Set S kosong*/
 /* Ciri Set kosong : count bernilai Nil */
 
-boolean IsFullset(Set S);
+boolean IsFullSet(Set set);
 /* Mengirim true jika Set S penuh */
 /* Ciri Set penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Set ********* */
-void Insertset(Set *S, infotype Elmt);
+void InsertSet(Set *set, Word word);
 /* Menambahkan Elmt sebagai elemen Set S. */
 /* I.S. S mungkin kosong, S tidak penuh
         S mungkin sudah beranggotakan Elmt */
 /* F.S. Elmt menjadi anggota dari S. Jika Elmt sudah merupakan anggota, operasi tidak dilakukan */
 
-void Deleteset(Set *S, infotype Elmt);
+void DeleteSet(Set *set, Word word);
 /* Menghapus Elmt dari Set S. */
 /* I.S. S tidak kosong
         Elmt mungkin anggota / bukan anggota dari S */
 /* F.S. Elmt bukan anggota dari S */
 
-boolean IsMemberset(Set S, infotype Elmt);
+boolean IsMemberSet(Set set, Word word);
 /* Mengembalikan true jika Elmt adalah member dari S */
 
 #endif

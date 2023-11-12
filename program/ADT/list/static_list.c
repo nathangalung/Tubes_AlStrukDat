@@ -1,246 +1,178 @@
 /* file static_list.c */
 
 #include <stdio.h>
+
 #include "static_list.h"
 
-/* ********** KONSTRUKTOR ********** */
-/* Konstruktor: create list kosong */
-StaticList MakeStaticList()
-/* I.S. sembarang */
-/* F.S. Terbentuk list L kosong dengan kapasitas MaxEl */
+void CreateEmptyStatic(StaticList *list)
 {
-    /* KAMUS LOKAL */
     int i;
-    StaticList L = MakeList(); // Inisialisasi list kosong
-    
-    /* ALGORITMA */
-    for (i = FirstIdxList(L); i <= LastIdxList(L); i++)
+    for (i = FirstIdxList(*list); i <= LastIdxList(*list); i++)
     {
-        L.A[i] = Mark;
+        list->A[i] = string_to_word(MarkStatic);
     }
-    return L;
 }
 
-/* ********** TEST KOSONG/PENUH ********** */
-/* *** Test list kosong *** */
-boolean IsListEmpty(StaticList L)
-/* Mengirimkan true jika list L kosong, mengirimkan false jika tidak */
+boolean IsListEmpty(StaticList list)
 {
-    return (LengthList(L) == 0);
+    return (LengthList(list) == 0);
 }
 
-/* *** Menghasilkan sebuah elemen *** */
-ElType Get(StaticList L, IdxType i)
-/* Prekondisi : list tidak kosong, i antara FirstIdxList(L)..LastIdxList(L) */
-/* Mengirimkan elemen list yang ke-i */
+Word GetList(StaticList list, IdxType i)
 {
-    return (L.A[i]);
+    return (list.A[i]);
 }
 
-/* *** Selektor SET : Mengubah nilai list dan elemen list *** */
-void Set(StaticList *L, IdxType i, ElType v)
-/* I.S. T terdefinisi, sembarang */
-/* F.S. Elemen T yang ke-i bernilai v */
+void SetList(StaticList *list, IdxType i, Word word)
 {
-    L->A[i] = v;
+    list->A[i] = word;
 }
 
-/* ********** SELEKTOR ********** */
-/* *** Banyaknya elemen *** */
-int LengthList(StaticList L)
-/* Mengirimkan banyaknya elemen efektif list */
-/* Mengirimkan nol jika list kosong */
+int LengthList(StaticList list)
 {
-    /* KAMUS LOKAL */
     int i, count = 0;
 
-    /* ALGORITMA */
-    for (i = FirstIdxList(L); i <= LastIdxList(L); i++)
+    for (i = FirstIdxList(list); i <= LastIdxList(list); i++)
     {
-        if (L.A[i] != Mark)
+        if (!word_cmp(list.A[i], string_to_word(MarkStatic)))
         {
             count++;
         }
     }
-    return count;
+    return (count);
 }
 
-/* *** Selektor INDEKS *** */
-IdxType FirstIdxList(StaticList L)
-/* Prekondisi : list L tidak kosong */
-/* Mengirimkan indeks elemen pertama */
+IdxType FirstIdxList(StaticList list)
 {
     return 0;
 }
 
-IdxType LastIdxList(StaticList L)
-/* Prekondisi : list L tidak kosong */
-/* Mengirimkan indeks elemen terakhir */
+IdxType LastIdxList(StaticList list)
 {
-    /* KAMUS LOKAL */
-    int i = FirstIdxList(L);
+    int i = FirstIdxList(list);
 
-    /* ALGORITMA */
-    while (i <= MaxEl - 1 && L.A[i] != Mark)
+    while ((i <= MaxEl - 1) && (!word_cmp(list.A[i], string_to_word(MarkStatic))))
     {
         i++;
     }
-    return i - 1;
+
+    return (i - 1);
 }
 
-/* ********** Test Indeks yang valid ********** */
-boolean IsIdxListValid(StaticList L, IdxType i)
-/* Prekondisi : i sembarang */
-/* Mengirimkan true jika i adalah indeks yang valid untuk ukuran list */
-/* yaitu antara indeks yang terdefinisi untuk container */
+boolean IsIdxListValid(StaticList list, IdxType i)
 {
-    return (FirstIdxList(L) <= i && i <= LastIdxList(L));
+    return ((FirstIdxList(list)) <= i && (i <= LastIdxList(list)));
 }
 
-boolean IsIdxListEff(StaticList L, IdxType i)
-/* Prekondisi : i sembarang */
-/* Mengirimkan true jika i adalah indeks yang terdefinisi untuk list */
-/* yaitu antara FirstIdxList(L)..LastIdxList(L) */
+boolean IsIdxListEff(StaticList list, IdxType i)
 {
-    return (FirstIdxList(L) <= i && i <= LastIdxList(L) && L.A[i] != Mark);
+    return ((FirstIdxList(list) <= i) && (i <= LastIdxList(list)) && (!word_cmp(list.A[i], string_to_word(MarkStatic))));
 }
 
-/* ********** Operasi-operasi ********** */
-boolean SearchList(StaticList L, ElType X)
-/* Prekondisi : X sembarang */
-/* Mengirimkan true jika terdapat elemen X di dalam list */
-/* yaitu antara FirstIdxList(L)..LastIdxList(L) */
+boolean SearchList(StaticList list, Word word)
 {
-    /* KAMUS LOKAL */
-    int i = FirstIdxList(L);
-    boolean ketemu = false;
+    int i = FirstIdxList(list);
+    boolean found = false;
 
-    /* ALGORITMA */
-    while (i <= LastIdxList(L) && ketemu == false)
+    while ((i <= LastIdxList(list)) && (found == false))
     {
-        if (L.A[i] == X)
+        if (true)
         {
-            ketemu = true;
+            found = true;
         }
         i++;
     }
-    return ketemu;
+    return (found);
 }
 
-void InsertFirstList(StaticList *L, ElType X)
-/* I.S. L terdefinisi, mungkin kosong. */
-/* F.S. v menjadi elemen pertama L. */
+void InsertFirstList(StaticList *list, Word word)
 {
-    /* KAMUS LOKAL */
     int i;
 
-    /* ALGORITMA */
-    if (LengthList(*L) < MaxEl)
+    if (LengthList(*list) < MaxEl)
     {
-        for (i = LastIdxList(*L); i >= FirstIdxList(*L); i--)
+        for (i = LastIdxList(*list); i >= FirstIdxList(*list); i--)
         {
-            L->A[i + 1] = L->A[i];
+            list->A[i + 1] = list->A[i];
         }
-        L->A[FirstIdxList(*L)] = X;
+        list->A[FirstIdxList(*list)] = word;
     }
 }
 
-void InsertListAt(StaticList *L, ElType X, IdxType i)
-/* I.S. L terdefinisi, tidak kosong, i merupakan indeks logik yang valid di L. */
-/* F.S. v disisipkan dalam L pada indeks ke-i (bukan menimpa elemen di i). */
+void InsertListAt(StaticList *list, Word word, IdxType i)
 {
-    /* KAMUS LOKAL */
     int j;
 
-    /* ALGORITMA */
-    if (LengthList(*L) < MaxEl && IsIdxListEff(*L, i))
+    if ((LengthList(*list) < MaxEl) && (IsIdxListEff(*list, i)))
     {
-        for (j = LastIdxList(*L); j >= i; j--)
+        for (j = LastIdxList(*list); j >= i; j--)
         {
-            L->A[j + 1] = L->A[j];
+            list->A[j + 1] = list->A[j];
         }
-        L->A[i] = X;
+        list->A[i] = word;
     }
 }
 
-void InsertLastList(StaticList *L, ElType X)
-/* I.S. L terdefinisi, mungkin kosong. */
-/* F.S. v menjadi elemen terakhir L. */
+void InsertLastList(StaticList *list, Word word)
 {
-    /* KAMUS LOKAL */
-    /* ALGORITMA */
-    if (LengthList(*L) < MaxEl)
+    if (LengthList(*list) < MaxEl)
     {
-        L->A[LengthList(*L)] = X;
+        list->A[LengthList(*list)] = word;
     }
 }
 
-void DeleteFirstList(StaticList *L)
-/* I.S. L terdefinisi, tidak kosong. */
-/* F.S. F diset dengan elemen pertama L, elemen pertama L dihapus dari L. */
+void DeleteFirstList(StaticList *list)
 {
-    /* KAMUS LOKAL */
     int i;
 
-    /* ALGORITMA */
-    if (!IsListEmpty(*L))
+    if (!IsListEmpty(*list))
     {
-        for (i = FirstIdxList(*L); i < LastIdxList(*L); i++)
+        for (i = FirstIdxList(*list); i < LastIdxList(*list); i++)
         {
-            L->A[i] = L->A[i + 1];
+            list->A[i] = list->A[i + 1];
         }
-        L->A[LastIdxList(*L)] = Mark;
+        list->A[LastIdxList(*list)] = string_to_word(MarkStatic);
     }
 }
 
-void DeleteListAt(StaticList *L, IdxType i)
-/* I.S. L terdefinisi, tidak kosong, i merupakan indeks logik yang valid di L. */
-/* F.S. Elemen L pada indeks ke-i dihapus dari L. */
+void DeleteListAt(StaticList *list, IdxType i)
 {
-    /* KAMUS LOKAL */
     int j;
 
-    /* ALGORITMA */
-    if (!IsListEmpty(*L) && IsIdxListEff(*L, i))
+    if (!IsListEmpty(*list) && IsIdxListEff(*list, i))
     {
-        for (j = i; j < LastIdxList(*L); j++)
+        for (j = i; j < LastIdxList(*list); j++)
         {
-            L->A[j] = L->A[j + 1];
+            list->A[j] = list->A[j + 1];
         }
-        L->A[LastIdxList(*L)] = Mark;
+        list->A[LastIdxList(*list)] = string_to_word(MarkStatic);
     }
 }
 
-void DeleteLastList(StaticList *L)
-/* I.S. L terdefinisi, tidak kosong. */
-/* F.S. F diset dengan elemen terakhir L, elemen terakhir L dihapus dari L. */
+void DeleteLastList(StaticList *list)
 {
-    if (!IsListEmpty(*L))
+    if (!IsListEmpty(*list))
     {
-        L->A[LastIdxList(*L)] = Mark;
+        list->A[LastIdxList(*list)] = string_to_word(MarkStatic);
     }
 }
 
-StaticList ConcatList(StaticList L1, StaticList L2)
-/* Prekondisi : L1 dan L2 tidak kosong */
-/* Mengirimkan sebuah List yang merupakan gabungan dari L1 dan L2 */
-/* Urutan elemen terisi dari L1, lalu L2 */
-/* Contoh : L1 : [1, 2]; L2 : [3, 4]; Mengembalikan [1, 2, 3, 4] */
+StaticList ConcatList(StaticList list1, StaticList list2)
 {
-    /* KAMUS LOKAL */
-    StaticList L = MakeList();
-    int i = FirstIdxList(L1), j = FirstIdxList(L2);
+    StaticList list;
+    CreateEmptyStatic(&list);
+    int i = FirstIdxList(list1), j = FirstIdxList(list2);
 
-    /* ALGORITMA */
-    while (i <= LastIdxList(L1) && L1.A[i] != Mark)
+    while ((i <= LastIdxList(list1)) && (!word_cmp(list1.A[i], string_to_word(MarkStatic))))
     {
-        InsertLastList(&L, L1.A[i]);
+        InsertLastList(&list, list1.A[i]);
         i++;
     }
-    while (j <= LastIdxList(L2) && L2.A[j] != Mark)
+    while ((j <= LastIdxList(list2)) && (!word_cmp(list2.A[i], string_to_word(MarkStatic))))
     {
-        InsertLastList(&L, L2.A[j]);
+        InsertLastList(&list, list2.A[j]);
         j++;
     }
-    return L;
+
+    return (list);
 }

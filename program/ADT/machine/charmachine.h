@@ -1,21 +1,28 @@
 /* File: mesinkarakter.h */
 /* Definisi Mesin Karakter */
 
-#ifndef __MESIN_KAR_H_
-#define __MESIN_KAR_H_
+#ifndef __CHAR_MACHINE_H_
+#define __CHAR_MACHINE_H_
 
-#include "../boolean.h"
+#include "../../boolean.h"
 
 #define MARK ';'
+#define BLANK ' '
+#define NEWLINE '\n'
+
+#define NMaxWord 100
+
+typedef struct
+{
+   char TabWord[NMaxWord]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   int Length;
+} Word;
 
 /* State Mesin */
 extern char currentChar;
 extern boolean EOP;
 
-
-void StartInput();
-
-void StartFile(char *filename);
+void StartMark();
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
    Pita baca diambil dari stdin.
@@ -24,19 +31,28 @@ void StartFile(char *filename);
           Jika currentChar != MARK maka EOP akan padam (false)
           Jika currentChar = MARK maka EOP akan menyala (true) */
 
-void AdvInput();
+void StartBlank();
 
-void AdvFile();
+void StartNewline(Word filename);
+
+void AdvMark();
 /* Pita dimajukan satu karakter.
    I.S. : Karakter pada jendela = currentChar, currentChar != MARK
    F.S. : currentChar adalah karakter berikutnya dari currentChar yang lama,
           currentChar mungkin = MARK
           Jika  currentChar = MARK maka EOP akan menyala (true) */
 
-char GetCC();
+void AdvBlank();
+
+void AdvNewline();
+
 /* Mengirimkan currentChar */
 
-boolean IsEOP();
+boolean IsEOPMark();
 /* Mengirimkan true jika currentChar = MARK */
+
+boolean IsEOPBlank();
+
+boolean IsEOPNewline();
 
 #endif
