@@ -5,49 +5,24 @@
 
 #include "console.h"
 
-boolean word_cmp(Word word_1, Word word_2)
+boolean cmp_word_1(Word word_1, Word word_2)
 {
-    Word temp;
-    boolean found = false;
-    int check = 0;
-    int count = 0;
-    
-    while ((count < word_1.Length) && (!found))
+    if (word_1.Length != word_2.Length)
     {
-        if (word_1.TabWord[count] == BLANK)
-        {
-            found = true;
-            count--;
-
-        }
-        temp.TabWord[count] = word_1.TabWord[count];
-        count++;
-        temp.Length = count;
+        return false;
     }
-
-    for (int o=0; o<temp.Length; o++)
+    else
     {
-        printf("%c", temp.TabWord[o]);
-    }
-    printf("\n");
-
-    if (temp.Length == word_2.Length)
-    {
-        found = true;
-        while ((check < word_1.Length) && (found))
+        for (int i = 0; i < word_2.Length; i++)
         {
-            if (temp.TabWord[check] != word_2.TabWord[check])
+            if (word_1.TabWord[i] != word_2.TabWord[i])
             {
-                found = false;
-            }
-            else
-            {
-                check++;
+                return false;
             }
         }
     }
 
-    return (found);
+    return true;
 }
 
 int word_to_int(Word word)
@@ -78,26 +53,68 @@ Word string_to_word(char *string)
     return command;
 }
 
+boolean cmp_word_2(Word word_1, Word word_2)
+{
+    Word temp;
+    int sum = 0;
+    for (int i = 0; i < word_1.Length; i++)
+    {
+        if (word_1.TabWord[i] == BLANK)
+        {
+            break;
+        }
+        temp.TabWord[i] = word_1.TabWord[i];
+        sum++;
+    }
+    temp.Length = sum;
+
+    return (cmp_word_1(temp, word_2));
+}
+
+boolean cmp_word(Word word_1, Word word_2)
+{
+    boolean found = false;
+    int check = 0;
+    if (word_1.Length == word_2.Length)
+    {
+        found = true;
+
+        while ((check < word_1.Length) && (found))
+        {
+            if (word_1.TabWord[check] != word_2.TabWord[check])
+            {
+                found = false;
+            }
+            else
+            {
+                check++;
+            }
+        }
+    }
+
+    return found;
+}
+
 Word split_word(Word word)
 {
-    Word new_word;
-    int length = 0, i = 0;
-
-    while (word.TabWord[i] != BLANK)
+    Word temp;
+    int sum = 0, idx;
+    for (int i = 0; i < word.Length; i++)
     {
-        i++;
+        if (word.TabWord[i] == BLANK)
+        {
+            idx = i;
+            break;
+        }
     }
-
-    int j = i + 1;
-
-    while (word.TabWord[j] != MARK)
+    for (int i = (idx + 1); i < word.Length; i++)
     {
-        new_word.TabWord[length] = word.TabWord[j];
-        length++, j++;
+        temp.TabWord[sum] = word.TabWord[i];
+        sum++;
     }
-    new_word.Length = length;
+    temp.Length = sum;
 
-    return (new_word);
+    return (temp);
 }
 
 Word read_line_name()
@@ -131,53 +148,16 @@ Word concat(Word word_1, Word word_2)
     for(int i=0; i<word_1.Length; i++)
     {
         word.TabWord[j] = word_1.TabWord[i];
+        word.Length++;
         j++;
     }
 
     for(int i=0; i<word_2.Length; i++)
     {
         word.TabWord[j] = word_2.TabWord[i];
+        word.Length++;
         j++;
     }
 
     return (word);
-}
-
-int check_command(Word word)
-{
-    Word start_cmp = {"START", 5};
-    Word load_cmp = {"LOAD", 4};
-    Word list_cmp = {"LIST", 4};
-    Word play_cmp = {"PLAY", 4};
-    Word queue_cmp = {"QUEUE", 5};
-    Word song_cmp = {"SONG", 4};
-    Word playlist_cmp = {"PLAYLIST", 8};
-    Word status_cmp = {"STATUS", 6};
-    Word save_cmp = {"SAVE", 4};
-    Word quit_cmp = {"QUIT", 4};
-    Word help_cmp = {"HELP", 4};
-    Word default_cmp = {"DEFAULT", 7};
-    Word swap_cmp = {"SWAP", 4};
-    Word remove_cmp = {"REMOVE", 6};
-    Word clear_cmp = {"CLEAR", 5};
-    Word next_cmp = {"NEXT", 4};
-    Word previous_cmp = {"PREVIOUS", 8};
-    Word create_cmp = {"CREATE", 6};
-    Word add_cmp = {"ADD", 3};
-    Word delete_cmp = {"DELETE", 6};
-    Word album_cmp = {"ALBUM", 5};
-
-    if (word_cmp(word, start_cmp))
-    {
-        return 1;
-    }
-    else if (word_cmp(word, load_cmp))
-    {
-        return 2;
-    }
-    else
-    {
-        return 0;
-    }
-
 }

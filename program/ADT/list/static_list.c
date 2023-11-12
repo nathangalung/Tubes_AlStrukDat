@@ -1,13 +1,13 @@
 /* file static_list.c */
 
 #include <stdio.h>
-
 #include "static_list.h"
 
 void CreateEmptyStatic(StaticList *list)
 {
     int i;
-    for (i = FirstIdxList(*list); i <= LastIdxList(*list); i++)
+
+    for (i = 0; i < MaxEl; i++)
     {
         list->A[i] = string_to_word(MarkStatic);
     }
