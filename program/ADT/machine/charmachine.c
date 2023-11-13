@@ -23,7 +23,25 @@ void StartBlank()
 void StartNewline(Word filename)
 {
     pita = fopen(filename.TabWord, "r");
-    AdvNewline();
+    Word temp = {"FILE_CONFIG/default.txt", 23};
+    if (pita == NULL)
+    {
+        EOP = true;
+        fclose(pita);
+        printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
+    }
+    else
+    {
+        if (CompareWord(filename, temp))
+        {
+            printf("File konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
+        }
+        else
+        {
+            printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
+        }
+        AdvNewline();
+    }
 }
  
 void AdvMark()
@@ -115,4 +133,24 @@ boolean IsEOPNewline()
     {
         return (currentChar == NEWLINE);
     }
+}
+
+boolean CompareWord(Word word_1, Word word_2)
+{
+    if (word_1.Length != word_2.Length)
+    {
+        return false;
+    }
+    else
+    {
+        for (int i = 0; i < word_2.Length; i++)
+        {
+            if (word_1.TabWord[i] != word_2.TabWord[i])
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
 }

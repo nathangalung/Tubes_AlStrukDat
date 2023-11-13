@@ -1,7 +1,7 @@
 /* FILE help.c */
 
 #include <stdio.h>
-#include "boolean.h"
+#include "help.h"
 
 void help(boolean sesi)
 {

@@ -64,4 +64,6 @@ void DeleteMap(Map *map, Word k);
 boolean IsMemberMap(Map map, Word k);
 /* Mengembalikan true jika k adalah member dari M */
 
+boolean CompareWordMap(Word word_1, Word word_2);
+
 #endif

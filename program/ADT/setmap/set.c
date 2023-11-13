@@ -1,6 +1,7 @@
 #include <stdio.h>
+
 #include "set.h"
-#include "../../console.h"
+
 
 void CreateEmptySet(Set *set)
 {
@@ -19,8 +20,11 @@ boolean IsFullSet(Set set)
 
 void InsertSet(Set *set, Word word)
 {
-    set->Elements[set->Count] = word;
-    set->Count++;
+    if (!IsMemberSet((*set), word))
+    {
+        set->Elements[set->Count] = word;
+        set->Count++;
+    }
 }
 
 void DeleteSet(Set *set, Word word)
@@ -30,7 +34,7 @@ void DeleteSet(Set *set, Word word)
 
     while ((i < set->Count) && (!found))
     {
-        if (word_cmp(set->Elements[i], word))
+        if (CompareWordSet(set->Elements[i], word))
         {
             found = true;
         }
@@ -55,11 +59,31 @@ boolean IsMemberSet(Set set, Word word)
 {
     for (int i = 0; i < set.Count; i++)
     {
-        if (word_cmp(set.Elements[i], word))
+        if (CompareWordSet(set.Elements[i], word))
         {
             return (true);
         }
     }
 
     return (false);
+}
+
+boolean CompareWordSet(Word word_1, Word word_2)
+{
+    if (word_1.Length != word_2.Length)
+    {
+        return false;
+    }
+    else
+    {
+        for (int i = 0; i < word_2.Length; i++)
+        {
+            if (word_1.TabWord[i] != word_2.TabWord[i])
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
 }
