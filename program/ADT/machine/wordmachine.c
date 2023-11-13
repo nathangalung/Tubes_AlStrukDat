@@ -166,3 +166,12 @@ void CopyWordNewline()
     }
     currentWord.Length = i;
 }
+
+void DisplayWord(Word currentWord)
+{
+    for (int i = 0; i < currentWord.Length; i++)
+    {
+        printf("%c", currentWord.TabWord[i]);
+    }
+    printf("\n");
+}
