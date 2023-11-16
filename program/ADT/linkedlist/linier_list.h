@@ -11,7 +11,6 @@
 
 #define Nil NULL
 
-typedef Word;
 typedef struct tElmtlist *address;
 typedef struct tElmtlist { 
 	Word info;
