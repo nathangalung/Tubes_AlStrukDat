@@ -53,6 +53,6 @@ void CopyWordMark();
 
 void CopyWordNewline();
 
-void DisplayWord();
+void DisplayWord(Word word);
 
 #endif

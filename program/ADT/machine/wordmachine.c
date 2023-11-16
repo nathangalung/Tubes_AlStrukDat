@@ -167,7 +167,7 @@ void CopyWordNewline()
     currentWord.Length = i;
 }
 
-void DisplayWord(Word currentWord)
+void DisplayWord(Word word)
 {
     for (int i = 0; i < currentWord.Length; i++)
     {
