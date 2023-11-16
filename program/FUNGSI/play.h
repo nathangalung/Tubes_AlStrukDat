@@ -12,7 +12,7 @@
 #include "../ADT/setmap/set.h"
 #include "../ADT/linkedlist/linier_list.h"
 
-int playSong(Map album_artist, Set album, Map song_album, Word song, Word penyanyi);
+int playSong(Map album_artist, Set album, Map song_album, Word song);
 
 int playPlaylist(LinierList playlist);
 
