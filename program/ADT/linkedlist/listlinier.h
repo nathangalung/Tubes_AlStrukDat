@@ -29,7 +29,7 @@ Address newNode(Word val);
 
 typedef Address List;
 
-#define IDX_UNDEF (-1)
+#define IDX_UNDEF -1
 #define FIRST(l) (l)
 
 /* PROTOTYPE */
