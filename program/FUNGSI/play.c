@@ -4,7 +4,9 @@
 #include <stdlib.h>
 #include "play.h"
 
-void printArtist(Map album_artist){
+int playSong(Map album_artist, Set album, Map song_album, Word song, Word penyanyi) {
+    /* KAMUS LOKAL */
+    /* ALGORITMA */
     printf("Daftar Penyanyi:\n");
     for (int i = 0; i < album_artist.Count; i++){
         printf("%d.", (i+1));
@@ -12,9 +14,7 @@ void printArtist(Map album_artist){
     }
     printf("Masukkan Nama Penyanyi yang dipilih : ");
     StartWordMark();
-}
 
-void printAlbumArtist(Map album_artist, Word penyanyi){
     printf("Daftar Album oleh %c :\n", penyanyi.TabWord);
     for (int i = 0; i < album_artist.Count; i++){
         if (CompareWord1(album_artist.Elements[i].Key, penyanyi)){
@@ -26,9 +26,7 @@ void printAlbumArtist(Map album_artist, Word penyanyi){
     }
     printf("Masukkan Nama Album yang dipilih : ");
     StartWordMark();
-}
 
-void printAlbumSong (Map album, Map song_album, Word album_word, Word penyanyi){
     printf("Daftar Lagu Album %c  oleh %c :\n", album_word.TabWord, penyanyi.TabWord);
     for (int i = 0; i < song_album.Count; i++){
         if (CompareWord1(song_album.Elements[i].Key, album_word)) {
@@ -40,14 +38,7 @@ void printAlbumSong (Map album, Map song_album, Word album_word, Word penyanyi){
     }
     printf("Masukkan ID Lagu yang dipilih : ");
     StartWordMark();
-}
 
-int playSong(Map album_artist, Set album, Map song_album, Word song, Word penyanyi) {
-    /* KAMUS LOKAL */
-    /* ALGORITMA */
-    printArtist(album_artist);
-    printAlbumArtist(album_artist, penyanyi);
-    printAlbumSong(album, song_album, album, penyanyi);
     printf("Memutar lagu %c oleh %c\n", song.TabWord, penyanyi.TabWord);
     return 0;
 }

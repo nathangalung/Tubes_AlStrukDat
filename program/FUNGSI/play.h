@@ -12,12 +12,6 @@
 #include "../ADT/setmap/set.h"
 #include "../ADT/linkedlist/listlinier.h"
 
-void printArtist(Map album_artist);
-
-void printAlbumArtist(Map album_artist, Word penyanyi);
-
-void printAlbumSong(Map album, Map song_album, Word album_word, Word penyanyi);
-
 int playSong(Map album_artist, Set album, Map song_album, Word song, Word penyanyi);
 
 int playPlaylist(LinkedList playlist);
