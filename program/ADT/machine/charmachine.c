@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "charmachine.h"
+#include "../../console.h"
 
 char currentChar;
 boolean EOP;
@@ -24,6 +25,7 @@ void StartNewline(Word filename)
 {
     pita = fopen(filename.TabWord, "r");
     Word temp = {"FILE_CONFIG/default.txt", 23};
+    
     if (pita == NULL)
     {
         EOP = true;
@@ -32,7 +34,7 @@ void StartNewline(Word filename)
     }
     else
     {
-        if ((filename))
+        if (CompareWord1(filename, temp))
         {
             printf("File konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
         }
@@ -133,4 +135,24 @@ boolean IsEOPNewline()
     {
         return (currentChar == NEWLINE);
     }
+}
+
+boolean CompareWord1(Word word_1, Word word_2)
+{
+    if (word_1.Length != word_2.Length)
+    {
+        return false;
+    }
+    else
+    {
+        for (int i = 0; i < word_2.Length; i++)
+        {
+            if (word_1.TabWord[i] != word_2.TabWord[i])
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
 }

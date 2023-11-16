@@ -6,6 +6,7 @@
 
 #include "../../boolean.h"
 
+
 #define MARK ';'
 #define BLANK ' '
 #define NEWLINE '\n'
@@ -54,5 +55,7 @@ boolean IsEOPMark();
 boolean IsEOPBlank();
 
 boolean IsEOPNewline();
+
+boolean CompareWord1(Word word_1, Word word_2);
 
 #endif
