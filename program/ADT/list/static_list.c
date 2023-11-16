@@ -9,7 +9,7 @@ void CreateEmptyStatic(StaticList *list)
 
     for (i = 0; i < MaxEl; i++)
     {
-        list->A[i] = string_to_word(MarkStatic);
+        list->A[i] = StringToWord(MarkStatic);
     }
 }
 
@@ -34,7 +34,7 @@ int LengthList(StaticList list)
 
     for (i = FirstIdxList(list); i <= LastIdxList(list); i++)
     {
-        if (!cmp_word_1(list.A[i], string_to_word(MarkStatic)))
+        if (!CompareWord1(list.A[i], StringToWord(MarkStatic)))
         {
             count++;
         }
@@ -51,7 +51,7 @@ IdxType LastIdxList(StaticList list)
 {
     int i = FirstIdxList(list);
 
-    while ((i <= MaxEl - 1) && (!cmp_word_1(list.A[i], string_to_word(MarkStatic))))
+    while ((i <= MaxEl - 1) && (!CompareWord1(list.A[i], StringToWord(MarkStatic))))
     {
         i++;
     }
@@ -66,7 +66,7 @@ boolean IsIdxListValid(StaticList list, IdxType i)
 
 boolean IsIdxListEff(StaticList list, IdxType i)
 {
-    return ((FirstIdxList(list) <= i) && (i <= LastIdxList(list)) && (!cmp_word_1(list.A[i], string_to_word(MarkStatic))));
+    return ((FirstIdxList(list) <= i) && (i <= LastIdxList(list)) && (!CompareWord1(list.A[i], StringToWord(MarkStatic))));
 }
 
 boolean SearchList(StaticList list, Word word)
@@ -113,7 +113,7 @@ void InsertListAt(StaticList *list, Word word, IdxType i)
     }
 }
 
-void InsertLastList(StaticList *list, Word word)
+void InsertLastStatic(StaticList *list, Word word)
 {
     if (LengthList(*list) < MaxEl)
     {
@@ -131,7 +131,7 @@ void DeleteFirstList(StaticList *list)
         {
             list->A[i] = list->A[i + 1];
         }
-        list->A[LastIdxList(*list)] = string_to_word(MarkStatic);
+        list->A[LastIdxList(*list)] = StringToWord(MarkStatic);
     }
 }
 
@@ -145,7 +145,7 @@ void DeleteListAt(StaticList *list, IdxType i)
         {
             list->A[j] = list->A[j + 1];
         }
-        list->A[LastIdxList(*list)] = string_to_word(MarkStatic);
+        list->A[LastIdxList(*list)] = StringToWord(MarkStatic);
     }
 }
 
@@ -153,7 +153,7 @@ void DeleteLastList(StaticList *list)
 {
     if (!IsListEmpty(*list))
     {
-        list->A[LastIdxList(*list)] = string_to_word(MarkStatic);
+        list->A[LastIdxList(*list)] = StringToWord(MarkStatic);
     }
 }
 
@@ -163,14 +163,14 @@ StaticList ConcatList(StaticList list1, StaticList list2)
     CreateEmptyStatic(&list);
     int i = FirstIdxList(list1), j = FirstIdxList(list2);
 
-    while ((i <= LastIdxList(list1)) && (!cmp_word_1(list1.A[i], string_to_word(MarkStatic))))
+    while ((i <= LastIdxList(list1)) && (!CompareWord1(list1.A[i], StringToWord(MarkStatic))))
     {
-        InsertLastList(&list, list1.A[i]);
+        InsertLastStatic(&list, list1.A[i]);
         i++;
     }
-    while ((j <= LastIdxList(list2)) && (!cmp_word_1(list2.A[i], string_to_word(MarkStatic))))
+    while ((j <= LastIdxList(list2)) && (!CompareWord1(list2.A[i], StringToWord(MarkStatic))))
     {
-        InsertLastList(&list, list2.A[j]);
+        InsertLastStatic(&list, list2.A[j]);
         j++;
     }
 

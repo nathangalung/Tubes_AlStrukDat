@@ -8,13 +8,12 @@
 #define __STATIC_LIST_H__
 
 #include "../../boolean.h"
-#include "../../console.h"
 #include "../machine/wordmachine.h"
 
 
 /* Kamus Umum */
 #define MaxEl 100
-#define MarkStatic "KOSONG"  /* Nilai tak terdefinisi */
+#define MarkStatic "-"  /* Nilai tak terdefinisi */
 #define InvalidIdx -1  /* Indeks tak terdefinisi */
 
 /* Definisi elemen dan koleksi objek */
@@ -94,7 +93,7 @@ void InsertListAt(StaticList *list, Word word, IdxType i);
 /* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
 /* F.S. v disisipkan dalam L pada indeks ke-i (bukan menimpa elemen di i). */
 
-void InsertLastList(StaticList *list, Word word);
+void InsertLastStatic(StaticList *list, Word word);
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen terakhir L. */
 

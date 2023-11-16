@@ -219,7 +219,7 @@ boolean CompareWord2(Word word_1, Word word_2)
     }
     temp.Length = sum;
 
-    return (cmp_word_1(temp, word_2));
+    return (CompareWord1(temp, word_2));
 }
 
 Word SplitWord(Word word)
@@ -255,7 +255,7 @@ Word ReadNameLine()
 int ReadCountWord()
 {
     AdvWordBlank();
-    int count_item = word_to_int(currentWord);
+    int count_item = WordToInt(currentWord);
 
     return (count_item);
 }
@@ -263,7 +263,7 @@ int ReadCountWord()
 int ReadCountLine()
 {
     AdvWordNewline();
-    int count_item = word_to_int(currentWord);
+    int count_item = WordToInt(currentWord);
 
     return (count_item);
 }
@@ -293,5 +293,5 @@ boolean CompareStringWord(Word word_1, char *string)
 {
     Word word_2 = StringToWord(string);
     
-    return (cmp_word_1(word_1, word_2));
+    return (CompareWord1(word_1, word_2));
 }
