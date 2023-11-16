@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "play.h"
 
-int playSong(Map album_artist, Set album, Map song_album, Word song) {
+int playSong(Map album_artist, Set album, Map song_album, Word song){
     /* KAMUS LOKAL */
     int i, j;
     Word penyanyi, album_word, lagu;
@@ -50,12 +50,13 @@ int playSong(Map album_artist, Set album, Map song_album, Word song) {
 }
 
 
-int playPlaylist(LinierList playlist){
+int playPlaylist(LinierList playlist){ // MASIH BELOM GABUNG KE PLAYLISTNYA
     /* KAMUS LOKAL */
-    Word currentWord;
+    Word idPlaylist;
     /* ALGORITMA */
     printf("Masukkan ID Playlist: ");
     StartWordMark();
+    idPlaylist = currentWord;
     printf("Memutar playlist %c", currentWord.TabWord);
     return 0;
 }
