@@ -4,9 +4,21 @@
 #ifndef __WORD_MACHINE_H__
 #define __WORD_MACHINE_H__
 
-#include "charmachine.h"
+#include "../../boolean.h"
 
 /* State Mesin Kata */
+
+#define MARK ';'
+#define BLANK ' '
+#define NEWLINE '\n'
+
+#define NMaxWord 100
+
+typedef struct
+{
+   char TabWord[NMaxWord]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   int Length;
+} Word;
 
 boolean EndWord;
 Word currentWord;
@@ -54,5 +66,25 @@ void CopyWordMark();
 void CopyWordNewline();
 
 void DisplayWord(Word word);
+
+boolean CompareWord1(Word word_1, Word word_2);
+
+int WordToInt(Word word);
+
+Word StringToWord(char *s);
+
+Word SplitWord(Word word);
+
+boolean CompareWord2(Word word_1, Word word_2);\
+
+Word ReadNameLine();
+
+int ReadCountWord();
+
+int ReadCountLine();
+
+Word ConcatWord(Word word_1, Word word_2);
+
+CompareStringWord(Word word, char *string);
 
 #endif
