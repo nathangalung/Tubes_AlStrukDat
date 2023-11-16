@@ -4,29 +4,34 @@
 #include <stdlib.h>
 #include "play.h"
 
-int playSong(Map album_artist, Set album, Map song_album, Word song, Word penyanyi) {
+int playSong(Map album_artist, Set album, Map song_album, Word song) {
     /* KAMUS LOKAL */
+    int i, j;
+    Word penyanyi, album_word, lagu;
+    
     /* ALGORITMA */
     printf("Daftar Penyanyi:\n");
-    for (int i = 0; i < album_artist.Count; i++){
+    for (i = 0; i < album_artist.Count; i++){
         printf("%d.", (i+1));
         DisplayWord(album_artist.Elements[i].Key);
     }
     printf("Masukkan Nama Penyanyi yang dipilih : ");
     StartWordMark();
 
+    penyanyi = currentWord;
     printf("Daftar Album oleh %c :\n", penyanyi.TabWord);
-    for (int i = 0; i < album_artist.Count; i++){
+    for (i = 0; i < album_artist.Count; i++){
         if (CompareWord1(album_artist.Elements[i].Key, penyanyi)){
-                for (int j = 0; j < album_artist.Elements[i].Value.Count; j++){
-                    printf("%d.", (j+1));
-                    DisplayWord(album_artist.Elements[i].Value);
-                }
+            for (j = 0; j < album_artist.Elements[i].Value.Count; j++){
+                printf("%d.", (j+1));
+                DisplayWord(album_artist.Elements[i].Value.Elements[j]);
+            }
         }
     }
     printf("Masukkan Nama Album yang dipilih : ");
     StartWordMark();
 
+    album_word = currentWord;
     printf("Daftar Lagu Album %c  oleh %c :\n", album_word.TabWord, penyanyi.TabWord);
     for (int i = 0; i < song_album.Count; i++){
         if (CompareWord1(song_album.Elements[i].Key, album_word)) {
@@ -39,12 +44,13 @@ int playSong(Map album_artist, Set album, Map song_album, Word song, Word penyan
     printf("Masukkan ID Lagu yang dipilih : ");
     StartWordMark();
 
+    lagu = currentWord;
     printf("Memutar lagu %c oleh %c\n", song.TabWord, penyanyi.TabWord);
     return 0;
 }
 
 
-int playPlaylist(LinkedList playlist){
+int playPlaylist(LinierList playlist){
     /* KAMUS LOKAL */
     Word currentWord;
     /* ALGORITMA */

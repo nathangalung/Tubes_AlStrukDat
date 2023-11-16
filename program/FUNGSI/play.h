@@ -10,10 +10,10 @@
 #include "../ADT/queuestack/stack.h"
 #include "../ADT/setmap/map.h"
 #include "../ADT/setmap/set.h"
-#include "../ADT/linkedlist/listlinier.h"
+#include "../ADT/linkedlist/linier_list.h"
 
 int playSong(Map album_artist, Set album, Map song_album, Word song, Word penyanyi);
 
-int playPlaylist(LinkedList playlist);
+int playPlaylist(LinierList playlist);
 
 #endif
