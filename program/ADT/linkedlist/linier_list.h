@@ -6,7 +6,7 @@
 #ifndef listlinier_H
 #define listlinier_H
 
-#include "boolean.h"
+#include "../../boolean.h"
 #include "../machine/wordmachine.h"
 #include "../../console.h"
 
