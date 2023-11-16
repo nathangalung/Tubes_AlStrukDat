@@ -289,8 +289,9 @@ Word ConcatWord(Word word_1, Word word_2)
     return (word);
 }
 
-CompareStringWord(Word word_1, char *string)
+boolean CompareStringWord(Word word_1, char *string)
 {
     Word word_2 = StringToWord(string);
-    cmp_word_1(word_1, word_2);
+    
+    return (cmp_word_1(word_1, word_2));
 }
