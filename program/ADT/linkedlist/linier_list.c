@@ -12,13 +12,13 @@ void CreateEmptyLinier (LinierList *L)
 	First(*L) = Nil;
 }
 
-address Alokasi (infotype X)
+address Alokasi (Word word)
 {
 	address P;
 	P = (ElmtList *)malloc(sizeof(ElmtList));
 	if (P != Nil)
 	{
-		Info(P) = X;
+		Info(P) = word;
 		Next(P) = Nil;
 		return P;
 	}
@@ -33,14 +33,14 @@ void Dealokasi (address *P)
 	free(*P);
 }
 
-address Search (LinierList L, infotype X)
+address Search (LinierList L, Word word)
 {
 	address P = First(L);
 	boolean found = false;
 
 	while (P != Nil && !found)
 	{
-		if (cmp_word_1(Info(P), X))
+		if (cmp_word_1(Info(P), word))
 		{
 			found = true;
 		}
@@ -60,9 +60,9 @@ address Search (LinierList L, infotype X)
 	}
 }
 
-void InsVFirst (LinierList *L, infotype X)
+void InsVFirst (LinierList *L, Word word)
 {
-	address P = Alokasi(X);
+	address P = Alokasi(word);
 
 	if (P != Nil)
 	{
@@ -71,9 +71,9 @@ void InsVFirst (LinierList *L, infotype X)
 	}
 }
 
-void InsVLast (LinierList *L, infotype X)
+void InsVLast (LinierList *L, Word word)
 {
-	address P = Alokasi(X);
+	address P = Alokasi(word);
 
 	if (P != Nil)
 	{
@@ -81,19 +81,19 @@ void InsVLast (LinierList *L, infotype X)
 	}
 }
 
-void DelVFirst (LinierList *L, infotype *X)
+void DelVFirst (LinierList *L, Word *word)
 {
 	address P;
 	DelFirst(L, &P);
-	(*X) = Info(P);
+	(*word) = Info(P);
 	Dealokasi(&P);
 }
 
-void DelVLast (LinierList *L, infotype *X)
+void DelVLast (LinierList *L, Word *word)
 {
 	address P;
 	DelLast(L, &P);
-	(*X) = Info(P);
+	(*word) = Info(P);
 	Dealokasi(&P);
 }
 
@@ -133,9 +133,9 @@ void DelFirst (LinierList *L, address *P)
 	Next(*P) = Nil;
 }
 
-void DelP (LinierList *L, infotype X)
+void DelP (LinierList *L, Word word)
 {
-	address P = Search(*L, X);
+	address P = Search(*L, word);
 
 	if (P != Nil){
 		if (P == First(*L))
