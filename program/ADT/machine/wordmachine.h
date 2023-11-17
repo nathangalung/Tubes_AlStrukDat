@@ -63,14 +63,16 @@ Word SplitWord(Word word);
 
 boolean CompareWord2(Word word_1, Word word_2);\
 
+Word ConcatWord(Word word_1, Word word_2);
+
+boolean CompareStringWord(Word word_1, char *string);
+
 Word ReadNameLine();
+
+int ReadCountFirst(Word filename);
 
 int ReadCountWord();
 
 int ReadCountLine();
-
-Word ConcatWord(Word word_1, Word word_2);
-
-boolean CompareStringWord(Word word_1, char *string);
 
 #endif

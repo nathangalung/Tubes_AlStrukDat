@@ -32,7 +32,6 @@ void IgnoreNewlines()
 void StartWordMark()
 {
     StartMark();
-    IgnoreMarks();
     IgnoreBlanks();
     IgnoreNewlines();
     if (IsEOPMark())
@@ -75,8 +74,8 @@ void StartWordNewline(Word filename)
     }
     else
     {
-        EndWord = false;
         CopyWordNewline();
+        IgnoreNewlines();
     }
 }
 
@@ -134,9 +133,12 @@ void CopyWordMark()
 
     while (!IsEOPMark())
     {
-        currentWord.TabWord[i] = currentChar;
+        if (currentChar != NEWLINE)
+        {
+            currentWord.TabWord[i] = currentChar;
+            i++;
+        }
         AdvMark();
-        i++;
     }
     currentWord.Length = i;
 }
@@ -173,7 +175,6 @@ void DisplayWord(Word word)
     {
         printf("%c", word.TabWord[i]);
     }
-    printf("\n");
 }
 
 int WordToInt(Word word)
@@ -244,12 +245,47 @@ Word SplitWord(Word word)
     return (temp);
 }
 
+Word ConcatWord(Word word_1, Word word_2)
+{
+    Word word;
+    int count = 0;
+    for(int i=0; i<word_1.Length; i++)
+    {
+        word.TabWord[count] = word_1.TabWord[i];
+        count++;
+    }
+
+    for(int i=0; i<word_2.Length; i++)
+    {
+        word.TabWord[count] = word_2.TabWord[i];
+        count++;
+    }
+    word.Length = word_1.Length + word_2.Length;
+
+    return (word);
+}
+
+boolean CompareStringWord(Word word_1, char *string)
+{
+    Word word_2 = StringToWord(string);
+    
+    return (CompareWord1(word_1, word_2));
+}
+
 Word ReadNameLine()
 {
     AdvWordNewline();
     Word name_item = currentWord;
 
     return (name_item);
+}
+
+int ReadCountFirst(Word filename)
+{
+    StartWordNewline(filename);
+    int count_item = WordToInt(currentWord);
+
+    return count_item;
 }
 
 int ReadCountWord()
@@ -266,32 +302,4 @@ int ReadCountLine()
     int count_item = WordToInt(currentWord);
 
     return (count_item);
-}
-
-Word ConcatWord(Word word_1, Word word_2)
-{
-    Word word;
-    int j = 0;
-    for(int i=0; i<word_1.Length; i++)
-    {
-        word.TabWord[j] = word_1.TabWord[i];
-        word.Length++;
-        j++;
-    }
-
-    for(int i=0; i<word_2.Length; i++)
-    {
-        word.TabWord[j] = word_2.TabWord[i];
-        word.Length++;
-        j++;
-    }
-
-    return (word);
-}
-
-boolean CompareStringWord(Word word_1, char *string)
-{
-    Word word_2 = StringToWord(string);
-    
-    return (CompareWord1(word_1, word_2));
 }

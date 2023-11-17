@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 #include "charmachine.h"
-#include "../../console.h"
 
 char currentChar;
 boolean EOP;
@@ -24,24 +23,13 @@ void StartBlank()
 void StartNewline(Word filename)
 {
     pita = fopen(filename.TabWord, "r");
-    Word temp = {"FILE_CONFIG/default.txt", 23};
     
     if (pita == NULL)
     {
         EOP = true;
-        fclose(pita);
-        printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
     }
     else
     {
-        if (CompareWord1(filename, temp))
-        {
-            printf("File konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
-        }
-        else
-        {
-            printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
-        }
         AdvNewline();
     }
 }

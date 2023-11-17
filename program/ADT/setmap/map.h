@@ -1,7 +1,6 @@
 #ifndef __MAP_H__
 #define __MAP_H__
 
-#include "../../boolean.h"
 #include "../machine/wordmachine.h"
 
 /* MODUL Map
@@ -63,7 +62,5 @@ void DeleteMap(Map *map, Word k);
 
 boolean IsMemberMap(Map map, Word k);
 /* Mengembalikan true jika k adalah member dari M */
-
-boolean CompareWordMap(Word word_1, Word word_2);
 
 #endif

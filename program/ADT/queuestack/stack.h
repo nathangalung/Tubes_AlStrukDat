@@ -6,7 +6,6 @@
 #ifndef __STACK_H__
 #define __STACK_H__
 
-#include "../../boolean.h"
 #include "../machine/wordmachine.h"
 
 #define NilStack -1
