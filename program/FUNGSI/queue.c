@@ -21,9 +21,7 @@ void queueSong(Map album_artist, Set album, Map song_album){
     
     // ADA STATIC LIST ARTIS
     penyanyi = currentWord;
-    printf("Daftar Album oleh ");
-    DisplayWord(penyanyi);
-    printf(": \n");
+    printf("Daftar Album oleh \"%s\": \n", penyanyi.TabWord);
     for (i = 0; i < album_artist.Count; i++){
         if (CompareWord1(album_artist.Elements[i].Key, penyanyi)){
             for (j = 0; j < album_artist.Count; j++){
@@ -36,11 +34,7 @@ void queueSong(Map album_artist, Set album, Map song_album){
     StartWordMark();
     
     album_word = currentWord;
-    printf("Daftar Lagu Album ");
-    DisplayWord(album_word);
-    printf(" oleh ");
-    DisplayWord(penyanyi);
-    printf(": \n");
+    printf("Daftar Lagu Album \"%s\" oleh \"%s\" : \n", album_word.TabWord, penyanyi.TabWord);
     for (i = 0; i < song_album.Count; i++){
         if (CompareWord1(song_album.Elements[i].Key, album_word)) {
             for (j = 0; j < song_album.Count; j++) {
@@ -52,22 +46,16 @@ void queueSong(Map album_artist, Set album, Map song_album){
     printf("Masukkan ID Lagu yang dipilih : ");
     StartWordMark();
     
-    lagu = currentWord;
-    printf("Berhasil menambahkan lagu");
-    DisplayWord(lagu); // HARUS CARI JG NAMA LAGUNYA APA
-    printf(" oleh ");
-    DisplayWord(penyanyi);
-    printf(" ke queue\n");
+    lagu = currentWord; // harus cari nama lagunya
+    printf("Berhasil menambahkan lagu \"%s\" oleh \"%s\" ke queue\n", lagu.TabWord, penyanyi.TabWord);
 }
 
 void queuePlaylist(LinierList playlist){
     printf("Masukkan ID Playlist: ")
     StartWordMark();
     
-    idPlaylist = currentWord;
-    printf("Berhasil menambahkan playlist ");
-    DisplayWord(idPlaylist); // HARUS CARI NAMA PLAYLIST JG
-    printf(" ke queue\n");
+    idPlaylist = currentWord; // harus cari nama playlist
+    printf("Berhasil menambahkan playlist \"%s\" ke queue.\n", idPlaylist.TabWord); // HARUS CARI NAMA PLAYLIST JG
 }
 
 void queueSwap(Queue *queue, int *a, int *b){
@@ -77,14 +65,11 @@ void queueSwap(Queue *queue, int *a, int *b){
         *a = *b;
         *b = temp;
 
-        printf("Lagu");
-        DisplayWord(queue->T[(*a)-1]); // nama lagu 1
-        printf("berhasil ditukar dengan");
-        DisplayWord(queue->T[(*b)-1]); // nama lagu 2
+        printf("Lagu \"%s\" berhasil ditukar dengan \"%s\".", queue->T[(*a)-1], queue->T[(*b)-1]);
 
     } else {
         int notmember; // harus cari yg not member yg mana
-        printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!", notmember);
+        printf("Lagu dengan urutan ke \"%d\" tidak terdapat dalam queue!", notmember);
     }
 
 }
@@ -95,12 +80,9 @@ void queueRemove(int *arr){
         for (i = *arr; i < queue->Count; i++){
             queue->T[i-1] = queue->T[i];
         }
-        queue->Count--;
-        printf("Lagu");
-        DisplayWord(); // nama lagu
-        printf("oleh");
-        DisplayWord(); // nama penyanyi
-        printf("telah dihapus dari queue");
+        
+        queue->Count--; // harus cari nama lagu dan penyanyinya
+        printf("Lagu \"%s\" oleh \"%s\" telah dihapus dari queue.", queue->T[(*arr)-1], queue->T[(*arr)-1]);
 
     } else {
         printf("Lagu dengan urutan ke %d tidak ada.", *arr);

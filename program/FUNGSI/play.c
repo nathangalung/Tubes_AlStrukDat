@@ -21,9 +21,7 @@ int playSong(Map album_artist, Set album, Map song_album){
 
     // ADA STATIC LIST ARTIS
     penyanyi = currentWord;
-    printf("Daftar Album oleh ");
-    DisplayWord(penyanyi);
-    printf(": \n");
+    printf("Daftar Album oleh \"%s\" penyanyi: \n");
     for (i = 0; i < album_artist.Count; i++){
         if (CompareWord1(album_artist.Elements[i].Key, penyanyi)){
             for (j = 0; j < album_artist.Count; j++){
@@ -36,11 +34,7 @@ int playSong(Map album_artist, Set album, Map song_album){
     StartWordMark();
 
     album_word = currentWord;
-    printf("Daftar Lagu Album ");
-    DisplayWord(album_word);
-    printf(" oleh ");
-    DisplayWord(penyanyi);
-    printf(": \n");
+    printf("Daftar Lagu Album \"%s\" oleh \"%s\" : \n", album_word.TabWord, penyanyi.TabWord);
     for (i = 0; i < song_album.Count; i++){
         if (CompareWord1(song_album.Elements[i].Key, album_word)) {
             for (j = 0; j < song_album.Count; j++) {
@@ -53,11 +47,7 @@ int playSong(Map album_artist, Set album, Map song_album){
     StartWordMark();
 
     lagu = currentWord;
-    printf("Memutar lagu ");
-    DisplayWord(lagu);
-    printf(" oleh ");
-    DisplayWord(penyanyi);
-    printf("\n");
+    printf("Memutar lagu \"%s\" oleh \"%s\".\n", lagu.TabWord, penyanyi.TabWord);
     return 0;
 
     // clear queue
