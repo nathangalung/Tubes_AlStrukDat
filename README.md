@@ -3,18 +3,17 @@
 DESKRIPSI SINGKAT PROGRAM
 
 ## Command
-* Start
-* Load
-* List
-* Play
-* Queue
-* Song
-* Playlist
-* Status
-* Save
-* Quit
-* Help
-* Invalid Command
+* `Start`
+* `Load`
+* `List`
+* `Play`
+* `Queue`
+* `Song`
+* `Playlist`
+* `Status`
+* `Save`
+* `Quit`
+* `Help`
 
 ## Daftar ADT
 * ADT List
