@@ -3,17 +3,17 @@
 DESKRIPSI SINGKAT PROGRAM
 
 ## Command
-* `Start`
-* `Load`
-* `List`
-* `Play`
-* `Queue`
-* `Song`
-* `Playlist`
-* `Status`
-* `Save`
-* `Quit`
-* `Help`
+* `Start` : Fungsi untuk memasuki sesi baru
+* `Load` : Fungsi untuk memulai sesi berdasarkan file konfigurasi
+* `List` : Fungsi untuk menampilkan daftar playlist, list penyanyi, list album, dan list lagu
+* `Play` : Fungsi untuk memutar lagu atau playlist yang pilih 
+* `Queue` : Fungsi untuk memanipulasi queue lagu
+* `Song` : Fungsi untuk melakukan navigasi lagu yang ada pada queue
+* `Playlist` : Fungsi untuk melakukan basic command playlist
+* `Status` : Fungsi untuk menampilkan lagu yang sedang dimainkan, queue lagu yang ada, dan playlist lagu yang diputar
+* `Save` : Fungsi untuk menyimpan state aplikasi terbaru
+* `Quit` : Fungsi untuk keluar dari aplikasi
+* `Help` : Fungsi untuk menampilkan bantuan
 
 ## Daftar ADT
 * ADT List
