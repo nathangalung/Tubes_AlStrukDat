@@ -61,7 +61,7 @@ Word StringToWord(char *s);
 
 Word SplitWord(Word word);
 
-boolean CompareWord2(Word word_1, Word word_2);\
+boolean CompareWord2(Word word_1, Word word_2);
 
 Word ConcatWord(Word word_1, Word word_2);
 
