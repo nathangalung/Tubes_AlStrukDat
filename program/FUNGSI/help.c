@@ -27,7 +27,7 @@ void help(boolean sesi)
         printf("\t3. QUEUE -> Untuk memanipulasi queue lagu \n");
         printf("\t4. SONG -> Untuk melakukan navigasi lagu yang ada pada queue \n");
         printf("\t5. PLAYLIST -> Untuk melakukan basic command playlist seperti create, add, swap, remove, dan delete \n");
-        printf("\t6. STATUS -> Untuk menampilkan lagu yang sedang dimainkan serta queue song yang ada dan playlist lagu diputar \n");
+        printf("\t6. STATUS -> Untuk menampilkan lagu yang sedang dimainkan, queue lagu yang ada, dan playlist lagu diputar \n");
         printf("\t7. SAVE -> Untuk menyimpan state aplikasi terbaru \n");
         printf("\t8. HELP -> Untuk menampilkan bantuan \n");
         printf("\t9. QUIT -> Untuk keluar dari aplikasi \n");

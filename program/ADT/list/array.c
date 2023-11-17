@@ -14,7 +14,7 @@ void MakeEmpty (TabKata *T)
 
 /* ********** SELEKTOR ********** */
 /* *** Banyaknya elemen *** */
-int NbElmt (TabKata T) {
+int NbElmtArray (TabKata T) {
     return T.Neff;
 };
 /* Mengirimkan banyaknya elemen efektif tabel */
