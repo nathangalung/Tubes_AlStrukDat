@@ -42,6 +42,9 @@ boolean IsQueueFull(Queue queue);
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
 
+boolean IsQueueMember(Queue queue, int index);
+/* Mengirim true apabila index lagu ada di dalam queue. */
+
 int LengthQueue(Queue queue);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 

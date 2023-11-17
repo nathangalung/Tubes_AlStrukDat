@@ -20,6 +20,19 @@ boolean IsQueueFull(Queue queue)
     return (LengthQueue(queue) == CAPACITY-1);
 }
 
+boolean IsQueueMember(Queue queue, int index)
+{
+    int i = 0;
+    boolean found = false;
+    for (i=0; i <= IDX_TAIL(queue); i++){
+        if (index == i) {
+            found = true;
+        }
+    }
+    return found;
+
+}
+
 int LengthQueue(Queue queue)
 {
     int length;
