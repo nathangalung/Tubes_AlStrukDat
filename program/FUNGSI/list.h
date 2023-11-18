@@ -7,8 +7,10 @@
 #include "../ADT/list/static_list.h"
 #include "../ADT/setmap/map.h"
 #include "../ADT/machine/wordmachine.h"
+#include "../ADT/list/dynamic_list.h"
 
 void ListDefault (StaticList *artist, Map *album_artist, Map *song_album);
 
+void ListPlaylist (DynamicList *playlist);
 
 #endif

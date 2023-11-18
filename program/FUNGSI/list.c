@@ -75,3 +75,15 @@ void ListDefault (StaticList *artist, Map *album_artist, Map *song_album){
         }
     }
 }
+
+void ListPlaylist (DynamicList *playlist){
+    printf("Daftar playlist yang kamu miliki: \n");
+    if (!IsListEmptyDynamic(*playlist)){
+        for (int i = 0; i < LengthListDynamic(*playlist); i++){
+            printf("\t%d. ", i+1);
+            DisplayWord(GetDynamic(*playlist, i));
+        }
+    } else {
+        printf("Kamu tidak memiliki playlist.");
+    }
+}
