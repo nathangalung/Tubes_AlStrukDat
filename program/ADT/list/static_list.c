@@ -9,7 +9,7 @@ void CreateEmptyStatic(StaticList *list)
 
     for (i = 0; i < MaxEl; i++)
     {
-        list->A[i] = StringToWord(MarkStatic);
+        (*list).A[i] = StringToWord(MarkStatic);
     }
 }
 
@@ -30,9 +30,9 @@ void SetList(StaticList *list, IdxType i, Word word)
 
 int LengthList(StaticList list)
 {
-    int i, count = 0;
+    int count = 0;
 
-    for (i = FirstIdxList(list); i <= LastIdxList(list); i++)
+    for (IdxType i = 0; i <= LastIdxList(list); i++)
     {
         if (!CompareWord1(list.A[i], StringToWord(MarkStatic)))
         {
