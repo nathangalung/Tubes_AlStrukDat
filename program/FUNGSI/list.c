@@ -77,10 +77,7 @@ void ListDefault (StaticList *artist, Map *album_artist, Map *song_album)
                 }
             }
             printf("Daftar lagu di ");
-            for (int i = 0; i <= currentWord.Length; i++) 
-            {
-                printf("%c", currentWord.TabWord[i]);
-            }
+            DisplayWord(currentWord);
             printf(" :\n");
 
             for (int i = 0; i < song_album->Count; i++)
