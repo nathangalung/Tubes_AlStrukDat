@@ -7,7 +7,7 @@ void start(StaticList *count, StaticList *artist, Set *album, Map *album_artist,
     int count_artist = 0, count_album = 0, count_song = 0, count_user = 0;
     Word name_artist, name_album, name_song, name_user;
 
-    Word filename = {"FILE_CONFIG/default.txt", 23};
+    Word filename = {"config/default.txt", 23};
     
     count_artist = ReadCountFirst(filename);
         

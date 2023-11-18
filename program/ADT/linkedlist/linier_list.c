@@ -40,7 +40,7 @@ address Search (LinierList L, Word word)
 
 	while (P != Nil && !found)
 	{
-		if (cmp_word_1(Info(P), word))
+		if (CompareWord1(Info(P), word))
 		{
 			found = true;
 		}
@@ -111,7 +111,7 @@ void InsertAfter (LinierList *L, address P, address Prec)
 
 void InsertLast (LinierList *L, address P)
 {
-	if (IsEmpty(*L))
+	if (IsEmptyLinier(*L))
 	{
 		InsertFirst(L, P);
 	}
@@ -190,7 +190,7 @@ void PrintInfo (LinierList L)
 {
 	address P = First(L);
 
-	if (IsEmpty(L))
+	if (IsEmptyLinier(L))
 	{
 		printf("[]");
 	}
@@ -239,10 +239,10 @@ void InversLinierList (LinierList *L)
 
 void Konkat1 (LinierList *L1, LinierList *L2, LinierList *L3)
 {
-	CreateEmpty(L3);
+	CreateEmptyLinier(L3);
 	address lastL1 = First(*L1);
 
-	if (IsEmpty(*L1))
+	if (IsEmptyLinier(*L1))
 	{
 		First(*L3) = First(*L2);
 	}
@@ -256,6 +256,6 @@ void Konkat1 (LinierList *L1, LinierList *L2, LinierList *L3)
 		Next(lastL1) = First(*L2);
 	}
 
-	CreateEmpty(L1);
-	CreateEmpty(L2);
+	CreateEmptyLinier(L1);
+	CreateEmptyLinier(L2);
 }

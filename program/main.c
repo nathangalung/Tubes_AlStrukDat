@@ -5,6 +5,10 @@
 
 #include "FUNGSI/start.h"
 #include "FUNGSI/load.h"
+#include "FUNGSI/list.h"
+#include "FUNGSI/help.h"
+#include "FUNGSI/playlist.h"
+#include "FUNGSI/play.h"
 
 int main()
 {
@@ -38,6 +42,7 @@ int main()
     Map song_album;
     DynamicList user;
     DynamicList playlist;
+    LinierList playlist_song;
     Queue queue;
 
     CreateEmptyStatic(&count);
@@ -49,6 +54,7 @@ int main()
     CreateEmptyQueue(&queue);
     CreateEmptyStack(&history);
     CreateEmptyDynamic(&playlist);
+    CreateEmptyLinier(&playlist_song);
     
     boolean run = true;
     boolean sesi = false;
@@ -94,10 +100,12 @@ int main()
                 command = SplitWord(command);
                 if (CompareWord1(command, default_cmp))
                 {
+                    ListDefault(&artist, &album_artist, &song_album);
                     printf("list default berhasil\n");
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
+                    ListPlaylist(&playlist);
                     printf("list playlist berhasil\n");
                 }
                 else
@@ -117,10 +125,12 @@ int main()
                 command = SplitWord(command);
                 if (CompareWord1(command, song_cmp))
                 {
+                    playSong(album_artist, album, song_album);
                     printf("play song\n");
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
+                    playPlaylist(playlist_song);
                     printf("play playlist\n");
                 }
                 else
@@ -201,6 +211,7 @@ int main()
                 command = SplitWord(command);
                 if (CompareWord1(command, create_cmp))
                 {
+                    CreatePlaylist(&playlist);
                     printf("playlist create\n");
                 }
                 else if (CompareWord2(command, add_cmp))
@@ -288,14 +299,7 @@ int main()
         }
         else if (CompareWord1(command, help_cmp))
         {
-            if (!sesi)
-            {
-                printf("help program\n");
-            }
-            else
-            {
-                printf("help sesi\n");
-            }
+            help(sesi);
         }
         else
         {

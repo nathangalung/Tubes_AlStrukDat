@@ -5,7 +5,8 @@
 
 #include <stdio.h>
 #include "../ADT/queuestack/queue.h"
-#include "../ADT/list/array.h"
+#include "../ADT/list/static_list.h"
+#include "../ADT/list/dynamic_list.h"
 #include "../ADT/machine/wordmachine.h"
 #include "../ADT/queuestack/stack.h"
 #include "../ADT/queuestack/queue.h"

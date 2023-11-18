@@ -7,7 +7,7 @@ void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
     int count_artist = 0, count_album = 0, count_song = 0, count_user = 0, count_queue = 0, count_history = 0, count_playlist = 0;
     Word name_artist, name_album, name_song, name_user, name_playlist;
 
-    Word dir = {"FILE_CONFIG/", 12};
+    Word dir = {"config/", 7};
     filename = ConcatWord(dir, filename);
 
     count_artist = ReadCountFirst(filename);
