@@ -20,6 +20,7 @@ void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
         idx++;
         
         name_artist = ReadNameLine();
+        artist->A[i] = name_artist;
         
         for (int j=0; j<count_album; j++)
         {

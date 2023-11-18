@@ -12,7 +12,6 @@ void start(StaticList *count, StaticList *artist, Set *album, Map *album_artist,
     
     count_artist = ReadCountFirst(filename, count, idx);
     idx++;
-    printf("%d %d\n", count_artist, idx);
         
     for (int i=0; i<count_artist; i++)
     {
