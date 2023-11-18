@@ -3,7 +3,7 @@
 
 void ListDefault (StaticList *artist, Map *album_artist, Map *song_album){
     printf("Daftar Penyanyi : \n");
-    for (int i = 0; i < LengthList(*artist); i++){
+    for (int i = 0; i < LengthList(artist); i++){
         printf("\t%d. ", i+1);
         DisplayWord(GetList(*artist, i));
     }

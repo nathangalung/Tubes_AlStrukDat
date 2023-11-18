@@ -115,10 +115,13 @@ void InsertListAt(StaticList *list, Word word, IdxType i)
 
 void InsertLastStatic(StaticList *list, Word word)
 {
-    if (LengthList(*list) < MaxEl)
+    int count = 0;
+
+    while (!CompareStringWord(list->A[count], MarkStatic))
     {
-        list->A[LengthList(*list)] = word;
+        count++;
     }
+    list->A[count] = word;
 }
 
 void DeleteFirstList(StaticList *list)
@@ -175,4 +178,34 @@ StaticList ConcatList(StaticList list1, StaticList list2)
     }
 
     return (list);
+}
+
+int ReadCountFirst(Word filename, StaticList *list, int i)
+{
+    StartWordNewline(filename);
+    list->A[i] = currentWord;
+    int count_item = WordToInt(currentWord);
+    i++;
+
+    return count_item;
+}
+
+int ReadCountWord(StaticList *list, int i)
+{
+    AdvWordBlank();
+    list->A[i] = currentWord;
+    int count_item = WordToInt(currentWord);
+    i++;
+
+    return (count_item);
+}
+
+int ReadCountLine(StaticList *list, int i)
+{
+    AdvWordNewline();
+    list->A[i] = currentWord;
+    int count_item = WordToInt(currentWord);
+    i++;
+
+    return (count_item);
 }

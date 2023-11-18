@@ -279,27 +279,3 @@ Word ReadNameLine()
 
     return (name_item);
 }
-
-int ReadCountFirst(Word filename)
-{
-    StartWordNewline(filename);
-    int count_item = WordToInt(currentWord);
-
-    return count_item;
-}
-
-int ReadCountWord()
-{
-    AdvWordBlank();
-    int count_item = WordToInt(currentWord);
-
-    return (count_item);
-}
-
-int ReadCountLine()
-{
-    AdvWordNewline();
-    int count_item = WordToInt(currentWord);
-
-    return (count_item);
-}

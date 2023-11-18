@@ -5,6 +5,7 @@
 #define __WORD_MACHINE_H__
 
 #include "charmachine.h"
+#include "../list/static_list.h"
 
 /* State Mesin Kata */
 
@@ -68,11 +69,5 @@ Word ConcatWord(Word word_1, Word word_2);
 boolean CompareStringWord(Word word_1, char *string);
 
 Word ReadNameLine();
-
-int ReadCountFirst(Word filename);
-
-int ReadCountWord();
-
-int ReadCountLine();
 
 #endif

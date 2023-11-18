@@ -114,4 +114,10 @@ StaticList ConcatList(StaticList list1, StaticList list2);
 /* Mengirimkan sebuah List yang merupakan gabungan dari L1 dan L2 */
 /* Urutan elemen terisi dari L1, lalu L2 */
 /* Contoh : L1 : [1, 2]; L2 : [3, 4]; Mengembalikan [1, 2, 3, 4] */
+
+int ReadCountFirst(Word filename, StaticList *list, int i);
+
+int ReadCountWord(StaticList *list, int i);
+
+int ReadCountLine(StaticList *list, int i);
 #endif

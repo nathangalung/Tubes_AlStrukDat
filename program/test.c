@@ -1,23 +1,25 @@
 #include <stdio.h>
+
+#include "ADT/list/static_list.h"
 #include "ADT/machine/wordmachine.h"
 
 int main()
 {
-    StartWordMark();
-    Word name = {"FILE_CONFIG/", 12};
-    Word filename = ConcatWord(name, currentWord);
-    printf("%d", filename.Length);
-    DisplayWord(filename);
-    printf("\n");
+    StaticList artist;
 
-    StartWordNewline(filename);
+    CreateEmptyStatic(&artist);
+    
 
-    if (StartWordNewline(filename))
+    Word aku = {"aku", 3};
+    Word makan = {"makan", 5};
+    Word nasi = {"nasi", 4};
+
+    InsertLastStatic(&artist, aku);
+    InsertLastStatic(&artist, makan);
+    InsertLastStatic(&artist, nasi);
+    for (int i = 0; i < 5; i++)
     {
-        printf("%c", currentWord.TabWord[0]);
-    }
-    else
-    {
-        printf("gagal");
+        DisplayWord(artist.A[i]);
+        printf("\n");
     }
 }
