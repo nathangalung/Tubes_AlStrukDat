@@ -39,6 +39,7 @@ void ListDefault (StaticList *artist, Map *album_artist, Map *song_album){
             if (CompareWord1((*album_artist).Elements[i].Value, currentWord)){
                 printf("\t%d. ", i+1);
                 DisplayWord((*album_artist).Elements[i].Key);
+                printf("\n");
             }
         }
         printf("\n");
@@ -70,6 +71,7 @@ void ListDefault (StaticList *artist, Map *album_artist, Map *song_album){
                 if (CompareWord1((*song_album).Elements[i].Value, currentWord)){
                     printf("\t%d. ", i+1);
                     DisplayWord((*song_album).Elements[i].Key);
+                    printf("\n");
                 }
             }
         }
@@ -82,6 +84,7 @@ void ListPlaylist (DynamicList *playlist){
         for (int i = 0; i < LengthListDynamic(*playlist); i++){
             printf("\t%d. ", i+1);
             DisplayWord(GetDynamic(*playlist, i));
+            printf("\n");
         }
     } else {
         printf("Kamu tidak memiliki playlist.");
