@@ -85,7 +85,7 @@ int main()
             {
                 command = SplitWord(command);
                 Word filename = command;
-                load(filename, &count, &artist, &album, &album_artist, &song_album, &user, &queue, &history, &playlist);
+                load(filename, &count, &artist, &album, &album_artist, &song_album, &user, &queue, &history, &playlist, &playlist_song);
                 sesi = true;
             }
             else

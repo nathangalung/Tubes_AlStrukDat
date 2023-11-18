@@ -8,7 +8,8 @@
 #include "../ADT/setmap/map.h"
 #include "../ADT/queuestack/queue.h"
 #include "../ADT/queuestack/stack.h"
+#include "../ADT/linkedlist/linier_list.h"
 
-void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist);
+void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist, LinierList *playlist_song);
 
 #endif

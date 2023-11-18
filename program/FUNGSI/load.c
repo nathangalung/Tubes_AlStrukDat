@@ -2,7 +2,7 @@
 
 #include "load.h"
 
-void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist)
+void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist, LinierList *playlist_song)
 {
     int count_artist = 0, count_album = 0, count_song = 0, count_user = 0, count_queue = 0, count_history = 0, count_playlist = 0;
     int idx = 0;
@@ -12,16 +12,19 @@ void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
     filename = ConcatWord(dir, filename);
 
     count_artist = ReadCountFirst(filename, artist, idx);
+    idx++;
    
     for (int i=0; i<count_artist; i++)
     {
         count_album = ReadCountWord(count, idx);
+        idx++;
         
         name_artist = ReadNameLine();
         
         for (int j=0; j<count_album; j++)
         {
             count_song = ReadCountWord(count, idx);
+            idx++;
             
             name_album = ReadNameLine();
             InsertSet(album, name_album);
@@ -36,6 +39,7 @@ void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
     }
 
     count_user = ReadCountLine(count, idx);
+    idx++;
     
     for(int i=0; i<count_user; i++)
     {
@@ -46,6 +50,7 @@ void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
     for(int i = 0; i < count_user; i++)
     {
         count_queue = ReadCountLine(count, idx);
+        idx++;
 
         for(int j=0; j<count_queue; j++)
         {
@@ -54,6 +59,7 @@ void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
         }
 
         count_history = ReadCountLine(count, idx);
+        idx++;
 
         for(int j=0; j<count_history; j++)
         {
@@ -66,12 +72,14 @@ void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
         for(int j = 0; j < count_playlist; j++)
         {
             count_song = ReadCountWord(count, idx);
+            idx++;
             name_playlist = ReadNameLine();
             InsertLastDynamic(playlist, name_playlist);
 
             for(int k = 0; k < count_song; k++)
             {
                 name_song = ReadNameLine();
+                InsVLast(playlist_song, name_song);
             }
         }
     }

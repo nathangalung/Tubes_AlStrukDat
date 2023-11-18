@@ -11,10 +11,13 @@ void start(StaticList *count, StaticList *artist, Set *album, Map *album_artist,
     Word filename = {"config/default.txt", 23};
     
     count_artist = ReadCountFirst(filename, count, idx);
+    idx++;
+    printf("%d %d\n", count_artist, idx);
         
     for (int i=0; i<count_artist; i++)
     {
         count_album = ReadCountWord(count, idx);
+        idx++;
         
         name_artist = ReadNameLine();
         artist->A[i] = name_artist;
@@ -22,6 +25,7 @@ void start(StaticList *count, StaticList *artist, Set *album, Map *album_artist,
         for (int j=0; j<count_album; j++)
         {
             count_song = ReadCountWord(count, idx);
+            idx++;
             
             name_album = ReadNameLine();
             InsertSet(album, name_album);
@@ -36,6 +40,7 @@ void start(StaticList *count, StaticList *artist, Set *album, Map *album_artist,
     }
 
     count_user = ReadCountLine(count, idx);
+    idx++;
     
     for(int i=0; i<count_user; i++)
     {
@@ -43,4 +48,6 @@ void start(StaticList *count, StaticList *artist, Set *album, Map *album_artist,
         InsertLastDynamic(user, name_user);
     }
     printf("File konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
+    
+
 }

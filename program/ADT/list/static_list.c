@@ -180,32 +180,29 @@ StaticList ConcatList(StaticList list1, StaticList list2)
     return (list);
 }
 
-int ReadCountFirst(Word filename, StaticList *list, int i)
+int ReadCountFirst(Word filename, StaticList *list, int count)
 {
     StartWordNewline(filename);
-    list->A[i] = currentWord;
+    list->A[count] = currentWord;
     int count_item = WordToInt(currentWord);
-    i++;
-
-    return count_item;
-}
-
-int ReadCountWord(StaticList *list, int i)
-{
-    AdvWordBlank();
-    list->A[i] = currentWord;
-    int count_item = WordToInt(currentWord);
-    i++;
 
     return (count_item);
 }
 
-int ReadCountLine(StaticList *list, int i)
+int ReadCountWord(StaticList *list, int count)
+{
+    AdvWordBlank();
+    list->A[count] = currentWord;
+    int count_item = WordToInt(currentWord);
+
+    return (count_item);
+}
+
+int ReadCountLine(StaticList *list, int count)
 {
     AdvWordNewline();
-    list->A[i] = currentWord;
+    list->A[count] = currentWord;
     int count_item = WordToInt(currentWord);
-    i++;
 
     return (count_item);
 }
