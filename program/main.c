@@ -158,7 +158,7 @@ int main()
                 command = SplitWord(command);
                 if (CompareWord1(command, default_cmp))
                 {
-                    ListDefault(&artist, &album_artist, &song_album);
+                    ListDefault(artist, album_artist, song_album);
                     printf("list default berhasil\n");
                 }
                 else if (CompareWord1(command, playlist_cmp))
