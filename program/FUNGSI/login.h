@@ -1,8 +1,11 @@
 #ifndef __LOGIN_H__
 #define __LOGIN_H__
 
-#include "../../boolean.h"
+#include "../ADT/machine/wordmachine.h"
+#include "../ADT/list/dynamic_list.h"
+#include "../ADT/queuestack/queue.h"
+#include "../ADT/queuestack/stack.h"
 
-void login(char *user, Queue *queue, char *history, char *playlist);
+void login(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist);
 
 #endif

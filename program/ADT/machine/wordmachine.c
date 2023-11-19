@@ -51,7 +51,7 @@ void StartWordBlank()
     IgnoreMarks();
     IgnoreBlanks();
     IgnoreNewlines();
-    if (IsEOPBlank())
+    if (IsEOPBlank() || IsEOPNewline())
     {
         EndWord = true;
     }
@@ -147,7 +147,7 @@ void CopyWordBlank()
 {
     int i = 0;
 
-    while (!IsEOPBlank())
+    while (!IsEOPBlank() && IsEOPNewline())
     {
         currentWord.TabWord[i] = currentChar;
         AdvBlank();

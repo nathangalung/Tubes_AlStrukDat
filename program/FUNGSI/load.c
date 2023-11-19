@@ -8,10 +8,7 @@ void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
     int idx = 0;
     Word name_artist, name_album, name_song, name_user, name_playlist;
 
-    Word dir = {"config/", 7};
-    filename = ConcatWord(dir, filename);
-
-    count_artist = ReadCountFirst(filename, artist, idx);
+    count_artist = ReadCountFirst(filename, count, idx);
     idx++;
    
     for (int i=0; i<count_artist; i++)
@@ -57,7 +54,7 @@ void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
         {
             name_song = ReadNameLine();
             Enqueue(queue, name_song);
-        }
+        } 
 
         count_history = ReadCountLine(count, idx);
         idx++;
@@ -69,6 +66,7 @@ void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
         }
 
         count_playlist = ReadCountLine(count, idx);
+        idx++;
 
         for(int j = 0; j < count_playlist; j++)
         {
@@ -84,5 +82,4 @@ void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
             }
         }
     }
-    printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
 }

@@ -33,7 +33,11 @@ int main()
     Word add_cmp = {"ADD", 3};
     Word delete_cmp = {"DELETE", 6};
     Word album_cmp = {"ALBUM", 5};
+    Word test_file = {"test.txt", 8};
+    Word savefile_file = {"savefile.txt", 13};
+    Word dir = {"config/", 7};
 
+    DynamicList file;
     StaticList count;
     StaticList artist;
     Stack history;
@@ -45,6 +49,7 @@ int main()
     LinierList playlist_song;
     Queue queue;
 
+    CreateEmptyDynamic(&file);
     CreateEmptyStatic(&count);
     CreateEmptyStatic(&artist);
     CreateEmptyMap(&album_artist);
@@ -55,6 +60,8 @@ int main()
     CreateEmptyStack(&history);
     CreateEmptyDynamic(&playlist);
     CreateEmptyLinier(&playlist_song);
+    InsertLastDynamic(&file, test_file);
+    InsertLastDynamic(&file, savefile_file);
     
     boolean run = true;
     boolean sesi = false;
@@ -84,8 +91,18 @@ int main()
             if (!sesi)
             {
                 command = SplitWord(command);
-                Word filename = command;
-                load(filename, &count, &artist, &album, &album_artist, &song_album, &user, &queue, &history, &playlist, &playlist_song);
+                Word dir = {"config/", 7};
+                Word filename = ConcatWord(dir, command);
+                if (CheckDir(&file, filename))
+                {
+                    load(filename, &count, &artist, &album, &album_artist, &song_album, &user, &queue, &history, &playlist, &playlist_song);
+                    printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
+                }
+                else
+                {
+                    printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
+                }
+                
                 sesi = true;
             }
             else
