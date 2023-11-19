@@ -9,11 +9,15 @@
 #include "FUNGSI/help.h"
 #include "FUNGSI/playlist.h"
 #include "FUNGSI/play.h"
+#include "FUNGSI/multi.h"
 
 int main()
 {
     Word start_cmp = {"START", 5};
     Word load_cmp = {"LOAD", 4};
+    Word login_cmp = {"LOGIN", 5};
+    Word logout_cmp = {"LOGOUT", 5};
+    Word signup_cmp = {"SIGN UP", 7};
     Word list_cmp = {"LIST", 4};
     Word play_cmp = {"PLAY", 4};
     Word queue_cmp = {"QUEUE", 5};
@@ -66,6 +70,7 @@ int main()
     InsertLastDynamic(&file, savefile_file);
     
     boolean run = true;
+    boolean menu = false;
     boolean sesi = false;
 
     while (run)
@@ -78,10 +83,10 @@ int main()
 
         if (CompareWord1(command, start_cmp))
         {
-            if (!sesi)
+            if (!menu)
             {
-                start(&count, &artist, &album, &album_artist, &song_album, &user);
-                sesi = true;
+                Start(&count, &artist, &album, &album_artist, &song_album, &user);
+                menu = true;
             }
             else
             {
@@ -90,23 +95,56 @@ int main()
         }
         else if (CompareWord2(command, load_cmp))
         {
-            if (!sesi)
+            if (!menu)
             {
                 command = SplitWord(command);
                 Word filename = ConcatWord(dir, command);
                 if (CheckDir(&file, filename))
                 {
-                    load(filename, &count, &artist, &album, &album_artist, &song_album, &user, &playing, &queue, &history, &playlist, &playlist_song);
+                    Load(filename, &count, &artist, &album, &album_artist, &song_album, &user, &playing, &queue, &history, &playlist, &playlist_song);
                     printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
-                    sesi = true;
-                    printf("%d", LengthList(artist));
+                    menu = true;
                 }
                 else
                 {
                     printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
                 }
-                
-                
+            }
+            else
+            {
+                printf("Command tidak bisa dieksekusi!\n");
+            }
+        }
+        else if (CompareWord1(command, signup_cmp))
+        {
+            if (menu && !sesi)
+            {
+                SignUp(&user, &queue, &history, &playlist, &playlist_song);
+                sesi = true;
+            }
+            else
+            {
+                printf("Command tidak bisa dieksekusi!\n");
+            }
+        }
+        else if (CompareWord1(command, login_cmp))
+        {
+            if (menu && !sesi)
+            {
+                Login(&user, &queue, &history, &playlist, &playlist_song);
+                sesi = true;
+            }
+            else
+            {
+                printf("Command tidak bisa dieksekusi!\n");
+            }
+        }
+        else if (CompareWord1(command, logout_cmp))
+        {
+            if (sesi)
+            {
+                Logout(&user, &queue, &history, &playlist, &playlist_song);
+                sesi = true;
             }
             else
             {
@@ -299,17 +337,23 @@ int main()
         }
         else if (CompareWord1(command, quit_cmp))
         {
-            if (!sesi)
-            {
-                run = false;
-
-                printf("quit program\n");
-            }
-            else if (sesi)
+            if (sesi)
             {
                 sesi = false;
 
                 printf("quit sesi\n");
+            }
+            else if (sesi)
+            {
+                menu = false;
+
+                printf("quit menu\n");
+            }
+            else if (run)
+            {
+                run = false;
+
+                printf("quit program\n");
             }
             else
             {
