@@ -97,13 +97,14 @@ int main()
                 {
                     load(filename, &count, &artist, &album, &album_artist, &song_album, &user, &queue, &history, &playlist, &playlist_song);
                     printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
+                    sesi = true;
                 }
                 else
                 {
                     printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
                 }
                 
-                sesi = true;
+                
             }
             else
             {
