@@ -83,10 +83,10 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
 
             for (int i = 0; i < song_album.Count; i++)
             {
-                if (CompareWord1((song_album).Elements[i].Value, currentWord))
+                if (CompareWord1(song_album.Elements[i].Value, currentWord))
                 {
                     printf("\t%d. ", i+1);
-                    DisplayWord((song_album).Elements[i].Key);
+                    DisplayWord(song_album.Elements[i].Key);
                     printf("\n");
                 }
             }
