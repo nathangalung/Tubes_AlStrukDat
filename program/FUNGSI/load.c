@@ -2,15 +2,16 @@
 
 #include "load.h"
 
-void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist, LinierList *playlist_song)
+void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, StaticList *playing, Queue *queue, Stack *history, DynamicList *playlist, LinierList *playlist_song)
 {
     int count_artist = 0, count_album = 0, count_song = 0, count_user = 0, count_queue = 0, count_history = 0, count_playlist = 0;
     int idx = 0;
-    Word name_artist, name_album, name_song, name_user, name_playlist;
-
-    count_artist = ReadCountFirst(filename, count, idx);
+    Word name_artist, name_album, name_song, name_user, name_playlist, name_playing;
+    
+    Word check = {"config/test.txt", 15};
+    count_artist = ReadCountFirst(check, count, idx);
     idx++;
-   
+    
     for (int i=0; i<count_artist; i++)
     {
         count_album = ReadCountWord(count, idx);
@@ -47,6 +48,9 @@ void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
 
     for(int i = 0; i < count_user; i++)
     {
+        name_playing = ReadNameLine();
+        playing->A[i] = name_playing;
+
         count_queue = ReadCountLine(count, idx);
         idx++;
 

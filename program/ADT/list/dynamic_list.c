@@ -52,7 +52,7 @@ boolean CheckDir(DynamicList *file, Word word)
     int ctr = 0;
     while (!found && ctr < LengthListDynamic(*file))
     {
-        if (CompareWord1(file->A[ctr], currentWord))
+        if (CompareWord1(file->A[ctr], word))
         {
             found = true;
         }

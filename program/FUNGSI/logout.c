@@ -2,7 +2,7 @@
 
 #include "logout.h"
 
-void logout(char *user, Queue *queue, char *history, char *playlist)
+void logout(char *user, Queue *queue, Stack *history, DynamicList *playlist)
 {
-    
+    printf("Berhasil keluar. Sampai jumpa lagi!");
 }
