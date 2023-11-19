@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "list.h"
 
-void ListDefault (StaticList artist, Map *album_artist, Map *song_album)
+void ListDefault (StaticList artist, Map album_artist, Map song_album)
 {
     printf("Daftar Penyanyi : \n");
     for (IdxType i = 0; i < LengthList(artist); i++)
@@ -16,7 +16,6 @@ void ListDefault (StaticList artist, Map *album_artist, Map *song_album)
     printf("Ingin melihat album yang ada? (Y/N) : ");
     StartWordMark();
     
-
     if (CompareStringWord(currentWord, "Y"))
     {
         boolean penyanyivalid = false;
@@ -26,9 +25,9 @@ void ListDefault (StaticList artist, Map *album_artist, Map *song_album)
             printf("Pilih penyanyi untuk melihat album mereka:\n");
             StartWordMark();
             printf("\n");
-            for (int i = 0; i < album_artist->Count; i++)
+            for (int i = 0; i < album_artist.Count; i++)
             {
-                if (CompareWord1((*album_artist).Elements[i].Value, currentWord))
+                if (CompareWord1((album_artist).Elements[i].Value, currentWord))
                 {
                     penyanyivalid = true;
                 } 
@@ -44,12 +43,12 @@ void ListDefault (StaticList artist, Map *album_artist, Map *song_album)
         DisplayWord(currentWord);
         printf(" :\n");
 
-        for (int i = 0; i < album_artist->Count; i++)
+        for (int i = 0; i < album_artist.Count; i++)
         {
-            if (CompareWord1((*album_artist).Elements[i].Value, currentWord))
+            if (CompareWord1((album_artist).Elements[i].Value, currentWord))
             {
                 printf("\t%d. ", i+1);
-                DisplayWord((*album_artist).Elements[i].Key);
+                DisplayWord((album_artist).Elements[i].Key);
                 printf("\n");
             }
         }
@@ -65,9 +64,9 @@ void ListDefault (StaticList artist, Map *album_artist, Map *song_album)
                 printf("Pilih album untuk melihat lagu yang ada di album : \n");
                 StartWordMark();
                 printf("\n");
-                for (int i = 0; i < song_album->Count; i++)
+                for (int i = 0; i < song_album.Count; i++)
                 {
-                    if (CompareWord1((*song_album).Elements[i].Value, currentWord))
+                    if (CompareWord1((song_album).Elements[i].Value, currentWord))
                     {
                         laguvalid = true;
                     } 
@@ -82,12 +81,12 @@ void ListDefault (StaticList artist, Map *album_artist, Map *song_album)
             DisplayWord(currentWord);
             printf(" :\n");
 
-            for (int i = 0; i < song_album->Count; i++)
+            for (int i = 0; i < song_album.Count; i++)
             {
-                if (CompareWord1((*song_album).Elements[i].Value, currentWord))
+                if (CompareWord1((song_album).Elements[i].Value, currentWord))
                 {
                     printf("\t%d. ", i+1);
-                    DisplayWord((*song_album).Elements[i].Key);
+                    DisplayWord((song_album).Elements[i].Key);
                     printf("\n");
                 }
             }
