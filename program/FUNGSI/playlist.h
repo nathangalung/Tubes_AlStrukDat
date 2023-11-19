@@ -14,6 +14,6 @@ void CreatePlaylist (DynamicList *playlist);
 
 void AddSongPlaylist (StaticList *artist, Map *album_artist, Map *song_album, DynamicList *playlist, LinierList *playlist_song);
 
-void AddAlbumPlaylist (StaticList *artist, Map *album_artist, DynamicList *playlist);
+void AddAlbumPlaylist (StaticList *artist, Map *album_artist, Map *song_album, DynamicList *playlist, LinierList *playlist_song);
 
 #endif

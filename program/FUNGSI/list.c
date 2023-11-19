@@ -2,21 +2,22 @@
 #include <stdlib.h>
 #include "list.h"
 
-void ListDefault (StaticList *artist, Map *album_artist, Map *song_album)
+void ListDefault (StaticList artist, Map *album_artist, Map *song_album)
 {
     printf("Daftar Penyanyi : \n");
-    printf("%d", LengthList(*artist));
-    for (int i = 0; i < LengthList(*artist); i++)
+    for (IdxType i = 0; i < LengthList(artist); i++)
     {
         printf("\t%d. ", i+1);
-        DisplayWord(GetList(*artist, i));
+        DisplayWord(GetList(artist, i));
+        printf("\n");
     }
 
     printf("\n");
     printf("Ingin melihat album yang ada? (Y/N) : ");
     StartWordMark();
+    
 
-    if (currentWord.TabWord == "Y") 
+    if (CompareStringWord(currentWord, "Y"))
     {
         boolean penyanyivalid = false;
 
@@ -49,13 +50,14 @@ void ListDefault (StaticList *artist, Map *album_artist, Map *song_album)
             {
                 printf("\t%d. ", i+1);
                 DisplayWord((*album_artist).Elements[i].Key);
+                printf("\n");
             }
         }
         printf("\n");
 
         printf("Ingin melihat lagu yang ada? (Y/N) : ");
         StartWordMark();
-        if (currentWord.TabWord == "Y") 
+        if (CompareStringWord(currentWord, "Y")) 
         {
             boolean laguvalid = false;
             while (!laguvalid) 
@@ -86,6 +88,7 @@ void ListDefault (StaticList *artist, Map *album_artist, Map *song_album)
                 {
                     printf("\t%d. ", i+1);
                     DisplayWord((*song_album).Elements[i].Key);
+                    printf("\n");
                 }
             }
         }
@@ -101,10 +104,12 @@ void ListPlaylist (DynamicList *playlist)
         {
             printf("\t%d. ", i+1);
             DisplayWord(GetDynamic(*playlist, i));
+            printf("\n");
         }
     } 
     else 
     {
         printf("Kamu tidak memiliki playlist.");
+        printf("\n");
     }
 }
