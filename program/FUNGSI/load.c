@@ -2,7 +2,7 @@
 
 #include "load.h"
 
-void load(Word filename, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, StaticList *playing, Queue *queue, Stack *history, DynamicList *playlist, LinierList *playlist_song)
+void Load(Word filename, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, StaticList *playing, Queue *queue, Stack *history, DynamicList *playlist, LinierList *playlist_song)
 {
     int count_artist = 0, count_album = 0, count_song = 0, count_user = 0, count_queue = 0, count_history = 0, count_playlist = 0;
     int idx = 0;

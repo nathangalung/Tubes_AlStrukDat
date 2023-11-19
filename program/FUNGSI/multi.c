@@ -1,20 +1,20 @@
 #include <stdio.h>
 
-#include "login.h"
+#include "multi.h"
 
-void login(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist)
+void Login(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist, LinierList *palylist_song)
 {
     boolean found = false;
-    int ctr = 0;
+    
 
     while (!found)
     {
+        int ctr = 0;
         printf("Masukkan username user WayangWave : ");
         StartWordBlank();
-
         while (!found && ctr < LengthListDynamic(*user))
         {
-            if (CompareWord1(user->A[ctr], currentWord))
+            if (CompareWord1(currentWord, user->A[ctr]))
             {
                 found = true;
             }
@@ -34,6 +34,14 @@ void login(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlis
             printf("\"\n");
         }
     }
+}
 
-    
+void Logout(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist, LinierList *palylist_song)
+{
+    printf("Berhasil keluar. Sampai jumpa lagi!");
+}
+
+void SignUp(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist, LinierList *palylist_song)
+{
+    printf("Masukkan username user WayangWave : ");
 }

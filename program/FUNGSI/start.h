@@ -7,6 +7,6 @@
 #include "../ADT/setmap/set.h"
 #include "../ADT/setmap/map.h"
 
-void start(StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user);
+void Start(StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user);
 
 #endif

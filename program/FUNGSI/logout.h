@@ -6,6 +6,6 @@
 #include "../ADT/queuestack/queue.h"
 #include "../ADT/queuestack/stack.h"
 
-void logout(char *user, Queue *queue, char *history, char *playlist);
+void Logout(char *user, Queue *queue, char *history, char *playlist);
 
 #endif
