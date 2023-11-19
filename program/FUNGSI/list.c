@@ -5,10 +5,10 @@
 void ListDefault (StaticList artist, Map album_artist, Map song_album)
 {
     printf("Daftar Penyanyi :\n");
-    for (IdxType i = 0; i < LengthList(artist); i++)
+    for (int index = 0; index < LengthList(artist); index++)
     {
-        printf("\t%d. ", i+1);
-        DisplayWord(GetList(artist, i));
+        printf("\t%d. ", index+1);
+        DisplayWord(GetList(artist, index));
         printf("\n");
     }
 
@@ -63,7 +63,7 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
                 boolean laguvalid = false;
                 while (!laguvalid) 
                 {
-                    printf("Pilih album untuk melihat lagu yang ada di album : \n");
+                    printf("Pilih album untuk melihat lagu yang ada di album : ");
                     StartWordMark();
                     printf("\n");
                     int i = 0;

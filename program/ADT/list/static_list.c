@@ -31,15 +31,11 @@ void SetList(StaticList *list, IdxType i, Word word)
 int LengthList(StaticList list)
 {
     int count = 0;
-
-    for (IdxType i = 0; i <= LastIdxList(list); i++)
+    while ((!CompareWord1(list.A[count], StringToWord(MarkStatic))) && (count <= MaxEl))
     {
-        if (!CompareWord1(list.A[i], StringToWord(MarkStatic)))
-        {
-            count++;
-        }
+        count++;
     }
-    return (count);
+    return count;
 }
 
 IdxType FirstIdxList(StaticList list)

@@ -193,7 +193,7 @@ Word StringToWord(char *string)
 {
     Word command;
 
-    int i;
+    int i = 0;
 
     while (string[i] != '\0')
     {
