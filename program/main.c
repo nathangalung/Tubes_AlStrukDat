@@ -99,12 +99,6 @@ int main()
                     load(filename, &count, &artist, &album, &album_artist, &song_album, &user, &playing, &queue, &history, &playlist, &playlist_song);
                     printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
                     sesi = true;
-
-                    for (int i = 0; i < 20; i++)
-                    {  
-                        DisplayWord(count.A[i]);
-                        printf("\n");
-                    }
                 }
                 else
                 {
