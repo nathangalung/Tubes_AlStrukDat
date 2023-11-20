@@ -8,6 +8,6 @@
 
 int randint(int n);
 
-void enchance(Map song_album, User multi, PlaylistSong *playlist_song, int idx_user);
+void enhance(Map song_album, User multi, PlaylistSong *playlist_song, int idx_user);
 
 #endif

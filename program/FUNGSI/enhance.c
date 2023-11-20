@@ -21,7 +21,7 @@ int randint(int n)
     }
 }
 
-void enhance(Map song_album, User multi, PlaylistSong *playlist_song, int idx_user)
+void Enhance(Map song_album, User multi, PlaylistSong *playlist_song, int idx_user)
 {
     printf("Berikut list playlist yang tertera :\n");
     for (int i = 0; i < (LengthListDynamic(multi.Elements[idx_user].Playlist)); i++)

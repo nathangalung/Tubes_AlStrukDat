@@ -10,6 +10,7 @@
 #include "FUNGSI/playlist.h"
 #include "FUNGSI/play.h"
 #include "FUNGSI/multi.h"
+#include "FUNGSI/enhance.h"
 
 int main()
 {
@@ -359,7 +360,8 @@ int main()
         }
         else if (CompareWord1(command, enhance_cmp))
         {
-            printf("enhance berhasil");
+            Enhance(song_album, multi, &playlist_song, idx_user);
+            printf("enhance berhasil\n");
         }
         else
         {
