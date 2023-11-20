@@ -8,8 +8,9 @@
 #include "../ADT/setmap/set.h"
 #include "../ADT/linkedlist/linier_list.h"
 #include "../ADT/queuestack/queue.h"
+#include "play.h"
 
-void queueSong(Map album_artist, Set album, Map song_album);
+void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user);
 
 void queuePlaylist(LinierList playlist);
 

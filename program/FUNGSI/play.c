@@ -106,6 +106,11 @@ void playSong(StaticList artist, Map album_artist, Map song_album, User *multi, 
                         printf("\" oleh \"");
                         DisplayWord(penyanyi);
                         printf("\".\n");
+                        
+                        playing->A[idx_user] = song_album.Elements[index + idlagu - 1].Key;
+                        CreateEmptyQueue(&multi->Elements[idx_user].Queue);
+                        CreateEmptyStack(&multi->Elements[idx_user].History);
+
                         found = true;
                     }
                 }
@@ -120,10 +125,11 @@ void playSong(StaticList artist, Map album_artist, Map song_album, User *multi, 
     }
 }
 
-void playPlaylist(User multi, int idx_user) {
+void playPlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong playlist_song) { // BELOM BERES
     /* KAMUS LOKAL */
-    int idPlaylist;
+    int idPlaylist, i;
     boolean idPlaylistValid;
+    address lagu;
     Word namaplaylist;
     
     /* ALGORITMA */
@@ -142,6 +148,14 @@ void playPlaylist(User multi, int idx_user) {
             printf("Memutar playlist \"");
             DisplayWord(GetDynamic(multi.Elements[idx_user].Playlist, idPlaylist-1));
             printf("\".\n");
+
+            lagu = First(playlist_song.Playlist[idPlaylist - 1].Song);
+            playing->A[idx_user] = Info(lagu);
+            for (i = 1; i < NbElmt(playlist_song.Playlist[idPlaylist - 1].Song); i++) {
+                lagu = Next(lagu);
+                Enqueue(&multi.Elements[idx_user].Queue, Info(lagu));
+                PushStack(&multi.Elements[idx_user].History, Info(lagu));
+            }
         }
     }
 }
