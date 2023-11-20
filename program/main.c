@@ -105,17 +105,17 @@ int main()
                 if (CheckDir(&file, filename))
                 {
                     Load(filename, &count, &artist, &album, &album_artist, &song_album, &user, &playing, &multi, &playlist_song);
-                    printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
+                    printf("\nSave file berhasil dibaca. WayangWave berhasil dijalankan.\n");
                     menu = true;
                 }
                 else
                 {
-                    printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
+                    printf("\nSave file tidak ditemukan. WayangWave gagal dijalankan.\n");
                 }
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else if (CompareWord1(command, signup_cmp))
@@ -126,7 +126,7 @@ int main()
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else if (CompareWord1(command, login_cmp))
@@ -138,7 +138,7 @@ int main()
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else if (CompareWord1(command, logout_cmp))
@@ -150,7 +150,7 @@ int main()
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else if (CompareWord2(command, list_cmp))
@@ -168,12 +168,12 @@ int main()
                 }
                 else
                 {
-                    printf("Command tidak diketahui!\n");
+                    printf("\nCommand tidak diketahui!\n");
                 }
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else if (CompareWord2(command, play_cmp))
@@ -191,12 +191,12 @@ int main()
                 }
                 else
                 {
-                    printf("Command tidak diketahui!\n");
+                    printf("\nCommand tidak diketahui!\n");
                 }
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else if (CompareWord2(command, queue_cmp))
@@ -229,12 +229,12 @@ int main()
                 }
                 else
                 {
-                    printf("Command tidak diketahui!\n");
+                    printf("\nCommand tidak diketahui!\n");
                 }
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else if (CompareWord2(command, song_cmp))
@@ -252,12 +252,12 @@ int main()
                 }
                 else
                 {
-                    printf("Command tidak diketahui!\n");
+                    printf("\nCommand tidak diketahui!\n");
                 }
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else if (CompareWord2(command, playlist_cmp))
@@ -282,7 +282,7 @@ int main()
                     }
                     else
                     {
-                        printf("Command tidak diketahui!\n");
+                        printf("\nCommand tidak diketahui!\n");
                     }
                 }
                 else if (CompareWord2(command, swap_cmp))
@@ -301,12 +301,12 @@ int main()
                 }
                 else
                 {
-                    printf("Command tidak diketahui!\n");
+                    printf("\nCommand tidak diketahui!\n");
                 }
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else if (CompareWord1(command, status_cmp))
@@ -317,7 +317,7 @@ int main()
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else if (CompareWord2(command, save_cmp))
@@ -329,7 +329,7 @@ int main()
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else if (CompareWord1(command, quit_cmp))
@@ -354,7 +354,7 @@ int main()
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else if (CompareWord1(command, help_cmp))
@@ -369,12 +369,13 @@ int main()
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else
         {
-            printf("Command tidak diketahui!\n");
+            printf("\nCommand tidak diketahui!\n");
         }
+        printf("\n");
     }
 }
