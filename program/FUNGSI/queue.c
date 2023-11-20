@@ -191,7 +191,6 @@ void queuePlaylist(User *multi, int idx_user, PlaylistSong playlist_song)
             }
         }
     }
-    printf("\n");
 }
 
 void queueSwap(User *multi, Word word, int idx_user)
@@ -266,12 +265,10 @@ void queueRemove(User *multi, Word word, int idx_user)
     {
         printf("\nLagu dengan urutan ke %d tidak terdapat dalam queue!\n", idx_1);
     }
-    printf("\n");
 }
 
 void queueClear(User *multi, int idx_user)
 {
     CreateEmptyQueue(&multi->Elements[idx_user].Queue);
     printf("\nQueue berhasil dikosongkan.\n");
-    printf("\n");
 }
