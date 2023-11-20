@@ -183,12 +183,12 @@ int main()
                 command = SplitWord(command);
                 if (CompareWord1(command, song_cmp))
                 {
-                    playSong(album_artist, album, song_album);
+                    playSong(artist, album_artist, song_album);
                     printf("play song\n");
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
-                    playPlaylist(playlist_song);
+                    playPlaylist(&playlist);
                     printf("play playlist\n");
                 }
                 else
