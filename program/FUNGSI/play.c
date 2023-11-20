@@ -133,7 +133,7 @@ void playPlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong pl
     Word namaplaylist;
     
     /* ALGORITMA */
-    printf("Masukkan ID Playlist: ");
+    printf("\nMasukkan ID Playlist: ");
     StartWordMark();
     namaplaylist = currentWord;
     idPlaylist = atoi(currentWord.TabWord);
@@ -145,7 +145,7 @@ void playPlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong pl
             printf("Playlist tidak ditemukan.\n");
         } else {
             idPlaylistValid = true;
-            printf("Memutar playlist \"");
+            printf("\nMemutar playlist \"");
             DisplayWord(GetDynamic(multi.Elements[idx_user].Playlist, idPlaylist-1));
             printf("\".\n");
 
