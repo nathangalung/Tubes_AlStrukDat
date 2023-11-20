@@ -101,11 +101,11 @@ void playSong(StaticList artist, Map album_artist, Map song_album, User *multi, 
             } else {
                 for (index = 0; index < song_album.Count; index++){
                     if (CompareWord1(song_album.Elements[index].Value, album_word) && (found == false)) {
-                        printf("Memutar lagu ");
+                        printf("Memutar lagu \"");
                         DisplayWord((song_album).Elements[index + idlagu - 1].Key);
-                        printf(" oleh ");
+                        printf("\" oleh \"");
                         DisplayWord(penyanyi);
-                        printf(".\n");
+                        printf("\".\n");
                         found = true;
                     }
                 }
@@ -135,13 +135,13 @@ void playPlaylist(User multi, int idx_user) {
     idPlaylistValid = false;
 
     if (!idPlaylistValid) {
-        if (IsListEmptyDynamic(multi.Elements[idx_user].Playlist)) {
+        if (IsListEmptyDynamic(multi.Elements[idx_user].Playlist) || idPlaylist < 0 || idPlaylist > LengthListDynamic(multi.Elements[idx_user].Playlist)) {
             printf("Playlist tidak ditemukan.\n");
         } else {
             idPlaylistValid = true;
-            printf("Memutar playlist ");
+            printf("Memutar playlist \"");
             DisplayWord(GetDynamic(multi.Elements[idx_user].Playlist, idPlaylist-1));
-            printf(".\n");
+            printf("\".\n");
         }
     }
 }
