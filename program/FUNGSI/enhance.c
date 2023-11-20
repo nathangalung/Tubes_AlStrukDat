@@ -49,7 +49,7 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
         }
         else
         {
-            printf("ID playlist %d tidak terdapat pada daftar playlist\n", WordToInt(currentWord));
+            printf("\nID playlist %d tidak terdapat pada daftar playlist.\n", WordToInt(currentWord));
         }
     }
 
@@ -96,10 +96,11 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
                 InsVLast(&playlist_song->Playlist[idx_playlist].Song, input);
 
                 printf("\nBerhasil menambahkan lagu ");
-                DisplayWord(input);
+                DisplayWord(song_album.Elements[rand_song].Key);
+                printf(" oleh ");
+                DisplayWord(album_artist.Elements[i].Value);
                 printf(" ke dalam ID playlist %d.\n", (idx_playlist+1));
             }
         }
     }
-    printf("\n");
 }
