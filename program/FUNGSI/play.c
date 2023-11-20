@@ -4,17 +4,16 @@
 #include <stdlib.h>
 #include "play.h"
 
-void playSong(StaticList artist, Map album_artist, Map song_album){
+void playSong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user) {    
 
     /* KAMUS LOKAL */
     int i, index, idlagu;
-    boolean penyanyivalid, albumvalid;
+    boolean penyanyivalid, albumvalid, found;
     Word penyanyi, album_word, lagu;
 
     /* ALGORITMA */
     printf("\nDaftar Penyanyi:\n");
-    for (index = 0; index < LengthList(artist); index++)
-    {
+    for (index = 0; index < LengthList(artist); index++) {
         printf("\t%d. ", index + 1);
         DisplayWord(GetList(artist, index));
         printf("\n");
@@ -27,33 +26,25 @@ void playSong(StaticList artist, Map album_artist, Map song_album){
     penyanyi = currentWord;
     penyanyivalid = false;
 
-    while (!penyanyivalid)
-    {
+    while (!penyanyivalid) {
         i = 0;
-        while (!penyanyivalid && (i < LengthList(artist)))
-        {
-            if (CompareWord1(artist.A[i], currentWord))
-            {
+        while (!penyanyivalid && (i < LengthList(artist))) {
+            if (CompareWord1(artist.A[i], currentWord)) {
                 penyanyivalid = true;
-            }
-            else
-            {
+            } else {
                 i++;
             }
         }
     }
 
-    if (penyanyivalid)
-    {
+    if (penyanyivalid) {
         printf("Daftar Album oleh ");
         DisplayWord(currentWord);
         printf(" :\n");
 
         index = 0;
-        for (i = 0; i < album_artist.Count; i++)
-        {
-            if (CompareWord1((album_artist).Elements[i].Value, currentWord))
-            {
+        for (i = 0; i < album_artist.Count; i++) {
+            if (CompareWord1((album_artist).Elements[i].Value, currentWord)) {
                 printf("\t%d. ", index + 1);
                 DisplayWord((album_artist).Elements[i].Key);
                 printf("\n");
@@ -69,24 +60,18 @@ void playSong(StaticList artist, Map album_artist, Map song_album){
         album_word = currentWord;
         albumvalid = false;
 
-        while (!albumvalid)
-        {
+        while (!albumvalid) {
             i = 0;
-            while (!albumvalid && (i < album_artist.Count))
-            {
-                if (CompareWord1((album_artist).Elements[i].Key, currentWord))
-                {
+            while (!albumvalid && (i < album_artist.Count)) {
+                if (CompareWord1((album_artist).Elements[i].Key, currentWord)) {
                     albumvalid = true;
-                }
-                else
-                {
+                } else {
                     i++;
                 }
             }
         }
 
-        if (albumvalid)
-        {
+        if (albumvalid) {
             printf("Daftar Lagu Album ");
             DisplayWord(album_word);
             printf(" oleh ");
@@ -94,16 +79,12 @@ void playSong(StaticList artist, Map album_artist, Map song_album){
             printf(":\n");
 
             index = 0;
-            for (i = 0; i < song_album.Count; i++)
-            {
-                if (CompareWord1(song_album.Elements[i].Value, album_word))
-                {
-                    {
-                        printf("\t%d. ", index + 1);
-                        DisplayWord(song_album.Elements[i].Key);
-                        printf("\n");
-                        index++;
-                    }
+            for (i = 0; i < song_album.Count; i++) {
+                if (CompareWord1(song_album.Elements[i].Value, album_word)) {
+                    printf("\t%d. ", index + 1);
+                    DisplayWord(song_album.Elements[i].Key);
+                    printf("\n");
+                    index++;
                 }
             }
 
@@ -111,34 +92,35 @@ void playSong(StaticList artist, Map album_artist, Map song_album){
             StartWordMark();
             printf("\n");
 
+            found = false;
             lagu = currentWord;
             idlagu = atoi(currentWord.TabWord);
 
-            if (lagu.TabWord[0] == '\0' || idlagu <= 0 || idlagu > song_album.Count)
-            {
+            if (idlagu <= 0 || idlagu > song_album.Count) {
                 printf("Lagu tidak ditemukan.\n");
-            }
-            else
-            {
-                printf("Memutar lagu ");
-                DisplayWord((song_album).Elements[idlagu-1].Key); // BELOM BENER T^T
-                printf(" oleh ");
-                DisplayWord(penyanyi);
-                printf(".\n");
+            } else {
+                for (index = 0; index < song_album.Count; index++){
+                    if (CompareWord1(song_album.Elements[index].Value, album_word) && (found == false)) {
+                        printf("Memutar lagu ");
+                        DisplayWord((song_album).Elements[index + idlagu - 1].Key);
+                        printf(" oleh ");
+                        DisplayWord(penyanyi);
+                        printf(".\n");
+                        found = true;
+                    }
+                }
             }
         }
-        else
-        {
+        else {
             printf("Album tidak ditemukan.\n");
         }
     }
-    else
-    {
+    else {
         printf("Penyanyi tidak ditemukan.\n");
     }
 }
 
-void playPlaylist(DynamicList *playlist) {
+void playPlaylist(User multi, int idx_user) {
     /* KAMUS LOKAL */
     int idPlaylist;
     boolean idPlaylistValid;
@@ -153,12 +135,12 @@ void playPlaylist(DynamicList *playlist) {
     idPlaylistValid = false;
 
     if (!idPlaylistValid) {
-        if (idPlaylist <= 0 || idPlaylist > LengthListDynamic(*playlist)) {
+        if (IsListEmptyDynamic(multi.Elements[idx_user].Playlist)) {
             printf("Playlist tidak ditemukan.\n");
         } else {
             idPlaylistValid = true;
             printf("Memutar playlist ");
-            DisplayWord((*playlist).A[idPlaylist-1]);
+            DisplayWord(GetDynamic(multi.Elements[idx_user].Playlist, idPlaylist-1));
             printf(".\n");
         }
     }

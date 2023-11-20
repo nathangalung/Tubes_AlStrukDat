@@ -10,9 +10,10 @@
 #include "../ADT/machine/wordmachine.h"
 #include "../ADT/queuestack/queue.h"
 #include "../ADT/setmap/map.h"
+#include "../ADT/user/user.h"
 
-void playSong(StaticList artist, Map album_artist, Map song_album);
+void playSong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user);
 
-void playPlaylist(DynamicList *playlist);
+void playPlaylist(User multi, int idx_user);
 
 #endif
