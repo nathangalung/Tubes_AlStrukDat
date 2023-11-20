@@ -2,10 +2,9 @@
 
 #include "multi.h"
 
-void Login(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist, LinierList *palylist_song)
+int Login(DynamicList *user, User *multi, int idx_user)
 {
     boolean found = false;
-    
 
     while (!found)
     {
@@ -18,11 +17,15 @@ void Login(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlis
             {
                 found = true;
             }
-            ctr++;
+            else
+            {   
+                ctr++;
+            }
         }
 
         if (found)
         {
+            idx_user = ctr;
             printf("Berhasil masuk. Selamat datang, ");
             DisplayWord(currentWord);
             printf("!\n");
@@ -34,14 +37,22 @@ void Login(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlis
             printf("\"\n");
         }
     }
+
+    return idx_user;
 }
 
-void Logout(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist, LinierList *palylist_song)
+int Logout(User *multi, int idx_user)
 {
-    printf("Berhasil keluar. Sampai jumpa lagi!");
+    idx_user = -1;
+    printf("Berhasil keluar. Sampai jumpa lagi!\n");
+
+    return idx_user;
 }
 
-void SignUp(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist, LinierList *palylist_song)
+int SignUp(DynamicList *user, User *multi, int idx_user)
 {
+    idx_user = 2;
     printf("Masukkan username user WayangWave : ");
+
+    return idx_user;
 }

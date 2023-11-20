@@ -16,7 +16,7 @@ int main()
     Word start_cmp = {"START", 5};
     Word load_cmp = {"LOAD", 4};
     Word login_cmp = {"LOGIN", 5};
-    Word logout_cmp = {"LOGOUT", 5};
+    Word logout_cmp = {"LOGOUT", 6};
     Word signup_cmp = {"SIGN UP", 7};
     Word list_cmp = {"LIST", 4};
     Word play_cmp = {"PLAY", 4};
@@ -50,9 +50,10 @@ int main()
     Map song_album;
     DynamicList user;
     DynamicList playlist;
-    LinierList playlist_song;
     Queue queue;
     StaticList playing;
+    User multi;
+    PlaylistSong playlist_song;
 
     CreateEmptyDynamic(&file);
     CreateEmptyStatic(&count);
@@ -61,17 +62,14 @@ int main()
     CreateEmptyMap(&song_album);
     CreateEmptySet(&album);
     CreateEmptyDynamic(&user);
-    CreateEmptyQueue(&queue);
-    CreateEmptyStack(&history);
-    CreateEmptyDynamic(&playlist);
-    CreateEmptyLinier(&playlist_song);
     CreateEmptyStatic(&playing);
     InsertLastDynamic(&file, test_file);
     InsertLastDynamic(&file, savefile_file);
+    CreateEmptyUser(&multi);
+    CreateEmptyPlaylistSong(&playlist_song);
     
-    boolean run = true;
-    boolean menu = false;
-    boolean sesi = false;
+    boolean run = true, menu = false, sesi = false;
+    int idx_user = -1;
 
     while (run)
     {
@@ -101,7 +99,7 @@ int main()
                 Word filename = ConcatWord(dir, command);
                 if (CheckDir(&file, filename))
                 {
-                    Load(filename, &count, &artist, &album, &album_artist, &song_album, &user, &playing, &queue, &history, &playlist, &playlist_song);
+                    Load(filename, &count, &artist, &album, &album_artist, &song_album, &user, &playing, &multi, &playlist_song);
                     printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
                     menu = true;
                 }
@@ -119,7 +117,7 @@ int main()
         {
             if (menu && !sesi)
             {
-                SignUp(&user, &queue, &history, &playlist, &playlist_song);
+                idx_user = SignUp(&user, &multi, idx_user);
                 sesi = true;
             }
             else
@@ -131,7 +129,7 @@ int main()
         {
             if (menu && !sesi)
             {
-                Login(&user, &queue, &history, &playlist, &playlist_song);
+                idx_user = Login(&user, &multi, idx_user);
                 sesi = true;
             }
             else
@@ -143,8 +141,8 @@ int main()
         {
             if (sesi)
             {
-                Logout(&user, &queue, &history, &playlist, &playlist_song);
-                sesi = true;
+                idx_user = Logout(&multi, idx_user);
+                sesi = false;
             }
             else
             {
@@ -188,7 +186,7 @@ int main()
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
-                    playPlaylist(playlist_song);
+                    playPlaylist(playlist_song.Playlist[idx_user].Song);
                     printf("play playlist\n");
                 }
                 else
@@ -343,7 +341,7 @@ int main()
 
                 printf("quit sesi\n");
             }
-            else if (sesi)
+            else if (menu)
             {
                 menu = false;
 

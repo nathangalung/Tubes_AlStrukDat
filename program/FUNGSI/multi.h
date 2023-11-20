@@ -2,15 +2,12 @@
 #define __LOGIN_H__
 
 #include "../ADT/machine/wordmachine.h"
-#include "../ADT/list/dynamic_list.h"
-#include "../ADT/queuestack/queue.h"
-#include "../ADT/queuestack/stack.h"
-#include "../ADT/linkedlist/linier_list.h"
+#include "../ADT/user/user.h"
 
-void Login(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist, LinierList *palylist_song);
+int Login(DynamicList *user, User *multi, int idx_user);
 
-void Logout(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist, LinierList *palylist_song);
+int Logout(User *multi, int idx_user);
 
-void SignUp(DynamicList *user, Queue *queue, Stack *history, DynamicList *playlist, LinierList *palylist_song);
+int SignUp(DynamicList *user, User *multi, int idx_user);
 
 #endif

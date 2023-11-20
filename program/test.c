@@ -85,7 +85,7 @@ int main()
         {
             if (!menu)
             {
-                Start(&count, &artist, &album, &album_artist, &song_album, &user);
+                printf("...");
                 menu = true;
             }
             else
@@ -101,7 +101,6 @@ int main()
                 Word filename = ConcatWord(dir, command);
                 if (CheckDir(&file, filename))
                 {
-                    Load(filename, &count, &artist, &album, &album_artist, &song_album, &user, &playing, &queue, &history, &playlist, &playlist_song);
                     printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
                     menu = true;
                 }
@@ -119,7 +118,7 @@ int main()
         {
             if (menu && !sesi)
             {
-                SignUp(&user, &queue, &history, &playlist, &playlist_song);
+                printf("...");
                 sesi = true;
             }
             else
@@ -131,7 +130,7 @@ int main()
         {
             if (menu && !sesi)
             {
-                Login(&user, &queue, &history, &playlist, &playlist_song);
+                printf("...");
                 sesi = true;
             }
             else
@@ -143,8 +142,8 @@ int main()
         {
             if (sesi)
             {
-                Logout(&user, &queue, &history, &playlist, &playlist_song);
-                sesi = true;
+                printf("...");
+                sesi = false;
             }
             else
             {
@@ -158,12 +157,12 @@ int main()
                 command = SplitWord(command);
                 if (CompareWord1(command, default_cmp))
                 {
-                    ListDefault(artist, album_artist, song_album);
+                    
                     printf("list default berhasil\n");
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
-                    ListPlaylist(&playlist);
+                    
                     printf("list playlist berhasil\n");
                 }
                 else
@@ -188,7 +187,7 @@ int main()
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
-                    playPlaylist(playlist_song);
+                    
                     printf("play playlist\n");
                 }
                 else
