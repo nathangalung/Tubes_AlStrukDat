@@ -193,10 +193,11 @@ void queueSwap(User *multi, Word word, int idx_user)
 {
     boolean found_1 = false, found_2 = false;
     int ctr = 0;
-    int idx_1 = WordToInt(SplitWordLeft(word)), idx_2 = WordToInt(SplitWordBlank(word));
+    int idx_1 = atoi(SplitWordLeft(word).TabWord), idx_2 = atoi(SplitWordBlank(word).TabWord);
+    printf("%d %d\n", idx_1, idx_2);
     Word temp;
 
-    if ((idx_1 >= 1 || idx_1 <= LengthQueue(multi->Elements[idx_user].Queue)) && (idx_2 >= 1 ||idx_2 <= LengthQueue(multi->Elements[idx_user].Queue)))
+    if ((idx_1 >= 1 && idx_1 <= LengthQueue(multi->Elements[idx_user].Queue)) && (idx_2 >= 1 && idx_2 <= LengthQueue(multi->Elements[idx_user].Queue)))
     {
         temp = multi->Elements[idx_user].Queue.Buffer[idx_1 - 1];
         multi->Elements[idx_user].Queue.Buffer[idx_1 - 1] = multi->Elements[idx_user].Queue.Buffer[idx_2 - 1];
@@ -207,6 +208,10 @@ void queueSwap(User *multi, Word word, int idx_user)
         printf("\" berhasil ditukar dengan \"");
         DisplayWord(SplitWordMark(SplitWordMark(multi->Elements[idx_user].Queue.Buffer[idx_2 - 1])));
         printf("\"\n");
+    }
+    else if (idx_1 == 0 || idx_2 == 0)
+    {
+        printf("\nSilakan sertakan juga urutan dari lagu yang  ingin ditukar!\n");
     }
     else if ((idx_1 < 1 || idx_1 > LengthQueue(multi->Elements[idx_user].Queue)) && (idx_2 < 1 || idx_2 > LengthQueue(multi->Elements[idx_user].Queue)))
     {

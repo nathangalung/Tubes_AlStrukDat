@@ -7,7 +7,10 @@
 
 int main(void)
 {
-    int cek = atoi("-1");
+    Word ya = {"-3 -1", 5};
+    DisplayWord(SplitWordLeft(ya));
+    printf("\n");
+    int cek = atoi(SplitWordBlank(ya).TabWord);
 
     printf("%d\n", cek);
 }
