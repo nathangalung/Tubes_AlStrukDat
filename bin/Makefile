@@ -1,3 +1,2 @@
 run:
-		gcc ADT/machine/wordmachine.c ADT/list/dynamic_list.c ADT/setmap/set.c ADT/setmap/map.c ADT/machine/charmachine.c console.c ADT/queuestack/queue.c ADT/queuestack/stack.c ADT/list/static_list.c FUNGSI/start.c FUNGSI/load.c main.c -o main
-		./main
+		gcc ../program/ADT/machine/wordmachine.c ../program/ADT/list/dynamic_list.c ../program/ADT/setmap/set.c ../program/ADT/setmap/map.c ../program/ADT/machine/charmachine.c ../program/ADT/queuestack/queue.c ../program/ADT/queuestack/stack.c ../program/ADT/list/static_list.c ../program/ADT/linkedlist/linier_list.c ../program/ADT/user/user.c ../program/ADT/playlist_song/playlist_song.c ../program/FUNGSI/start.c ../program/FUNGSI/load.c ../program/FUNGSI/play.c ../program/FUNGSI/playlist.c ../program/FUNGSI/list.c ../program/FUNGSI/help.c ../program/FUNGSI/multi.c ../program/main.c ../program/FUNGSI/enhance.c -o main 
