@@ -6,7 +6,7 @@
 #include "../list/dynamic_list.h"
 
 #define NilUser 0
-#define MaxElUser 50
+#define MaxElUser 25
 #define UndefinedUser NULL
 
 typedef struct {

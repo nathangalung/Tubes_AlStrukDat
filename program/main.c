@@ -156,12 +156,10 @@ int main()
                 if (CompareWord1(command, default_cmp))
                 {
                     ListDefault(artist, album_artist, song_album);
-                    printf("list default berhasil\n");
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
-                    ListPlaylist(&playlist);
-                    printf("list playlist berhasil\n");
+                    ListPlaylist(multi, idx_user);
                 }
                 else
                 {

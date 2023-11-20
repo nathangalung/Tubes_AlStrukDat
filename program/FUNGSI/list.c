@@ -22,7 +22,7 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
 
         while (!penyanyivalid) 
         {
-            printf("Pilih penyanyi untuk melihat album mereka: ");
+            printf("Pilih penyanyi untuk melihat album mereka : ");
             StartWordMark();
             printf("\n");
             int i = 0;
@@ -112,15 +112,17 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
     }
 }
 
-void ListPlaylist (DynamicList *playlist)
+void ListPlaylist (User multi, int idx_user)
 {
-    printf("Daftar playlist yang kamu miliki: \n");
-    if (!IsListEmptyDynamic(*playlist))
+    printf("Daftar playlist yang kamu miliki : \n");
+    if (!IsListEmptyDynamic(multi.Elements[idx_user].Playlist))
     {
-        for (int i = 0; i < LengthListDynamic(*playlist); i++)
+        int index = 0;
+        for (int i = 0; i < LengthListDynamic(multi.Elements[idx_user].Playlist); i++)
         {
-            printf("\t%d. ", i+1);
-            DisplayWord(GetDynamic(*playlist, i));
+            printf("\t%d. ", index+1);
+            DisplayWord(GetDynamic((multi.Elements[idx_user].Playlist), i));
+            index++;
             printf("\n");
         }
     } 
