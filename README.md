@@ -1,6 +1,11 @@
 # Tugas Besar AlStrukDat K03-G01
 
-DESKRIPSI SINGKAT PROGRAM
+Bondowoso menyukai Roro Jonggrang dan ingin menunjukkan Roro Jonggrang selera musiknya. Oleh karena itu, Bondowoso ingin membuat aplikasi pengganti perangkat lunak walkman yang  dapat memainkan dan juga menunjukkan lagu-lagu di playlist yang telah Bondowoso buat.
+
+WayangWave adalah aplikasi yang dapat melakukan pemutaran musik seperti music streaming service pada umumnya yang pembuatannya berbasis CLI (Command-Line Interface). 
+
+Pemutar musik ini dibuat dengan menggunakan bahasa pemrograman C dengan memanfaatkan ADT yang telah dipelajari di mata kuliah IF2111 dengan beberapa tambahan ADT yang kami buat sendiri. 
+
 
 ## Command
 * `Start` : Fungsi untuk memasuki sesi baru
