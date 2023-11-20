@@ -12,12 +12,12 @@
 
 void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user);
 
-void queuePlaylist(LinierList playlist);
+void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong playlist_song);
 
 void queueSwap(Queue *queue, int *a, int *b);
 
 void queueRemove(int *arr);
 
-void queueClear(Queue *queue);
+void queueClear(User *multi, int idx_user);
 
 #endif

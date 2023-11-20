@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "queue.h"
 
-void queueSong(Queue queue, StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user){
+void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user){
         
     /* KAMUS LOKAL */
     int i, index, idlagu;
@@ -106,6 +106,9 @@ void queueSong(Queue queue, StaticList artist, Map album_artist, Map song_album,
                         printf("\" oleh \"");
                         DisplayWord(penyanyi);
                         printf("\" ke queue.\n");
+
+                        Enqueue(&multi->Elements[idx_user].Queue, song_album.Elements[index + idlagu - 1].Key);
+
                         found = true;
                     }
                 }
@@ -120,13 +123,30 @@ void queueSong(Queue queue, StaticList artist, Map album_artist, Map song_album,
     }
 }
 
-// void queuePlaylist(LinierList playlist){
-//     printf("Masukkan ID Playlist: ")
-//     StartWordMark();
+void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong playlist_song){
     
-//     idPlaylist = currentWord; // harus cari nama playlist
-//     printf("Berhasil menambahkan playlist \"%s\" ke queue.\n", idPlaylist.TabWord); // HARUS CARI NAMA PLAYLIST JG
-// }
+    /* KAMUS LOKAL */
+    int idPlaylist, i;
+    address lagu;
+    Word Playlist;
+
+    /* ALGORITMA */
+    printf("Masukkan ID Playlist: ");
+    StartWordMark();
+    
+    Playlist = currentWord;
+    idPlaylist = atoi(currentWord.TabWord);
+    printf("Berhasil menambahkan playlist \"");
+    DisplayWord(GetDynamic(multi.Elements[idx_user].Playlist, idPlaylist-1));
+    printf("\" ke queue.\n");
+
+    lagu = First(playlist_song.Playlist[idPlaylist - 1].Song);
+    playing->A[idx_user] = Info(lagu);
+    for (i = 1; i < NbElmt(playlist_song.Playlist[idPlaylist - 1].Song); i++) {
+        lagu = Next(lagu);
+        Enqueue(&multi.Elements[idx_user].Queue, Info(lagu));
+    }
+}
 
 // void queueSwap(Queue *queue, int *a, int *b){
 //     if (IsMemberQueue(queue, *a) && IsMemberQueue(queue, *b)){
@@ -159,6 +179,6 @@ void queueSong(Queue queue, StaticList artist, Map album_artist, Map song_album,
 //     }
 // }
 
-// void queueClear(Queue *queue){
-//     CreateEmptyQueue(queue);
-// }
+void queueClear(User *multi, int idx_user){
+    CreateEmptyQueue(&multi->Elements[idx_user].Queue);
+}
