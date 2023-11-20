@@ -8,6 +8,6 @@
 #include "../ADT/user/user.h"
 #include "../ADT/playlist_song/playlist_song.h"
 
-void Load(Word filename, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, StaticList *playing, User *multi, PlaylistSong *playlist_song);
+void Load(Word filename, DynamicList file, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, StaticList *playing, User *multi, PlaylistSong *playlist_song);
 
 #endif

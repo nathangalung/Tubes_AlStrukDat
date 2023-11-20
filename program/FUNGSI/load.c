@@ -2,14 +2,29 @@
 
 #include "load.h"
 
-void Load(Word filename, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, StaticList *playing, User *multi, PlaylistSong *playlist_song)
+void Load(Word filename, DynamicList file, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, StaticList *playing, User *multi, PlaylistSong *playlist_song)
 {
+    boolean found = false;
     int count_artist = 0, count_album = 0, count_song = 0, count_user = 0, count_queue = 0, count_history = 0, count_playlist = 0;
-    int idx = 0;
+    int idx = 0, ctr = 0;
     Word name_artist, name_album, name_song, name_user, name_playlist, name_playing;
     
-    Word check = {"config/test.txt", 15};
-    count_artist = ReadCountFirst(check, count, idx);
+    while (!found && ctr < LengthListDynamic(file))
+    {
+        if (CompareWord1(filename, file.A[ctr]))
+        {
+            found = true;
+        }
+        else
+        {
+            ctr++;
+        }
+    }
+
+    DisplayWord(file.A[ctr]);
+    printf(" %d\n", file.A[ctr].Length);
+
+    count_artist = ReadCountFirst(file.A[ctr], count, idx);
     idx++;
     
     for (int i=0; i<count_artist; i++)

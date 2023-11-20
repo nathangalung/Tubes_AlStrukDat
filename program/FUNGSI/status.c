@@ -25,39 +25,57 @@ void DisplayWordDash(Word word, StaticList artist, Set album)
 
 void status(User multi, StaticList  artist, Set album, StaticList playing, PlaylistSong playlist_song, int idx_user)
 {
-    boolean found_1 = false, found_2 = false;
-    int i = 0, j = 0;
+    boolean found_1 = false;
+    int i = 0, j = 0, k = 0;
     Word currentPlaylist;
     Word currentSong = playing.A[idx_user];
-    while (!found_1 && i < multi.Elements[idx_user].Playlist.Neff)
+    
+    while (!found_1 && i < playlist_song.Count)
     {
+        boolean found_2 = false;
         address P = First(playlist_song.Playlist[i].Song);
+
         while (!found_2 && j < NbElmt(playlist_song.Playlist[i].Song))
         {
-            if (!CompareWord1(currentSong, Info(P)))
+            boolean found_3 = false;
+
+            while (!found_3 && k < LengthQueue(multi.Elements[idx_user].Queue))
             {
-                found_2 = true;
+                if (CompareWord1(multi.Elements[idx_user].Queue.Buffer[k], Info(P)))
+                {
+                    found_3 = true;
+                }
+                else
+                {
+                    k++;
+                }
             }
-            else
+            if (found_3)
             {
                 P = Next(P);
             }
+            else
+            {
+                found_2 = true;
+            }
+            j++;
         }
 
-        if (!found_2)
+        if (!found_2 && NbElmt(playlist_song.Playlist[i].Song) > 0)
         {
             currentPlaylist = multi.Elements[idx_user].Playlist.A[i];
             found_1 = true;
         }
+        i++;
     }
     if (found_1)
     {
-        printf("Current Playlist: ");
+        printf("\nCurrent Playlist: ");
         DisplayWord(currentPlaylist);
         printf("\n");
     }
 
-    printf("Now Playing:\n");
+    printf("\nNow Playing:\n");
     if (CompareStringWord(playing.A[idx_user], MarkStatic))
     {
         printf("No songs have been played yet. Please search for a song to begin playback.");

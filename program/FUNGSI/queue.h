@@ -10,7 +10,7 @@
 #include "../ADT/queuestack/queue.h"
 #include "play.h"
 
-void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user);
+void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user);
 
 void queuePlaylist(User *multi, int idx_user, PlaylistSong playlist_song);
 

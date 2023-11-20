@@ -15,6 +15,6 @@
 
 void playSong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user);
 
-void playPlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong playlist_song);
+void playPlaylist(User *multi, StaticList playing, PlaylistSong *playlist_song, int idx_user);
 
 #endif

@@ -43,7 +43,7 @@ int main()
     Word delete_cmp = {"DELETE", 6};
     Word album_cmp = {"ALBUM", 5};
     Word test_file = {"config/test.txt", 15};
-    Word savefile_file = {"config/savefile.txt", 19};
+    Word save_file = {"config/save.txt", 15};
     Word dir = {"config/", 7};
 
     DynamicList file;
@@ -69,7 +69,7 @@ int main()
     CreateEmptyDynamic(&user);
     CreateEmptyStatic(&playing);
     InsertLastDynamic(&file, test_file);
-    InsertLastDynamic(&file, savefile_file);
+    InsertLastDynamic(&file, save_file);
     CreateEmptyUser(&multi);
     CreateEmptyPlaylistSong(&playlist_song);
     
@@ -104,7 +104,7 @@ int main()
                 Word filename = ConcatWord(dir, command);
                 if (CheckDir(&file, filename))
                 {
-                    Load(filename, &count, &artist, &album, &album_artist, &song_album, &user, &playing, &multi, &playlist_song);
+                    Load(filename, file, &count, &artist, &album, &album_artist, &song_album, &user, &playing, &multi, &playlist_song);
                     printf("\nSave file berhasil dibaca. WayangWave berhasil dijalankan.\n");
                     menu = true;
                 }
@@ -187,7 +187,7 @@ int main()
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
-                    playPlaylist(multi, &playing, idx_user, playlist_song);
+                    printf("play playlist\n");
                 }
                 else
                 {
@@ -206,7 +206,7 @@ int main()
                 command = SplitWordBlank(command);
                 if (CompareWord1(command, song_cmp))
                 {
-                    queueSong(artist, album_artist, song_album, &multi, &playing, idx_user);
+                    queueSong(artist, album_artist, song_album, &multi, idx_user);
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {

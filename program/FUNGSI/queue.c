@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "queue.h"
 
-void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user)
+void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
 {
 
     /* KAMUS LOKAL */
@@ -150,7 +150,6 @@ void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
         DisplayWord(currentWord);
         printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
     }
-
 }
 
 void queuePlaylist(User *multi, int idx_user, PlaylistSong playlist_song)
@@ -246,8 +245,11 @@ void queueRemove(User *multi, Word word, int idx_user)
         {
             for (int i = (idx_1 - 1); i < (LengthQueue(multi->Elements[idx_user].Queue) - 1); i++)
             {
-                multi->Elements[idx_user].Queue.Buffer[i] = multi->Elements[idx_user].Queue.Buffer[i];
+                multi->Elements[idx_user].Queue.Buffer[i] = multi->Elements[idx_user].Queue.Buffer[i + 1];
+                ctr++;
             }
+            IDX_TAIL(multi->Elements[idx_user].Queue) = ctr;
+
         }
         Word artist = SplitWordLeft(song);
         song = SplitWordMark(SplitWordMark(song));

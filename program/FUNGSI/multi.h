@@ -3,6 +3,7 @@
 
 #include "../ADT/machine/wordmachine.h"
 #include "../ADT/user/user.h"
+#include "../ADT/playlist_song/playlist_song.h"
 
 int Login(DynamicList *user, User *multi, int idx_user);
 
