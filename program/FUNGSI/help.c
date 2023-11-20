@@ -20,9 +20,10 @@ void help(boolean sesi, boolean menu)
         printf("\t4. QUIT -> Untuk keluar dari aplikasi \n");
     } else if(sesi && !menu){
         printf("1. LOGIN -> Untuk masuk ke akun yang sudah ada \n");
-        printf("\t2. REGISTER -> Untuk mendaftarkan akun \n");
+        printf("\t2. SIGN UP -> Untuk mendaftarkan akun \n");
         printf("\t3. HELP -> Untuk menampilkan bantuan \n");
-        printf("\t4. QUIT -> Untuk keluar dari aplikasi \n");
+        printf("\t4. SAVE -> Untuk menyimpan state aplikasi terbaru \n");
+        printf("\t5. QUIT -> Untuk keluar dari aplikasi \n");
     } else if (sesi && menu){ // perintah dipanggil setelah memasuki sesi
         printf("1. LIST -> Untuk menampilkan daftar playlist, list penyanyi, list album, dan list lagu \n");    
         printf("\t2. PLAY -> Untuk memutar lagu atau playlist yang dipilih \n");
