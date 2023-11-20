@@ -56,6 +56,8 @@ void CopyWordNewline();
 
 void DisplayWord(Word word);
 
+void DisplayDashWord(Word word, StaticList artist, Set album);
+
 int WordToInt(Word word);
 
 Word StringToWord(char *s);
