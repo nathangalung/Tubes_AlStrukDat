@@ -64,6 +64,8 @@ Word SplitWordBlank(Word word);
 
 Word SplitWordMark(Word word);
 
+Word SplitWordLeft(Word word);
+
 boolean CompareWord2(Word word_1, Word word_2);
 
 boolean CompareWord3(Word word_1, Word word_2);

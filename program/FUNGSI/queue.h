@@ -14,7 +14,7 @@ void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
 
 void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong playlist_song);
 
-void queueSwap(Queue *queue, int *a, int *b);
+void queueSwap(User *multi, Word word, int idx_user);
 
 void queueRemove(int *arr);
 

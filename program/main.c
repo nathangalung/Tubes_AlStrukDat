@@ -214,7 +214,7 @@ int main()
                 else if (CompareWord2(command, swap_cmp))
                 {
                     command = SplitWordBlank(command);
-                    printf("queue swap\n");
+                    queueSwap(&multi, command, idx_user);
                     
                 }
                 else if (CompareWord2(command, remove_cmp))

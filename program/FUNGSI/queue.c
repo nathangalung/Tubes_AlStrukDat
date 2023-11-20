@@ -4,8 +4,9 @@
 #include <stdlib.h>
 #include "queue.h"
 
-void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user){
-        
+void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user)
+{
+
     /* KAMUS LOKAL */
     int i, index, idlagu;
     boolean penyanyivalid, albumvalid, found;
@@ -85,7 +86,8 @@ void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
             }
         }
 
-        if (albumvalid) {
+        if (albumvalid)
+        {
             printf("Daftar Lagu Album ");
             DisplayWord(album_word);
             printf(" oleh ");
@@ -187,28 +189,40 @@ void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong p
     printf("\n");
 }
 
-// void queueSwap(User *multi, Word word, int idx_user)
-// {
-//     int ctr = 0;
-//     while (ctr < LengthQueue(multi->Elements[idx_user].Queue))
-//     {
-//         CompareWord2(word, StringToWord(ctr - "0"))
-//     }
+void queueSwap(User *multi, Word word, int idx_user)
+{
+    boolean found_1 = false, found_2 = false;
+    int ctr = 0;
+    int idx_1 = WordToInt(SplitWordLeft(word)), idx_2 = WordToInt(SplitWordBlank(word));
+    Word temp;
 
-//     if (IsMemberQueue(queue, *a) && IsMemberQueue(queue, *b)){
-//         int temp;
-//         temp = *a;
-//         *a = *b;
-//         *b = temp;
+    if ((idx_1 >= 1 || idx_1 <= LengthQueue(multi->Elements[idx_user].Queue)) && (idx_2 >= 1 ||idx_2 <= LengthQueue(multi->Elements[idx_user].Queue)))
+    {
+        temp = multi->Elements[idx_user].Queue.Buffer[idx_1 - 1];
+        multi->Elements[idx_user].Queue.Buffer[idx_1 - 1] = multi->Elements[idx_user].Queue.Buffer[idx_2 - 1];
+        multi->Elements[idx_user].Queue.Buffer[idx_2 - 1] = temp;
 
-//         printf("Lagu \"%s\" berhasil ditukar dengan \"%s\".", queue->T[(*a)-1], queue->T[(*b)-1]);
+        printf("\nLagu \"");
+        DisplayWord(SplitWordMark(SplitWordMark(multi->Elements[idx_user].Queue.Buffer[idx_1 - 1])));
+        printf("\" berhasil ditukar dengan \"");
+        DisplayWord(SplitWordMark(SplitWordMark(multi->Elements[idx_user].Queue.Buffer[idx_2 - 1])));
+        printf("\"\n");
+    }
+    else if ((idx_1 < 1 || idx_1 > LengthQueue(multi->Elements[idx_user].Queue)) && (idx_2 < 1 || idx_2 > LengthQueue(multi->Elements[idx_user].Queue)))
+    {
+        printf("\nLagu dengan urutan ke %d dan %d tidak terdapat dalam queue!\n", idx_1, idx_2);
+    }
+    else if (idx_1 < 1 || idx_1 > LengthQueue(multi->Elements[idx_user].Queue))
+    {
+        printf("\nLagu dengan urutan ke %d tidak terdapat dalam queue!\n", idx_1);
+    }
+    else
+    {
+        printf("\nLagu dengan urutan ke %d tidak terdapat dalam queue!\n", idx_2);
+    }
 
-//     } else {
-//         int notmember; // harus cari yg not member yg mana
-//         printf("Lagu dengan urutan ke \"%d\" tidak terdapat dalam queue!", notmember);
-//     }
-
-// }
+    printf("\n");
+}
 
 // void queueRemove(int *arr){
 //     if (IsMemberQueue(queue, *arr)){

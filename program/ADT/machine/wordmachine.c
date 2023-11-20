@@ -253,6 +253,7 @@ Word SplitWordBlank(Word word)
             break;
         }
     }
+
     for (int i = (idx + 1); i < word.Length; i++)
     {
         temp.TabWord[sum] = word.TabWord[i];
@@ -275,7 +276,31 @@ Word SplitWordMark(Word word)
             break;
         }
     }
+
     for (int i = (idx + 1); i < word.Length; i++)
+    {
+        temp.TabWord[sum] = word.TabWord[i];
+        sum++;
+    }
+    temp.Length = sum;
+
+    return (temp);
+}
+
+Word SplitWordLeft(Word word)
+{
+    Word temp;
+    int sum = 0, idx;
+    for (int i = 0; i < word.Length; i++)
+    {
+        if (word.TabWord[i] == MARK || word.TabWord[i] == BLANK)
+        {
+            idx = i;
+            break;
+        }
+    }
+
+    for (int i = 0; i < idx; i++)
     {
         temp.TabWord[sum] = word.TabWord[i];
         sum++;
