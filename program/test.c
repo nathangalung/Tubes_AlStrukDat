@@ -7,10 +7,14 @@
 
 int main(void)
 {
-    Word ya = {"-3 -1", 5};
-    DisplayWord(SplitWordLeft(ya));
-    printf("\n");
-    int cek = atoi(SplitWordBlank(ya).TabWord);
+    StartWordMark();
+    Word coba = SplitWordBlank(currentWord);
+    DisplayWord(coba);
+    printf(" ");
+    Word ya = SplitWordBlank(coba);
 
-    printf("%d\n", cek);
+    DisplayWord(ya);
+
+
+    printf("\n%d\n", ya.Length);
 }

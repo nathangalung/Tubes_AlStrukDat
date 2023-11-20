@@ -93,7 +93,7 @@ int main()
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
         else if (CompareWord2(command, load_cmp))
@@ -221,7 +221,7 @@ int main()
                 else if (CompareWord2(command, remove_cmp))
                 {
                     command = SplitWordBlank(command);
-                    printf("queue remove\n");
+                    queueRemove(&multi, command, idx_user);
                 }
                 else if (CompareWord1(command, clear_cmp))
                 {

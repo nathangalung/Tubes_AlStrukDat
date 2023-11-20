@@ -16,7 +16,7 @@ void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong p
 
 void queueSwap(User *multi, Word word, int idx_user);
 
-void queueRemove(int *arr);
+void queueRemove(User *multi, Word word, int idx_user);
 
 void queueClear(User *multi, int idx_user);
 

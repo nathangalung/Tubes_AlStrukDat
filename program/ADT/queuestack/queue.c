@@ -92,7 +92,10 @@ void Dequeue(Queue *queue, Word *word)
     }
     else
     {
-        IDX_HEAD(*queue) = (IDX_HEAD(*queue) + 1) % CAPACITY;
+        for (int i = 0; i < (LengthQueue(*queue) - 1); i++)
+        {
+            queue->Buffer[i] = queue->Buffer[i+1];
+        }
     }
 }
 

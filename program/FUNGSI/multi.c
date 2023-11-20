@@ -9,7 +9,7 @@ int Login(DynamicList *user, User *multi, int idx_user)
     while (!found)
     {
         int ctr = 0;
-        printf("Masukkan username user WayangWave : ");
+        printf("\nMasukkan username user WayangWave : ");
         StartWordBlank();
         while (!found && ctr < LengthListDynamic(*user))
         {
@@ -26,16 +26,16 @@ int Login(DynamicList *user, User *multi, int idx_user)
         if (found)
         {
             idx_user = ctr;
-            printf("Berhasil masuk. Selamat datang, ");
+            printf("\nBerhasil masuk. Selamat datang, ");
             DisplayWord(currentWord);
             printf("!\n");
         }
         else
         {
-            printf("Tidak ada user dengan username \"");
+            printf("\nTidak ada user dengan username \"");
             DisplayWord(currentWord);
             printf("\"\n");
-            printf("Berikut daftar username yang terdaftar :\n");
+            printf("\nBerikut daftar username yang terdaftar :\n");
             for (int i = 0; i < LengthListDynamic(*user); i++)
             {
                 printf("%d. ", (i+1));

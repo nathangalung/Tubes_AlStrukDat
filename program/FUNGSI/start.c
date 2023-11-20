@@ -46,7 +46,7 @@ void Start(StaticList *count, StaticList *artist, Set *album, Map *album_artist,
         InsertLastDynamic(user, name_user);
     }  
     
-    printf("File konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
+    printf("\nFile konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
     
 
 }
