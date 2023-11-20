@@ -153,7 +153,8 @@ void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
 
 }
 
-void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong playlist_song){
+void queuePlaylist(User *multi, int idx_user, PlaylistSong playlist_song)
+{
     
     /* KAMUS LOKAL */
     int idPlaylist, i;
@@ -171,7 +172,7 @@ void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong p
 
     if (!idPlaylistValid)
     {
-        if (IsListEmptyDynamic(multi.Elements[idx_user].Playlist) || idPlaylist < 0 || idPlaylist > LengthListDynamic(multi.Elements[idx_user].Playlist))
+        if (IsListEmptyDynamic(multi->Elements[idx_user].Playlist) || idPlaylist < 0 || idPlaylist > LengthListDynamic(multi->Elements[idx_user].Playlist))
         {
             printf("\nPlaylist tidak ditemukan.\n");
         }
@@ -179,13 +180,13 @@ void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong p
         {
             idPlaylistValid = true;
             printf("\nBerhasil menambahkan playlist \"");
-            DisplayWord(GetDynamic(multi.Elements[idx_user].Playlist, idPlaylist-1));
+            DisplayWord(GetDynamic(multi->Elements[idx_user].Playlist, idPlaylist-1));
             printf("\" ke queue.\n");
 
             lagu = First(playlist_song.Playlist[idPlaylist - 1].Song);
             for (i = 0; i < NbElmt(playlist_song.Playlist[idPlaylist - 1].Song); i++)
             {
-                Enqueue(&multi.Elements[idx_user].Queue, Info(lagu));
+                Enqueue(&multi->Elements[idx_user].Queue, Info(lagu));
                 lagu = Next(lagu);
             }
         }

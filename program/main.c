@@ -210,7 +210,7 @@ int main()
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
-                    queuePlaylist(multi, &playing, idx_user, playlist_song);
+                    queuePlaylist(&multi, idx_user, playlist_song);
                 }
                 else if (CompareWord2(command, swap_cmp))
                 {
@@ -313,7 +313,7 @@ int main()
         {
             if (sesi)
             {
-                status(multi, artist, album, playing, idx_user);
+                status(multi, artist, album, playing, playlist_song, idx_user);
             }
             else
             {

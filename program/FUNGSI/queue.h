@@ -12,7 +12,7 @@
 
 void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user);
 
-void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong playlist_song);
+void queuePlaylist(User *multi, int idx_user, PlaylistSong playlist_song);
 
 void queueSwap(User *multi, Word word, int idx_user);
 

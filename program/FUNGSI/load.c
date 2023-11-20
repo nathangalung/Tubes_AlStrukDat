@@ -24,7 +24,7 @@ void Load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
         {
             count_song = ReadCountWord(count, idx);
             idx++;
-            
+
             name_album = ReadNameLine();
             InsertSet(album, name_album);
             InsertMap(album_artist, name_album, name_artist);
@@ -80,6 +80,7 @@ void Load(Word filename, StaticList *count, StaticList *artist, Set *album, Map 
             idx++;
             name_playlist = ReadNameLine();
             InsertLastDynamic(&(*multi).Elements[i].Playlist, name_playlist);
+            playlist_song->Count++;
 
             CreateEmptyLinier(&(*playlist_song).Playlist[j].Song);
             for(int k = 0; k < count_song; k++)
