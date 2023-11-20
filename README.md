@@ -24,9 +24,9 @@ DESKRIPSI SINGKAT PROGRAM
 * ADT List dengan Struktur Berkait
 
 ## Cara Kompilasi Program
-1. Masuk ke folder bin melalui terminal
+1. Masuk ke folder program melalui terminal
 ```
-cd bin
+cd program
 ```
 2. Ketik "make run" pada terminal
 ```
@@ -34,7 +34,7 @@ make run
 ```
 3. Jalankan program WayangWave di terminal
 ```
-./main
+./WayangWave
 ```
 
 ## Struktur Program
@@ -42,8 +42,6 @@ make run
 │ README.md
 │ .gitignore
 │
-├─── bin
-│       │ Makefile
 │
 ├─── doc
 │       │ Pedoman Tugas Besar.pdf
@@ -54,6 +52,7 @@ make run
 │       │ console.c
 │       │ console.h
 │       │ main.c
+│       │ Makefile
 │       ├─── ADT
 │       │       ├─── linkedlist
 │       │       ├─── list
