@@ -142,7 +142,7 @@ void playPlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong pl
 
     if (!idPlaylistValid) {
         if (IsListEmptyDynamic(multi.Elements[idx_user].Playlist) || idPlaylist < 0 || idPlaylist > LengthListDynamic(multi.Elements[idx_user].Playlist)) {
-            printf("Playlist tidak ditemukan.\n");
+            printf("\nPlaylist tidak ditemukan.\n");
         } else {
             idPlaylistValid = true;
             printf("\nMemutar playlist \"");
