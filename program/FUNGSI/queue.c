@@ -128,23 +128,32 @@ void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong p
     /* KAMUS LOKAL */
     int idPlaylist, i;
     address lagu;
+    boolean idPlaylistValid;
     Word Playlist;
 
     /* ALGORITMA */
-    printf("Masukkan ID Playlist: ");
+    printf("\nMasukkan ID Playlist: ");
     StartWordMark();
-    
     Playlist = currentWord;
     idPlaylist = atoi(currentWord.TabWord);
-    printf("Berhasil menambahkan playlist \"");
-    DisplayWord(GetDynamic(multi.Elements[idx_user].Playlist, idPlaylist-1));
-    printf("\" ke queue.\n");
 
-    lagu = First(playlist_song.Playlist[idPlaylist - 1].Song);
-    playing->A[idx_user] = Info(lagu);
-    for (i = 1; i < NbElmt(playlist_song.Playlist[idPlaylist - 1].Song); i++) {
-        lagu = Next(lagu);
-        Enqueue(&multi.Elements[idx_user].Queue, Info(lagu));
+    idPlaylistValid = false;
+
+    if (!idPlaylistValid) {
+        if (IsListEmptyDynamic(multi.Elements[idx_user].Playlist) || idPlaylist < 0 || idPlaylist > LengthListDynamic(multi.Elements[idx_user].Playlist)) {
+            printf("\nPlaylist tidak ditemukan.\n");
+        } else {
+            idPlaylistValid = true;
+            printf("\nBerhasil menambahkan playlist \"");
+            DisplayWord(GetDynamic(multi.Elements[idx_user].Playlist, idPlaylist-1));
+            printf("\" ke queue.\n");
+
+            lagu = First(playlist_song.Playlist[idPlaylist - 1].Song);
+            for (i = 0; i < NbElmt(playlist_song.Playlist[idPlaylist - 1].Song); i++) {
+                Enqueue(&multi.Elements[idx_user].Queue, Info(lagu));
+                lagu = Next(lagu);
+            }
+        }
     }
 }
 
@@ -181,4 +190,5 @@ void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong p
 
 void queueClear(User *multi, int idx_user){
     CreateEmptyQueue(&multi->Elements[idx_user].Queue);
+    printf("\nQueue berhasil dikosongkan.\n");
 }

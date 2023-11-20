@@ -9,6 +9,7 @@
 #include "FUNGSI/help.h"
 #include "FUNGSI/playlist.h"
 #include "FUNGSI/play.h"
+#include "FUNGSI/queue.h"
 #include "FUNGSI/multi.h"
 #include "FUNGSI/enhance.h"
 
@@ -203,11 +204,11 @@ int main()
                 command = SplitWordBlank(command);
                 if (CompareWord1(command, song_cmp))
                 {
-                    printf("queue song\n");
+                    queueSong(artist, album_artist, song_album, &multi, &playing, idx_user);
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
-                    printf("queue playlist\n");
+                    queuePlaylist(multi, &playing, idx_user, playlist_song);
                 }
                 else if (CompareWord2(command, swap_cmp))
                 {
@@ -222,7 +223,7 @@ int main()
                 }
                 else if (CompareWord1(command, clear_cmp))
                 {
-                    printf("queue clear\n");
+                    queueClear(&multi, idx_user);
                 }
                 else
                 {
