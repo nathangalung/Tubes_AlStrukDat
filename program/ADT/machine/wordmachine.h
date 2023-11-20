@@ -60,7 +60,9 @@ int WordToInt(Word word);
 
 Word StringToWord(char *s);
 
-Word SplitWord(Word word);
+Word SplitWordBlank(Word word);
+
+Word SplitWordMark(Word word);
 
 boolean CompareWord2(Word word_1, Word word_2);
 

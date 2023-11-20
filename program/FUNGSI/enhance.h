@@ -1,7 +1,6 @@
 #ifndef __ENCHANCE_H__
 #define __ENCHANCE_H__
 
-#include "../boolean.h"
 #include "../ADT/setmap/map.h"
 #include "../ADT/user/user.h"
 #include "../ADT/playlist_song/playlist_song.h"

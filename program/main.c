@@ -97,7 +97,7 @@ int main()
         {
             if (!menu)
             {
-                command = SplitWord(command);
+                command = SplitWordBlank(command);
                 Word filename = ConcatWord(dir, command);
                 if (CheckDir(&file, filename))
                 {
@@ -154,7 +154,7 @@ int main()
         {
             if (sesi)
             {
-                command = SplitWord(command);
+                command = SplitWordBlank(command);
                 if (CompareWord1(command, default_cmp))
                 {
                     ListDefault(artist, album_artist, song_album);
@@ -177,7 +177,7 @@ int main()
         {
             if (sesi)
             {
-                command = SplitWord(command);
+                command = SplitWordBlank(command);
                 if (CompareWord1(command, song_cmp))
                 {
                     playSong(artist, album_artist, song_album, &multi, &playing, idx_user);
@@ -200,7 +200,7 @@ int main()
         {
             if (sesi)
             {
-                command = SplitWord(command);
+                command = SplitWordBlank(command);
                 if (CompareWord1(command, song_cmp))
                 {
                     printf("queue song\n");
@@ -211,13 +211,13 @@ int main()
                 }
                 else if (CompareWord2(command, swap_cmp))
                 {
-                    command = SplitWord(command);
+                    command = SplitWordBlank(command);
                     printf("queue swap\n");
                     
                 }
                 else if (CompareWord2(command, remove_cmp))
                 {
-                    command = SplitWord(command);
+                    command = SplitWordBlank(command);
                     printf("queue remove\n");
                 }
                 else if (CompareWord1(command, clear_cmp))
@@ -238,7 +238,7 @@ int main()
         {
             if (sesi)
             {
-                command = SplitWord(command);
+                command = SplitWordBlank(command);
                 if (CompareWord1(command, next_cmp))
                 {
                     printf("song next\n");
@@ -261,14 +261,14 @@ int main()
         {
             if (sesi)
             {
-                command = SplitWord(command);
+                command = SplitWordBlank(command);
                 if (CompareWord1(command, create_cmp))
                 {
                     CreatePlaylist(&multi, idx_user);
                 }
                 else if (CompareWord2(command, add_cmp))
                 {
-                    command = SplitWord(command);
+                    command = SplitWordBlank(command);
                     if (CompareWord1(command, song_cmp))
                     {
                         printf("playlist add song\n");
@@ -284,12 +284,12 @@ int main()
                 }
                 else if (CompareWord2(command, swap_cmp))
                 {
-                    command = SplitWord(command);
+                    command = SplitWordBlank(command);
                     printf("playlist swap\n");
                 }
                 else if (CompareWord2(command, remove_cmp))
                 {
-                    command = SplitWord(command);
+                    command = SplitWordBlank(command);
                     printf("playlist remove\n");
                 }
                 else if (CompareWord1(command, delete_cmp))
@@ -321,7 +321,7 @@ int main()
         {
             if (sesi)
             {
-                command = SplitWord(command);
+                command = SplitWordBlank(command);
                 printf("save\n");
             }
             else
