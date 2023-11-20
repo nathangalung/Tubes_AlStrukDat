@@ -35,6 +35,13 @@ int Login(DynamicList *user, User *multi, int idx_user)
             printf("Tidak ada user dengan username \"");
             DisplayWord(currentWord);
             printf("\"\n");
+            printf("Berikut list username yang terdaftar :\n");
+            for (int i = 0; i < LengthListDynamic(*user); i++)
+            {
+                printf("%d. ", (i+1));
+                DisplayWord(user->A[i]);
+                printf("\n");
+            }
         }
     }
 
@@ -81,11 +88,6 @@ void SignUp(DynamicList *user)
             found_1 = true;
             InsertLastDynamic(user, currentWord);
             printf("Username user berhasil didaftarkan! Silakan login kembali!\n");
-            for (int i = 0; i < LengthListDynamic(*user); i++)
-            {
-                DisplayWord(user->A[i]);
-                printf("\n");
-            }
         }
     }
 }
