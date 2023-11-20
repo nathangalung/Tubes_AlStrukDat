@@ -13,6 +13,7 @@
 #include "FUNGSI/multi.h"
 #include "FUNGSI/enhance.h"
 #include "FUNGSI/queue.h"
+#include "FUNGSI/status.h"
 
 int main()
 {
