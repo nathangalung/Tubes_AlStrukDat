@@ -13,6 +13,6 @@
 
 void playSong(StaticList artist, Map album_artist, Map song_album);
 
-int playPlaylist(DynamicList *playlist);
+void playPlaylist(DynamicList *playlist);
 
 #endif

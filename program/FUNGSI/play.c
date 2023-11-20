@@ -4,8 +4,7 @@
 #include <stdlib.h>
 #include "play.h"
 
-void playSong(StaticList artist, Map album_artist, Map song_album)
-{
+void playSong(StaticList artist, Map album_artist, Map song_album){
 
     /* KAMUS LOKAL */
     int i, index, idlagu;
@@ -50,13 +49,15 @@ void playSong(StaticList artist, Map album_artist, Map song_album)
         DisplayWord(currentWord);
         printf(" :\n");
 
+        index = 0;
         for (i = 0; i < album_artist.Count; i++)
         {
             if (CompareWord1((album_artist).Elements[i].Value, currentWord))
             {
-                printf("\t%d. ", i + 1);
+                printf("\t%d. ", index + 1);
                 DisplayWord((album_artist).Elements[i].Key);
                 printf("\n");
+                index++;
             }
         }
         printf("\n");
@@ -91,14 +92,17 @@ void playSong(StaticList artist, Map album_artist, Map song_album)
             printf(" oleh ");
             DisplayWord(penyanyi);
             printf(":\n");
+
+            index = 0;
             for (i = 0; i < song_album.Count; i++)
             {
                 if (CompareWord1(song_album.Elements[i].Value, album_word))
                 {
                     {
-                        printf("\t%d. ", i + 1);
+                        printf("\t%d. ", index + 1);
                         DisplayWord(song_album.Elements[i].Key);
                         printf("\n");
+                        index++;
                     }
                 }
             }
@@ -117,16 +121,11 @@ void playSong(StaticList artist, Map album_artist, Map song_album)
             else
             {
                 printf("Memutar lagu ");
-                DisplayWord((song_album).Elements[idlagu-1].Key);
+                DisplayWord((song_album).Elements[idlagu-1].Key); // BELOM BENER T^T
                 printf(" oleh ");
                 DisplayWord(penyanyi);
                 printf(".\n");
             }
-            // printf("Memutar lagu ");
-            // DisplayWord(lagu);
-            // printf(" oleh ");
-            // DisplayWord(penyanyi);
-            // printf(".\n");
         }
         else
         {
@@ -139,14 +138,28 @@ void playSong(StaticList artist, Map album_artist, Map song_album)
     }
 }
 
-int playPlaylist(DynamicList *playlist)
-{ // MASIH BELOM GABUNG KE PLAYLISTNYA
+void playPlaylist(DynamicList *playlist) {
     /* KAMUS LOKAL */
-    Word idPlaylist;
+    int idPlaylist;
+    boolean idPlaylistValid;
+    Word namaplaylist;
+    
     /* ALGORITMA */
     printf("Masukkan ID Playlist: ");
     StartWordMark();
-    idPlaylist = currentWord;
-    printf("Memutar playlist %c", currentWord.TabWord);
-    return 0;
+    namaplaylist = currentWord;
+    idPlaylist = atoi(currentWord.TabWord);
+
+    idPlaylistValid = false;
+
+    if (!idPlaylistValid) {
+        if (idPlaylist <= 0 || idPlaylist > LengthListDynamic(*playlist)) {
+            printf("Playlist tidak ditemukan.\n");
+        } else {
+            idPlaylistValid = true;
+            printf("Memutar playlist ");
+            DisplayWord((*playlist).A[idPlaylist-1]);
+            printf(".\n");
+        }
+    }
 }
