@@ -21,9 +21,6 @@ void Load(Word filename, DynamicList file, StaticList *count, StaticList *artist
         }
     }
 
-    DisplayWord(file.A[ctr]);
-    printf(" %d\n", file.A[ctr].Length);
-
     count_artist = ReadCountFirst(file.A[ctr], count, idx);
     idx++;
     

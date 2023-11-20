@@ -2,7 +2,7 @@
 
 #include "multi.h"
 
-int Login(DynamicList *user, User *multi, PlaylistSong playlist_song, int idx_user)
+int Login(DynamicList *user, User *multi, int idx_user)
 {
     boolean found = false;
 

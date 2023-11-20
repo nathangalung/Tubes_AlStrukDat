@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "playlist.h"
 
 void CreatePlaylist (User *multi, int idx_user)
@@ -132,7 +133,7 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
             printf("Masukkan ID Lagu yang dipilih : ");
             StartWordMark();
             printf("\n");
-            int ID_Lagu = atoi(currentWord);
+            int ID_Lagu = atoi(currentWord.TabWord);
 
             if (ID_Lagu > 0 && ID_Lagu <= index)
             {
@@ -164,7 +165,7 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
                 printf("Masukkan ID Playlist yang dipilih : ");
                 StartWordMark();
                 printf("\n");
-                int ID_Playlist = atoi(currentWord);
+                int ID_Playlist = atoi(currentWord.TabWord);
 
                 if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic((*multi).Elements[idx_user].Playlist))
                 {
@@ -296,7 +297,7 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
             printf("Masukkan ID Playlist yang dipilih : ");
             StartWordMark();
             printf("\n");
-            int ID_Playlist = atoi(currentWord);
+            int ID_Playlist = atoi(currentWord.TabWord);
 
             if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic((*multi).Elements[idx_user].Playlist))
             {
