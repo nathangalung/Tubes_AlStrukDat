@@ -362,7 +362,7 @@ int main()
         }
         else if (CompareWord1(command, help_cmp))
         {
-            help(sesi);
+            help(sesi, menu);
         }
         else
         {

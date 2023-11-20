@@ -3,6 +3,6 @@
 
 #include "../boolean.h"
 
-void help(boolean sesi);
+void help(boolean sesi, boolean menu);
 
 #endif

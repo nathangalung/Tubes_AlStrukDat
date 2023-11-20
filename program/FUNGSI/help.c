@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "help.h"
 
-void help(boolean sesi)
+void help(boolean sesi, boolean menu)
 {
     printf("\
     ██╗  ██╗███████╗██╗     ██████╗     ██╗    ██╗ █████╗ ██╗   ██╗ █████╗ ███╗   ██╗ ██████╗ ██╗    ██╗ █████╗ ██╗   ██╗███████╗\n\
@@ -13,15 +13,17 @@ void help(boolean sesi)
     ██║  ██║███████╗███████╗██║         ╚███╔███╔╝██║  ██║   ██║   ██║  ██║██║ ╚████║╚██████╔╝╚███╔███╔╝██║  ██║ ╚████╔╝ ███████╗\n\
     ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝          ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═╝  ╚═══╝  ╚══════╝\n\
     ");
-    if (!sesi) // perintah dipanggil sebelum memasuki sesi
-    {
+    if (!sesi && !menu){ // perintah dipanggil sebelum memasuki sesi
         printf("1. START -> Untuk masuk sesi baru \n");
         printf("\t2. LOAD -> Untuk memulai sesi berdasarkan file konfigurasi \n");
         printf("\t3. HELP -> Untuk menampilkan bantuan \n");
         printf("\t4. QUIT -> Untuk keluar dari aplikasi \n");
-    }
-    else // perintah dipanggil setelah memasuki sesi
-    {
+    } else if(sesi && !menu){
+        printf("1. LOGIN -> Untuk masuk ke akun yang sudah ada \n");
+        printf("\t2. REGISTER -> Untuk mendaftarkan akun \n");
+        printf("\t3. HELP -> Untuk menampilkan bantuan \n");
+        printf("\t4. QUIT -> Untuk keluar dari aplikasi \n");
+    } else if (sesi && menu){ // perintah dipanggil setelah memasuki sesi
         printf("1. LIST -> Untuk menampilkan daftar playlist, list penyanyi, list album, dan list lagu \n");    
         printf("\t2. PLAY -> Untuk memutar lagu atau playlist yang dipilih \n");
         printf("\t3. QUEUE -> Untuk memanipulasi queue lagu \n");
@@ -31,12 +33,13 @@ void help(boolean sesi)
         printf("\t7. SAVE -> Untuk menyimpan state aplikasi terbaru \n");
         printf("\t8. HELP -> Untuk menampilkan bantuan \n");
         printf("\t9. QUIT -> Untuk keluar dari aplikasi \n");
+        printf("\t10. LOGOUT -> Untuk keluar dari sesi dan kembali ke menu utama \n");
     }
 }
 
 // check fungsi help
 // int main()
 // {
-//     help(true);
+//     help(false, true);
 //     return 0;
 // }
