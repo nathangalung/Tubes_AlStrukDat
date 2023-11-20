@@ -26,7 +26,7 @@ void Enhance(Map song_album, User multi, PlaylistSong *playlist_song, int idx_us
     printf("Berikut list playlist yang tertera :\n");
     for (int i = 0; i < (LengthListDynamic(multi.Elements[idx_user].Playlist)); i++)
     {
-        printf("%d ", (i+1));
+        printf("\t%d. ", (i+1));
         DisplayWord(multi.Elements[idx_user].Playlist.A[i]);
         printf("\n");
     }
@@ -36,7 +36,7 @@ void Enhance(Map song_album, User multi, PlaylistSong *playlist_song, int idx_us
 
     while (!found)
     {
-        printf("Silakan masukkan ID playlist yang ingin dienchance : ");
+        printf("Silakan masukkan ID playlist yang ingin dienhance : ");
         StartWordMark();
         
         while (!found && ctr < LengthListDynamic(multi.Elements[idx_user].Playlist))
