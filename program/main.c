@@ -184,7 +184,7 @@ int main()
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
-                    playPlaylist(multi, idx_user);
+                    playPlaylist(multi, &playing, idx_user, playlist_song);
                 }
                 else
                 {
