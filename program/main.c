@@ -273,7 +273,7 @@ int main()
                     command = SplitWordBlank(command);
                     if (CompareWord1(command, song_cmp))
                     {
-                        printf("playlist add song\n");
+                        AddSongPlaylist(artist, album_artist, song_album, &multi, idx_user, &playlist_song);
                     }
                     else if (CompareWord1(command, album_cmp))
                     {
