@@ -223,6 +223,24 @@ boolean CompareWord2(Word word_1, Word word_2)
     return (CompareWord1(temp, word_2));
 }
 
+boolean CompareWord3(Word word_1, Word word_2)
+{
+    Word temp;
+    int sum = 0;
+    for (int i = 0; i < word_1.Length; i++)
+    {
+        if (word_1.TabWord[i] == MARK)
+        {
+            break;
+        }
+        temp.TabWord[i] = word_1.TabWord[i];
+        sum++;
+    }
+    temp.Length = sum;
+
+    return (CompareWord1(temp, word_2));
+}
+
 Word SplitWordBlank(Word word)
 {
     Word temp;
