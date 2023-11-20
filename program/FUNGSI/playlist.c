@@ -7,7 +7,7 @@ void CreatePlaylist (User *multi, int idx_user)
     boolean valid = false;
     while (!valid) 
     {
-        printf("Masukkan nama playlist yang ingin dibuat : ");
+        printf("Masukkan nama playlist yang ingin dibuat : \n");
         int countChar, countWS;
         countChar = 0;
         countWS = 0;
