@@ -277,7 +277,7 @@ int main()
                     }
                     else if (CompareWord1(command, album_cmp))
                     {
-                        printf("playlist add album\n");
+                        AddAlbumPlaylist(artist, album_artist, song_album, &multi, idx_user, &playlist_song);
                     }
                     else
                     {

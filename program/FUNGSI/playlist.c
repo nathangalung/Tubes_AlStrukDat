@@ -90,16 +90,16 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
         }
         printf("\n");
 
-        boolean laguvalid = false;
+        boolean albumvalid = false;
         printf("Masukkan Judul Album yang dipilih : ");
         StartWordMark();
         printf("\n");
         int i = 0;
-        while (!laguvalid && (i < album_artist.Count))
+        while (!albumvalid && (i < album_artist.Count))
         {
             if (CompareWord1((album_artist).Elements[i].Key, currentWord))
             {
-                laguvalid = true;
+                albumvalid = true;
             }
             else
             {
@@ -107,7 +107,7 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
             }
         }
 
-        if (laguvalid)
+        if (albumvalid)
         {
             Word NamaAlbum = currentWord;
             printf("Daftar Lagu Album ");
@@ -187,6 +187,130 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
             else
             {
                 printf("Lagu tidak ada dalam daftar. Silakan coba lagi.\n");
+            }
+        }
+        else
+        {
+            printf("Album ");
+            DisplayWord(currentWord);
+            printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
+        }
+    }
+    else
+    {
+        printf("Penyanyi ");
+        DisplayWord(currentWord);
+        printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
+    }
+}
+
+void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user, PlaylistSong *playlist_song)
+{
+    printf("\n");
+    printf("Daftar Penyanyi :\n");
+    for (int index = 0; index < LengthList(artist); index++)
+    {
+        printf("\t%d. ", index+1);
+        DisplayWord(GetList(artist, index));
+        printf("\n");
+    }
+    printf("\n");
+
+    boolean penyanyivalid = false;
+    printf("Masukkan Nama Penyanyi yang dipilih : ");
+    StartWordMark();
+    printf("\n");
+    int i = 0;
+    while (!penyanyivalid && (i < LengthList(artist)))
+    {
+        if (CompareWord1(artist.A[i], currentWord))
+        {
+            penyanyivalid = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+
+    if (penyanyivalid)
+    {
+        Word NamaPenyanyi = currentWord;
+        printf("Daftar Album oleh ");
+        DisplayWord(NamaPenyanyi);
+        printf(" :\n");
+
+        int index = 0;
+        for (int i = 0; i < album_artist.Count; i++)
+        {
+            if (CompareWord1((album_artist).Elements[i].Value, NamaPenyanyi))
+            {
+                printf("\t%d. ", index+1);
+                DisplayWord((album_artist).Elements[i].Key);
+                index++;
+                printf("\n");
+            }
+        }
+        printf("\n");
+
+        boolean albumvalid = false;
+        printf("Masukkan Judul Album yang dipilih : ");
+        StartWordMark();
+        printf("\n");
+        int i = 0;
+        while (!albumvalid && (i < album_artist.Count))
+        {
+            if (CompareWord1((album_artist).Elements[i].Key, currentWord))
+            {
+                albumvalid = true;
+            }
+            else
+            {
+                i++;
+            }
+        }
+
+        if (albumvalid)
+        {
+            Word NamaAlbum = currentWord;
+            printf("Daftar Playlist Pengguna :\n");
+            if (!IsListEmptyDynamic((*multi).Elements[idx_user].Playlist))
+            {
+                int index = 0;
+                for (int i = 0; i < LengthListDynamic((*multi).Elements[idx_user].Playlist); i++)
+                {
+                    printf("\t%d. ", index+1);
+                    DisplayWord(GetDynamic(((*multi).Elements[idx_user].Playlist), i));
+                    index++;
+                    printf("\n");
+                }
+            }
+            printf("\n");
+
+            printf("Masukkan ID Playlist yang dipilih : ");
+            StartWordMark();
+            printf("\n");
+            int ID_Playlist = WordToInt(currentWord);
+
+            if (ID_Playlist > 0 || ID_Playlist <= LengthListDynamic((*multi).Elements[idx_user].Playlist))
+            {
+                for (int i = 0; i < song_album.Count; i++)
+                {
+                    if (CompareWord1(song_album.Elements[i].Value, NamaAlbum))
+                    {
+                        InsVLast(&(*playlist_song).Playlist[ID_Playlist-1].Song, song_album.Elements[i].Key);
+                    }
+                }
+                Word PlaylistPilihan = GetDynamic(((*multi).Elements[idx_user].Playlist), ID_Playlist-1);
+                printf("Album dengan judul \"");
+                DisplayWord(NamaAlbum);
+                printf("\" berhasil ditambahkan ke dalam playlist pengguna \"");
+                DisplayWord(PlaylistPilihan);
+                printf("\".\n");
+            }
+            else
+            {
+                printf("Playlist tidak ada dalam daftar. Silakan coba lagi.\n");
             }
         }
         else
