@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "playlist.h"
 
-void CreatePlaylist (DynamicList *playlist)
+void CreatePlaylist (User *multi, int idx_user)
 {
     boolean valid = false;
     while (!valid) 
@@ -13,7 +13,6 @@ void CreatePlaylist (DynamicList *playlist)
         StartWordMark();
         for (int i = 0; i < currentWord.Length; i++) 
         {
-            printf("%c", currentWord.TabWord[i]);
             if (currentWord.TabWord[i] != BLANK) 
             {
                 countChar++;
@@ -26,7 +25,7 @@ void CreatePlaylist (DynamicList *playlist)
 
         if ((countChar >= 3)) 
         {
-            InsertLastDynamic(playlist, currentWord);
+            InsertLastDynamic(&(*multi).Elements[idx_user].Playlist, currentWord);
             printf("Playlist ");
             DisplayWord(currentWord);
             printf(" berhasil dibuat!\n");

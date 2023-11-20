@@ -262,8 +262,7 @@ int main()
                 command = SplitWord(command);
                 if (CompareWord1(command, create_cmp))
                 {
-                    CreatePlaylist(&playlist);
-                    printf("playlist create\n");
+                    CreatePlaylist(&multi, idx_user);
                 }
                 else if (CompareWord2(command, add_cmp))
                 {
