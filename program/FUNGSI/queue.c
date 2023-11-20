@@ -13,7 +13,8 @@ void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
 
     /* ALGORITMA */
     printf("\nDaftar Penyanyi:\n");
-    for (index = 0; index < LengthList(artist); index++) {
+    for (index = 0; index < LengthList(artist); index++)
+    {
         printf("\t%d. ", index + 1);
         DisplayWord(GetList(artist, index));
         printf("\n");
@@ -26,25 +27,33 @@ void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
     penyanyi = currentWord;
     penyanyivalid = false;
 
-    while (!penyanyivalid) {
+    while (!penyanyivalid)
+    {
         i = 0;
-        while (!penyanyivalid && (i < LengthList(artist))) {
-            if (CompareWord1(artist.A[i], currentWord)) {
+        while (!penyanyivalid && (i < LengthList(artist)))
+        {
+            if (CompareWord1(artist.A[i], currentWord))
+            {
                 penyanyivalid = true;
-            } else {
+            }
+            else
+            {
                 i++;
             }
         }
     }
 
-    if (penyanyivalid) {
+    if (penyanyivalid)
+    {
         printf("Daftar Album oleh ");
         DisplayWord(currentWord);
         printf(" :\n");
 
         index = 0;
-        for (i = 0; i < album_artist.Count; i++) {
-            if (CompareWord1((album_artist).Elements[i].Value, currentWord)) {
+        for (i = 0; i < album_artist.Count; i++)
+        {
+            if (CompareWord1((album_artist).Elements[i].Value, currentWord))
+            {
                 printf("\t%d. ", index + 1);
                 DisplayWord((album_artist).Elements[i].Key);
                 printf("\n");
@@ -60,12 +69,17 @@ void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
         album_word = currentWord;
         albumvalid = false;
 
-        while (!albumvalid) {
+        while (!albumvalid)
+        {
             i = 0;
-            while (!albumvalid && (i < album_artist.Count)) {
-                if (CompareWord1((album_artist).Elements[i].Key, currentWord)) {
+            while (!albumvalid && (i < album_artist.Count))
+            {
+                if (CompareWord1((album_artist).Elements[i].Key, currentWord))
+                {
                     albumvalid = true;
-                } else {
+                }
+                else
+                {
                     i++;
                 }
             }
@@ -79,8 +93,10 @@ void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
             printf(":\n");
 
             index = 0;
-            for (i = 0; i < song_album.Count; i++) {
-                if (CompareWord1(song_album.Elements[i].Value, album_word)) {
+            for (i = 0; i < song_album.Count; i++)
+            {
+                if (CompareWord1(song_album.Elements[i].Value, album_word))
+                {
                     printf("\t%d. ", index + 1);
                     DisplayWord(song_album.Elements[i].Key);
                     printf("\n");
@@ -96,11 +112,16 @@ void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
             lagu = currentWord;
             idlagu = atoi(currentWord.TabWord);
 
-            if (idlagu <= 0 || idlagu > song_album.Count) {
+            if (idlagu <= 0 || idlagu > song_album.Count)
+            {
                 printf("Lagu tidak ditemukan.\n");
-            } else {
-                for (index = 0; index < song_album.Count; index++){
-                    if (CompareWord1(song_album.Elements[index].Value, album_word) && (found == false)) {
+            }
+            else
+            {
+                for (index = 0; index < song_album.Count; index++)
+                {
+                    if (CompareWord1(song_album.Elements[index].Value, album_word) && (found == false))
+                    {
                         printf("Berhasil menambahkan lagu \"");
                         DisplayWord((song_album).Elements[index + idlagu - 1].Key);
                         printf("\" oleh \"");
@@ -114,13 +135,16 @@ void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
                 }
             }
         }
-        else {
+        else
+        {
             printf("Album tidak ditemukan.\n");
         }
     }
-    else {
+    else
+    {
         printf("Penyanyi tidak ditemukan.\n");
     }
+    printf("\n");
 }
 
 void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong playlist_song){
@@ -139,25 +163,38 @@ void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong p
 
     idPlaylistValid = false;
 
-    if (!idPlaylistValid) {
-        if (IsListEmptyDynamic(multi.Elements[idx_user].Playlist) || idPlaylist < 0 || idPlaylist > LengthListDynamic(multi.Elements[idx_user].Playlist)) {
+    if (!idPlaylistValid)
+    {
+        if (IsListEmptyDynamic(multi.Elements[idx_user].Playlist) || idPlaylist < 0 || idPlaylist > LengthListDynamic(multi.Elements[idx_user].Playlist))
+        {
             printf("\nPlaylist tidak ditemukan.\n");
-        } else {
+        }
+        else
+        {
             idPlaylistValid = true;
             printf("\nBerhasil menambahkan playlist \"");
             DisplayWord(GetDynamic(multi.Elements[idx_user].Playlist, idPlaylist-1));
             printf("\" ke queue.\n");
 
             lagu = First(playlist_song.Playlist[idPlaylist - 1].Song);
-            for (i = 0; i < NbElmt(playlist_song.Playlist[idPlaylist - 1].Song); i++) {
+            for (i = 0; i < NbElmt(playlist_song.Playlist[idPlaylist - 1].Song); i++)
+            {
                 Enqueue(&multi.Elements[idx_user].Queue, Info(lagu));
                 lagu = Next(lagu);
             }
         }
     }
+    printf("\n");
 }
 
-// void queueSwap(Queue *queue, int *a, int *b){
+// void queueSwap(User *multi, Word word, int idx_user)
+// {
+//     int ctr = 0;
+//     while (ctr < LengthQueue(multi->Elements[idx_user].Queue))
+//     {
+//         CompareWord2(word, StringToWord(ctr - "0"))
+//     }
+
 //     if (IsMemberQueue(queue, *a) && IsMemberQueue(queue, *b)){
 //         int temp;
 //         temp = *a;
@@ -188,7 +225,9 @@ void queuePlaylist(User multi, StaticList *playing, int idx_user, PlaylistSong p
 //     }
 // }
 
-void queueClear(User *multi, int idx_user){
+void queueClear(User *multi, int idx_user)
+{
     CreateEmptyQueue(&multi->Elements[idx_user].Queue);
     printf("\nQueue berhasil dikosongkan.\n");
+    printf("\n");
 }
