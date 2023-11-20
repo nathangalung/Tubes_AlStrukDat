@@ -21,7 +21,7 @@ int randint(int n)
     }
 }
 
-void Enhance(Map song_album, User multi, PlaylistSong *playlist_song, int idx_user)
+void Enhance(StaticList artist, Map song_album, Map album_artist, User multi, PlaylistSong *playlist_song, int idx_user)
 {
     time_t t;
     srand((unsigned int)time(&t));
@@ -52,7 +52,7 @@ void Enhance(Map song_album, User multi, PlaylistSong *playlist_song, int idx_us
             printf("ID playlist %d tidak terdapat pada daftar playlist\n", WordToInt(currentWord));
         }
     }
-
+    
     boolean found_2 = false, found_3 = false;
     int rand_count = (rand() % 3) + 1, ctr = 0;
 
@@ -77,11 +77,25 @@ void Enhance(Map song_album, User multi, PlaylistSong *playlist_song, int idx_us
             }
             if (!found_3)
             {
-                found_2 = true;
-                InsVLast(&playlist_song->Playlist[(WordToInt(currentWord))-1].Song, song_album.Elements[rand_song].Key);
-                printf("Berhasil menambahkan lagu ");
                 DisplayWord(song_album.Elements[rand_song].Key);
-                printf(" ke dalam ID playlist %d.\n", (WordToInt(currentWord)));
+                found_2 = true;
+                int i = 0, j = 0;
+                
+                Word MarkWord = {";", 1};
+                Word input = ConcatWord(song_album.Elements[rand_song].Key, MarkWord);
+                input = ConcatWord(input, song_album.Elements[rand_song].Value);
+                input = ConcatWord(input, MarkWord);
+                DisplayWord(input);
+                printf("\ncheck1\n");
+                printf("check2\n");
+                printf("check3\n");
+                input = ConcatWord(input, album_artist.Elements[j].Value);
+                
+                InsVLast(&playlist_song->Playlist[idx_playlist].Song, input);
+
+                printf("Berhasil menambahkan lagu ");
+                DisplayWord(input);
+                printf(" ke dalam ID playlist %d.\n", (idx_playlist+1));
             }
         }
     }

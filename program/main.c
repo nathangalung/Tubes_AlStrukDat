@@ -362,7 +362,7 @@ int main()
         }
         else if (CompareWord1(command, enhance_cmp))
         {
-            Enhance(song_album, multi, &playlist_song, idx_user);
+            Enhance(artist, song_album, album_artist, multi, &playlist_song, idx_user);
             printf("enhance berhasil\n");
         }
         else
