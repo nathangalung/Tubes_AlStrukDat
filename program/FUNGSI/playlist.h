@@ -14,5 +14,6 @@ void CreatePlaylist (User *multi, int idx_user);
 
 void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user, PlaylistSong *playlist_song);
 
+void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user, PlaylistSong *playlist_song);
 
 #endif
