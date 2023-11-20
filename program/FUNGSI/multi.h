@@ -8,6 +8,6 @@ int Login(DynamicList *user, User *multi, int idx_user);
 
 int Logout(User *multi, int idx_user);
 
-int SignUp(DynamicList *user, User *multi, int idx_user);
+void SignUp(DynamicList *user);
 
 #endif

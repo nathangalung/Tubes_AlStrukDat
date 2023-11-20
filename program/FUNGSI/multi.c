@@ -49,10 +49,43 @@ int Logout(User *multi, int idx_user)
     return idx_user;
 }
 
-int SignUp(DynamicList *user, User *multi, int idx_user)
+void SignUp(DynamicList *user)
 {
-    idx_user = 2;
-    printf("Masukkan username user WayangWave : ");
+    boolean found_1 = false;
+    int ctr = 0;
 
-    return idx_user;
+    while (!found_1)
+    {
+        boolean found_2 = false;
+        printf("Masukkan username user baru WayangWave : ");
+        StartWordBlank();
+
+        while (!found_2 && ctr < LengthListDynamic(*user))
+        {
+            if (CompareWord1(currentWord, user->A[ctr]))
+            {
+                found_2 = true;
+            }
+            else
+            {
+                ctr++;
+            }
+        }
+
+        if (found_2)
+        {
+            printf("Username user sudah didaftarkan! Silakan gunakan username lain!\n");
+        }
+        else
+        {
+            found_1 = true;
+            InsertLastDynamic(user, currentWord);
+            printf("Username user berhasil didaftarkan! Silakan login kembali!\n");
+            for (int i = 0; i < LengthListDynamic(*user); i++)
+            {
+                DisplayWord(user->A[i]);
+                printf("\n");
+            }
+        }
+    }
 }

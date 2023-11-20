@@ -117,8 +117,7 @@ int main()
         {
             if (menu && !sesi)
             {
-                idx_user = SignUp(&user, &multi, idx_user);
-                sesi = true;
+                SignUp(&user);
             }
             else
             {
