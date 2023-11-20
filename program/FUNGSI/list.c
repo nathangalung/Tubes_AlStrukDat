@@ -45,12 +45,14 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
             DisplayWord(currentWord);
             printf(" :\n");
 
+            int index = 0;
             for (int i = 0; i < album_artist.Count; i++)
             {
                 if (CompareWord1((album_artist).Elements[i].Value, currentWord))
                 {
-                    printf("\t%d. ", i+1);
+                    printf("\t%d. ", index+1);
                     DisplayWord((album_artist).Elements[i].Key);
+                    index++;
                     printf("\n");
                 }
             }
@@ -85,13 +87,14 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
                     printf("Daftar lagu di ");
                     DisplayWord(currentWord);
                     printf(" :\n");
-
+                    int index = 0;
                     for (int i = 0; i < song_album.Count; i++)
                     {
                         if (CompareWord1(song_album.Elements[i].Value, currentWord))
                         {
-                            printf("\t%d. ", i+1);
+                            printf("\t%d. ", index+1);
                             DisplayWord(song_album.Elements[i].Key);
+                            index++;
                             printf("\n");
                         }
                     }
