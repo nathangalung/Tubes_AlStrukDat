@@ -312,7 +312,7 @@ int main()
         {
             if (sesi)
             {
-                printf("status\n");
+                status(multi, artist, album, playing, idx_user);
             }
             else
             {
