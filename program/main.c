@@ -11,6 +11,7 @@
 #include "FUNGSI/play.h"
 #include "FUNGSI/multi.h"
 #include "FUNGSI/enhance.h"
+#include "FUNGSI/queue.h"
 
 int main()
 {
@@ -203,10 +204,12 @@ int main()
                 command = SplitWordBlank(command);
                 if (CompareWord1(command, song_cmp))
                 {
+                    queueSong(artist, album_artist, song_album, &multi, &playing, idx_user);
                     printf("queue song\n");
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
+                    queuePlaylist(multi, &playing, idx_user, playlist_song);
                     printf("queue playlist\n");
                 }
                 else if (CompareWord2(command, swap_cmp))
@@ -222,6 +225,7 @@ int main()
                 }
                 else if (CompareWord1(command, clear_cmp))
                 {
+                    queueClear(&multi, idx_user);
                     printf("queue clear\n");
                 }
                 else

@@ -23,6 +23,9 @@ int randint(int n)
 
 void Enhance(Map song_album, User multi, PlaylistSong *playlist_song, int idx_user)
 {
+    time_t t;
+    srand((unsigned int)time(&t));
+
     printf("Berikut daftar playlist yang dimiliki :\n");
     for (int i = 0; i < (LengthListDynamic(multi.Elements[idx_user].Playlist)); i++)
     {
@@ -32,11 +35,13 @@ void Enhance(Map song_album, User multi, PlaylistSong *playlist_song, int idx_us
     }
 
     boolean found_1 = false;
+    int idx_playlist;
 
     while (!found_1)
     {
         printf("Silakan masukkan ID playlist yang ingin dienhance : ");
         StartWordMark();
+        idx_playlist = WordToInt(currentWord) - 1;
         
         if ((WordToInt(currentWord) - 1) < LengthListDynamic(multi.Elements[idx_user].Playlist))
         {
@@ -49,14 +54,14 @@ void Enhance(Map song_album, User multi, PlaylistSong *playlist_song, int idx_us
     }
 
     boolean found_2 = false, found_3 = false;
-    int rand_count = randint(3), ctr = 0;
+    int rand_count = (rand() % 3) + 1, ctr = 0;
 
     for (int i = 0; i < rand_count; i++)
     {
         address P = First(playlist_song->Playlist[idx_user].Song);
         while (!found_2)
         {
-            int rand_song = randint(song_album.Count);
+            int rand_song = rand() % (song_album.Count + 1);
 
             while (!found_3 && ctr < LengthListDynamic(multi.Elements[idx_user].Playlist))
             {
@@ -79,12 +84,5 @@ void Enhance(Map song_album, User multi, PlaylistSong *playlist_song, int idx_us
                 printf(" ke dalam ID playlist %d.\n", (WordToInt(currentWord)));
             }
         }
-    }
-    address Q = First(playlist_song->Playlist[idx_user].Song);
-    for (int i = 0; i < NbElmt(playlist_song->Playlist[WordToInt(currentWord)-1].Song); i++)
-    {
-        DisplayWord(Info(Q));
-        printf("\n");
-        Q = Next(Q);
     }
 }
