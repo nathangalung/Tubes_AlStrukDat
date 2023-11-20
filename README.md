@@ -10,7 +10,7 @@ DESKRIPSI SINGKAT PROGRAM
 * `Queue` : Fungsi untuk memanipulasi queue lagu
 * `Song` : Fungsi untuk melakukan navigasi lagu yang ada pada queue
 * `Playlist` : Fungsi untuk melakukan basic command playlist
-* `Status` : Fungsi untuk menampilkan lagu yang sedang dimainkan, queue lagu yang ada, dan playlist lagu yang diputar
+* `Status` : Fungsi untuk menampilkan lagu dan playlist yang sedang diputar, serta queue lagu
 * `Save` : Fungsi untuk menyimpan state aplikasi terbaru
 * `Quit` : Fungsi untuk keluar dari aplikasi
 * `Help` : Fungsi untuk menampilkan bantuan
@@ -24,6 +24,19 @@ DESKRIPSI SINGKAT PROGRAM
 * ADT List dengan Struktur Berkait
 
 ## Cara Kompilasi Program
+1. Masuk ke folder bin melalui terminal
+```
+cd bin
+```
+2. Ketik "make run" pada terminal
+```
+make run
+```
+3. Jalankan program WayangWave di terminal
+```
+./main
+```
+
 ## Struktur Program
 ```
 │ README.md
@@ -31,7 +44,6 @@ DESKRIPSI SINGKAT PROGRAM
 │
 ├─── bin
 │       │ Makefile
-│       │ run.sh
 │
 ├─── doc
 │       │ Pedoman Tugas Besar.pdf
@@ -46,11 +58,13 @@ DESKRIPSI SINGKAT PROGRAM
 │       │       ├─── linkedlist
 │       │       ├─── list
 │       │       ├─── machine
+│       │       ├─── playlist_song
 │       │       ├─── queuestack
 │       │       ├─── setmap
-│       │       └─── stack
+│       │       └─── user
 │       ├─── config
 │       │       │ default.txt
+│       │       │ savefile.txt
 │       │       │ test.txt
 │       ├─── driver
 └───    └─── fungsi
