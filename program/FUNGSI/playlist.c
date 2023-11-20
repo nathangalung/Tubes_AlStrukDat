@@ -132,9 +132,9 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
             printf("Masukkan ID Lagu yang dipilih : ");
             StartWordMark();
             printf("\n");
-            int ID_Lagu = WordToInt(currentWord);
+            int ID_Lagu = atoi(currentWord);
 
-            if (ID_Lagu > 0 || ID_Lagu <= song_album.Count)
+            if (ID_Lagu > 0 && ID_Lagu <= index)
             {
                 int check = 0;
                 int count = 0;
@@ -164,9 +164,9 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
                 printf("Masukkan ID Playlist yang dipilih : ");
                 StartWordMark();
                 printf("\n");
-                int ID_Playlist = WordToInt(currentWord);
+                int ID_Playlist = atoi(currentWord);
 
-                if (ID_Playlist > 0 || ID_Playlist <= LengthListDynamic((*multi).Elements[idx_user].Playlist))
+                if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic((*multi).Elements[idx_user].Playlist))
                 {
                     Word PlaylistPilihan = GetDynamic(((*multi).Elements[idx_user].Playlist), ID_Playlist-1);
                     Word MarkSC = {";", 1};
@@ -296,9 +296,9 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
             printf("Masukkan ID Playlist yang dipilih : ");
             StartWordMark();
             printf("\n");
-            int ID_Playlist = WordToInt(currentWord);
+            int ID_Playlist = atoi(currentWord);
 
-            if (ID_Playlist > 0 || ID_Playlist <= LengthListDynamic((*multi).Elements[idx_user].Playlist))
+            if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic((*multi).Elements[idx_user].Playlist))
             {
                 for (int i = 0; i < song_album.Count; i++)
                 {
