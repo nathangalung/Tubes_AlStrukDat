@@ -362,8 +362,14 @@ int main()
         }
         else if (CompareWord1(command, enhance_cmp))
         {
-            Enhance(artist, song_album, album_artist, multi, &playlist_song, idx_user);
-            printf("enhance berhasil\n");
+            if (sesi)
+            {
+                Enhance(artist, album, song_album, album_artist, multi, &playlist_song, idx_user);
+            }
+            else
+            {
+                printf("Command tidak bisa dieksekusi!\n");
+            }
         }
         else
         {

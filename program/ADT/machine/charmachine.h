@@ -11,7 +11,7 @@
 #define BLANK ' '
 #define NEWLINE '\n'
 
-#define NMaxWord 100
+#define NMaxWord 150
 
 typedef struct
 {
