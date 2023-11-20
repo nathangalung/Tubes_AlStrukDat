@@ -169,7 +169,12 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
                 if (ID_Playlist > 0 || ID_Playlist <= LengthListDynamic((*multi).Elements[idx_user].Playlist))
                 {
                     Word PlaylistPilihan = GetDynamic(((*multi).Elements[idx_user].Playlist), ID_Playlist-1);
-                    InsVLast(&(*playlist_song).Playlist[ID_Playlist-1].Song, LaguPilihan);
+                    Word MarkSC = {";", 1};
+                    Word Pilihan = ConcatWord(NamaPenyanyi, MarkSC);
+                    Pilihan = ConcatWord(Pilihan, NamaAlbum);
+                    Pilihan = ConcatWord(Pilihan, MarkSC);
+                    Pilihan = ConcatWord(Pilihan, LaguPilihan);
+                    InsVLast(&(*playlist_song).Playlist[ID_Playlist-1].Song, Pilihan);
                     printf("Lagu dengan judul \"");
                     DisplayWord(LaguPilihan);
                     printf("\" pada album ");
@@ -299,7 +304,13 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
                 {
                     if (CompareWord1(song_album.Elements[i].Value, NamaAlbum))
                     {
-                        InsVLast(&(*playlist_song).Playlist[ID_Playlist-1].Song, song_album.Elements[i].Key);
+                        Word MarkSC = {";", 1};
+                        Word LaguPilihan = song_album.Elements[i].Key;
+                        Word Pilihan = ConcatWord(NamaPenyanyi, MarkSC);
+                        Pilihan = ConcatWord(Pilihan, NamaAlbum);
+                        Pilihan = ConcatWord(Pilihan, MarkSC);
+                        Pilihan = ConcatWord(Pilihan, LaguPilihan);
+                        InsVLast(&(*playlist_song).Playlist[ID_Playlist-1].Song, Pilihan);
                     }
                 }
                 Word PlaylistPilihan = GetDynamic(((*multi).Elements[idx_user].Playlist), ID_Playlist-1);
