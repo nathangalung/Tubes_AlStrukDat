@@ -7,11 +7,12 @@ void CreatePlaylist (User *multi, int idx_user)
     boolean valid = false;
     while (!valid) 
     {
-        printf("Masukkan nama playlist yang ingin dibuat : \n");
+        printf("Masukkan nama playlist yang ingin dibuat : ");
         int countChar, countWS;
         countChar = 0;
         countWS = 0;
         StartWordMark();
+        printf("\n");
         for (int i = 0; i < currentWord.Length; i++) 
         {
             if (currentWord.TabWord[i] != BLANK) 
