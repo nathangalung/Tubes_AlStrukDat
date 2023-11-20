@@ -27,6 +27,7 @@ int main()
     Word save_cmp = {"SAVE", 4};
     Word quit_cmp = {"QUIT", 4};
     Word help_cmp = {"HELP", 4};
+    Word enhance_cmp = {"ENHANCE", 7};
     Word default_cmp = {"DEFAULT", 7};
     Word swap_cmp = {"SWAP", 4};
     Word remove_cmp = {"REMOVE", 6};
@@ -355,6 +356,10 @@ int main()
         else if (CompareWord1(command, help_cmp))
         {
             help(sesi, menu);
+        }
+        else if (CompareWord1(command, enhance_cmp))
+        {
+            printf("enhance berhasil");
         }
         else
         {
