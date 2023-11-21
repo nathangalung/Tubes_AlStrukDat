@@ -8,6 +8,13 @@ void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, D
     Word name_artist, name_album, name_song, name_user;
 
     Word filename = {"config/default.txt", 18};
+
+    CreateEmptyStatic(artist);
+    CreateEmptyMap(album_artist);
+    CreateEmptyMap(song_album);
+    CreateEmptySet(album);
+    CreateEmptyDynamic(user);
+    
     count_artist = ReadCountFirst(filename);
         
     for (int i=0; i<count_artist; i++)
@@ -44,5 +51,5 @@ void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, D
         CreateEmptyDynamic(&multi->Elements[i].Playlist);
     }  
     
-    printf("\nFile konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
+    printf("File konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
 }

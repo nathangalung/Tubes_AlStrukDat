@@ -83,12 +83,12 @@ void status(User multi, StaticList  artist, Set album, StaticList playing, int i
     }
     if (found_1)
     {
-        printf("\nCurrent Playlist: ");
+        printf("Current Playlist: ");
         DisplayWord(currentPlaylist);
         printf("\n");
     }
 
-    printf("\nNow Playing:\n");
+    printf("Now Playing:\n");
     if (CompareStringWord(playing.A[idx_user], MarkStatic))
     {
         printf("No songs have been played yet. Please search for a song to begin playback.\n");

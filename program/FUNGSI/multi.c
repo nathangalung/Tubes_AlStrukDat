@@ -38,7 +38,7 @@ int Login(DynamicList *user, User *multi, int idx_user)
             printf("\nBerikut daftar username yang terdaftar :\n");
             for (int i = 0; i < LengthListDynamic(*user); i++)
             {
-                printf("%d. ", (i+1));
+                printf("\t%d. ", (i+1));
                 DisplayWord(user->A[i]);
                 printf("\n");
             }

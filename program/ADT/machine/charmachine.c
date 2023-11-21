@@ -28,6 +28,7 @@ void StartNewline(Word filename)
     if (pita == NULL)
     {
         EOP = true;
+        printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
         exit(0);
     }
     else
