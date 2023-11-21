@@ -16,13 +16,13 @@
 
 typedef struct {
 	LinierList Song;
-} Ingfo;
+} Info;
 
 typedef struct {
 	Queue Queue;
 	Stack History;
     DynamicList Playlist;
-	Ingfo PlaySong[MaxElPlaylistSong];
+	Info PlaylistSong[MaxElPlaylistSong];
 } Type;
 
 typedef struct {

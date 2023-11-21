@@ -3,16 +3,13 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include <stdio.h>
 #include "../ADT/setmap/map.h"
 #include "../ADT/setmap/set.h"
-#include "../ADT/linkedlist/linier_list.h"
-#include "../ADT/queuestack/queue.h"
-#include "play.h"
+#include "../ADT/user/user.h"
 
 void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user);
 
-void queuePlaylist(User *multi, int idx_user, PlaylistSong playlist_song);
+void queuePlaylist(User *multi, int idx_user);
 
 void queueSwap(User *multi, Word word, int idx_user);
 

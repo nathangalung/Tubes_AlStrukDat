@@ -23,19 +23,19 @@ void DisplayWordDash(Word word, StaticList artist, Set album)
     DisplayWord(temp);
 }
 
-void status(User multi, StaticList  artist, Set album, StaticList playing, PlaylistSong playlist_song, int idx_user)
+void status(User multi, StaticList  artist, Set album, StaticList playing, int idx_user)
 {
     boolean found_1 = false;
     int i = 0, j = 0, k = 0;
     Word currentPlaylist;
     Word currentSong = playing.A[idx_user];
     
-    while (!found_1 && i < playlist_song.Count)
+    while (!found_1 && i < multi.Elements[idx_user].Playlist.Neff)
     {
         boolean found_2 = false;
-        address P = First(playlist_song.Playlist[i].Song);
+        address P = First(multi.Elements[idx_user].PlaylistSong[i].Song);
 
-        while (!found_2 && j < NbElmt(playlist_song.Playlist[i].Song))
+        while (!found_2 && j < NbElmt(multi.Elements[idx_user].PlaylistSong[i].Song))
         {
             boolean found_3 = false;
 
@@ -61,7 +61,7 @@ void status(User multi, StaticList  artist, Set album, StaticList playing, Playl
             j++;
         }
 
-        if (!found_2 && NbElmt(playlist_song.Playlist[i].Song) > 0)
+        if (!found_2 && NbElmt(multi.Elements[idx_user].PlaylistSong[i].Song) > 0)
         {
             currentPlaylist = multi.Elements[idx_user].Playlist.A[i];
             found_1 = true;

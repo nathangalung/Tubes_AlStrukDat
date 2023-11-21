@@ -152,7 +152,7 @@ void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
     }
 }
 
-void queuePlaylist(User *multi, int idx_user, PlaylistSong playlist_song)
+void queuePlaylist(User *multi, int idx_user)
 {
     
     /* KAMUS LOKAL */
@@ -182,8 +182,8 @@ void queuePlaylist(User *multi, int idx_user, PlaylistSong playlist_song)
             DisplayWord(GetDynamic(multi->Elements[idx_user].Playlist, idPlaylist-1));
             printf("\" ke queue.\n");
 
-            lagu = First(playlist_song.Playlist[idPlaylist - 1].Song);
-            for (i = 0; i < NbElmt(playlist_song.Playlist[idPlaylist - 1].Song); i++)
+            lagu = First(multi->Elements[idx_user].PlaylistSong[idPlaylist - 1].Song);
+            for (i = 0; i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist - 1].Song); i++)
             {
                 Enqueue(&multi->Elements[idx_user].Queue, Info(lagu));
                 lagu = Next(lagu);

@@ -21,7 +21,7 @@ int randint(int n)
     }
 }
 
-void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, User multi, PlaylistSong *playlist_song, int idx_user)
+void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, User multi, int idx_user)
 {
     time_t t;
     srand((unsigned int)time(&t));
@@ -58,7 +58,7 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
     for (int i = 0; i < rand_count; i++)
     {
         boolean found_2 = false;
-        address P = First(playlist_song->Playlist[idx_user].Song);
+        address P = First(multi.Elements[idx_user].PlaylistSong[idx_playlist].Song);
         Word input, Dash = {" - ", 3};
 
         while (!found_2)
@@ -93,7 +93,7 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
                 input = ConcatWord(input, Dash);
                 input = ConcatWord(input, song_album.Elements[rand_song].Key);
                 
-                InsVLast(&playlist_song->Playlist[idx_playlist].Song, input);
+                InsVLast(&multi.Elements[idx_user].PlaylistSong[idx_playlist].Song, input);
 
                 printf("\nBerhasil menambahkan lagu ");
                 DisplayWord(song_album.Elements[rand_song].Key);

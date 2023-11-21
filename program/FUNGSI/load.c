@@ -2,7 +2,7 @@
 
 #include "load.h"
 
-void Load(Word filename, DynamicList file, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, StaticList *playing, User *multi, PlaylistSong *playlist_song)
+void Load(Word filename, DynamicList file, StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, StaticList *playing, User *multi)
 {
     boolean found = false;
     int count_artist = 0, count_album = 0, count_song = 0, count_user = 0, count_queue = 0, count_history = 0, count_playlist = 0;
@@ -92,13 +92,12 @@ void Load(Word filename, DynamicList file, StaticList *count, StaticList *artist
             idx++;
             name_playlist = ReadNameLine();
             InsertLastDynamic(&(*multi).Elements[i].Playlist, name_playlist);
-            playlist_song->Count++;
 
-            CreateEmptyLinier(&(*playlist_song).Playlist[j].Song);
+            CreateEmptyLinier(&multi->Elements[i].PlaylistSong[j].Song);
             for(int k = 0; k < count_song; k++)
             {
                 name_song = ReadNameLine();
-                InsVLast(&(*playlist_song).Playlist[j].Song, name_song);
+                InsVLast(&multi->Elements[i].PlaylistSong[j].Song, name_song);
             }
         }
     }

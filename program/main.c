@@ -58,7 +58,6 @@ int main()
     Queue queue;
     StaticList playing;
     User multi;
-    PlaylistSong playlist_song;
 
     CreateEmptyDynamic(&file);
     CreateEmptyStatic(&count);
@@ -71,7 +70,6 @@ int main()
     InsertLastDynamic(&file, test_file);
     InsertLastDynamic(&file, save_file);
     CreateEmptyUser(&multi);
-    CreateEmptyPlaylistSong(&playlist_song);
     
     boolean run = true, menu = false, sesi = false;
     int idx_user = -1;
@@ -104,7 +102,7 @@ int main()
                 Word filename = ConcatWord(dir, command);
                 if (CheckDir(&file, filename))
                 {
-                    Load(filename, file, &count, &artist, &album, &album_artist, &song_album, &user, &playing, &multi, &playlist_song);
+                    Load(filename, file, &count, &artist, &album, &album_artist, &song_album, &user, &playing, &multi);
                     printf("\nSave file berhasil dibaca. WayangWave berhasil dijalankan.\n");
                     menu = true;
                 }
@@ -187,7 +185,7 @@ int main()
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
-                    printf("play playlist\n");
+                    playPlaylist(&multi, &playing, idx_user);
                 }
                 else
                 {
@@ -210,7 +208,7 @@ int main()
                 }
                 else if (CompareWord1(command, playlist_cmp))
                 {
-                    queuePlaylist(&multi, idx_user, playlist_song);
+                    queuePlaylist(&multi, idx_user);
                 }
                 else if (CompareWord2(command, swap_cmp))
                 {
@@ -274,11 +272,11 @@ int main()
                     command = SplitWordBlank(command);
                     if (CompareWord1(command, song_cmp))
                     {
-                        AddSongPlaylist(artist, album_artist, song_album, &multi, idx_user, &playlist_song);
+                        AddSongPlaylist(artist, album_artist, song_album, &multi, idx_user);
                     }
                     else if (CompareWord1(command, album_cmp))
                     {
-                        AddAlbumPlaylist(artist, album_artist, song_album, &multi, idx_user, &playlist_song);
+                        AddAlbumPlaylist(artist, album_artist, song_album, &multi, idx_user);
                     }
                     else
                     {
@@ -313,7 +311,7 @@ int main()
         {
             if (sesi)
             {
-                status(multi, artist, album, playing, playlist_song, idx_user);
+                status(multi, artist, album, playing, idx_user);
             }
             else
             {
@@ -365,7 +363,7 @@ int main()
         {
             if (sesi)
             {
-                Enhance(artist, album, song_album, album_artist, multi, &playlist_song, idx_user);
+                Enhance(artist, album, song_album, album_artist, multi, idx_user);
             }
             else
             {

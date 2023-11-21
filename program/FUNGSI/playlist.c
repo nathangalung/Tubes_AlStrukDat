@@ -43,7 +43,7 @@ void CreatePlaylist (User *multi, int idx_user)
     }
 }
 
-void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user, PlaylistSong *playlist_song)
+void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
 {
     printf("\n");
     printf("Daftar Penyanyi :\n");
@@ -175,7 +175,7 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
                     Pilihan = ConcatWord(Pilihan, NamaAlbum);
                     Pilihan = ConcatWord(Pilihan, MarkSC);
                     Pilihan = ConcatWord(Pilihan, LaguPilihan);
-                    InsVLast(&(*playlist_song).Playlist[ID_Playlist-1].Song, Pilihan);
+                    InsVLast(&multi->Elements[idx_user].PlaylistSong[ID_Playlist-1].Song, Pilihan);
                     printf("Lagu dengan judul \"");
                     DisplayWord(LaguPilihan);
                     printf("\" pada album ");
@@ -211,7 +211,7 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
     }
 }
 
-void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user, PlaylistSong *playlist_song)
+void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
 {
     printf("\n");
     printf("Daftar Penyanyi :\n");
@@ -311,7 +311,7 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
                         Pilihan = ConcatWord(Pilihan, NamaAlbum);
                         Pilihan = ConcatWord(Pilihan, MarkSC);
                         Pilihan = ConcatWord(Pilihan, LaguPilihan);
-                        InsVLast(&(*playlist_song).Playlist[ID_Playlist-1].Song, Pilihan);
+                        InsVLast(&multi->Elements[idx_user].PlaylistSong[ID_Playlist-1].Song, Pilihan);
                     }
                 }
                 Word PlaylistPilihan = GetDynamic(((*multi).Elements[idx_user].Playlist), ID_Playlist-1);

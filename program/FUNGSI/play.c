@@ -154,44 +154,60 @@ void playSong(StaticList artist, Map album_artist, Map song_album, User *multi, 
     }
 }
 
-// void playPlaylist(User *multi, StaticList playing, PlaylistSong *playlist_song, int idx_user)
-// { // BELOM BERES
-//     /* KAMUS LOKAL */
-//     int idPlaylist, i;
-//     boolean idPlaylistValid;
-//     address lagu;
-//     Word namaplaylist;
+void playPlaylist(User *multi, StaticList *playing, int idx_user)
+{ // BELOM BERES
+    /* KAMUS LOKAL */
+    int idPlaylist;
+    boolean idPlaylistValid;
+    address lagu;
+    Word namaplaylist;
     
-//     /* ALGORITMA */
-//     printf("\nMasukkan ID Playlist: ");
-//     StartWordMark();
-//     namaplaylist = currentWord;
-//     idPlaylist = atoi(currentWord.TabWord);
+    /* ALGORITMA */
+    printf("\nMasukkan ID Playlist: ");
+    StartWordMark();
+    namaplaylist = currentWord;
+    idPlaylist = atoi(currentWord.TabWord);
 
-//     idPlaylistValid = false;
+    idPlaylistValid = false;
 
-//     if (!idPlaylistValid)
-//     {
-//         if (IsListEmptyDynamic(multi->Elements[idx_user].Playlist) || idPlaylist < 0 || idPlaylist > LengthListDynamic(multi->Elements[idx_user].Playlist))
-//         {
-//             printf("\nPlaylist tidak ditemukan.\n");
-//         }
-//         else
-//         {
-//             idPlaylistValid = true;
-//             printf("\nMemutar playlist \"");
-//             DisplayWord(GetDynamic(multi->Elements[idx_user].Playlist, idPlaylist-1));
-//             printf("\".\n");
+    if (!idPlaylistValid)
+    {
+        if (IsListEmptyDynamic(multi->Elements[idx_user].Playlist) || idPlaylist < 0 || idPlaylist > LengthListDynamic(multi->Elements[idx_user].Playlist))
+        {
+            printf("\nPlaylist tidak ditemukan.\n");
+        }
+        else
+        {
+            idPlaylistValid = true;
+            printf("\nMemutar playlist \"");
+            DisplayWord(GetDynamic(multi->Elements[idx_user].Playlist, idPlaylist-1));
+            printf("\".\n");
             
-//             InsVFirst(&playlist_song->Playlist[idPlaylist-1].Song);
+            InsVFirst(&multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song, playing->A[idx_user]);
+            
+            lagu = First(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song);
 
-//             lagu = First(playlist_song.Playlist[idPlaylist - 1].Song);
-//             playing->A[idx_user] = Info(lagu);
-//             for (i = 1; i < NbElmt(playlist_song.Playlist[idPlaylist - 1].Song); i++) {
-//                 lagu = Next(lagu);
-//                 Enqueue(&multi.Elements[idx_user].Queue, Info(lagu));
-//                 PushStack(&multi.Elements[idx_user].History, Info(lagu));
-//             }
-//         }
-//     }
-// }
+            Stack temp_stack;
+            Word temp_word;
+            CreateEmptyStack(&temp_stack);
+            CreateEmptyQueue(&multi->Elements[idx_user].Queue);
+            CreateEmptyStack(&multi->Elements[idx_user].History);
+            
+            playing->A[idx_user] = Info(lagu);
+            lagu = Next(lagu);
+
+            for (int i = 0; (i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) - 1); i++)
+            {
+                PushStack(&temp_stack, Info(lagu));
+                Enqueue(&multi->Elements[idx_user].Queue, Info(lagu));
+                lagu = Next(lagu);
+            }
+            
+            for (int i = 0; (i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) - 1); i++)
+            {
+                PopStack(&temp_stack, &temp_word);
+                PushStack(&multi->Elements[idx_user].History, temp_word);
+            }
+        }
+    }
+}
