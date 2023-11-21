@@ -195,7 +195,7 @@ void queuePlaylist(User *multi, int idx_user)
 void queueSwap(User *multi, Word word, int idx_user)
 {
     int ctr = 0;
-    int idx_1 = atoi(SplitWordLeft(word).TabWord), idx_2 = atoi(SplitWordBlank(word).TabWord);
+    int idx_1 = atoi(SplitWordLeftBlank(word).TabWord), idx_2 = atoi(SplitWordBlank(word).TabWord);
     Word temp;
 
     if ((idx_1 >= 1 && idx_1 <= LengthQueue(multi->Elements[idx_user].Queue)) && (idx_2 >= 1 && idx_2 <= LengthQueue(multi->Elements[idx_user].Queue)))
@@ -251,7 +251,7 @@ void queueRemove(User *multi, Word word, int idx_user)
             IDX_TAIL(multi->Elements[idx_user].Queue) = ctr;
 
         }
-        Word artist = SplitWordLeft(song);
+        Word artist = SplitWordLeftMark(song);
         song = SplitWordMark(SplitWordMark(song));
         printf("\nLagu \"");
         DisplayWord(artist);

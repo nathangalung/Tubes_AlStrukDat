@@ -286,7 +286,7 @@ int main()
                 else if (CompareWord2(command, remove_cmp))
                 {
                     command = SplitWordBlank(command);
-                    printf("playlist remove\n");
+                    RemovePlaylist(&multi, idx_user, command);
                 }
                 else if (CompareStringWord(command, "DELETE"))
                 {

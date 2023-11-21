@@ -345,8 +345,9 @@ void SwapPlaylist (User *multi, int idx_user, Word word)
 {
     printf("\n");
     int count = 0;
-    int ID_Playlist = atoi(SplitWordLeft(word).TabWord);
-    Word Split1 = SplitWordLeft(word);
+    int ID_Playlist = atoi(SplitWordLeftBlank(word).TabWord);
+    DisplayWord(SplitWordLeftBlank(word));
+    Word Split1 = SplitWordLeftBlank(word);
     int idx_1 = atoi(SplitWordBlank(Split1).TabWord);
     Word Split2 = SplitWordBlank(word);
     int idx_2 = atoi(SplitWordBlank(Split2).TabWord);
@@ -411,5 +412,48 @@ void SwapPlaylist (User *multi, int idx_user, Word word)
     else
     {
         printf("Tidak ada playlist dengan playlist ID %d\n", ID_Playlist);
+    }
+}
+
+void RemovePlaylist (User *multi, int idx_user, Word word)
+{
+    int ID_Playlist = atoi(SplitWordLeftBlank(word).TabWord);
+    int ID_Lagu = atoi(SplitWordBlank(word).TabWord);
+    address Song;
+    printf("\n");
+
+    if ((ID_Playlist > 0) && (ID_Playlist <= LengthListDynamic((*multi).Elements[idx_user].Playlist)))
+    {
+        Word PlaylistPilihan = GetDynamic(((*multi).Elements[idx_user].Playlist), ID_Playlist-1);
+        if (ID_Lagu >= 1 && ID_Lagu <= NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song))
+        {
+            Song = First((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song);
+            for (int i = 0; i < ID_Lagu - 1; i++)
+            {
+                Song = Next(Song);
+            }
+            Word DeletedSong = Info(Song);
+            DelP (&(*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song, DeletedSong);
+
+            printf("Lagu \"");
+            DisplayWord(SplitWordMark(SplitWordMark(DeletedSong)));
+            printf("\" oleh \"");
+            DisplayWord(SplitWordLeftMark(DeletedSong));
+            printf("\" telah dihapus dari playlist \"");
+            DisplayWord(PlaylistPilihan);
+            printf("\"!\n");
+        }
+    }
+    else
+    {
+        printf("Tidak ada playlist dengan playlist ID %d\n", ID_Playlist);
+    }
+
+    address P = First(multi->Elements[idx_user].PlaylistSong[ID_Playlist-1].Song);
+    for (int i = 0; i < NbElmt(multi->Elements[idx_user].PlaylistSong[ID_Playlist-1].Song); i++)
+    {
+        DisplayWord(Info(P));
+        printf("\n");
+        P = Next(P);
     }
 }

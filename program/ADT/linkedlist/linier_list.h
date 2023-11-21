@@ -89,7 +89,6 @@ void InsertAfter (LinierList *L, address P, address Prec);
 void InsertLast (LinierList *L, address P);
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
-
 /*** PENGHAPUSAN SEBUAH ELEMEN ***/
 void DelFirst (LinierList *L, address *P);
 /* I.S. List tidak kosong */
