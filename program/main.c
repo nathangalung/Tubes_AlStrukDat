@@ -16,6 +16,7 @@
 #include "FUNGSI/status.h"
 #include "FUNGSI/interface.h"
 #include "FUNGSI/song.h"
+#include "FUNGSI/save.h"
 
 int main()
 {
@@ -327,6 +328,8 @@ int main()
             if (sesi)
             {
                 command = SplitWordBlank(command);
+                Word filename = ConcatWord(dir, command);
+                Save(filename, artist, album, album_artist, song_album, user, playing, multi);
                 printf("save\n");
             }
             else
