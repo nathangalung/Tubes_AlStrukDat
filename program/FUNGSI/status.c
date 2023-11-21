@@ -8,7 +8,7 @@ void DisplayWordDash(Word word, StaticList artist, Set album)
     int i = 0;
     while (!found && i < LengthList(artist))
     {
-        if (CompareWord3(word, artist.A[i]))
+        if (CompareWord(SplitWordLeftMark(word), artist.A[i]))
         {
             found = true;
         }
@@ -24,7 +24,7 @@ void DisplayWordDash(Word word, StaticList artist, Set album)
         printf(" - ");
         Word temp = SplitWordMark(word);
         int j = 0;
-        while (!CompareWord3(temp, album.Elements[j]))
+        while (!CompareWord(SplitWordLeftMark(temp), album.Elements[j]))
         {
             j++;
         }
@@ -54,7 +54,7 @@ void status(User multi, StaticList  artist, Set album, StaticList playing, int i
 
             while (!found_3 && k < LengthQueue(multi.Elements[idx_user].Queue))
             {
-                if (CompareWord1(multi.Elements[idx_user].Queue.Buffer[k], Info(P)))
+                if (CompareWord(multi.Elements[idx_user].Queue.Buffer[k], Info(P)))
                 {
                     found_3 = true;
                 }

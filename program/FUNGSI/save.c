@@ -27,7 +27,7 @@ int jmlkey(Map map, Word value)
     
     for (int i = 0; i < map.Count; i++)
     {
-        if (CompareWord1(map.Elements[i].Value,value))
+        if (CompareWord(map.Elements[i].Value,value))
         {
             count++;
         }

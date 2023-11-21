@@ -79,7 +79,7 @@ boolean IsMemberMap(Map map, Word k)
 {
     for (int i = 0; i < map.Count; i++)
     {
-        if (CompareWord1(map.Elements[i].Key, k))
+        if (CompareWord(map.Elements[i].Key, k))
         {
             return (true);
         }

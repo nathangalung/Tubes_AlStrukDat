@@ -68,10 +68,6 @@ Word SplitWordLeftBlank(Word word);
 
 Word SplitWordLeftMark(Word word);
 
-boolean CompareWord2(Word word_1, Word word_2);
-
-boolean CompareWord3(Word word_1, Word word_2);
-
 Word ConcatWord(Word word_1, Word word_2);
 
 boolean CompareStringWord(Word word_1, char *string);

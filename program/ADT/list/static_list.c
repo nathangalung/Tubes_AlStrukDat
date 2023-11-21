@@ -26,7 +26,7 @@ Word GetList(StaticList list, IdxType i)
 int LengthList(StaticList list)
 {
     int count = 0;
-    while ((!CompareWord1(list.A[count], StringToWord(MarkStatic))) && (count <= MaxEl))
+    while ((!CompareWord(list.A[count], StringToWord(MarkStatic))) && (count <= MaxEl))
     {
         count++;
     }

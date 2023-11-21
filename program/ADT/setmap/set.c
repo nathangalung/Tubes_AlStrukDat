@@ -34,7 +34,7 @@ void DeleteSet(Set *set, Word word)
 
     while ((i < set->Count) && (!found))
     {
-        if (CompareWord1(set->Elements[i], word))
+        if (CompareWord(set->Elements[i], word))
         {
             found = true;
         }
@@ -59,7 +59,7 @@ boolean IsMemberSet(Set set, Word word)
 {
     for (int i = 0; i < set.Count; i++)
     {
-        if (CompareWord1(set.Elements[i], word))
+        if (CompareWord(set.Elements[i], word))
         {
             return (true);
         }

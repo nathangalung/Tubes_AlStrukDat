@@ -14,109 +14,61 @@
 #include "FUNGSI/enhance.h"
 #include "FUNGSI/queue.h"
 #include "FUNGSI/status.h"
+#include "FUNGSI/interface.h"
+#include "FUNGSI/song.h"
+#include "FUNGSI/save.h"
 
 int main()
 {
-    Word start_cmp = {"START", 5};
-    Word load_cmp = {"LOAD", 4};
-    Word login_cmp = {"LOGIN", 5};
-    Word logout_cmp = {"LOGOUT", 6};
-    Word signup_cmp = {"SIGN UP", 7};
-    Word list_cmp = {"LIST", 4};
-    Word play_cmp = {"PLAY", 4};
-    Word queue_cmp = {"QUEUE", 5};
-    Word song_cmp = {"SONG", 4};
-    Word playlist_cmp = {"PLAYLIST", 8};
-    Word status_cmp = {"STATUS", 6};
-    Word save_cmp = {"SAVE", 4};
-    Word quit_cmp = {"QUIT", 4};
-    Word help_cmp = {"HELP", 4};
-    Word enhance_cmp = {"ENHANCE", 7};
-    Word default_cmp = {"DEFAULT", 7};
-    Word swap_cmp = {"SWAP", 4};
-    Word remove_cmp = {"REMOVE", 6};
-    Word clear_cmp = {"CLEAR", 5};
-    Word next_cmp = {"NEXT", 4};
-    Word previous_cmp = {"PREVIOUS", 8};
-    Word create_cmp = {"CREATE", 6};
-    Word add_cmp = {"ADD", 3};
-    Word delete_cmp = {"DELETE", 6};
-    Word album_cmp = {"ALBUM", 5};
-    Word test_file = {"config/test.txt", 15};
-    Word save_file = {"config/save.txt", 15};
-    Word dir = {"config/", 7};
-
-    DynamicList file;
-    StaticList count;
-    StaticList artist;
-    Stack history;
+    StaticList artist, playing;
     Set album;
-    Map album_artist;
-    Map song_album;
+    Map album_artist, song_album;
     DynamicList user;
-    DynamicList playlist;
-    Queue queue;
-    StaticList playing;
     User multi;
-
-    CreateEmptyDynamic(&file);
-    CreateEmptyStatic(&count);
-    CreateEmptyStatic(&artist);
-    CreateEmptyMap(&album_artist);
-    CreateEmptyMap(&song_album);
-    CreateEmptySet(&album);
-    CreateEmptyDynamic(&user);
-    CreateEmptyStatic(&playing);
-    InsertLastDynamic(&file, test_file);
-    InsertLastDynamic(&file, save_file);
-    CreateEmptyUser(&multi);
+    Word dir = {"config/", 7};
     
     boolean run = true, menu = false, sesi = false;
     int idx_user = -1;
 
+    Welcome();
+
     while (run)
     {
-        printf(">> ");
+        printf("%s\n>> ", GREEN);
         StartWordMark();
         IgnoreBlanks();
         IgnoreNewlines();
+        printf("%s\n", WHITE);
         Word command = currentWord;
 
-        if (CompareWord1(command, start_cmp))
+        if (CompareStringWord(command, "START"))
         {
             if (!menu)
             {
-                Start(&count, &artist, &album, &album_artist, &song_album, &user, &multi);
+                Start(&artist, &album, &album_artist, &song_album, &user, &multi);
                 menu = true;
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
             }
         }
-        else if (CompareWord2(command, load_cmp))
+        else if (CompareStringWord(SplitWordLeftBlank(command), "LOAD"))
         {
             if (!menu)
             {
                 command = SplitWordBlank(command);
                 Word filename = ConcatWord(dir, command);
-                if (CheckDir(&file, filename))
-                {
-                    Load(filename, file, &count, &artist, &album, &album_artist, &song_album, &user, &playing, &multi);
-                    printf("\nSave file berhasil dibaca. WayangWave berhasil dijalankan.\n");
-                    menu = true;
-                }
-                else
-                {
-                    printf("\nSave file tidak ditemukan. WayangWave gagal dijalankan.\n");
-                }
+                DisplayWord(filename);
+                printf("\n");
+                Load(filename, &artist, &album, &album_artist, &song_album, &user, &playing, &multi, &menu);
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
             }
         }
-        else if (CompareWord1(command, signup_cmp))
+        else if (CompareStringWord(command, "SIGN UP"))
         {
             if (menu && !sesi)
             {
@@ -124,10 +76,10 @@ int main()
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
             }
         }
-        else if (CompareWord1(command, login_cmp))
+        else if (CompareStringWord(command, "LOGIN"))
         {
             if (menu && !sesi)
             {
@@ -136,10 +88,10 @@ int main()
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
             }
         }
-        else if (CompareWord1(command, logout_cmp))
+        else if (CompareStringWord(command, "LOGOUT"))
         {
             if (sesi)
             {
@@ -148,19 +100,19 @@ int main()
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
             }
         }
-        else if (CompareWord2(command, list_cmp))
+        else if (CompareStringWord(SplitWordLeftBlank(command), "LIST"))
         {
             if (sesi)
             {
                 command = SplitWordBlank(command);
-                if (CompareWord1(command, default_cmp))
+                if (CompareStringWord(command, "DEFAULT"))
                 {
                     ListDefault(artist, album_artist, song_album);
                 }
-                else if (CompareWord1(command, playlist_cmp))
+                else if (CompareStringWord(command, "PLAYLIST"))
                 {
                     ListPlaylist(multi, idx_user);
                 }
@@ -174,140 +126,140 @@ int main()
                 printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
-        else if (CompareWord2(command, play_cmp))
+        else if (CompareStringWord(SplitWordLeftBlank(command), "PLAY"))
         {
             if (sesi)
             {
                 command = SplitWordBlank(command);
-                if (CompareWord1(command, song_cmp))
+                if (CompareStringWord(command, "SONG"))
                 {
                     playSong(artist, album_artist, song_album, &multi, &playing, idx_user);
                 }
-                else if (CompareWord1(command, playlist_cmp))
+                else if (CompareStringWord(command, "PLAYLIST"))
                 {
                     playPlaylist(&multi, &playing, idx_user);
                 }
                 else
                 {
-                    printf("\nCommand tidak diketahui!\n");
+                    printf("%s\nCommand tidak diketahui!\n", RED);
                 }
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
             }
         }
-        else if (CompareWord2(command, queue_cmp))
+        else if (CompareStringWord(SplitWordLeftBlank(command), "QUEUE"))
         {
             if (sesi)
             {
                 command = SplitWordBlank(command);
-                if (CompareWord1(command, song_cmp))
+                if (CompareStringWord(command, "SONG"))
                 {
                     queueSong(artist, album_artist, song_album, &multi, idx_user);
                 }
-                else if (CompareWord1(command, playlist_cmp))
+                else if (CompareStringWord(command, "PLAYLIST"))
                 {
                     queuePlaylist(&multi, idx_user);
                 }
-                else if (CompareWord2(command, swap_cmp))
+                else if (CompareStringWord(SplitWordLeftBlank(command), "SWAP"))
                 {
                     command = SplitWordBlank(command);
                     queueSwap(&multi, command, idx_user);
                     
                 }
-                else if (CompareWord2(command, remove_cmp))
+                else if (CompareStringWord(SplitWordLeftBlank(command), "REMOVE"))
                 {
                     command = SplitWordBlank(command);
                     queueRemove(&multi, command, idx_user);
                 }
-                else if (CompareWord1(command, clear_cmp))
+                else if (CompareStringWord(command, "CLEAR"))
                 {
                     queueClear(&multi, idx_user);
                 }
                 else
                 {
-                    printf("\nCommand tidak diketahui!\n");
+                    printf("%s\nCommand tidak diketahui!\n", RED);
                 }
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
             }
         }
-        else if (CompareWord2(command, song_cmp))
+        else if (CompareStringWord(SplitWordLeftBlank(command), "SONG"))
         {
             if (sesi)
             {
                 command = SplitWordBlank(command);
-                if (CompareWord1(command, next_cmp))
+                if (CompareStringWord(command, "NEXT"))
                 {
-                    printf("song next\n");
+                    songNext(&multi, artist, &playing, idx_user);
                 }
-                else if (CompareWord1(command, previous_cmp))
+                else if (CompareStringWord(command, "PREVIOUS"))
                 {
-                    printf("song previous\n");
+                    songPrevious(&multi, artist, &playing, idx_user);
                 }
                 else
                 {
-                    printf("\nCommand tidak diketahui!\n");
+                    printf("%s\nCommand tidak diketahui!\n", RED);
                 }
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
             }
         }
-        else if (CompareWord2(command, playlist_cmp))
+        else if (CompareStringWord(SplitWordLeftBlank(command), "PLAYLIST"))
         {
             if (sesi)
             {
                 command = SplitWordBlank(command);
-                if (CompareWord1(command, create_cmp))
+                if (CompareStringWord(command, "CREATE"))
                 {
                     CreatePlaylist(&multi, idx_user);
                 }
-                else if (CompareWord2(command, add_cmp))
+                else if (CompareStringWord(SplitWordLeftBlank(command), "ADD"))
                 {
                     command = SplitWordBlank(command);
-                    if (CompareWord1(command, song_cmp))
+                    if (CompareStringWord(command, "SONG"))
                     {
                         AddSongPlaylist(artist, album_artist, song_album, &multi, idx_user);
                     }
-                    else if (CompareWord1(command, album_cmp))
+                    else if (CompareStringWord(command, "ALBUM"))
                     {
                         AddAlbumPlaylist(artist, album_artist, song_album, &multi, idx_user);
                     }
                     else
                     {
-                        printf("\nCommand tidak diketahui!\n");
+                        printf("%sCommand tidak diketahui!\n", RED);
                     }
                 }
-                else if (CompareWord2(command, swap_cmp))
+                else if (CompareStringWord(SplitWordLeftBlank(command), "SWAP"))
                 {
                     command = SplitWordBlank(command);
-                    printf("playlist swap\n");
+                    SwapPlaylist(&multi, idx_user, command);
                 }
-                else if (CompareWord2(command, remove_cmp))
+                else if (CompareStringWord(SplitWordLeftBlank(command), "REMOVE"))
                 {
                     command = SplitWordBlank(command);
-                    printf("playlist remove\n");
+                    RemovePlaylist(&multi, idx_user, command);
                 }
-                else if (CompareWord1(command, delete_cmp))
+                else if (CompareStringWord(command, "DELETE"))
                 {
-                    printf("playlist delete\n");
+                    DeletePlaylist(&multi, idx_user);
                 }
                 else
                 {
-                    printf("\nCommand tidak diketahui!\n");
+                    printf("%sCommand tidak diketahui!\n", RED);
                 }
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("Command tidak bisa dieksekusi!\n");
             }
         }
-        else if (CompareWord1(command, status_cmp))
+        else if (CompareStringWord(command, "STATUS"))
         {
             if (sesi)
             {
@@ -315,53 +267,60 @@ int main()
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
-        else if (CompareWord2(command, save_cmp))
+        else if (CompareStringWord(SplitWordLeftBlank(command), "SAVE"))
         {
-            if (sesi)
+            if (menu || sesi)
             {
                 command = SplitWordBlank(command);
                 Word filename = ConcatWord(dir, command);
                 Save(filename, artist, album, album_artist, song_album, user, playing, multi);
-                printf("save\n");
+                printf("save file berhasil disimpan\n");
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
-        else if (CompareWord1(command, quit_cmp))
+        else if (CompareStringWord(command, "QUIT"))
         {
             if (sesi)
             {
                 sesi = false;
 
-                printf("quit sesi\n");
+                printf("keluar dari sesi\n");
             }
             else if (menu)
             {
                 menu = false;
-
-                printf("quit menu\n");
+                printf("Apakah kamu ingin menyimpan data sesi sekarang? (Y/N) : ");
+                StartWordMark();
+                if (CompareStringWord(currentWord,"Y")){
+                    printf("ketik \"<nama_file>.txt\" : ");
+                    StartWordMark();
+                    Word filename = ConcatWord(StringToWord("config/"), currentWord);
+                    Save(filename, artist, album, album_artist, song_album, user, playing, multi);
+                    printf("File berhasil disimpan\n");
+                }
+                printf("keluar dari menu\n");
             }
             else if (run)
             {
                 run = false;
-
-                printf("quit program\n");
+                printf("keluar dari program\n");
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("Command tidak bisa dieksekusi!\n");
             }
         }
-        else if (CompareWord1(command, help_cmp))
+        else if (CompareStringWord(command, "HELP"))
         {
             help(sesi, menu);
         }
-        else if (CompareWord1(command, enhance_cmp))
+        else if (CompareStringWord(command, "ENHANCE"))
         {
             if (sesi)
             {
@@ -369,13 +328,13 @@ int main()
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
         else
         {
-            printf("\nCommand tidak diketahui!\n");
+            printf("%sCommand tidak diketahui!\n", RED);
         }
-        printf("\n");
+        printf("%s\n=======================================================================================================================\n", YELLOW);
     }
 }

@@ -40,7 +40,7 @@ address Search (LinierList L, Word word)
 
 	while (P != Nil && !found)
 	{
-		if (CompareWord1(Info(P), word))
+		if (CompareWord(Info(P), word))
 		{
 			found = true;
 		}
@@ -185,27 +185,6 @@ void DelAfter (LinierList *L, address *Pdel, address Prec)
 		Next(Prec) = Next(Next(Prec));
 		Next(*Pdel) = Nil;
 	}
-}
-
-void PrintInfo (LinierList L)
-{
-	address P = First(L);
-
-	if (IsEmptyLinier(L))
-	{
-		printf("[]");
-	}
-	else
-	{
-		printf("[%d", Info(P));
-		while (Next(P) != Nil)
-		{
-			P = Next(P);
-			printf(",%d", Info(P));
-		}
-		printf("]");
-	}
-	printf("\n");
 }
 
 int NbElmt (LinierList L)

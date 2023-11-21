@@ -128,7 +128,7 @@ boolean IsEOPNewline()
     }
 }
 
-boolean CompareWord1(Word word_1, Word word_2)
+boolean CompareWord(Word word_1, Word word_2)
 {
     if (word_1.Length != word_2.Length)
     {

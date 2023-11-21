@@ -67,7 +67,7 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
                 
                 while (!found_3 && ctr < NbElmt(multi.Elements[idx_user].PlaylistSong[idx_playlist].Song))
                 {
-                    if (CompareWord1(SplitWordMark(SplitWordMark(Info(P))), song_album.Elements[rand_song].Key))
+                    if (CompareWord(SplitWordMark(SplitWordMark(Info(P))), song_album.Elements[rand_song].Key))
                     {
                         found_3 = true;
                     }
@@ -83,7 +83,7 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
                     found_2 = true;
                     int i = 0, j = 0;
                     
-                    while (!CompareWord1(song_album.Elements[rand_song].Value, album_artist.Elements[i].Key))
+                    while (!CompareWord(song_album.Elements[rand_song].Value, album_artist.Elements[i].Key))
                     {
                         i++;
                     }

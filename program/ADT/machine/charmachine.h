@@ -56,6 +56,6 @@ boolean IsEOPBlank();
 
 boolean IsEOPNewline();
 
-boolean CompareWord1(Word word_1, Word word_2);
+boolean CompareWord(Word word_1, Word word_2);
 
 #endif

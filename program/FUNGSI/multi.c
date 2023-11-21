@@ -13,7 +13,7 @@ int Login(DynamicList *user, User *multi, int idx_user)
         StartWordBlank();
         while (!found && ctr < LengthListDynamic(*user))
         {
-            if (CompareWord1(currentWord, user->A[ctr]))
+            if (CompareWord(currentWord, user->A[ctr]))
             {
                 found = true;
             }
@@ -70,7 +70,7 @@ void SignUp(DynamicList *user)
 
         while (!found_2 && ctr < LengthListDynamic(*user))
         {
-            if (CompareWord1(currentWord, user->A[ctr]))
+            if (CompareWord(currentWord, user->A[ctr]))
             {
                 found_2 = true;
             }

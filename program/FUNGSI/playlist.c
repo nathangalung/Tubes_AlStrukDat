@@ -54,7 +54,7 @@ void AddSongPlaylist(StaticList artist, Map album_artist, Map song_album, User *
     int i = 0;
     while (!penyanyivalid && (i < LengthList(artist)))
     {
-        if (CompareWord1(artist.A[i], currentWord))
+        if (CompareWord(artist.A[i], currentWord))
         {
             penyanyivalid = true;
         }
@@ -74,7 +74,7 @@ void AddSongPlaylist(StaticList artist, Map album_artist, Map song_album, User *
         int index = 0;
         for (int i = 0; i < album_artist.Count; i++)
         {
-            if (CompareWord1((album_artist).Elements[i].Value, NamaPenyanyi))
+            if (CompareWord((album_artist).Elements[i].Value, NamaPenyanyi))
             {
                 printf("\t%d. ", index+1);
                 DisplayWord((album_artist).Elements[i].Key);
@@ -91,7 +91,7 @@ void AddSongPlaylist(StaticList artist, Map album_artist, Map song_album, User *
         int i = 0;
         while (!albumvalid && (i < album_artist.Count))
         {
-            if (CompareWord1((album_artist).Elements[i].Key, currentWord) && CompareWord1((album_artist).Elements[i].Value, NamaPenyanyi))
+            if (CompareWord((album_artist).Elements[i].Key, currentWord) && CompareWord((album_artist).Elements[i].Value, NamaPenyanyi))
             {
                 albumvalid = true;
             }
@@ -112,7 +112,7 @@ void AddSongPlaylist(StaticList artist, Map album_artist, Map song_album, User *
             int index = 0;
             for (int i = 0; i < song_album.Count; i++)
             {
-                if (CompareWord1(song_album.Elements[i].Value, NamaAlbum))
+                if (CompareWord(song_album.Elements[i].Value, NamaAlbum))
                 {
                     printf("\t%d. ", index+1);
                     DisplayWord(song_album.Elements[i].Key);
@@ -133,7 +133,7 @@ void AddSongPlaylist(StaticList artist, Map album_artist, Map song_album, User *
                 int count = 0;
                 while (count < song_album.Count && check <= ID_Lagu)
                 {
-                    if (CompareWord1(song_album.Elements[count].Value, NamaAlbum))
+                    if (CompareWord(song_album.Elements[count].Value, NamaAlbum))
                     {
                         check++;
                     }
@@ -172,7 +172,7 @@ void AddSongPlaylist(StaticList artist, Map album_artist, Map song_album, User *
                     int count = 0;
                     while (!LaguSudahAda && count < NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song))
                     {
-                        if (CompareWord1(SplitWordMark(SplitWordMark(Info(P))), LaguPilihan))
+                        if (CompareWord(SplitWordMark(SplitWordMark(Info(P))), LaguPilihan))
                         {
                             LaguSudahAda = true;
                         }
@@ -248,7 +248,7 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
     int i = 0;
     while (!penyanyivalid && (i < LengthList(artist)))
     {
-        if (CompareWord1(artist.A[i], currentWord))
+        if (CompareWord(artist.A[i], currentWord))
         {
             penyanyivalid = true;
         }
@@ -268,7 +268,7 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
         int index = 0;
         for (int i = 0; i < album_artist.Count; i++)
         {
-            if (CompareWord1((album_artist).Elements[i].Value, NamaPenyanyi))
+            if (CompareWord((album_artist).Elements[i].Value, NamaPenyanyi))
             {
                 printf("\t%d. ", index+1);
                 DisplayWord((album_artist).Elements[i].Key);
@@ -285,7 +285,7 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
         int i = 0;
         while (!albumvalid && (i < album_artist.Count))
         {
-            if (CompareWord1((album_artist).Elements[i].Key, currentWord) && CompareWord1((album_artist).Elements[i].Value, NamaPenyanyi))
+            if (CompareWord((album_artist).Elements[i].Key, currentWord) && CompareWord((album_artist).Elements[i].Value, NamaPenyanyi))
             {
                 albumvalid = true;
             }
@@ -321,7 +321,7 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
             {
                 for (int i = 0; i < song_album.Count; i++)
                 {
-                    if (CompareWord1(song_album.Elements[i].Value, NamaAlbum))
+                    if (CompareWord(song_album.Elements[i].Value, NamaAlbum))
                     {
                         Word MarkSC = {";", 1};
                         Word LaguPilihan = song_album.Elements[i].Key;
