@@ -173,16 +173,42 @@ void AddSongPlaylist(StaticList artist, Map album_artist, Map song_album, User *
                     Pilihan = ConcatWord(Pilihan, NamaAlbum);
                     Pilihan = ConcatWord(Pilihan, MarkSC);
                     Pilihan = ConcatWord(Pilihan, LaguPilihan);
-                    InsVLast(&multi->Elements[idx_user].PlaylistSong[ID_Playlist-1].Song, Pilihan);
-                    printf("Lagu dengan judul \"");
-                    DisplayWord(LaguPilihan);
-                    printf("\" pada album ");
-                    DisplayWord(NamaAlbum);
-                    printf(" oleh penyanyi ");
-                    DisplayWord(NamaPenyanyi);
-                    printf(" berhasil ditambahkan ke dalam playlist ");
-                    DisplayWord(PlaylistPilihan);
-                    printf(".\n");
+                    address P = First((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song);
+                    boolean LaguSudahAda = false;
+                    int count = 0;
+                    while (!LaguSudahAda && count < NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song))
+                    {
+                        if (CompareWord1(SplitWordMark(SplitWordMark(Info(P))), LaguPilihan))
+                        {
+                            LaguSudahAda = true;
+                        }
+                        else
+                        {
+                            count++;
+                            P = Next(P);
+                        }
+                    }
+                    if (!LaguSudahAda)
+                    {
+                        InsVLast(&multi->Elements[idx_user].PlaylistSong[ID_Playlist-1].Song, Pilihan);
+                        printf("Lagu dengan judul \"");
+                        DisplayWord(LaguPilihan);
+                        printf("\" pada album ");
+                        DisplayWord(NamaAlbum);
+                        printf(" oleh penyanyi ");
+                        DisplayWord(NamaPenyanyi);
+                        printf(" berhasil ditambahkan ke dalam playlist ");
+                        DisplayWord(PlaylistPilihan);
+                        printf(".\n");
+                    }
+                    else
+                    {
+                        printf("Lagu ");
+                        DisplayWord(LaguPilihan);
+                        printf(" sudah ada di playlist ");
+                        DisplayWord(PlaylistPilihan);
+                        printf(".\n");
+                    }
                 }
                 else
                 {
@@ -357,40 +383,43 @@ void SwapPlaylist (User *multi, int idx_user, Word word)
         Word PlaylistPilihan = GetDynamic(((*multi).Elements[idx_user].Playlist), ID_Playlist-1);
         if ((idx_1 >= 1 && idx_1 <= NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)) && (idx_2 >= 1 && idx_2 <= NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)))
         {
-            Song1 = First((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song);
-            Song2 = First((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song);
-            for (int i = 0; i < idx_1 - 1; i++)
+            if (idx_1 == idx_2)
             {
-                Song1 = Next(Song1);
+                printf("Tidak dapat menukar lagu dengan urutan yang sama.\n");
             }
-            for (int i = 0; i < idx_2 - 1; i++)
+            else
             {
-                Song2 = Next(Song2);
+                Song1 = First((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song);
+                Song2 = First((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song);
+                for (int i = 0; i < idx_1 - 1; i++)
+                {
+                    Song1 = Next(Song1);
+                }
+                for (int i = 0; i < idx_2 - 1; i++)
+                {
+                    Song2 = Next(Song2);
+                }
+                Word InfoSong1 = Info(Song1);
+                Word InfoSong2 = Info(Song2);
+
+                temp = Next(Song1);
+                Next(Song1) = Next(Song2);
+                Next(Song2) = temp;
+
+                printf("Berhasil menukar lagu dengan nama \"");
+                DisplayWord(SplitWordMark(SplitWordMark(InfoSong1)));
+                printf("\" dengan \"");
+                DisplayWord(SplitWordMark(SplitWordMark(InfoSong2)));
+                printf("\" di playlist \"");
+                DisplayWord(PlaylistPilihan);
+                printf("\"\n");
             }
-            Word InfoSong1 = Info(Song1);
-            Word InfoSong2 = Info(Song2);
-
-            temp = Next(Song1);
-            Next(Song1) = Next(Song2);
-            Next(Song2) = temp;
-
-            printf("Berhasil menukar lagu dengan nama \"");
-            DisplayWord(SplitWordMark(SplitWordMark(InfoSong1)));
-            printf("\" dengan \"");
-            DisplayWord(SplitWordMark(SplitWordMark(InfoSong2)));
-            printf("\" di playlist \"");
-            DisplayWord(PlaylistPilihan);
-            printf("\"\n");
         }
         else if (idx_1 == 0 || idx_2 == 0)
         {
             printf("Tidak ada lagu dengan urutan ke 0 di playlist \"");
             DisplayWord(PlaylistPilihan);
             printf("\"\n");
-        }
-        else if (idx_1 == idx_2)
-        {
-            printf("Tidak dapat menukar lagu dengan urutan yang sama.");
         }
         else if ((idx_1 < 0 || idx_1 > NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)) && (idx_2 < 0 || idx_2 > NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)))
         {
