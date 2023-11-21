@@ -74,9 +74,10 @@ void Enqueue(Queue *queue, Word word)
         else if (IDX_TAIL(*queue) == CAPACITY-1)
         {
             IDX_TAIL(*queue) += 1;
-        } else
+        }
+        else
         {
-            IDX_TAIL(*queue) += 1;
+            IDX_TAIL(*queue)++;
         }
     } 
     TAIL(*queue) = word;
@@ -96,6 +97,7 @@ void Dequeue(Queue *queue, Word *word)
         {
             queue->Buffer[i] = queue->Buffer[i+1];
         }
+        IDX_TAIL(*queue)--;
     }
 }
 

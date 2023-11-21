@@ -97,10 +97,4 @@ void InsertLastStatic(StaticList *list, Word word);
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen terakhir L. */
 
-int ReadCountFirst(Word filename, StaticList *list, int i);
-
-int ReadCountWord(StaticList *list, int i);
-
-int ReadCountLine(StaticList *list, int i);
-
 #endif

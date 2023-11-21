@@ -120,29 +120,3 @@ void InsertLastStatic(StaticList *list, Word word)
     list->A[count] = word;
 }
 
-int ReadCountFirst(Word filename, StaticList *list, int count)
-{
-    StartWordNewline(filename);
-    list->A[count] = currentWord;
-    int count_item = WordToInt(currentWord);
-
-    return (count_item);
-}
-
-int ReadCountWord(StaticList *list, int count)
-{
-    AdvWordBlank();
-    list->A[count] = currentWord;
-    int count_item = WordToInt(currentWord);
-
-    return (count_item);
-}
-
-int ReadCountLine(StaticList *list, int count)
-{
-    AdvWordNewline();
-    list->A[count] = currentWord;
-    int count_item = WordToInt(currentWord);
-
-    return (count_item);
-}

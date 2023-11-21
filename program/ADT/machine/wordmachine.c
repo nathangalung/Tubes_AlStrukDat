@@ -293,7 +293,7 @@ Word SplitWordLeft(Word word)
     int sum = 0, idx;
     for (int i = 0; i < word.Length; i++)
     {
-        if (word.TabWord[i] == MARK || word.TabWord[i] == BLANK)
+        if (word.TabWord[i] == MARK)
         {
             idx = i;
             break;
@@ -343,4 +343,28 @@ Word ReadNameLine()
     Word name_item = currentWord;
 
     return (name_item);
+}
+
+int ReadCountFirst(Word filename)
+{
+    StartWordNewline(filename);
+    int count_item = WordToInt(currentWord);
+
+    return (count_item);
+}
+
+int ReadCountWord()
+{
+    AdvWordBlank();
+    int count_item = WordToInt(currentWord);
+
+    return (count_item);
+}
+
+int ReadCountLine()
+{
+    AdvWordNewline();
+    int count_item = WordToInt(currentWord);
+
+    return (count_item);
 }

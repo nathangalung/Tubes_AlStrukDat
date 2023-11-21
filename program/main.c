@@ -20,21 +20,13 @@
 
 int main()
 {
-    Word start_cmp = {"START", 5};
     Word load_cmp = {"LOAD", 4};
-    Word login_cmp = {"LOGIN", 5};
-    Word logout_cmp = {"LOGOUT", 6};
-    Word signup_cmp = {"SIGN UP", 7};
     Word list_cmp = {"LIST", 4};
     Word play_cmp = {"PLAY", 4};
     Word queue_cmp = {"QUEUE", 5};
     Word song_cmp = {"SONG", 4};
     Word playlist_cmp = {"PLAYLIST", 8};
-    Word status_cmp = {"STATUS", 6};
     Word save_cmp = {"SAVE", 4};
-    Word quit_cmp = {"QUIT", 4};
-    Word help_cmp = {"HELP", 4};
-    Word enhance_cmp = {"ENHANCE", 7};
     Word default_cmp = {"DEFAULT", 7};
     Word swap_cmp = {"SWAP", 4};
     Word remove_cmp = {"REMOVE", 6};
@@ -50,7 +42,6 @@ int main()
     Word dir = {"config/", 7};
 
     DynamicList file;
-    StaticList count;
     StaticList artist;
     Stack history;
     Set album;
@@ -63,7 +54,6 @@ int main()
     User multi;
 
     CreateEmptyDynamic(&file);
-    CreateEmptyStatic(&count);
     CreateEmptyStatic(&artist);
     CreateEmptyMap(&album_artist);
     CreateEmptyMap(&song_album);
@@ -91,7 +81,7 @@ int main()
         {
             if (!menu)
             {
-                Start(&count, &artist, &album, &album_artist, &song_album, &user, &multi);
+                Start(&artist, &album, &album_artist, &song_album, &user, &multi);
                 menu = true;
             }
             else
@@ -107,7 +97,7 @@ int main()
                 Word filename = ConcatWord(dir, command);
                 if (CheckDir(&file, filename))
                 {
-                    Load(filename, file, &count, &artist, &album, &album_artist, &song_album, &user, &playing, &multi);
+                    Load(filename, file, &artist, &album, &album_artist, &song_album, &user, &playing, &multi);
                     printf("\nSave file berhasil dibaca. WayangWave berhasil dijalankan.\n");
                     menu = true;
                 }
@@ -245,13 +235,13 @@ int main()
             if (sesi)
             {
                 command = SplitWordBlank(command);
-                if (CompareWord1(command, next_cmp))
+                if (CompareStringWord(command, "NEXT"))
                 {
-                    printf("song next\n");
+                    songNext(&multi, artist, &playing, idx_user);
                 }
-                else if (CompareWord1(command, previous_cmp))
+                else if (CompareStringWord(command, "PREVIOUS"))
                 {
-                    printf("song previous\n");
+                    songPrevious(&multi, artist, &playing, idx_user);
                 }
                 else
                 {
@@ -268,18 +258,18 @@ int main()
             if (sesi)
             {
                 command = SplitWordBlank(command);
-                if (CompareWord1(command, create_cmp))
+                if (CompareStringWord(command, "CREATE"))
                 {
                     CreatePlaylist(&multi, idx_user);
                 }
                 else if (CompareWord2(command, add_cmp))
                 {
                     command = SplitWordBlank(command);
-                    if (CompareWord1(command, song_cmp))
+                    if (CompareStringWord(command, "SONG"))
                     {
                         AddSongPlaylist(artist, album_artist, song_album, &multi, idx_user);
                     }
-                    else if (CompareWord1(command, album_cmp))
+                    else if (CompareStringWord(command, "ALBUM"))
                     {
                         AddAlbumPlaylist(artist, album_artist, song_album, &multi, idx_user);
                     }
@@ -298,7 +288,7 @@ int main()
                     command = SplitWordBlank(command);
                     printf("playlist remove\n");
                 }
-                else if (CompareWord1(command, delete_cmp))
+                else if (CompareStringWord(command, "DELETE"))
                 {
                     printf("playlist delete\n");
                 }
@@ -366,7 +356,7 @@ int main()
         {
             help(sesi, menu);
         }
-        else if (CompareWord1(command, enhance_cmp))
+        else if (CompareStringWord(command, "ENHANCE"))
         {
             if (sesi)
             {

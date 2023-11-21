@@ -2,35 +2,65 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void songNext(User multi, StaticList artist, StaticList *playing, int idx_user){
+void songNext(User *multi, StaticList artist, StaticList *playing, int idx_user)
+{
     Word currentSong = playing->A[idx_user];
+    Word temp;
+    
+    if (IsQueueEmpty(multi->Elements[idx_user].Queue))
+    {
+        printf("\nQueue kosong, memutar kembali lagu\n\"");
+        DisplayWord(SplitWordMark(SplitWordMark(currentSong)));
+        printf("\" oleh \"");
+        DisplayWord(SplitWordLeft(currentSong));
+        printf("\"\n");
+    }
+    else
+    {
+        Dequeue(&multi->Elements[idx_user].Queue, &temp);
+        PushStack(&multi->Elements[idx_user].History, currentSong);
+        playing->A[idx_user] = temp;
+        currentSong = playing->A[idx_user];
 
+        printf("\nMemutar lagu selanjutnya\n\"");
+        DisplayWord(SplitWordMark(SplitWordMark(currentSong)));
+        printf("\" oleh \"");
+        DisplayWord(SplitWordLeft(currentSong));
+        printf("\"\n");
+    }
 }
 
-void songPrevious(User *multi, StaticList artist, StaticList *playing, int idx_user) {
-    Word previousSong;
-    Word currentSong = playing->A[idx_user];
-    if (IsEmptyStack(multi->Elements[idx_user].History)) {
+void songPrevious(User *multi, StaticList artist, StaticList *playing, int idx_user)
+{
+    Word previousSong, currentSong = playing->A[idx_user];
+
+    if (IsEmptyStack(multi->Elements[idx_user].History))
+    {
         printf("\nRiwayat lagu kosong, memutar kembali lagu\n\"");
         DisplayWord(SplitWordMark(SplitWordMark(currentSong)));
         printf("\" oleh \"");
         DisplayWord(SplitWordLeft(currentSong));
         printf("\"\n");
 
-    } else {
+    }
+    else
+    {
         PopStack(&multi->Elements[idx_user].History, &previousSong);
         Word newQueue;
         Queue temp;
+        CreateEmptyQueue(&temp);
         
         Enqueue(&temp, currentSong);
         playing->A[idx_user] = previousSong;
 
-        for (int i = 0; i < LengthQueue(multi->Elements[idx_user].Queue); i++)
+        int len = LengthQueue(multi->Elements[idx_user].Queue);
+
+        for (int i = 0; i < len; i++)
         {
             Dequeue(&multi->Elements[idx_user].Queue, &newQueue);
             Enqueue(&temp, newQueue);
         }
-        CreateEmptyQueue(&multi->Elements[idx_user].Queue);
+
         multi->Elements[idx_user].Queue = temp;
 
         printf("\nMemutar lagu sebelumnya\n\"");

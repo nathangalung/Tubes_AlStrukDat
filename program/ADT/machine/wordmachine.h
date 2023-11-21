@@ -76,4 +76,10 @@ boolean CompareStringWord(Word word_1, char *string);
 
 Word ReadNameLine();
 
+int ReadCountFirst(Word filename);
+
+int ReadCountWord();
+
+int ReadCountLine();
+
 #endif
