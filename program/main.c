@@ -15,6 +15,7 @@
 #include "FUNGSI/queue.h"
 #include "FUNGSI/status.h"
 #include "FUNGSI/interface.h"
+#include "FUNGSI/song.h"
 
 int main()
 {
