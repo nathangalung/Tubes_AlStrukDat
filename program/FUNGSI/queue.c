@@ -130,7 +130,7 @@ void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
                 DisplayWord(LaguPilihan);
                 printf("\" oleh \"");
                 DisplayWord(NamaPenyanyi);
-                printf("\"ke queue\n");
+                printf("\" ke queue.\n");
             }
             else
             {
