@@ -319,8 +319,8 @@ int main()
             {
                 command = SplitWordBlank(command);
                 Word filename = ConcatWord(dir, command);
-                Save(filename, artist, album, album_artist, song_album, user, playing, multi);
-                printf("save\n");
+                Save(filename, artist, album, album_artist, song_album, user, playing, multi, &file);
+                printf("save file berhasil disimpan\n");
             }
             else
             {
@@ -333,19 +333,26 @@ int main()
             {
                 sesi = false;
 
-                printf("quit sesi\n");
+                printf("keluar dari sesi\n");
             }
             else if (menu)
             {
                 menu = false;
-
-                printf("quit menu\n");
+                printf("Apakah kamu ingin menyimpan data sesi sekarang? (Y/N) : ");
+                StartWordMark();
+                if (CompareStringWord(currentWord,"Y")){
+                    printf("ketik \"<nama_file>.txt\" : ");
+                    StartWordMark();
+                    Word filename = ConcatWord(dir, currentWord);
+                    Save(filename, artist, album, album_artist, song_album, user, playing, multi, &file);
+                    printf("File berhasil disimpan\n");
+                }
+                printf("keluar dari menu\n");
             }
             else if (run)
             {
                 run = false;
-
-                printf("quit program\n");
+                printf("keluar dari program\n");
             }
             else
             {
