@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "charmachine.h"
 
@@ -27,6 +28,7 @@ void StartNewline(Word filename)
     if (pita == NULL)
     {
         EOP = true;
+        exit(0);
     }
     else
     {
