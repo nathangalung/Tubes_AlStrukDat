@@ -20,7 +20,7 @@ void LoadImage(FILE *ascii)
 {
     char read_string[MAX_LEN];
     while(fgets(read_string,sizeof(read_string), ascii) != NULL)
-    printf("%s%s", "\x1B[32m", read_string);
+    printf("%s%s", "\x1B[33m", read_string);
     printf("\n");
 }
 
@@ -33,19 +33,19 @@ void Welcome()
     {
         if (i == 0)
         {
-            filename = "interface/welcoming_1.txt";
+            filename = "interface/welcome_1.txt";
         }
         else if (i == 1)
         {
-            filename = "interface/welcoming_2.txt";
+            filename = "interface/welcome_2.txt";
         }
         else if (i == 2)
         {
-            filename = "interface/welcoming_3.txt";
+            filename = "interface/welcome_3.txt";
         } 
         else
         {
-            filename = "interface/welcoming_4.txt";
+            filename = "interface/welcome_4.txt";
         } 
         ascii = NULL;
         ascii = fopen(filename,"r");

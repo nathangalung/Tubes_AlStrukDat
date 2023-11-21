@@ -85,7 +85,7 @@ int main()
         IgnoreNewlines();
         Word command = currentWord;
 
-        if (CompareWord1(command, start_cmp))
+        if (CompareStringWord(command, "START"))
         {
             if (!menu)
             {
@@ -119,7 +119,7 @@ int main()
                 printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
-        else if (CompareWord1(command, signup_cmp))
+        else if (CompareStringWord(command, "SIGN UP"))
         {
             if (menu && !sesi)
             {
@@ -130,7 +130,7 @@ int main()
                 printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
-        else if (CompareWord1(command, login_cmp))
+        else if (CompareStringWord(command, "LOGIN"))
         {
             if (menu && !sesi)
             {
@@ -142,7 +142,7 @@ int main()
                 printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
-        else if (CompareWord1(command, logout_cmp))
+        else if (CompareStringWord(command, "LOGOUT"))
         {
             if (sesi)
             {
@@ -310,7 +310,7 @@ int main()
                 printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
-        else if (CompareWord1(command, status_cmp))
+        else if (CompareStringWord(command, "STATUS"))
         {
             if (sesi)
             {
@@ -333,7 +333,7 @@ int main()
                 printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
-        else if (CompareWord1(command, quit_cmp))
+        else if (CompareStringWord(command, "QUIT"))
         {
             if (sesi)
             {
@@ -358,7 +358,7 @@ int main()
                 printf("\nCommand tidak bisa dieksekusi!\n");
             }
         }
-        else if (CompareWord1(command, help_cmp))
+        else if (CompareStringWord(command, "HELP"))
         {
             help(sesi, menu);
         }
@@ -377,6 +377,6 @@ int main()
         {
             printf("\nCommand tidak diketahui!\n");
         }
-        printf("\n");
+        printf("\n=======================================================================================================================\n");
     }
 }
