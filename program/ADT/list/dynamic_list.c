@@ -45,19 +45,3 @@ void InsertLastDynamic(DynamicList *list, Word word)
     list->A[list->Neff] = word;
     list->Neff++;
 }
-
-boolean CheckDir(DynamicList *file, Word word)
-{
-    boolean found = false;
-    int ctr = 0;
-    while (!found && ctr < LengthListDynamic(*file))
-    {
-        if (CompareWord1(file->A[ctr], word))
-        {
-            found = true;
-        }
-        ctr++;
-    }
-
-    return found;
-}

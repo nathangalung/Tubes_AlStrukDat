@@ -108,7 +108,7 @@ void playSong(StaticList artist, Map album_artist, Map song_album, User *multi, 
             {
                 int check = 0;
                 int count = 0;
-                while (count < song_album.Count && check < ID_Lagu-1)
+                while (count < song_album.Count && check <= ID_Lagu)
                 {
                     if (CompareWord1(song_album.Elements[count].Value, NamaAlbum))
                     {
@@ -117,7 +117,7 @@ void playSong(StaticList artist, Map album_artist, Map song_album, User *multi, 
                     count++;
                 }
                 Word MarkSC = {";", 1};
-                Word LaguPilihan = song_album.Elements[count].Key;
+                Word LaguPilihan = song_album.Elements[count - 2].Key;
                 Word Pilihan = ConcatWord(NamaPenyanyi, MarkSC);
                 Pilihan = ConcatWord(Pilihan, NamaAlbum);
                 Pilihan = ConcatWord(Pilihan, MarkSC);
@@ -167,49 +167,48 @@ void playPlaylist(User *multi, StaticList *playing, int idx_user)
     namaplaylist = currentWord;
     idPlaylist = atoi(currentWord.TabWord);
 
-    idPlaylistValid = false;
-
-    if (!idPlaylistValid)
+    if (idPlaylist > 0 && idPlaylist <= LengthListDynamic(multi->Elements[idx_user].Playlist))
     {
-        if (idPlaylist > 0 && idPlaylist <= LengthListDynamic(multi->Elements[idx_user].Playlist))
+        idPlaylistValid = true;
+        printf("\nMemutar playlist \"");
+        DisplayWord(GetDynamic(multi->Elements[idx_user].Playlist, idPlaylist-1));
+        printf("\".\n");
+        
+        playing->A[idx_user] = StringToWord(MarkStatic);
+        lagu = First(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song);
+        
+        Stack temp_stack;
+        Word temp_word;
+
+        CreateEmptyStack(&temp_stack);
+        CreateEmptyQueue(&multi->Elements[idx_user].Queue);
+        CreateEmptyStack(&multi->Elements[idx_user].History);
+        
+        if (!IsEmptyLinier(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song))
         {
-            idPlaylistValid = true;
-            printf("\nMemutar playlist \"");
-            DisplayWord(GetDynamic(multi->Elements[idx_user].Playlist, idPlaylist-1));
-            printf("\".\n");
-            
-            playing->A[idx_user] = StringToWord(MarkStatic);
-            lagu = First(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song);
-            
-            Stack temp_stack;
-            Word temp_word;
+            playing->A[idx_user] = Info(lagu);
+            lagu = Next(lagu);
 
-            CreateEmptyStack(&temp_stack);
-            CreateEmptyQueue(&multi->Elements[idx_user].Queue);
-            CreateEmptyStack(&multi->Elements[idx_user].History);
-            
-            if (IsEmptyLinier(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) > 0)
+            for (int i = 0; (i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) - 1); i++)
             {
-                playing->A[idx_user] = Info(lagu);
+                PushStack(&temp_stack, Info(lagu));
+                Enqueue(&multi->Elements[idx_user].Queue, Info(lagu));
                 lagu = Next(lagu);
-
-                for (int i = 0; (i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) - 1); i++)
-                {
-                    PushStack(&temp_stack, Info(lagu));
-                    Enqueue(&multi->Elements[idx_user].Queue, Info(lagu));
-                    lagu = Next(lagu);
-                }
-                
-                for (int i = 0; (i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) - 1); i++)
-                {
-                    PopStack(&temp_stack, &temp_word);
-                    PushStack(&multi->Elements[idx_user].History, temp_word);
-                }
+            }
+            
+            for (int i = 0; (i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) - 1); i++)
+            {
+                PopStack(&temp_stack, &temp_word);
+                PushStack(&multi->Elements[idx_user].History, temp_word);
             }
         }
         else
         {
-            printf("\nPlaylist tidak ditemukan.\n");
+            printf("\nPlaylist %d tidak memiliki lagu", idPlaylist);
         }
+    }
+    else
+    {
+        printf("\nPlaylist tidak ditemukan.\n");
     }
 }

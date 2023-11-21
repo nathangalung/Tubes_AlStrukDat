@@ -20,22 +20,19 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
     {
         boolean penyanyivalid = false;
 
-        while (!penyanyivalid) 
+        printf("\nPilih penyanyi untuk melihat album mereka : ");
+        StartWordMark();
+        printf("\n");
+        int i = 0;
+        while (!penyanyivalid && (i < LengthList(artist)))
         {
-            printf("Pilih penyanyi untuk melihat album mereka : ");
-            StartWordMark();
-            printf("\n");
-            int i = 0;
-            while (!penyanyivalid && (i < LengthList(artist)))
+            if (CompareWord1(artist.A[i], currentWord))
             {
-                if (CompareWord1(artist.A[i], currentWord))
-                {
-                    penyanyivalid = true;
-                }
-                else 
-                {
-                    i++;
-                }
+                penyanyivalid = true;
+            }
+            else 
+            {
+                i++;
             }
         }
 
@@ -63,22 +60,18 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
             if (CompareStringWord(currentWord, "Y")) 
             {
                 boolean laguvalid = false;
-                while (!laguvalid) 
+                printf("\nPilih album untuk melihat lagu yang ada di album : ");
+                StartWordMark();
+                int i = 0;
+                while (!laguvalid && (i < album_artist.Count))
                 {
-                    printf("Pilih album untuk melihat lagu yang ada di album : ");
-                    StartWordMark();
-                    printf("\n");
-                    int i = 0;
-                    while (!laguvalid && (i < album_artist.Count))
+                    if (CompareWord1((album_artist).Elements[i].Key, currentWord))
                     {
-                        if (CompareWord1((album_artist).Elements[i].Key, currentWord))
-                        {
-                            laguvalid = true;
-                        }
-                        else
-                        {
-                            i++;
-                        }
+                        laguvalid = true;
+                    }
+                    else
+                    {
+                        i++;
                     }
                 }
 
@@ -101,13 +94,13 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
                 }
                 else
                 {
-                    printf("Nama album tidak ditemukan. Silahkan coba lagi.\n");
+                    printf("\nNama album tidak ditemukan. Silahkan coba lagi!\n");
                 }
             }
         }
         else
         {
-            printf("Nama artis tidak ditemukan. Silakan coba lagi.\n");
+            printf("Nama artis tidak ditemukan. Silakan coba lagi!\n");
         }
     }
 }
@@ -128,7 +121,7 @@ void ListPlaylist (User multi, int idx_user)
     } 
     else 
     {
-        printf("Kamu tidak memiliki playlist.");
+        printf("\nKamu tidak memiliki playlist.");
         printf("\n");
     }
 }

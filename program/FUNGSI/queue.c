@@ -162,7 +162,7 @@ void queuePlaylist(User *multi, int idx_user)
     Word Playlist;
 
     /* ALGORITMA */
-    printf("\nMasukkan ID Playlist: ");
+    printf("Masukkan ID Playlist: ");
     StartWordMark();
     Playlist = currentWord;
     idPlaylist = atoi(currentWord.TabWord);
@@ -204,7 +204,7 @@ void queueSwap(User *multi, Word word, int idx_user)
         multi->Elements[idx_user].Queue.Buffer[idx_1 - 1] = multi->Elements[idx_user].Queue.Buffer[idx_2 - 1];
         multi->Elements[idx_user].Queue.Buffer[idx_2 - 1] = temp;
 
-        printf("\nLagu \"");
+        printf("Lagu \"");
         DisplayWord(SplitWordMark(SplitWordMark(multi->Elements[idx_user].Queue.Buffer[idx_1 - 1])));
         printf("\" berhasil ditukar dengan \"");
         DisplayWord(SplitWordMark(SplitWordMark(multi->Elements[idx_user].Queue.Buffer[idx_2 - 1])));
@@ -212,19 +212,19 @@ void queueSwap(User *multi, Word word, int idx_user)
     }
     else if (idx_1 == 0 || idx_2 == 0)
     {
-        printf("\nTidak ada lagu dengan urutan ke 0. Silakan sertakan urutan yang valid dari lagu yang ingin ditukar!\n");
+        printf("Tidak ada lagu dengan urutan ke 0. Silakan sertakan urutan yang valid dari lagu yang ingin ditukar!\n");
     }
     else if ((idx_1 < 0 || idx_1 > LengthQueue(multi->Elements[idx_user].Queue)) && (idx_2 < 0 || idx_2 > LengthQueue(multi->Elements[idx_user].Queue)))
     {
-        printf("\nLagu dengan urutan ke %d dan %d tidak terdapat dalam queue!\n", idx_1, idx_2);
+        printf("Lagu dengan urutan ke %d dan %d tidak terdapat dalam queue!\n", idx_1, idx_2);
     }
     else if (idx_1 < 0 || idx_1 > LengthQueue(multi->Elements[idx_user].Queue))
     {
-        printf("\nLagu dengan urutan ke %d tidak terdapat dalam queue!\n", idx_1);
+        printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", idx_1);
     }
     else
     {
-        printf("\nLagu dengan urutan ke %d tidak terdapat dalam queue!\n", idx_2);
+        printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", idx_2);
     }
 }
 
@@ -248,12 +248,12 @@ void queueRemove(User *multi, Word word, int idx_user)
                 multi->Elements[idx_user].Queue.Buffer[i] = multi->Elements[idx_user].Queue.Buffer[i + 1];
                 ctr++;
             }
-            IDX_TAIL(multi->Elements[idx_user].Queue) = ctr;
+            IDX_TAIL(multi->Elements[idx_user].Queue) = LengthQueue(multi->Elements[idx_user].Queue) - 2;
 
         }
         Word artist = SplitWordLeftMark(song);
         song = SplitWordMark(SplitWordMark(song));
-        printf("\nLagu \"");
+        printf("Lagu \"");
         DisplayWord(artist);
         printf("\" oleh \"");
         DisplayWord(song);
@@ -261,16 +261,16 @@ void queueRemove(User *multi, Word word, int idx_user)
     }
     else if (idx_1 == 0)
     {
-        printf("\nTidak ada lagu dengan urutan ke 0. Silakan sertakan urutan yang valid dari lagu yang ingin ditukar!\n");
+        printf("Tidak ada lagu dengan urutan ke 0. Silakan sertakan urutan yang valid dari lagu yang ingin ditukar!\n");
     }
     else
     {
-        printf("\nLagu dengan urutan ke %d tidak terdapat dalam queue!\n", idx_1);
+        printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", idx_1);
     }
 }
 
 void queueClear(User *multi, int idx_user)
 {
     CreateEmptyQueue(&multi->Elements[idx_user].Queue);
-    printf("\nQueue berhasil dikosongkan.\n");
+    printf("Queue berhasil dikosongkan.\n");
 }

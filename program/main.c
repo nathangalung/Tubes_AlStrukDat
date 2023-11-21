@@ -20,24 +20,11 @@
 
 int main()
 {
-    StaticList artist;
-    Stack history;
+    StaticList artist, playing;
     Set album;
-    Map album_artist;
-    Map song_album;
+    Map album_artist, song_album;
     DynamicList user;
-    DynamicList playlist;
-    Queue queue;
-    StaticList playing;
     User multi;
-
-    CreateEmptyStatic(&artist);
-    CreateEmptyMap(&album_artist);
-    CreateEmptyMap(&song_album);
-    CreateEmptySet(&album);
-    CreateEmptyDynamic(&user);
-    CreateEmptyStatic(&playing);
-    CreateEmptyUser(&multi);
     
     boolean run = true, menu = false, sesi = false;
     int idx_user = -1;
@@ -283,7 +270,7 @@ int main()
         }
         else if (CompareStringWord(SplitWordLeftBlank(command), "SAVE"))
         {
-            if (sesi)
+            if (menu || sesi)
             {
                 command = SplitWordBlank(command);
                 Word filename = ConcatWord(StringToWord("config/"), command);

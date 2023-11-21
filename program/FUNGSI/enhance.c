@@ -37,69 +37,70 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
     boolean found_1 = false;
     int idx_playlist;
 
-    while (!found_1)
-    {
-        printf("\nSilakan masukkan ID playlist yang ingin dienhance : ");
-        StartWordMark();
-        idx_playlist = atoi(currentWord.TabWord) - 1;
-        
-        if (idx_playlist >= 0 && idx_playlist < LengthListDynamic(multi.Elements[idx_user].Playlist))
-        {
-            found_1 = true;
-        }
-        else
-        {
-            printf("\nID playlist %d tidak terdapat pada daftar playlist.\n", (idx_playlist + 1));
-        }
-    }
-    int rand_count = (rand() % 3) + 1;
+    printf("\nSilakan masukkan ID playlist yang ingin dienhance : ");
+    StartWordMark();
+    idx_playlist = atoi(currentWord.TabWord) - 1;
     
-    for (int i = 0; i < rand_count; i++)
+    if (idx_playlist >= 0 && idx_playlist < LengthListDynamic(multi.Elements[idx_user].Playlist))
     {
-        boolean found_2 = false;
-        address P = First(multi.Elements[idx_user].PlaylistSong[idx_playlist].Song);
-        Word input, MarkSC = {";", 1};
+        found_1 = true;
+    }
+    else
+    {
+        printf("\nID playlist %d tidak terdapat pada daftar playlist.\n", (idx_playlist + 1));
+    }
 
-        while (!found_2)
+    if (found_1)
+    {
+        int rand_count = (rand() % 3) + 1;
+        
+        for (int i = 0; i < rand_count; i++)
         {
-            boolean found_3 = false;
-            int rand_song = rand() % (song_album.Count + 1), ctr = 0;
-            
-            while (!found_3 && ctr < NbElmt(multi.Elements[idx_user].PlaylistSong[idx_playlist].Song))
+            boolean found_2 = false;
+            Word input, MarkSC = {";", 1};
+
+            while (!found_2)
             {
-                if (CompareWord1(SplitWordMark(SplitWordMark(Info(P))), song_album.Elements[rand_song].Key))
-                {
-                    found_3 = true;
-                }
-                else
-                {
-                    ctr++;
-                    P = Next(P);
-                }
-            }
-            
-            if (!found_3)
-            {
-                found_2 = true;
-                int i = 0, j = 0;
+                boolean found_3 = false;
+                int rand_song = (rand() % song_album.Count) + 1, ctr = 0;
+                address P = First(multi.Elements[idx_user].PlaylistSong[idx_playlist].Song);
                 
-                while (!CompareWord1(song_album.Elements[rand_song].Value, album_artist.Elements[i].Key))
+                while (!found_3 && ctr < NbElmt(multi.Elements[idx_user].PlaylistSong[idx_playlist].Song))
                 {
-                    i++;
+                    if (CompareWord1(SplitWordMark(SplitWordMark(Info(P))), song_album.Elements[rand_song].Key))
+                    {
+                        found_3 = true;
+                    }
+                    else
+                    {
+                        ctr++;
+                        P = Next(P);
+                    }
                 }
 
-                input = ConcatWord(album_artist.Elements[i].Value, MarkSC);
-                input = ConcatWord(input, song_album.Elements[rand_song].Value);
-                input = ConcatWord(input, MarkSC);
-                input = ConcatWord(input, song_album.Elements[rand_song].Key);
-                
-                InsVLast(&multi.Elements[idx_user].PlaylistSong[idx_playlist].Song, input);
+                if (!found_3)
+                {
+                    found_2 = true;
+                    int i = 0, j = 0;
+                    
+                    while (!CompareWord1(song_album.Elements[rand_song].Value, album_artist.Elements[i].Key))
+                    {
+                        i++;
+                    }
 
-                printf("\nBerhasil menambahkan lagu ");
-                DisplayWord(song_album.Elements[rand_song].Key);
-                printf(" oleh ");
-                DisplayWord(album_artist.Elements[i].Value);
-                printf(" ke dalam ID playlist %d.\n", (idx_playlist + 1));
+                    input = ConcatWord(album_artist.Elements[i].Value, MarkSC);
+                    input = ConcatWord(input, song_album.Elements[rand_song].Value);
+                    input = ConcatWord(input, MarkSC);
+                    input = ConcatWord(input, song_album.Elements[rand_song].Key);
+                    
+                    InsVLast(&multi.Elements[idx_user].PlaylistSong[idx_playlist].Song, input);
+
+                    printf("\nBerhasil menambahkan lagu ");
+                    DisplayWord(song_album.Elements[rand_song].Key);
+                    printf(" oleh ");
+                    DisplayWord(album_artist.Elements[i].Value);
+                    printf(" ke dalam ID playlist %d.\n", (idx_playlist + 1));
+                }
             }
         }
     }

@@ -4,41 +4,35 @@
 
 void CreatePlaylist (User *multi, int idx_user)
 {
-    boolean valid = false;
-    while (!valid) 
+    printf("Masukkan nama playlist yang ingin dibuat : ");
+    int countChar, countWS;
+    countChar = 0;
+    countWS = 0;
+    StartWordMark();
+    printf("\n");
+    for (int i = 0; i < currentWord.Length; i++) 
     {
-        printf("Masukkan nama playlist yang ingin dibuat : ");
-        int countChar, countWS;
-        countChar = 0;
-        countWS = 0;
-        StartWordMark();
-        printf("\n");
-        for (int i = 0; i < currentWord.Length; i++) 
+        if (currentWord.TabWord[i] != BLANK) 
         {
-            if (currentWord.TabWord[i] != BLANK) 
-            {
-                countChar++;
-            } 
-            else 
-            {
-                countWS++;
-            }
-        }
-
-        if ((countChar >= 3)) 
-        {
-            InsertLastDynamic(&multi->Elements[idx_user].Playlist, currentWord);
-            printf("Playlist ");
-            DisplayWord(currentWord);
-            printf(" berhasil dibuat!\n");
-            printf("Silakan masukkan lagu-lagu artis terkini kesayangan Anda!\n");
-            valid = true;
+            countChar++;
         } 
         else 
         {
-            printf("Minimal terdapat 3 karakter selain whitespace dalam nama playlist. Silakan coba lagi.\n");
-            valid = false;
+            countWS++;
         }
+    }
+
+    if ((countChar >= 3)) 
+    {
+        InsertLastDynamic(&multi->Elements[idx_user].Playlist, currentWord);
+        printf("Playlist ");
+        DisplayWord(currentWord);
+        printf(" berhasil dibuat!\n");
+        printf("Silakan masukkan lagu-lagu artis terkini kesayangan Anda!\n");
+    } 
+    else 
+    {
+        printf("Minimal terdapat 3 karakter selain whitespace dalam nama playlist. Silakan coba lagi.\n");
     }
 }
 

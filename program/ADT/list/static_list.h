@@ -48,50 +48,11 @@ Word GetList(StaticList list, IdxType i);
 /* Prekondisi : list tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
 /* Mengirimkan elemen list yang ke-i */
 
-/* *** Selektor SET : Mengubah nilai list dan elemen list *** */
-void SetList(StaticList *list, IdxType i, Word word);
-/* I.S. T terdefinisi, sembarang */
-/* F.S. Elemen T yang ke-i bernilai v */
-
 /* ********** SELEKTOR ********** */
 /* *** Banyaknya elemen *** */
 int LengthList(StaticList list);
 /* Mengirimkan banyaknya elemen efektif list */
 /* Mengirimkan nol jika list kosong */
-
-/* *** Selektor INDEKS *** */
-IdxType FirstIdxList(StaticList list);
-/* Prekondisi : list L tidak kosong */
-/* Mengirimkan indeks elemen pertama */
-
-IdxType LastIdxList(StaticList list);
-/* Prekondisi : list L tidak kosong */
-/* Mengirimkan indeks elemen terakhir */
-
-/* ********** Test Indeks yang valid ********** */
-boolean IsIdxListValid (StaticList list, IdxType i);
-/* Prekondisi : i sembarang */
-/* Mengirimkan true jika i adalah indeks yang valid utk ukuran list */
-/* yaitu antara indeks yang terdefinisi untuk container*/
-
-boolean IsIdxListEff (StaticList list, IdxType i);
-/* Prekondisi : i sembarang*/
-/* Mengirimkan true jika i adalah indeks yang terdefinisi utk list */
-/* yaitu antara FirstIdx(L)..LastIdx(L) */
-
-/* ********** Operasi-operasi ********** */
-boolean SearchList(StaticList list, Word word);
-/* Prekondisi : X sembarang */
-/* Mengirimkan true jika terdapat elemen X di dalam list */
-/* yaitu antara FirstIdx(L)..LastIdx(L) */
-
-void InsertFirstList(StaticList *L, Word word);
-/* I.S. L terdefinisi, mungkin kosong. */
-/* F.S. v menjadi elemen pertama L. */
-
-void InsertListAt(StaticList *list, Word word, IdxType i);
-/* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
-/* F.S. v disisipkan dalam L pada indeks ke-i (bukan menimpa elemen di i). */
 
 void InsertLastStatic(StaticList *list, Word word);
 /* I.S. L terdefinisi, mungkin kosong. */
