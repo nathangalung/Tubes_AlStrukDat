@@ -17,4 +17,7 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
 void SwapPlaylist (User *multi, int idx_user, Word word);
 
 void RemovePlaylist (User *multi, int idx_user, Word word);
+
+void DeletePlaylist (User *multi, int idx_user);
+
 #endif

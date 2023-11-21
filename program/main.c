@@ -290,7 +290,7 @@ int main()
                 }
                 else if (CompareStringWord(command, "DELETE"))
                 {
-                    printf("playlist delete\n");
+                    DeletePlaylist(&multi, idx_user);
                 }
                 else
                 {

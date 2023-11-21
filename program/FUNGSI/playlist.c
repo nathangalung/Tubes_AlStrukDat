@@ -346,13 +346,13 @@ void SwapPlaylist (User *multi, int idx_user, Word word)
     printf("\n");
     int count = 0;
     int ID_Playlist = atoi(SplitWordLeftBlank(word).TabWord);
-    DisplayWord(SplitWordLeftBlank(word));
-    Word Split1 = SplitWordLeftBlank(word);
-    int idx_1 = atoi(SplitWordBlank(Split1).TabWord);
-    Word Split2 = SplitWordBlank(word);
-    int idx_2 = atoi(SplitWordBlank(Split2).TabWord);
+    Word Split1 = SplitWordBlank(word);
+    int idx_1 = atoi(SplitWordLeftBlank(Split1).TabWord);
+    Word Split2 = SplitWordBlank(Split1);
+    int idx_2 = atoi(SplitWordBlank(Split1).TabWord);
     address Song1, Song2, temp;
     printf("%d, %d, %d\n", ID_Playlist, idx_1, idx_2);
+    DisplayWord(SplitWordBlank(Split1));
 
     if ((ID_Playlist > 0) && (ID_Playlist  <= LengthListDynamic((*multi).Elements[idx_user].Playlist)))
     {
@@ -389,6 +389,10 @@ void SwapPlaylist (User *multi, int idx_user, Word word)
             printf("Tidak ada lagu dengan urutan ke 0 di playlist \"");
             DisplayWord(PlaylistPilihan);
             printf("\"\n");
+        }
+        else if (idx_1 == idx_2)
+        {
+            printf("Tidak dapat menukar lagu dengan urutan yang sama.");
         }
         else if ((idx_1 < 0 || idx_1 > NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)) && (idx_2 < 0 || idx_2 > NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)))
         {
@@ -443,6 +447,12 @@ void RemovePlaylist (User *multi, int idx_user, Word word)
             DisplayWord(PlaylistPilihan);
             printf("\"!\n");
         }
+        else
+        {
+            printf("Tidak ada lagu dengan urutan %d di playlist \"", ID_Lagu);
+            DisplayWord(PlaylistPilihan);
+            printf("\"!\n");
+        }
     }
     else
     {
@@ -456,4 +466,53 @@ void RemovePlaylist (User *multi, int idx_user, Word word)
         printf("\n");
         P = Next(P);
     }
+}
+
+void DeletePlaylist (User *multi, int idx_user)
+{
+    printf("Daftar Playlist Pengguna :\n");
+    if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
+    {
+        int index = 0;
+        for (int i = 0; i < LengthListDynamic(multi->Elements[idx_user].Playlist); i++)
+        {
+            printf("\t%d. ", index+1);
+            DisplayWord(GetDynamic((multi->Elements[idx_user].Playlist), i));
+            index++;
+            printf("\n");
+        }
+    }
+    printf("\n");
+
+    printf("Masukkan ID Playlist yang dipilih : ");
+    StartWordBlank();
+    printf("\n");
+    int ID_Playlist = atoi(currentWord.TabWord);
+
+    if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic(multi->Elements[idx_user].Playlist))
+    {
+        Word PlaylistPilihan = GetDynamic((multi->Elements[idx_user].Playlist), ID_Playlist-1);
+        if (ID_Playlist == LengthListDynamic(multi->Elements[idx_user].Playlist))
+        {
+            multi->Elements[idx_user].Playlist.Neff--;
+        }
+        else
+        {
+            for (int i = ID_Playlist-1; i <= LengthListDynamic(multi->Elements[idx_user].Playlist); i++)
+            {
+                multi->Elements[idx_user].Playlist.A[i] = multi->Elements[idx_user].Playlist.A[i+1];
+            }
+            multi->Elements[idx_user].Playlist.Neff--;
+        }
+        CreateEmptyLinier(&multi->Elements[idx_user].PlaylistSong[ID_Playlist-1].Song);
+
+        printf("Playlist ID %d dengan judul \"", ID_Playlist);
+        DisplayWord(PlaylistPilihan);
+        printf("\" berhasil dihapus.\n");
+    }
+    else
+    {
+        ("Tidak ada playlist dengan ID %d dalam daftar playlist pengguna. Silakan coba lagi.\n", ID_Playlist);
+    }
+
 }
