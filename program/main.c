@@ -80,7 +80,7 @@ int main()
 
     while (run)
     {
-        printf(">> ");
+        printf("\n>> ");
         StartWordMark();
         IgnoreBlanks();
         IgnoreNewlines();
