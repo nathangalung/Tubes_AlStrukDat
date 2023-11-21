@@ -120,62 +120,6 @@ void InsertLastStatic(StaticList *list, Word word)
     list->A[count] = word;
 }
 
-void DeleteFirstList(StaticList *list)
-{
-    int i;
-
-    if (!IsListEmpty(*list))
-    {
-        for (i = FirstIdxList(*list); i < LastIdxList(*list); i++)
-        {
-            list->A[i] = list->A[i + 1];
-        }
-        list->A[LastIdxList(*list)] = StringToWord(MarkStatic);
-    }
-}
-
-void DeleteListAt(StaticList *list, IdxType i)
-{
-    int j;
-
-    if (!IsListEmpty(*list) && IsIdxListEff(*list, i))
-    {
-        for (j = i; j < LastIdxList(*list); j++)
-        {
-            list->A[j] = list->A[j + 1];
-        }
-        list->A[LastIdxList(*list)] = StringToWord(MarkStatic);
-    }
-}
-
-void DeleteLastList(StaticList *list)
-{
-    if (!IsListEmpty(*list))
-    {
-        list->A[LastIdxList(*list)] = StringToWord(MarkStatic);
-    }
-}
-
-StaticList ConcatList(StaticList list1, StaticList list2)
-{
-    StaticList list;
-    CreateEmptyStatic(&list);
-    int i = FirstIdxList(list1), j = FirstIdxList(list2);
-
-    while ((i <= LastIdxList(list1)) && (!CompareWord1(list1.A[i], StringToWord(MarkStatic))))
-    {
-        InsertLastStatic(&list, list1.A[i]);
-        i++;
-    }
-    while ((j <= LastIdxList(list2)) && (!CompareWord1(list2.A[i], StringToWord(MarkStatic))))
-    {
-        InsertLastStatic(&list, list2.A[j]);
-        j++;
-    }
-
-    return (list);
-}
-
 int ReadCountFirst(Word filename, StaticList *list, int count)
 {
     StartWordNewline(filename);

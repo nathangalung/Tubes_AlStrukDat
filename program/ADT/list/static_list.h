@@ -97,27 +97,10 @@ void InsertLastStatic(StaticList *list, Word word);
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen terakhir L. */
 
-void DeleteFirstList(StaticList *list);
-/* I.S. L terdefinisi, tidak kosong. */
-/* F.S. F diset dengan elemen pertama L, elemen pertama L dihapus dari L. */
-
-void DeleteListAt(StaticList *list, IdxType i);
-/* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
-/* F.S. Elemen L pada indeks ke-i dihapus dari L. */
-
-void DeleteLastList(StaticList *list);
-/* I.S. L terdefinisi, tidak kosong. */
-/* F.S. F diset dengan elemen terakhir L, elemen terakhir L dihapus dari L. */
-
-StaticList ConcatList(StaticList list1, StaticList list2);
-/* Prekondisi : L1 dan L2 tidak kosong */
-/* Mengirimkan sebuah List yang merupakan gabungan dari L1 dan L2 */
-/* Urutan elemen terisi dari L1, lalu L2 */
-/* Contoh : L1 : [1, 2]; L2 : [3, 4]; Mengembalikan [1, 2, 3, 4] */
-
 int ReadCountFirst(Word filename, StaticList *list, int i);
 
 int ReadCountWord(StaticList *list, int i);
 
 int ReadCountLine(StaticList *list, int i);
+
 #endif
