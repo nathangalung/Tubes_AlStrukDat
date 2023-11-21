@@ -137,7 +137,8 @@ void DelP (LinierList *L, Word word)
 {
 	address P = Search(*L, word);
 
-	if (P != Nil){
+	if (P != Nil)
+	{
 		if (P == First(*L))
 		{
 			DelFirst(L, &P);

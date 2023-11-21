@@ -6,7 +6,7 @@
 #include "../ADT/user/user.h"
 #include "../ADT/machine/wordmachine.h"
 
-void songNext(User multi, StaticList artist, StaticList *playing, int idx_user);
+void songNext(User *multi, StaticList artist, StaticList *playing, int idx_user);
 
 void songPrevious(User *multi, StaticList artist, StaticList *playing, int idx_user);
 
