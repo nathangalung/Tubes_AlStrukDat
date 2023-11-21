@@ -12,7 +12,7 @@ void songNext(User *multi, StaticList artist, StaticList *playing, int idx_user)
         printf("\nQueue kosong, memutar kembali lagu\n\"");
         DisplayWord(SplitWordMark(SplitWordMark(currentSong)));
         printf("\" oleh \"");
-        DisplayWord(SplitWordLeft(currentSong));
+        DisplayWord(SplitWordLeftMark(currentSong));
         printf("\"\n");
     }
     else
@@ -25,7 +25,7 @@ void songNext(User *multi, StaticList artist, StaticList *playing, int idx_user)
         printf("\nMemutar lagu selanjutnya\n\"");
         DisplayWord(SplitWordMark(SplitWordMark(currentSong)));
         printf("\" oleh \"");
-        DisplayWord(SplitWordLeft(currentSong));
+        DisplayWord(SplitWordLeftMark(currentSong));
         printf("\"\n");
     }
 }
@@ -39,7 +39,7 @@ void songPrevious(User *multi, StaticList artist, StaticList *playing, int idx_u
         printf("\nRiwayat lagu kosong, memutar kembali lagu\n\"");
         DisplayWord(SplitWordMark(SplitWordMark(currentSong)));
         printf("\" oleh \"");
-        DisplayWord(SplitWordLeft(currentSong));
+        DisplayWord(SplitWordLeftMark(currentSong));
         printf("\"\n");
 
     }
@@ -66,7 +66,7 @@ void songPrevious(User *multi, StaticList artist, StaticList *playing, int idx_u
         printf("\nMemutar lagu sebelumnya\n\"");
         DisplayWord(SplitWordMark(SplitWordMark(previousSong)));
         printf("\" oleh \"");
-        DisplayWord(SplitWordLeft(previousSong));
+        DisplayWord(SplitWordLeftMark(previousSong));
         printf("\"\n");
     }
 }

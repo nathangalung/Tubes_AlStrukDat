@@ -287,7 +287,30 @@ Word SplitWordMark(Word word)
     return (temp);
 }
 
-Word SplitWordLeft(Word word)
+Word SplitWordLeftBlank(Word word)
+{
+    Word temp;
+    int sum = 0, idx;
+    for (int i = 0; i < word.Length; i++)
+    {
+        if (word.TabWord[i] == BLANK)
+        {
+            idx = i;
+            break;
+        }
+    }
+
+    for (int i = 0; i < idx; i++)
+    {
+        temp.TabWord[sum] = word.TabWord[i];
+        sum++;
+    }
+    temp.Length = sum;
+
+    return (temp);
+}
+
+Word SplitWordLeftMark(Word word)
 {
     Word temp;
     int sum = 0, idx;
