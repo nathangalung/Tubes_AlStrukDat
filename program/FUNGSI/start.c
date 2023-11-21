@@ -2,7 +2,7 @@
 
 #include "start.h"
 
-void Start(StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user)
+void Start(StaticList *count, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, User *multi)
 {
     int count_artist = 0, count_album = 0, count_song = 0, count_user = 0;
     int idx = 0;
@@ -44,9 +44,10 @@ void Start(StaticList *count, StaticList *artist, Set *album, Map *album_artist,
     {
         name_user = ReadNameLine();
         InsertLastDynamic(user, name_user);
+        CreateEmptyQueue(&multi->Elements[i].Queue);
+        CreateEmptyStack(&multi->Elements[i].History);
+        CreateEmptyDynamic(&multi->Elements[i].Playlist);
     }  
     
     printf("\nFile konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
-    
-
 }

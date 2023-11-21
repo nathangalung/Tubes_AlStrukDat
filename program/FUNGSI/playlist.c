@@ -99,7 +99,7 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
         int i = 0;
         while (!albumvalid && (i < album_artist.Count))
         {
-            if (CompareWord1((album_artist).Elements[i].Key, currentWord))
+            if (CompareWord1((album_artist).Elements[i].Key, currentWord) && CompareWord1((album_artist).Elements[i].Value, NamaPenyanyi))
             {
                 albumvalid = true;
             }
@@ -267,7 +267,7 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
         int i = 0;
         while (!albumvalid && (i < album_artist.Count))
         {
-            if (CompareWord1((album_artist).Elements[i].Key, currentWord))
+            if (CompareWord1((album_artist).Elements[i].Key, currentWord) && CompareWord1((album_artist).Elements[i].Value, NamaPenyanyi))
             {
                 albumvalid = true;
             }

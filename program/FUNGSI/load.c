@@ -55,6 +55,9 @@ void Load(Word filename, DynamicList file, StaticList *count, StaticList *artist
     {
         name_user = ReadNameLine();
         InsertLastDynamic(user, name_user);
+        CreateEmptyQueue(&multi->Elements[i].Queue);
+        CreateEmptyStack(&multi->Elements[i].History);
+        CreateEmptyDynamic(&multi->Elements[i].Playlist);
     }
 
     for(int i = 0; i < count_user; i++)
@@ -65,35 +68,32 @@ void Load(Word filename, DynamicList file, StaticList *count, StaticList *artist
         count_queue = ReadCountLine(count, idx);
         idx++;
 
-        CreateEmptyQueue(&(*multi).Elements[i].Queue);
         for(int j=0; j<count_queue; j++)
         {
             name_song = ReadNameLine();
-            Enqueue(&(*multi).Elements[i].Queue, name_song);
+            Enqueue(&multi->Elements[i].Queue, name_song);
         } 
 
         count_history = ReadCountLine(count, idx);
         idx++;
 
-        CreateEmptyStack(&(*multi).Elements[i].History);
         for(int j=0; j<count_history; j++)
         {
             name_song = ReadNameLine();
-            PushStack(&(*multi).Elements[i].History, name_song);
+            PushStack(&multi->Elements[i].History, name_song);
         }
 
         count_playlist = ReadCountLine(count, idx);
         idx++;
 
-        CreateEmptyDynamic(&(*multi).Elements[i].Playlist);
         for(int j = 0; j < count_playlist; j++)
         {
             count_song = ReadCountWord(count, idx);
             idx++;
             name_playlist = ReadNameLine();
-            InsertLastDynamic(&(*multi).Elements[i].Playlist, name_playlist);
-
+            InsertLastDynamic(&multi->Elements[i].Playlist, name_playlist);
             CreateEmptyLinier(&multi->Elements[i].PlaylistSong[j].Song);
+
             for(int k = 0; k < count_song; k++)
             {
                 name_song = ReadNameLine();

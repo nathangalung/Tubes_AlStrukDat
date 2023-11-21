@@ -86,7 +86,7 @@ int main()
         {
             if (!menu)
             {
-                Start(&count, &artist, &album, &album_artist, &song_album, &user);
+                Start(&count, &artist, &album, &album_artist, &song_album, &user, &multi);
                 menu = true;
             }
             else

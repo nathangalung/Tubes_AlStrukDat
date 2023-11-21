@@ -78,7 +78,7 @@ void status(User multi, StaticList  artist, Set album, StaticList playing, int i
     printf("\nNow Playing:\n");
     if (CompareStringWord(playing.A[idx_user], MarkStatic))
     {
-        printf("No songs have been played yet. Please search for a song to begin playback.");
+        printf("No songs have been played yet. Please search for a song to begin playback.\n");
     }
     else 
     {
@@ -88,10 +88,18 @@ void status(User multi, StaticList  artist, Set album, StaticList playing, int i
     }
 
     printf("\nQueue :\n");
-    for (int i = 0; i < LengthQueue(multi.Elements[idx_user].Queue); i++){
-        printf("%d. ", (i+1));
-        DisplayWordDash(multi.Elements[idx_user].Queue.Buffer[i], artist, album);
-        printf("\n");
+    if (!IsQueueEmpty(multi.Elements[idx_user].Queue))
+    {
+        for (int i = 0; i < LengthQueue(multi.Elements[idx_user].Queue); i++)
+        {
+            printf("%d. ", (i+1));
+            DisplayWordDash(multi.Elements[idx_user].Queue.Buffer[i], artist, album);
+            printf("\n");
+        }
+    }
+    else
+    {
+        printf("Your queue is empty.\n");
     }
 
     
