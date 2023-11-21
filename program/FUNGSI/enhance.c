@@ -26,7 +26,7 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
     time_t t;
     srand((unsigned int)time(&t));
 
-    printf("\nBerikut daftar playlist yang dimiliki :\n");
+    printf("Berikut daftar playlist yang dimiliki :\n");
     for (int i = 0; i < (LengthListDynamic(multi.Elements[idx_user].Playlist)); i++)
     {
         printf("\t%d. ", (i+1));

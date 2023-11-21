@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+#include "../ADT/pcolor/pcolor.h"
+
 #define MAX_LEN 5000
 
 void DelayLoad(int seconds);

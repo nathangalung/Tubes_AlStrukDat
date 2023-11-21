@@ -4,7 +4,6 @@
 
 void CreatePlaylist (User *multi, int idx_user)
 {
-    printf("\n");
     boolean valid = false;
     while (!valid) 
     {
@@ -43,9 +42,8 @@ void CreatePlaylist (User *multi, int idx_user)
     }
 }
 
-void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
+void AddSongPlaylist(StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
 {
-    printf("\n");
     printf("Daftar Penyanyi :\n");
     for (int index = 0; index < LengthList(artist); index++)
     {
@@ -139,7 +137,7 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
             {
                 int check = 0;
                 int count = 0;
-                while (count < song_album.Count && check < ID_Lagu-1)
+                while (count < song_album.Count && check <= ID_Lagu)
                 {
                     if (CompareWord1(song_album.Elements[count].Value, NamaAlbum))
                     {
@@ -147,7 +145,7 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
                     }
                     count++;
                 }
-                Word LaguPilihan = song_album.Elements[count].Key;
+                Word LaguPilihan = song_album.Elements[count - 2].Key;
                 printf("Daftar Playlist Pengguna :\n");
                 if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
                 {

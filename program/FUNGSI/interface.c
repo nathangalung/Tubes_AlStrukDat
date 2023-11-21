@@ -20,7 +20,7 @@ void LoadImage(FILE *ascii)
 {
     char read_string[MAX_LEN];
     while(fgets(read_string,sizeof(read_string), ascii) != NULL)
-    printf("%s", read_string);
+    printf("%s%s", YELLOW ,read_string);
     printf("\n");
 }
 

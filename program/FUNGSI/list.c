@@ -4,7 +4,6 @@
 
 void ListDefault (StaticList artist, Map album_artist, Map song_album)
 {
-    printf("\n");
     printf("Daftar Penyanyi :\n");
     for (int index = 0; index < LengthList(artist); index++)
     {
@@ -115,7 +114,6 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
 
 void ListPlaylist (User multi, int idx_user)
 {
-    printf("\n");
     printf("Daftar playlist yang kamu miliki : \n");
     if (!IsListEmptyDynamic(multi.Elements[idx_user].Playlist))
     {

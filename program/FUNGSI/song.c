@@ -9,7 +9,7 @@ void songNext(User *multi, StaticList artist, StaticList *playing, int idx_user)
     
     if (IsQueueEmpty(multi->Elements[idx_user].Queue))
     {
-        printf("\nQueue kosong, memutar kembali lagu\n\"");
+        printf("Queue kosong, memutar kembali lagu \"");
         DisplayWord(SplitWordMark(SplitWordMark(currentSong)));
         printf("\" oleh \"");
         DisplayWord(SplitWordLeftMark(currentSong));
@@ -22,7 +22,7 @@ void songNext(User *multi, StaticList artist, StaticList *playing, int idx_user)
         playing->A[idx_user] = temp;
         currentSong = playing->A[idx_user];
 
-        printf("\nMemutar lagu selanjutnya\n\"");
+        printf("Memutar lagu selanjutnya \"");
         DisplayWord(SplitWordMark(SplitWordMark(currentSong)));
         printf("\" oleh \"");
         DisplayWord(SplitWordLeftMark(currentSong));
@@ -36,12 +36,11 @@ void songPrevious(User *multi, StaticList artist, StaticList *playing, int idx_u
 
     if (IsEmptyStack(multi->Elements[idx_user].History))
     {
-        printf("\nRiwayat lagu kosong, memutar kembali lagu\n\"");
+        printf("Riwayat lagu kosong, memutar kembali lagu \"");
         DisplayWord(SplitWordMark(SplitWordMark(currentSong)));
         printf("\" oleh \"");
         DisplayWord(SplitWordLeftMark(currentSong));
         printf("\"\n");
-
     }
     else
     {
@@ -63,7 +62,7 @@ void songPrevious(User *multi, StaticList artist, StaticList *playing, int idx_u
 
         multi->Elements[idx_user].Queue = temp;
 
-        printf("\nMemutar lagu sebelumnya\n\"");
+        printf("Memutar lagu sebelumnya \"");
         DisplayWord(SplitWordMark(SplitWordMark(previousSong)));
         printf("\" oleh \"");
         DisplayWord(SplitWordLeftMark(previousSong));

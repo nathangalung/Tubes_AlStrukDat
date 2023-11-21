@@ -3,7 +3,7 @@
 
 #include "load.h"
 
-void Load(Word filename, DynamicList file, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, StaticList *playing, User *multi)
+void Load(Word filename, DynamicList file, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, StaticList *playing, User *multi, boolean *menu)
 {
     boolean found = false;
     int count_artist = 0, count_album = 0, count_song = 0, count_user = 0, count_queue = 0, count_history = 0, count_playlist = 0;
@@ -39,7 +39,7 @@ void Load(Word filename, DynamicList file, StaticList *artist, Set *album, Map *
         }
         count_user = ReadCountLine();
         
-        for(int i=0; i<count_user; i++)
+        for (int i=0; i<count_user; i++)
         {
             name_user = ReadNameLine();
             InsertLastDynamic(user, name_user);
@@ -48,14 +48,18 @@ void Load(Word filename, DynamicList file, StaticList *artist, Set *album, Map *
             CreateEmptyDynamic(&multi->Elements[i].Playlist);
         }
 
-        for(int i = 0; i < count_user; i++)
+        Stack temp_stack;
+        Word temp_word;
+        CreateEmptyStack(&temp_stack);
+
+        for (int i = 0; i < count_user; i++)
         {
             name_playing = ReadNameLine();
             playing->A[i] = name_playing;
             
             count_queue = ReadCountLine();
 
-            for(int j=0; j<count_queue; j++)
+            for (int j=0; j<count_queue; j++)
             {
                 name_song = ReadNameLine();
                 Enqueue(&multi->Elements[i].Queue, name_song);
@@ -63,10 +67,16 @@ void Load(Word filename, DynamicList file, StaticList *artist, Set *album, Map *
             
             count_history = ReadCountLine();
 
-            for(int j=0; j<count_history; j++)
+            for (int j=0; j<count_history; j++)
             {
                 name_song = ReadNameLine();
-                PushStack(&multi->Elements[i].History, name_song);
+                PushStack(&temp_stack, name_song);
+            }
+
+            for (int j=0; j<count_history; j++)
+            {
+                PopStack(&temp_stack, &temp_word);
+                PushStack(&multi->Elements[i].History, temp_word);
             }
 
             count_playlist = ReadCountLine();
@@ -85,9 +95,11 @@ void Load(Word filename, DynamicList file, StaticList *artist, Set *album, Map *
                 }
             }
         }
+        printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
+        *menu = true;
     }
     else
     {
-        printf("gaada filenya\n");
+        printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
     }
 }

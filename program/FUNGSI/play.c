@@ -12,7 +12,6 @@ void playSong(StaticList artist, Map album_artist, Map song_album, User *multi, 
     Word penyanyi, album_word, lagu;
 
     /* ALGORITMA */
-    printf("\n");
     printf("Daftar Penyanyi :\n");
     for (index = 0; index < LengthList(artist); index++)
     {
@@ -163,7 +162,7 @@ void playPlaylist(User *multi, StaticList *playing, int idx_user)
     Word namaplaylist;
     
     /* ALGORITMA */
-    printf("\nMasukkan ID Playlist: ");
+    printf("Masukkan ID Playlist: ");
     StartWordMark();
     namaplaylist = currentWord;
     idPlaylist = atoi(currentWord.TabWord);
