@@ -155,7 +155,7 @@ void playSong(StaticList artist, Map album_artist, Map song_album, User *multi, 
 }
 
 void playPlaylist(User *multi, StaticList *playing, int idx_user)
-{ // BELOM BERES
+{
     /* KAMUS LOKAL */
     int idPlaylist;
     boolean idPlaylistValid;
@@ -172,42 +172,45 @@ void playPlaylist(User *multi, StaticList *playing, int idx_user)
 
     if (!idPlaylistValid)
     {
-        if (IsListEmptyDynamic(multi->Elements[idx_user].Playlist) || idPlaylist < 0 || idPlaylist > LengthListDynamic(multi->Elements[idx_user].Playlist))
-        {
-            printf("\nPlaylist tidak ditemukan.\n");
-        }
-        else
+        if (idPlaylist > 0 && idPlaylist <= LengthListDynamic(multi->Elements[idx_user].Playlist))
         {
             idPlaylistValid = true;
             printf("\nMemutar playlist \"");
             DisplayWord(GetDynamic(multi->Elements[idx_user].Playlist, idPlaylist-1));
             printf("\".\n");
             
-            InsVFirst(&multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song, playing->A[idx_user]);
-            
+            playing->A[idx_user] = StringToWord(MarkStatic);
             lagu = First(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song);
-
+            
             Stack temp_stack;
             Word temp_word;
+
             CreateEmptyStack(&temp_stack);
             CreateEmptyQueue(&multi->Elements[idx_user].Queue);
             CreateEmptyStack(&multi->Elements[idx_user].History);
             
-            playing->A[idx_user] = Info(lagu);
-            lagu = Next(lagu);
-
-            for (int i = 0; (i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) - 1); i++)
+            if (NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) > 0)
             {
-                PushStack(&temp_stack, Info(lagu));
-                Enqueue(&multi->Elements[idx_user].Queue, Info(lagu));
+                playing->A[idx_user] = Info(lagu);
                 lagu = Next(lagu);
+
+                for (int i = 0; (i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) - 1); i++)
+                {
+                    PushStack(&temp_stack, Info(lagu));
+                    Enqueue(&multi->Elements[idx_user].Queue, Info(lagu));
+                    lagu = Next(lagu);
+                }
+                
+                for (int i = 0; (i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) - 1); i++)
+                {
+                    PopStack(&temp_stack, &temp_word);
+                    PushStack(&multi->Elements[idx_user].History, temp_word);
+                }
             }
-            
-            for (int i = 0; (i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) - 1); i++)
-            {
-                PopStack(&temp_stack, &temp_word);
-                PushStack(&multi->Elements[idx_user].History, temp_word);
-            }
+        }
+        else
+        {
+            printf("\nPlaylist tidak ditemukan.\n");
         }
     }
 }
