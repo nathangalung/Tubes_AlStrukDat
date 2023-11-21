@@ -12,9 +12,9 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 #define UndefinedPlaylistSong NULL
 
 
-typedef struct {
-	LinierList Song;
-} Info;
+// typedef struct {
+// 	LinierList Song;
+// } Info;
 
 typedef struct {
 	Info Playlist[MaxElPlaylistSong];
