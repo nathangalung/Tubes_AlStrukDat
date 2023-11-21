@@ -14,6 +14,7 @@
 #include "FUNGSI/enhance.h"
 #include "FUNGSI/queue.h"
 #include "FUNGSI/status.h"
+#include "FUNGSI/interface.h"
 
 int main()
 {
@@ -73,6 +74,8 @@ int main()
     
     boolean run = true, menu = false, sesi = false;
     int idx_user = -1;
+
+    Welcome();
 
     while (run)
     {

@@ -189,7 +189,7 @@ void playPlaylist(User *multi, StaticList *playing, int idx_user)
             CreateEmptyQueue(&multi->Elements[idx_user].Queue);
             CreateEmptyStack(&multi->Elements[idx_user].History);
             
-            if (NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) > 0)
+            if (IsEmptyLinier(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) > 0)
             {
                 playing->A[idx_user] = Info(lagu);
                 lagu = Next(lagu);
