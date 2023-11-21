@@ -368,15 +368,12 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
 void SwapPlaylist (User *multi, int idx_user, Word word)
 {
     printf("\n");
-    int count = 0;
     int ID_Playlist = atoi(SplitWordLeftBlank(word).TabWord);
     Word Split1 = SplitWordBlank(word);
     int idx_1 = atoi(SplitWordLeftBlank(Split1).TabWord);
     Word Split2 = SplitWordBlank(Split1);
     int idx_2 = atoi(SplitWordBlank(Split1).TabWord);
     address Song1, Song2, temp;
-    printf("%d, %d, %d\n", ID_Playlist, idx_1, idx_2);
-    DisplayWord(SplitWordBlank(Split1));
 
     if ((ID_Playlist > 0) && (ID_Playlist  <= LengthListDynamic((*multi).Elements[idx_user].Playlist)))
     {
