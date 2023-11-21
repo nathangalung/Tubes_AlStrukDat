@@ -25,5 +25,5 @@ void PushStack(Stack *S, Word word)
 void PopStack(Stack *S, Word *word)
 {
     (*word) = InfoTop(*S);
-    Top(*S);
+    Top(*S)--;
 }

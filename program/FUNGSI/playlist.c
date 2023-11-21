@@ -28,7 +28,7 @@ void CreatePlaylist (User *multi, int idx_user)
 
         if ((countChar >= 3)) 
         {
-            InsertLastDynamic(&(*multi).Elements[idx_user].Playlist, currentWord);
+            InsertLastDynamic(&multi->Elements[idx_user].Playlist, currentWord);
             printf("Playlist ");
             DisplayWord(currentWord);
             printf(" berhasil dibuat!\n");
@@ -149,13 +149,13 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
                 }
                 Word LaguPilihan = song_album.Elements[count].Key;
                 printf("Daftar Playlist Pengguna :\n");
-                if (!IsListEmptyDynamic((*multi).Elements[idx_user].Playlist))
+                if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
                 {
                     int index = 0;
-                    for (int i = 0; i < LengthListDynamic((*multi).Elements[idx_user].Playlist); i++)
+                    for (int i = 0; i < LengthListDynamic(multi->Elements[idx_user].Playlist); i++)
                     {
                         printf("\t%d. ", index+1);
-                        DisplayWord(GetDynamic(((*multi).Elements[idx_user].Playlist), i));
+                        DisplayWord(GetDynamic((multi->Elements[idx_user].Playlist), i));
                         index++;
                         printf("\n");
                     }
@@ -167,9 +167,9 @@ void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User 
                 printf("\n");
                 int ID_Playlist = atoi(currentWord.TabWord);
 
-                if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic((*multi).Elements[idx_user].Playlist))
+                if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic(multi->Elements[idx_user].Playlist))
                 {
-                    Word PlaylistPilihan = GetDynamic(((*multi).Elements[idx_user].Playlist), ID_Playlist-1);
+                    Word PlaylistPilihan = GetDynamic((multi->Elements[idx_user].Playlist), ID_Playlist-1);
                     Word MarkSC = {";", 1};
                     Word Pilihan = ConcatWord(NamaPenyanyi, MarkSC);
                     Pilihan = ConcatWord(Pilihan, NamaAlbum);
@@ -281,13 +281,13 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
         {
             Word NamaAlbum = currentWord;
             printf("Daftar Playlist Pengguna :\n");
-            if (!IsListEmptyDynamic((*multi).Elements[idx_user].Playlist))
+            if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
             {
                 int index = 0;
-                for (int i = 0; i < LengthListDynamic((*multi).Elements[idx_user].Playlist); i++)
+                for (int i = 0; i < LengthListDynamic(multi->Elements[idx_user].Playlist); i++)
                 {
                     printf("\t%d. ", index+1);
-                    DisplayWord(GetDynamic(((*multi).Elements[idx_user].Playlist), i));
+                    DisplayWord(GetDynamic((multi->Elements[idx_user].Playlist), i));
                     index++;
                     printf("\n");
                 }
@@ -299,7 +299,7 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
             printf("\n");
             int ID_Playlist = atoi(currentWord.TabWord);
 
-            if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic((*multi).Elements[idx_user].Playlist))
+            if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic(multi->Elements[idx_user].Playlist))
             {
                 for (int i = 0; i < song_album.Count; i++)
                 {
@@ -314,7 +314,7 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
                         InsVLast(&multi->Elements[idx_user].PlaylistSong[ID_Playlist-1].Song, Pilihan);
                     }
                 }
-                Word PlaylistPilihan = GetDynamic(((*multi).Elements[idx_user].Playlist), ID_Playlist-1);
+                Word PlaylistPilihan = GetDynamic((multi->Elements[idx_user].Playlist), ID_Playlist-1);
                 printf("Album dengan judul \"");
                 DisplayWord(NamaAlbum);
                 printf("\" berhasil ditambahkan ke dalam playlist pengguna \"");
