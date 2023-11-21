@@ -340,3 +340,76 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
         printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
     }
 }
+
+void SwapPlaylist (User *multi, int idx_user, Word word)
+{
+    printf("\n");
+    int count = 0;
+    int ID_Playlist = atoi(SplitWordLeft(word).TabWord);
+    Word Split1 = SplitWordLeft(word);
+    int idx_1 = atoi(SplitWordBlank(Split1).TabWord);
+    Word Split2 = SplitWordBlank(word);
+    int idx_2 = atoi(SplitWordBlank(Split2).TabWord);
+    address Song1, Song2, temp;
+    printf("%d, %d, %d\n", ID_Playlist, idx_1, idx_2);
+
+    if ((ID_Playlist > 0) && (ID_Playlist  <= LengthListDynamic((*multi).Elements[idx_user].Playlist)))
+    {
+        Word PlaylistPilihan = GetDynamic(((*multi).Elements[idx_user].Playlist), ID_Playlist-1);
+        if ((idx_1 >= 1 && idx_1 <= NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)) && (idx_2 >= 1 && idx_2 <= NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)))
+        {
+            Song1 = First((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song);
+            Song2 = First((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song);
+            for (int i = 0; i < idx_1 - 1; i++)
+            {
+                Song1 = Next(Song1);
+            }
+            for (int i = 0; i < idx_2 - 1; i++)
+            {
+                Song2 = Next(Song2);
+            }
+            Word InfoSong1 = Info(Song1);
+            Word InfoSong2 = Info(Song2);
+
+            temp = Next(Song1);
+            Next(Song1) = Next(Song2);
+            Next(Song2) = temp;
+
+            printf("Berhasil menukar lagu dengan nama \"");
+            DisplayWord(SplitWordMark(SplitWordMark(InfoSong1)));
+            printf("\" dengan \"");
+            DisplayWord(SplitWordMark(SplitWordMark(InfoSong2)));
+            printf("\" di playlist \"");
+            DisplayWord(PlaylistPilihan);
+            printf("\"\n");
+        }
+        else if (idx_1 == 0 || idx_2 == 0)
+        {
+            printf("Tidak ada lagu dengan urutan ke 0 di playlist \"");
+            DisplayWord(PlaylistPilihan);
+            printf("\"\n");
+        }
+        else if ((idx_1 < 0 || idx_1 > NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)) && (idx_2 < 0 || idx_2 > NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)))
+        {
+            printf("Tidak ada lagu dengan urutan %d dan %d di playlist \"", idx_1, idx_2);
+            DisplayWord(PlaylistPilihan);
+            printf("\"\n");
+        }
+        else if ((idx_1 < 0 || idx_1 > NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)))
+        {
+            printf("Tidak ada lagu dengan urutan %d di playlist \"", idx_1);
+            DisplayWord(PlaylistPilihan);
+            printf("\"\n");
+        }
+        else
+        {
+            printf("Tidak ada lagu dengan urutan %d di playlist \"", idx_2);
+            DisplayWord(PlaylistPilihan);
+            printf("\"\n");
+        }
+    }
+    else
+    {
+        printf("Tidak ada playlist dengan playlist ID %d\n", ID_Playlist);
+    }
+}

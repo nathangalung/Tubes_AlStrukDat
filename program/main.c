@@ -286,7 +286,7 @@ int main()
                 else if (CompareWord2(command, swap_cmp))
                 {
                     command = SplitWordBlank(command);
-                    printf("playlist swap\n");
+                    SwapPlaylist(&multi, idx_user, command);
                 }
                 else if (CompareWord2(command, remove_cmp))
                 {
