@@ -7,17 +7,17 @@
 <p align="justify"> Pemutar musik ini dibuat dengan menggunakan bahasa pemrograman C dengan memanfaatkan ADT yang telah dipelajari di mata kuliah IF2111 dengan beberapa tambahan ADT yang kami buat sendiri.  </p>
 
 ## Command
-* `Start` : Fungsi untuk memasuki sesi baru
-* `Load` : Fungsi untuk memulai sesi berdasarkan file konfigurasi
-* `List` : Fungsi untuk menampilkan daftar playlist, list penyanyi, list album, dan list lagu
-* `Play` : Fungsi untuk memutar lagu atau playlist yang pilih 
-* `Queue` : Fungsi untuk memanipulasi queue lagu
-* `Song` : Fungsi untuk melakukan navigasi lagu yang ada pada queue
-* `Playlist` : Fungsi untuk melakukan basic command playlist
-* `Status` : Fungsi untuk menampilkan lagu dan playlist yang sedang diputar, serta queue lagu
-* `Save` : Fungsi untuk menyimpan state aplikasi terbaru
-* `Quit` : Fungsi untuk keluar dari aplikasi
-* `Help` : Fungsi untuk menampilkan bantuan
+* `START` : Fungsi untuk memasuki sesi baru
+* `LOAD <file>` : Fungsi untuk memulai sesi berdasarkan file konfigurasi
+* `LIST` : Fungsi untuk menampilkan daftar playlist, list penyanyi, list album, dan list lagu
+* `PLAY` : Fungsi untuk memutar lagu atau playlist yang pilih 
+* `QUEUE` : Fungsi untuk memanipulasi queue lagu
+* `SONG` : Fungsi untuk melakukan navigasi lagu yang ada pada queue
+* `PLAYLIST` : Fungsi untuk melakukan basic command playlist
+* `STATUS` : Fungsi untuk menampilkan lagu dan playlist yang sedang diputar, serta queue lagu
+* `SAVE` : Fungsi untuk menyimpan state aplikasi terbaru
+* `QUIT` : Fungsi untuk keluar dari aplikasi
+* `HELP` : Fungsi untuk menampilkan bantuan
 
 ## Daftar ADT
 * ADT List
@@ -38,14 +38,13 @@ make run
 ```
 3. Jalankan program WayangWave di terminal
 ```
-./WayangWave
+./WayangWave88Gacor
 ```
 
 ## Struktur Program
 ```
 │ README.md
 │ .gitignore
-│
 │
 ├─── doc
 │       │ Pedoman Tugas Besar.pdf
@@ -61,16 +60,17 @@ make run
 │       │       ├─── linkedlist
 │       │       ├─── list
 │       │       ├─── machine
+│       │       ├─── pcolor
 │       │       ├─── playlist_song
 │       │       ├─── queuestack
 │       │       ├─── setmap
 │       │       └─── user
 │       ├─── config
-│       │       │ default.txt
-│       │       │ savefile.txt
-│       │       │ test.txt
+│       │       └───  test.txt
 │       ├─── driver
-└───    └─── fungsi
+│       ├─── fig
+│       ├─── FUNGSI
+└───    └─── interface
 ```
 
 ## Anggota Kelompok
