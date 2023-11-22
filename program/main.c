@@ -49,7 +49,7 @@ int main()
             }
             else
             {
-                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
         else if (CompareStringWord(SplitWordLeftBlank(command), "LOAD"))
@@ -63,7 +63,7 @@ int main()
             }
             else
             {
-                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
         else if (CompareStringWord(command, "SIGN UP"))
@@ -287,16 +287,18 @@ int main()
             if (menu)
             {
                 run = false;
-                printf("Apakah kamu ingin menyimpan data sesi sekarang? (Y) : ");
+                printf("Apakah kamu ingin menyimpan data sesi sekarang? (Y/N) : ");
                 StartWordMark();
-                if (CompareStringWord(currentWord,"Y")){
+                if (CompareStringWord(currentWord,"Y"))
+                {
                     printf("ketik \"<nama_file>.txt\" : ");
                     StartWordMark();
                     Word filename = ConcatWord(StringToWord("CONFIG/"), currentWord);
                     Save(filename, artist, album, album_artist, song_album, user, playing, multi);
                     printf("\nFile berhasil disimpan\n");
                 }
-                else{
+                else
+                {
                     printf("\nFile tidak disimpan\n");
                 }
                 printf("\nProgram selesai\n");

@@ -2,26 +2,34 @@
 #include <stdlib.h>
 #include "save.h"
 
-int length(char *s){
-    int ctr=0;
-    while (s[ctr]!='\0'){
+int length(char *s)
+{
+    int ctr = 0;
+
+    while (s[ctr]!='\0')
+    {
         ctr++;
     }
     return ctr;
 }
-void WordToString(Word word, char *string) {
+void WordToString(Word word, char *string)
+{
     string[word.Length] = '\0';
 
-    for (int i = 0; i < word.Length; i++) {
+    for (int i = 0; i < word.Length; i++)
+    {
         string[i] = word.TabWord[i];
     }
 }
 
-int jmlkey(Map map, Word value){
+int jmlkey(Map map, Word value)
+{
     int count = 0;
     
-    for (int i = 0; i < map.Count; i++) {
-        if (CompareWord(map.Elements[i].Value,value)) {
+    for (int i = 0; i < map.Count; i++)
+    {
+        if (CompareWord(map.Elements[i].Value,value))
+        {
             count++;
         }
     }
@@ -29,22 +37,29 @@ int jmlkey(Map map, Word value){
     return count;
 }
 
-void writeword(FILE* File, Word word){
-    for (int it = 0; it < word.Length; it++){
-        fprintf(File,"%c", word.TabWord[it]);}
-        fprintf(File,"\n");
+void writeword(FILE* File, Word word)
+{
+    for (int it = 0; it < word.Length; it++)
+    {
+        fprintf(File,"%c", word.TabWord[it]);
+    }
+    fprintf(File,"\n");
 }
 
-void writewordnnl(FILE* File, Word word){
-    for (int it = 0; it < word.Length; it++){
-        fprintf(File,"%c", word.TabWord[it]);}
+void writewordnnl(FILE* File, Word word)
+{
+    for (int it = 0; it < word.Length; it++)
+    {
+        fprintf(File,"%c", word.TabWord[it]);
+    }
 }
 
-void Save(Word filename, StaticList artist, Set album, Map album_artist, Map song_album, DynamicList user, StaticList playing, User multi) {
+void Save(Word filename, StaticList artist, Set album, Map album_artist, Map song_album, DynamicList user, StaticList playing, User multi)
+{
     char namafile[50];
-    int jump=0;
-    int idxa=0;
-    int idxjump=0;
+    int jump = 0;
+    int idxa = 0;
+    int idxjump = 0;
     
     WordToString(filename, namafile);
     FILE *File = fopen(namafile, "w");
@@ -52,7 +67,8 @@ void Save(Word filename, StaticList artist, Set album, Map album_artist, Map son
     fprintf(File, "%d\n", LengthList(artist)); // jml penyanyi
 
     int j=0;
-    for (int i = 0; i < album_artist.Count; i+=jump) {
+    for (int i = 0; i < album_artist.Count; i+=jump)
+    {
         fprintf(File, "%d ", jmlkey(album_artist, album_artist.Elements[i].Value)); // jml album
         writeword(File,album_artist.Elements[i].Value);
         idxjump+=jmlkey(album_artist, album_artist.Elements[i].Value);
@@ -61,19 +77,26 @@ void Save(Word filename, StaticList artist, Set album, Map album_artist, Map son
         {
             fprintf(File, "%d ", jmlkey(song_album, album.Elements[idxa]));//jml lagu
             writeword(File, song_album.Elements[j].Value);//menulis nama album
+
             for (int idx1 = 0; idx1 <  jmlkey(song_album, album.Elements[idxa]); idx1++)
             {
                 writeword(File, song_album.Elements[j+idx1].Key);//menulis song
             }
+
             j+=jmlkey(song_album, album.Elements[idxa]);
             idxa++;
+
             if (idxa>=idxjump)
             {
                 break;
             }
         }
-        jump+=jmlkey(album_artist, album_artist.Elements[i].Value);}
+
+        jump+=jmlkey(album_artist, album_artist.Elements[i].Value);
+    }
+
     fprintf(File,"%d\n", user.Neff);//jml user
+
     for (int i = 0; i < user.Neff; i++)
     {
         writeword(File, user.A[i]);//nama user
