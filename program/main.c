@@ -284,13 +284,7 @@ int main()
         }
         else if (CompareStringWord(command, "QUIT"))
         {
-            if (sesi)
-            {
-                sesi = false;
-
-                printf("Keluar dari sesi\n");
-            }
-            else if (menu)
+            if (menu)
             {
                 menu = false;
                 printf("Apakah kamu ingin menyimpan data sesi sekarang? (Y) : ");
@@ -300,17 +294,17 @@ int main()
                     StartWordMark();
                     Word filename = ConcatWord(StringToWord("CONFIG/"), currentWord);
                     Save(filename, artist, album, album_artist, song_album, user, playing, multi);
-                    printf("File berhasil disimpan\n");
+                    printf("\nFile berhasil disimpan\n");
                 }
                 else{
-                    printf("File tidak disimpan\n");
+                    printf("\nFile tidak disimpan\n");
                 }
-                printf("Keluar dari menu\n");
+                printf("\nBerhasil keluar dari menu\n");
             }
             else if (run)
             {
                 run = false;
-                printf("Keluar dari program\n");
+                printf("\nProgram selesai\n");
             }
             else
             {
