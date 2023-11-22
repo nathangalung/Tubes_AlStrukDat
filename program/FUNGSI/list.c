@@ -118,6 +118,51 @@ void ListPlaylist (User multi, int idx_user)
             index++;
             printf("\n");
         }
+        printf("\n");
+
+        printf("Ingin melihat lagu yang ada? (Y/N) : ");
+        StartWordMark();
+        if (CompareStringWord(currentWord, "Y"))
+        {
+            printf("\nMasukkan ID Playlist yang dipilih : ");
+            StartWordMark();
+            printf("\n");
+            int ID_Playlist = atoi(currentWord.TabWord);
+
+            if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic(multi.Elements[idx_user].Playlist))
+            {
+                if (NbElmt(multi.Elements[idx_user].PlaylistSong[ID_Playlist-1].Song) > 0)
+                {
+                    Word Dash = StringToWord(" - ");
+                    address currentSong = First((multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song);
+                    int index = 0;
+                    for (int i = 0; i < NbElmt(multi.Elements[idx_user].PlaylistSong[ID_Playlist-1].Song); i++)
+                    {
+                        Word InfoSong = Info(currentSong);
+                        Word NamaArtis = SplitWordLeftMark(InfoSong);
+                        Word Pilihan = ConcatWord(NamaArtis, Dash);
+                        Word NamaAlbum = SplitWordLeftMark(SplitWordMark(InfoSong));
+                        Pilihan = ConcatWord(Pilihan, NamaAlbum);
+                        Pilihan = ConcatWord(Pilihan, Dash);
+                        Word NamaLagu = SplitWordMark(SplitWordMark(InfoSong));
+                        Pilihan = ConcatWord(Pilihan, NamaLagu);
+                        printf("\t%d. ", index+1);
+                        DisplayWord(Pilihan);
+                        index++;
+                        printf("\n");
+                        currentSong = Next(currentSong);
+                    }
+                }
+                else
+                {
+                    printf("Tidak ada lagu di playlist ini.\n");
+                }
+            }
+            else
+            {
+                printf("Playlist tidak ada dalam daftar. Silakan coba lagi.\n");
+            }
+        }
     } 
     else 
     {

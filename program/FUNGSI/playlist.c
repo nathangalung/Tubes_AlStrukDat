@@ -476,14 +476,6 @@ void PlaylistRemove(User *multi, int idx_user, Word word)
     {
         printf("Tidak ada playlist dengan playlist ID %d\n", ID_Playlist);
     }
-
-    address P = First(multi->Elements[idx_user].PlaylistSong[ID_Playlist-1].Song);
-    for (int i = 0; i < NbElmt(multi->Elements[idx_user].PlaylistSong[ID_Playlist-1].Song); i++)
-    {
-        DisplayWord(Info(P));
-        printf("\n");
-        P = Next(P);
-    }
 }
 
 void PlaylistDelete(User *multi, int idx_user)
