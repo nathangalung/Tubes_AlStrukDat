@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "help.h"
 
-void help(boolean sesi, boolean menu)
+void Help(boolean sesi, boolean menu)
 {
     // printf("\
     // ██╗  ██╗███████╗██╗     ██████╗     ██╗    ██╗ █████╗ ██╗   ██╗ █████╗ ███╗   ██╗ ██████╗ ██╗    ██╗ █████╗ ██╗   ██╗███████╗\n\

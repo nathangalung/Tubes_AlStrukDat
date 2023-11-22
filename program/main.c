@@ -57,7 +57,7 @@ int main()
             if (!menu)
             {
                 command = SplitWordBlank(command);
-                Word filename = ConcatWord(StringToWord("config/"), command);
+                Word filename = ConcatWord(StringToWord("CONFIG/"), command);
                 
                 Load(filename, &artist, &album, &album_artist, &song_album, &user, &playing, &multi, &menu);
             }
@@ -131,11 +131,11 @@ int main()
                 command = SplitWordBlank(command);
                 if (CompareStringWord(command, "SONG"))
                 {
-                    playSong(artist, album_artist, song_album, &multi, &playing, idx_user);
+                    PlaySong(artist, album_artist, song_album, &multi, &playing, idx_user);
                 }
                 else if (CompareStringWord(command, "PLAYLIST"))
                 {
-                    playPlaylist(&multi, &playing, idx_user);
+                    PlayPlaylist(&multi, &playing, idx_user);
                 }
                 else
                 {
@@ -154,26 +154,26 @@ int main()
                 command = SplitWordBlank(command);
                 if (CompareStringWord(command, "SONG"))
                 {
-                    queueSong(artist, album_artist, song_album, &multi, idx_user);
+                    QueueSong(artist, album_artist, song_album, &multi, idx_user);
                 }
                 else if (CompareStringWord(command, "PLAYLIST"))
                 {
-                    queuePlaylist(&multi, idx_user);
+                    QueuePlaylist(&multi, idx_user);
                 }
                 else if (CompareStringWord(SplitWordLeftBlank(command), "SWAP"))
                 {
                     command = SplitWordBlank(command);
-                    queueSwap(&multi, command, idx_user);
+                    QueueSwap(&multi, command, idx_user);
                     
                 }
                 else if (CompareStringWord(SplitWordLeftBlank(command), "REMOVE"))
                 {
                     command = SplitWordBlank(command);
-                    queueRemove(&multi, command, idx_user);
+                    QueueRemove(&multi, command, idx_user);
                 }
                 else if (CompareStringWord(command, "CLEAR"))
                 {
-                    queueClear(&multi, idx_user);
+                    QueueClear(&multi, idx_user);
                 }
                 else
                 {
@@ -192,11 +192,11 @@ int main()
                 command = SplitWordBlank(command);
                 if (CompareStringWord(command, "NEXT"))
                 {
-                    songNext(&multi, artist, &playing, idx_user);
+                    SongNext(&multi, artist, &playing, idx_user);
                 }
                 else if (CompareStringWord(command, "PREVIOUS"))
                 {
-                    songPrevious(&multi, artist, &playing, idx_user);
+                    SongPrevious(&multi, artist, &playing, idx_user);
                 }
                 else
                 {
@@ -215,18 +215,18 @@ int main()
                 command = SplitWordBlank(command);
                 if (CompareStringWord(command, "CREATE"))
                 {
-                    CreatePlaylist(&multi, idx_user);
+                    PlaylistCreate(&multi, idx_user);
                 }
                 else if (CompareStringWord(SplitWordLeftBlank(command), "ADD"))
                 {
                     command = SplitWordBlank(command);
                     if (CompareStringWord(command, "SONG"))
                     {
-                        AddSongPlaylist(artist, album_artist, song_album, &multi, idx_user);
+                        PlaylistAddSong(artist, album_artist, song_album, &multi, idx_user);
                     }
                     else if (CompareStringWord(command, "ALBUM"))
                     {
-                        AddAlbumPlaylist(artist, album_artist, song_album, &multi, idx_user);
+                        PlaylistAddAlbum(artist, album_artist, song_album, &multi, idx_user);
                     }
                     else
                     {
@@ -236,16 +236,16 @@ int main()
                 else if (CompareStringWord(SplitWordLeftBlank(command), "SWAP"))
                 {
                     command = SplitWordBlank(command);
-                    SwapPlaylist(&multi, idx_user, command);
+                    PlaylistSwap(&multi, idx_user, command);
                 }
                 else if (CompareStringWord(SplitWordLeftBlank(command), "REMOVE"))
                 {
                     command = SplitWordBlank(command);
-                    RemovePlaylist(&multi, idx_user, command);
+                    PlaylistRemove(&multi, idx_user, command);
                 }
                 else if (CompareStringWord(command, "DELETE"))
                 {
-                    DeletePlaylist(&multi, idx_user);
+                    PlaylistDelete(&multi, idx_user);
                 }
                 else
                 {
@@ -261,7 +261,7 @@ int main()
         {
             if (sesi)
             {
-                status(multi, artist, album, playing, idx_user);
+                Status(multi, artist, album, playing, idx_user);
             }
             else
             {
@@ -273,7 +273,7 @@ int main()
             if (menu || sesi)
             {
                 command = SplitWordBlank(command);
-                Word filename = ConcatWord(StringToWord("config/"), command);
+                Word filename = ConcatWord(StringToWord("CONFIG/"), command);
                 Save(filename, artist, album, album_artist, song_album, user, playing, multi);
                 printf("save file berhasil disimpan\n");
             }
@@ -298,7 +298,7 @@ int main()
                 if (CompareStringWord(currentWord,"Y")){
                     printf("ketik \"<nama_file>.txt\" : ");
                     StartWordMark();
-                    Word filename = ConcatWord(StringToWord("config/"), currentWord);
+                    Word filename = ConcatWord(StringToWord("CONFIG/"), currentWord);
                     Save(filename, artist, album, album_artist, song_album, user, playing, multi);
                     printf("File berhasil disimpan\n");
                 }
@@ -316,7 +316,7 @@ int main()
         }
         else if (CompareStringWord(command, "HELP"))
         {
-            help(sesi, menu);
+            Help(sesi, menu);
         }
         else if (CompareStringWord(command, "ENHANCE"))
         {

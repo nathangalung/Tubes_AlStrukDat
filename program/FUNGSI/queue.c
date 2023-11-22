@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "queue.h"
 
-void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
+void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
 {
 
     /* KAMUS LOKAL */
@@ -152,7 +152,7 @@ void queueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
     }
 }
 
-void queuePlaylist(User *multi, int idx_user)
+void QueuePlaylist(User *multi, int idx_user)
 {
     
     /* KAMUS LOKAL */
@@ -192,7 +192,7 @@ void queuePlaylist(User *multi, int idx_user)
     }
 }
 
-void queueSwap(User *multi, Word word, int idx_user)
+void QueueSwap(User *multi, Word word, int idx_user)
 {
     int ctr = 0;
     int idx_1 = atoi(SplitWordLeftBlank(word).TabWord), idx_2 = atoi(SplitWordBlank(word).TabWord);
@@ -228,13 +228,13 @@ void queueSwap(User *multi, Word word, int idx_user)
     }
 }
 
-void queueRemove(User *multi, Word word, int idx_user)
+void QueueRemove(User *multi, Word word, int idx_user)
 {
     int ctr = 0;
     int idx_1 = atoi(word.TabWord);
     Word song = multi->Elements[idx_user].Queue.Buffer[idx_1 - 1];
 
-    if (idx_1 > 0 && idx_1 < LengthQueue(multi->Elements[idx_user].Queue))
+    if (idx_1 > 0 && idx_1 <= LengthQueue(multi->Elements[idx_user].Queue))
     {
         if (IDX_HEAD(multi->Elements[idx_user].Queue) == IDX_TAIL(multi->Elements[idx_user].Queue))
         {
@@ -269,7 +269,7 @@ void queueRemove(User *multi, Word word, int idx_user)
     }
 }
 
-void queueClear(User *multi, int idx_user)
+void QueueClear(User *multi, int idx_user)
 {
     CreateEmptyQueue(&multi->Elements[idx_user].Queue);
     printf("Queue berhasil dikosongkan.\n");

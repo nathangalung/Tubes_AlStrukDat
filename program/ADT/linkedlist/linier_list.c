@@ -33,7 +33,7 @@ void Dealokasi (address *P)
 	free(*P);
 }
 
-address Search (LinierList L, Word word)
+address SearchAdress (LinierList L, Word word)
 {
 	address P = First(L);
 	boolean found = false;
@@ -58,6 +58,25 @@ address Search (LinierList L, Word word)
 	{
 		return Nil;
 	}
+}
+
+boolean Search (LinierList L, Word word)
+{
+	address P = First(L);
+	boolean found = false;
+
+	while (P != Nil && !found)
+	{
+		if (CompareWord(Info(P), word))
+		{
+			return true;
+		}
+		else
+		{
+			P = Next(P); 
+		}
+	}
+	return false;
 }
 
 void InsVFirst (LinierList *L, Word word)
@@ -135,7 +154,7 @@ void DelFirst (LinierList *L, address *P)
 
 void DelP (LinierList *L, Word word)
 {
-	address P = Search(*L, word);
+	address P = SearchAdress(*L, word);
 
 	if (P != Nil)
 	{

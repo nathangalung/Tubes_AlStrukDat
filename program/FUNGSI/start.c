@@ -7,7 +7,7 @@ void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, D
     int count_artist = 0, count_album = 0, count_song = 0, count_user = 0;
     Word name_artist, name_album, name_song, name_user;
 
-    Word filename = {"config/default.txt", 18};
+    Word filename = {"CONFIG/default.txt", 18};
 
     CreateEmptyStatic(artist);
     CreateEmptyMap(album_artist);

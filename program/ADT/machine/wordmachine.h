@@ -25,7 +25,7 @@ void StartWordMark();
 
 void StartWordBlank();
 
-void StartWordNewline(Word filename);
+boolean StartWordNewline(Word filename);
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = MARK;
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,

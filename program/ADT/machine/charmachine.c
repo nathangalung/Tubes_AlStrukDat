@@ -21,20 +21,23 @@ void StartBlank()
     AdvBlank();
 }
 
-void StartNewline(Word filename)
+boolean StartNewline(Word filename)
 {
+    boolean found = false;
     pita = fopen(filename.TabWord, "r");
     
     if (pita == NULL)
     {
         EOP = true;
-        printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
-        exit(0);
+        fclose(pita);
     }
     else
     {
+        found = true;
         AdvNewline();
     }
+
+    return found;
 }
  
 void AdvMark()

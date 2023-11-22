@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "playlist.h"
 
-void CreatePlaylist (User *multi, int idx_user)
+void PlaylistCreate(User *multi, int idx_user)
 {
     printf("Masukkan nama playlist yang ingin dibuat : ");
     int countChar, countWS;
@@ -36,7 +36,7 @@ void CreatePlaylist (User *multi, int idx_user)
     }
 }
 
-void AddSongPlaylist(StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
+void PlaylistAddSong(StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
 {
     printf("Daftar Penyanyi :\n");
     for (int index = 0; index < LengthList(artist); index++)
@@ -229,7 +229,7 @@ void AddSongPlaylist(StaticList artist, Map album_artist, Map song_album, User *
     }
 }
 
-void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
+void PlaylistAddAlbum (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
 {
     printf("\n");
     printf("Daftar Penyanyi :\n");
@@ -359,7 +359,7 @@ void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User
     }
 }
 
-void SwapPlaylist (User *multi, int idx_user, Word word)
+void PlaylistSwap(User *multi, int idx_user, Word word)
 {
     printf("\n");
     int ID_Playlist = atoi(SplitWordLeftBlank(word).TabWord);
@@ -437,7 +437,7 @@ void SwapPlaylist (User *multi, int idx_user, Word word)
     }
 }
 
-void RemovePlaylist (User *multi, int idx_user, Word word)
+void PlaylistRemove(User *multi, int idx_user, Word word)
 {
     int ID_Playlist = atoi(SplitWordLeftBlank(word).TabWord);
     int ID_Lagu = atoi(SplitWordBlank(word).TabWord);
@@ -486,7 +486,7 @@ void RemovePlaylist (User *multi, int idx_user, Word word)
     }
 }
 
-void DeletePlaylist (User *multi, int idx_user)
+void PlaylistDelete(User *multi, int idx_user)
 {
     printf("Daftar Playlist Pengguna :\n");
     if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))

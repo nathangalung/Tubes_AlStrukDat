@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void songNext(User *multi, StaticList artist, StaticList *playing, int idx_user)
+void SongNext(User *multi, StaticList artist, StaticList *playing, int idx_user)
 {
     Word currentSong = playing->A[idx_user];
     Word temp;
@@ -30,7 +30,7 @@ void songNext(User *multi, StaticList artist, StaticList *playing, int idx_user)
     }
 }
 
-void songPrevious(User *multi, StaticList artist, StaticList *playing, int idx_user)
+void SongPrevious(User *multi, StaticList artist, StaticList *playing, int idx_user)
 {
     Word previousSong, currentSong = playing->A[idx_user];
 

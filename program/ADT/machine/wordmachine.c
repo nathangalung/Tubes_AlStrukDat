@@ -62,20 +62,29 @@ void StartWordBlank()
     }
 }
 
-void StartWordNewline(Word filename)
+boolean StartWordNewline(Word filename)
 {
-    StartNewline(filename);
-    IgnoreMarks();
-    IgnoreBlanks();
-    IgnoreNewlines();
-    if (IsEOPNewline())
+    boolean found = StartNewline(filename);
+    
+    if (found)
     {
-        EndWord = true;
+        IgnoreMarks();
+        IgnoreBlanks();
+        IgnoreNewlines();
+        if (IsEOPNewline())
+        {
+            EndWord = true;
+        }
+        else
+        {
+            CopyWordNewline();
+            IgnoreNewlines();
+        }
+        return found;
     }
     else
     {
-        CopyWordNewline();
-        IgnoreNewlines();
+        return false;
     }
 }
 

@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "play.h"
 
-void playSong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user)
+void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user)
 {
 
     /* KAMUS LOKAL */
@@ -153,7 +153,7 @@ void playSong(StaticList artist, Map album_artist, Map song_album, User *multi, 
     }
 }
 
-void playPlaylist(User *multi, StaticList *playing, int idx_user)
+void PlayPlaylist(User *multi, StaticList *playing, int idx_user)
 {
     /* KAMUS LOKAL */
     int idPlaylist;

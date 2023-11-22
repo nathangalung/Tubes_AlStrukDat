@@ -8,16 +8,16 @@
 #include "../ADT/list/static_list.h"
 #include "../ADT/setmap/map.h"
 
-void CreatePlaylist (User *multi, int idx_user);
+void PlaylistCreate (User *multi, int idx_user);
 
-void AddSongPlaylist (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user);
+void PlaylistAddSong (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user);
 
-void AddAlbumPlaylist (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user);
+void PlaylistAddAlbum (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user);
 
-void SwapPlaylist (User *multi, int idx_user, Word word);
+void PlaylistSwap(User *multi, int idx_user, Word word);
 
-void RemovePlaylist (User *multi, int idx_user, Word word);
+void PlaylistRemove (User *multi, int idx_user, Word word);
 
-void DeletePlaylist (User *multi, int idx_user);
+void PlaylistDelete (User *multi, int idx_user);
 
 #endif

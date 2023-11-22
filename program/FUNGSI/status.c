@@ -36,42 +36,31 @@ void DisplayWordDash(Word word, StaticList artist, Set album)
     
 }
 
-void status(User multi, StaticList  artist, Set album, StaticList playing, int idx_user)
+void Status(User multi, StaticList  artist, Set album, StaticList playing, int idx_user)
 {
     boolean found_1 = false;
-    int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0, ctr;
     Word currentPlaylist;
     Word currentSong = playing.A[idx_user];
     
     while (!found_1 && i < multi.Elements[idx_user].Playlist.Neff)
     {
         boolean found_2 = false;
-        address P = First(multi.Elements[idx_user].PlaylistSong[i].Song);
+        ctr = 0;
 
-        while (!found_2 && j < NbElmt(multi.Elements[idx_user].PlaylistSong[i].Song))
+        while (!found_2 && j < LengthQueue(multi.Elements[idx_user].Queue))
         {
             boolean found_3 = false;
 
-            while (!found_3 && k < LengthQueue(multi.Elements[idx_user].Queue))
+            if (Search(multi.Elements[idx_user].PlaylistSong[i].Song, multi.Elements[idx_user].Queue.Buffer[j]))
             {
-                if (CompareWord(multi.Elements[idx_user].Queue.Buffer[k], Info(P)))
-                {
-                    found_3 = true;
-                }
-                else
-                {
-                    k++;
-                }
-            }
-            if (found_3)
-            {
-                P = Next(P);
+                ctr++;
+                j++;
             }
             else
             {
                 found_2 = true;
             }
-            j++;
         }
 
         if (!found_2 && NbElmt(multi.Elements[idx_user].PlaylistSong[i].Song) > 0)
@@ -81,7 +70,8 @@ void status(User multi, StaticList  artist, Set album, StaticList playing, int i
         }
         i++;
     }
-    if (found_1)
+
+    if (found_1 && (ctr == LengthQueue(multi.Elements[idx_user].Queue)))
     {
         printf("Current Playlist: ");
         DisplayWord(currentPlaylist);

@@ -34,7 +34,7 @@ void StartMark();
 
 void StartBlank();
 
-void StartNewline(Word filename);
+boolean StartNewline(Word filename);
 
 void AdvMark();
 /* Pita dimajukan satu karakter.

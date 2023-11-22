@@ -50,7 +50,9 @@ void Dealokasi (address *P);
 /* Melakukan dealokasi/pengembalian address P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address Search (LinierList L, Word word);
+address SearchAdress (LinierList L, Word word);
+
+boolean Search (LinierList L, Word word);
 /* Mencari apakah ada elemen list dengan info(P)= X */
 /* Jika ada, mengirimkan address elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */

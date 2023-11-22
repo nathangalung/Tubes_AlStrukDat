@@ -4,23 +4,6 @@
 
 #include "enhance.h"
 
-int randint(int n)
-{
-    if ((n - 1) == RAND_MAX)
-    {
-        return rand();
-    }
-    else
-    {
-        int end = RAND_MAX / n;
-        end *= n;
-        int r;
-        while ((r = rand()) >= end);
-
-        return r % n;
-    }
-}
-
 void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, User multi, int idx_user)
 {
     time_t t;
