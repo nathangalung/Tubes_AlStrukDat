@@ -101,11 +101,11 @@ void Load(Word filename, StaticList *artist, Set *album, Map *album_artist, Map 
                 }
             }
         }
-        printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
+        printf("Save file berhasil dibaca. WayangWave88Gacor berhasil dijalankan.\n");
         *menu = true;
     }
     else
     {
-        printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
+        printf("Save file tidak ditemukan. WayangWave88Gacor gagal dijalankan.\n");
     }
 }

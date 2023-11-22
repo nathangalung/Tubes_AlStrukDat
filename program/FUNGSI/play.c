@@ -108,7 +108,7 @@ void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, 
             {
                 int check = 0;
                 int count = 0;
-                while (count < song_album.Count && check <= ID_Lagu)
+                while (count < song_album.Count && check < ID_Lagu)
                 {
                     if (CompareWord(song_album.Elements[count].Value, NamaAlbum))
                     {
@@ -117,7 +117,7 @@ void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, 
                     count++;
                 }
                 Word MarkSC = {";", 1};
-                Word LaguPilihan = song_album.Elements[count - 2].Key;
+                Word LaguPilihan = song_album.Elements[count - 1].Key;
                 Word Pilihan = ConcatWord(NamaPenyanyi, MarkSC);
                 Pilihan = ConcatWord(Pilihan, NamaAlbum);
                 Pilihan = ConcatWord(Pilihan, MarkSC);
@@ -135,21 +135,21 @@ void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, 
             }
             else
             {
-                printf("Lagu tidak ada dalam daftar. Silakan coba lagi.\n");
+                printf("Lagu tidak ada dalam daftar. Silakan coba lagi!\n");
             }
         }
         else
         {
             printf("Album ");
             DisplayWord(currentWord);
-            printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
+            printf(" tidak ada dalam daftar. Silakan coba lagi!\n");
         }
     }
     else
     {
         printf("Penyanyi ");
         DisplayWord(currentWord);
-        printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
+        printf(" tidak ada dalam daftar. Silakan coba lagi!\n");
     }
 }
 

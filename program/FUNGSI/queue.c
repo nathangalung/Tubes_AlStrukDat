@@ -105,11 +105,12 @@ void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
             StartWordMark();
             printf("\n");
             int ID_Lagu = atoi(currentWord.TabWord);
+
             if (ID_Lagu > 0 && ID_Lagu <= index)
             {
                 int check = 0;
                 int count = 0;
-                while (count < song_album.Count && check < ID_Lagu-1)
+                while (count < song_album.Count && check < ID_Lagu)
                 {
                     if (CompareWord(song_album.Elements[count].Value, NamaAlbum))
                     {
@@ -118,7 +119,7 @@ void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
                     count++;
                 }
                 Word MarkSC = {";", 1};
-                Word LaguPilihan = song_album.Elements[count].Key;
+                Word LaguPilihan = song_album.Elements[count - 1].Key;
                 Word Pilihan = ConcatWord(NamaPenyanyi, MarkSC);
                 Pilihan = ConcatWord(Pilihan, NamaAlbum);
                 Pilihan = ConcatWord(Pilihan, MarkSC);

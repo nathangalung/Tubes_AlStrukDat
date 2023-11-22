@@ -51,5 +51,5 @@ void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, D
         CreateEmptyDynamic(&multi->Elements[i].Playlist);
     }  
     
-    printf("File konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
+    printf("File konfigurasi aplikasi berhasil dibaca. WayangWave88Gacor berhasil dijalankan.\n");
 }
