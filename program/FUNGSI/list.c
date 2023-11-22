@@ -59,15 +59,15 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
             StartWordMark();
             if (CompareStringWord(currentWord, "Y")) 
             {
-                boolean laguvalid = false;
+                boolean albumvalid = false;
                 printf("\nPilih album untuk melihat lagu yang ada di album : ");
                 StartWordMark();
                 int i = 0;
-                while (!laguvalid && (i < album_artist.Count))
+                while (!albumvalid && (i < album_artist.Count))
                 {
-                    if (CompareWord((album_artist).Elements[i].Key, currentWord))
+                    if (CompareWord(album_artist.Elements[i].Key, currentWord))
                     {
-                        laguvalid = true;
+                        albumvalid = true;
                     }
                     else
                     {
@@ -75,9 +75,9 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
                     }
                 }
 
-                if (laguvalid)
+                if (albumvalid)
                 {
-                    printf("Daftar lagu di ");
+                    printf("\nDaftar lagu di ");
                     DisplayWord(currentWord);
                     printf(" :\n");
                     int index = 0;
@@ -94,14 +94,22 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
                 }
                 else
                 {
-                    printf("\nNama album tidak ditemukan. Silahkan coba lagi!\n");
+                    printf("\nNama album tidak ditemukan. Silakan coba lagi!\n");
                 }
+            }
+            else if (!CompareStringWord(currentWord, "N"))
+            {
+                printf("\nTidak terdapat pilihan tersebut. Silakan coba lagi!\n");
             }
         }
         else
         {
             printf("Nama artis tidak ditemukan. Silakan coba lagi!\n");
         }
+    }
+    else if (!CompareStringWord(currentWord, "N"))
+    {
+        printf("\nTidak terdapat pilihan tersebut. Silakan coba lagi!\n");
     }
 }
 
@@ -126,7 +134,6 @@ void ListPlaylist (User multi, int idx_user)
         {
             printf("\nMasukkan ID Playlist yang dipilih : ");
             StartWordMark();
-            printf("\n");
             int ID_Playlist = atoi(currentWord.TabWord);
 
             if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic(multi.Elements[idx_user].Playlist))
@@ -160,8 +167,12 @@ void ListPlaylist (User multi, int idx_user)
             }
             else
             {
-                printf("Playlist tidak ada dalam daftar. Silakan coba lagi.\n");
+                printf("Playlist tidak ada dalam daftar. Silakan coba lagi!\n");
             }
+        }
+        else if (!CompareStringWord(currentWord, "N"))
+        {
+            printf("\nTidak terdapat pilihan tersebut. Silakan coba lagi!\n");
         }
     } 
     else 

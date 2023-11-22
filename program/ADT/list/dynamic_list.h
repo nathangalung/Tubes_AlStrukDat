@@ -55,6 +55,4 @@ int LengthListDynamic(DynamicList list);
 
 void InsertLastDynamic(DynamicList *list, Word word);
 
-boolean CheckDir(DynamicList *file, Word word);
-
 #endif

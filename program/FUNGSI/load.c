@@ -3,23 +3,25 @@
 
 #include "load.h"
 
-void Load(Word filename, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, StaticList *playing, User *multi, boolean *menu)
+void Load(Word command, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, DynamicList *playing, User *multi, boolean *menu)
 {
-    int count_artist = 0, count_album = 0, count_song = 0, count_user = 0, count_queue = 0, count_history = 0, count_playlist = 0;
-    int ctr = 0;
-    Word name_artist, name_album, name_song, name_user, name_playlist, name_playing;
+    Word filename = ConcatWord(StringToWord("CONFIG/"), command);
 
-    CreateEmptyStatic(artist);
-    CreateEmptyMap(album_artist);
-    CreateEmptyMap(song_album);
-    CreateEmptySet(album);
-    CreateEmptyDynamic(user);
-    CreateEmptyStatic(playing);
-    CreateEmptyUser(multi);
-        
     boolean found = StartWordNewline(filename);
+    
     if (found)
     {
+        CreateEmptyStatic(artist);
+        CreateEmptyMap(album_artist);
+        CreateEmptyMap(song_album);
+        CreateEmptySet(album);
+        CreateEmptyDynamic(user);
+        CreateEmptyDynamic(playing);
+        CreateEmptyUser(multi);
+
+        int count_artist = 0, count_album = 0, count_song = 0, count_user = 0, count_queue = 0, count_history = 0, count_playlist = 0;
+        Word name_artist, name_album, name_song, name_user, name_playlist, name_playing;
+        
         count_artist = atoi(currentWord.TabWord);
         for (int i=0; i<count_artist; i++)
         {
@@ -61,7 +63,7 @@ void Load(Word filename, StaticList *artist, Set *album, Map *album_artist, Map 
         for (int i = 0; i < count_user; i++)
         {
             name_playing = ReadNameLine();
-            playing->A[i] = name_playing;
+            InsertLastDynamic(playing, name_playing);
             
             count_queue = ReadCountLine();
 

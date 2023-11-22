@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "play.h"
 
-void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user)
+void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, DynamicList *playing, int idx_user)
 {
 
     /* KAMUS LOKAL */
@@ -153,7 +153,7 @@ void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, 
     }
 }
 
-void PlayPlaylist(User *multi, StaticList *playing, int idx_user)
+void PlayPlaylist(User *multi, DynamicList *playing, int idx_user)
 {
     /* KAMUS LOKAL */
     int idPlaylist;
@@ -191,15 +191,9 @@ void PlayPlaylist(User *multi, StaticList *playing, int idx_user)
 
             for (int i = 0; (i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) - 1); i++)
             {
-                PushStack(&temp_stack, Info(lagu));
+                PushStack(&multi->Elements[idx_user].History, Info(lagu));
                 Enqueue(&multi->Elements[idx_user].Queue, Info(lagu));
                 lagu = Next(lagu);
-            }
-            
-            for (int i = 0; (i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) - 1); i++)
-            {
-                PopStack(&temp_stack, &temp_word);
-                PushStack(&multi->Elements[idx_user].History, temp_word);
             }
         }
         else

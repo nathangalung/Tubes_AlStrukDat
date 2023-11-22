@@ -7,6 +7,12 @@
 #include "../ADT/setmap/map.h"
 #include "../ADT/user/user.h"
 
-void Save(Word filename, StaticList artist, Set album, Map album_artist, Map song_album, DynamicList user, StaticList playing, User multi);
+int jmlkey(Map map, Word value);
+
+void writeword(FILE* File, Word word);
+
+void writewordnnl(FILE* File, Word word);
+
+void Save(Word filename, StaticList artist, Set album, Map album_artist, Map song_album, DynamicList user, DynamicList playing, User multi);
 
 #endif

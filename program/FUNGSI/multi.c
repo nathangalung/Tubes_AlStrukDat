@@ -26,9 +26,9 @@ int Login(DynamicList *user, User *multi, int idx_user)
         if (found)
         {
             idx_user = ctr;
-            printf("\nBerhasil masuk. Selamat datang, ");
+            printf("\nBerhasil masuk. Selamat datang, \"");
             DisplayWord(currentWord);
-            printf("!\n");
+            printf("\" dan selamat bersenang-senang!\n");
         }
         else
         {
@@ -49,30 +49,36 @@ int Login(DynamicList *user, User *multi, int idx_user)
     return idx_user;
 }
 
-int Logout(User *multi, int idx_user)
+void Logout(DynamicList *user, int idx_user)
 {
-    idx_user = -1;
-    printf("Berhasil keluar. Sampai jumpa lagi!\n");
-
-    return idx_user;
+    printf("Berhasil keluar. Sampai jumpa lagi, \"");
+    DisplayWord(user->A[idx_user]);
+    printf("\" dan elamat beraktivitas kembali!:)\n");
 }
 
-void SignUp(DynamicList *user)
+void Register(DynamicList *user, User *multi)
 {
-    boolean found_1 = false;
-    int ctr = 0;
+    boolean found = false;
+    int ctr = 0, count = 0;
 
-    while (!found_1)
+    printf("Masukkan username user baru WayangWave : ");
+    StartWordBlank();
+
+    for (int i = 0; i < currentWord.Length; i++) 
     {
-        boolean found_2 = false;
-        printf("Masukkan username user baru WayangWave : ");
-        StartWordBlank();
+        if (currentWord.TabWord[i] != BLANK) 
+        {
+            count++;
+        }
+    }
 
-        while (!found_2 && ctr < LengthListDynamic(*user))
+    if (count >= 3)
+    {
+        while (!found && ctr < LengthListDynamic(*user))
         {
             if (CompareWord(currentWord, user->A[ctr]))
             {
-                found_2 = true;
+                found = true;
             }
             else
             {
@@ -80,15 +86,28 @@ void SignUp(DynamicList *user)
             }
         }
 
-        if (found_2)
+        if (found)
         {
-            printf("Username user sudah didaftarkan! Silakan gunakan username lain!\n");
+            printf("\nUsername \"");
+            DisplayWord(currentWord);
+            printf("\" sudah didaftarkan, silakan gunakan username lain!\n");
         }
         else
         {
-            found_1 = true;
+            found = true;
+
+            CreateEmptyQueue(&multi->Elements[LengthListDynamic(*user)].Queue);
+            CreateEmptyStack(&multi->Elements[LengthListDynamic(*user)].History);
+            CreateEmptyDynamic(&multi->Elements[LengthListDynamic(*user)].Playlist);
+
             InsertLastDynamic(user, currentWord);
-            printf("Username user berhasil didaftarkan! Silakan login kembali!\n");
+            printf("\nUsername \"");
+            DisplayWord(currentWord);
+            printf("\" berhasil didaftarkan, silakan login kembali!\n");
         }
+    }
+    else
+    {
+        printf("\nMinimal terdapat 3 karakter selain whitespace dalam username user. Silakan coba lagi!");
     }
 }

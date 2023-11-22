@@ -12,8 +12,8 @@
 #include "../ADT/setmap/map.h"
 #include "../ADT/user/user.h"
 
-void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, StaticList *playing, int idx_user);
+void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, DynamicList *playing, int idx_user);
 
-void PlayPlaylist(User *multi, StaticList *playing, int idx_user);
+void PlayPlaylist(User *multi, DynamicList *playing, int idx_user);
 
 #endif

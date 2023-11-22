@@ -20,17 +20,14 @@
 
 int main()
 {
-    StaticList artist, playing;
+    StaticList artist;
     Set album;
     Map album_artist, song_album;
-    DynamicList user;
+    DynamicList user, playing;
     User multi;
     
     boolean run = true, menu = false, sesi = false;
     int idx_user = -1;
-
-    CreateEmptyStatic(&playing);
-
 
     Welcome();
 
@@ -47,7 +44,7 @@ int main()
         {
             if (!menu)
             {
-                Start(&artist, &album, &album_artist, &song_album, &user, &multi);
+                Start(&artist, &album, &album_artist, &song_album, &user, &playing, &multi);
                 menu = true;
             }
             else
@@ -60,20 +57,19 @@ int main()
             if (!menu)
             {
                 command = SplitWordBlank(command);
-                Word filename = ConcatWord(StringToWord("CONFIG/"), command);
                 
-                Load(filename, &artist, &album, &album_artist, &song_album, &user, &playing, &multi, &menu);
+                Load(command, &artist, &album, &album_artist, &song_album, &user, &playing, &multi, &menu);
             }
             else
             {
                 printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
-        else if (CompareStringWord(command, "SIGN UP"))
+        else if (CompareStringWord(command, "REGISTER"))
         {
             if (menu && !sesi)
             {
-                SignUp(&user);
+                Register(&user, &multi);
             }
             else
             {
@@ -96,7 +92,7 @@ int main()
         {
             if (sesi)
             {
-                idx_user = Logout(&multi, idx_user);
+                Logout(&user, idx_user);
                 sesi = false;
             }
             else
@@ -304,7 +300,7 @@ int main()
                 {
                     printf("\nFile tidak disimpan\n");
                 }
-                printf("\nProgram selesai\n");
+                printf("\nKamu keluar dari WayangWave88Gacor. Dadah ^_^/\n");
             }
             else
             {
@@ -330,6 +326,6 @@ int main()
         {
             printf("%sCommand tidak diketahui!\n", RED);
         }
-        printf("%s\n=======================================================================================================================\n", YELLOW);
+        printf("%s\n=======================================================================================================================\n%s", YELLOW, WHITE);
     }
 }

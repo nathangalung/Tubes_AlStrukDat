@@ -2,26 +2,6 @@
 #include <stdlib.h>
 #include "save.h"
 
-int length(char *s)
-{
-    int ctr = 0;
-
-    while (s[ctr]!='\0')
-    {
-        ctr++;
-    }
-    return ctr;
-}
-void WordToString(Word word, char *string)
-{
-    string[word.Length] = '\0';
-
-    for (int i = 0; i < word.Length; i++)
-    {
-        string[i] = word.TabWord[i];
-    }
-}
-
 int jmlkey(Map map, Word value)
 {
     int count = 0;
@@ -54,7 +34,7 @@ void writewordnnl(FILE* File, Word word)
     }
 }
 
-void Save(Word filename, StaticList artist, Set album, Map album_artist, Map song_album, DynamicList user, StaticList playing, User multi)
+void Save(Word filename, StaticList artist, Set album, Map album_artist, Map song_album, DynamicList user, DynamicList playing, User multi)
 {
     char namafile[50];
     int jump = 0;
@@ -71,7 +51,7 @@ void Save(Word filename, StaticList artist, Set album, Map album_artist, Map son
     {
         fprintf(File, "%d ", jmlkey(album_artist, album_artist.Elements[i].Value)); // jml album
         writeword(File,album_artist.Elements[i].Value);
-        idxjump+=jmlkey(album_artist, album_artist.Elements[i].Value);
+        idxjump += jmlkey(album_artist, album_artist.Elements[i].Value);
 
         while (j<song_album.Count)
         {

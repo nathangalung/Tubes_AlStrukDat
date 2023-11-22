@@ -6,6 +6,6 @@
 #include "../ADT/setmap/map.h"
 #include "../ADT/user/user.h"
 
-void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, User *multi);
+void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, DynamicList *playing, User *multi);
 
 #endif

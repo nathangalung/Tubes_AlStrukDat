@@ -7,6 +7,6 @@
 #include "../ADT/user/user.h"
 #include "../ADT/machine/wordmachine.h"
 
-void Status(User multi, StaticList  artist, Set album, StaticList playing, int idx_user);
+void Status(User multi, StaticList  artist, Set album, DynamicList playing, int idx_user);
 
 #endif

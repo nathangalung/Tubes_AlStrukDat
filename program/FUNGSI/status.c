@@ -36,7 +36,7 @@ void DisplayWordDash(Word word, StaticList artist, Set album)
     
 }
 
-void Status(User multi, StaticList  artist, Set album, StaticList playing, int idx_user)
+void Status(User multi, StaticList  artist, Set album, DynamicList playing, int idx_user)
 {
     boolean found_1 = false;
     int i = 0, j = 0, k = 0, ctr;
@@ -84,7 +84,7 @@ void Status(User multi, StaticList  artist, Set album, StaticList playing, int i
     }
 
     printf("Now Playing :\n");
-    if (CompareStringWord(playing.A[idx_user], MarkStatic))
+    if (CompareStringWord(playing.A[idx_user], ""))
     {
         printf("No songs have been played yet. Please search for a song to begin playback.\n");
     }

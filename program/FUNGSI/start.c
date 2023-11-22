@@ -2,7 +2,7 @@
 
 #include "start.h"
 
-void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, User *multi)
+void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, DynamicList *playing, User *multi)
 {
     int count_artist = 0, count_album = 0, count_song = 0, count_user = 0;
     Word name_artist, name_album, name_song, name_user;
@@ -14,6 +14,7 @@ void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, D
     CreateEmptyMap(song_album);
     CreateEmptySet(album);
     CreateEmptyDynamic(user);
+    CreateEmptyDynamic(playing);
     
     count_artist = ReadCountFirst(filename);
         
@@ -46,6 +47,7 @@ void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, D
     {
         name_user = ReadNameLine();
         InsertLastDynamic(user, name_user);
+
         CreateEmptyQueue(&multi->Elements[i].Queue);
         CreateEmptyStack(&multi->Elements[i].History);
         CreateEmptyDynamic(&multi->Elements[i].Playlist);
