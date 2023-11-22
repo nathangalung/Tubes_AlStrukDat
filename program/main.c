@@ -286,7 +286,7 @@ int main()
         {
             if (menu)
             {
-                menu = false;
+                run = false;
                 printf("Apakah kamu ingin menyimpan data sesi sekarang? (Y) : ");
                 StartWordMark();
                 if (CompareStringWord(currentWord,"Y")){
@@ -299,16 +299,11 @@ int main()
                 else{
                     printf("\nFile tidak disimpan\n");
                 }
-                printf("\nBerhasil keluar dari menu\n");
-            }
-            else if (run)
-            {
-                run = false;
                 printf("\nProgram selesai\n");
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
         else if (CompareStringWord(command, "HELP"))
