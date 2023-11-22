@@ -29,6 +29,9 @@ int main()
     boolean run = true, menu = false, sesi = false;
     int idx_user = -1;
 
+    CreateEmptyStatic(&playing);
+
+
     Welcome();
 
     while (run)

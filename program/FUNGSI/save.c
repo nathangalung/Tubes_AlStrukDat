@@ -67,7 +67,7 @@ void Save(Word filename, StaticList artist, Set album, Map album_artist, Map son
     fprintf(File, "%d\n", LengthList(artist)); // jml penyanyi
 
     int j=0;
-    for (int i = 0; i < album_artist.Count; i+=jump)
+    for (int i = 0; i < album_artist.Count; i=idxjump)
     {
         fprintf(File, "%d ", jmlkey(album_artist, album_artist.Elements[i].Value)); // jml album
         writeword(File,album_artist.Elements[i].Value);
@@ -91,8 +91,6 @@ void Save(Word filename, StaticList artist, Set album, Map album_artist, Map son
                 break;
             }
         }
-
-        jump+=jmlkey(album_artist, album_artist.Elements[i].Value);
     }
 
     fprintf(File,"%d\n", user.Neff);//jml user
