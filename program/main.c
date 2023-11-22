@@ -278,7 +278,7 @@ int main()
                 command = SplitWordBlank(command);
                 Word filename = ConcatWord(StringToWord("CONFIG/"), command);
                 Save(filename, artist, album, album_artist, song_album, user, playing, multi);
-                printf("save file berhasil disimpan\n");
+                printf("Save file berhasil disimpan\n");
             }
             else
             {
@@ -294,7 +294,7 @@ int main()
                 StartWordMark();
                 if (CompareStringWord(currentWord,"Y"))
                 {
-                    printf("ketik \"<nama_file>.txt\" : ");
+                    printf("Ketik \"<nama_file>.txt\" : ");
                     StartWordMark();
                     Word filename = ConcatWord(StringToWord("CONFIG/"), currentWord);
                     Save(filename, artist, album, album_artist, song_album, user, playing, multi);
