@@ -101,41 +101,60 @@ void Save(Word filename, StaticList artist, Set album, Map album_artist, Map son
     }
 //========================================================================
 
-    for(int idxuser=0;idxuser<user.Neff;idxuser++){
+    for(int idxuser=0;idxuser<user.Neff;idxuser++)
+    {
     writeword(File, playing.A[idxuser]);//now playing
 
     fprintf(File,"%d\n", LengthQueue(multi.Elements[idxuser].Queue));//jml queue
-    for (int i = 0; i < LengthQueue(multi.Elements[idxuser].Queue); i++){
-        writeword(File, multi.Elements[idxuser].Queue.Buffer[i]);}//isi queue
+
+    for (int i = 0; i < LengthQueue(multi.Elements[idxuser].Queue); i++)
+    {
+        writeword(File, multi.Elements[idxuser].Queue.Buffer[i]);//queue
+    }
 
     fprintf(File, "%d\n", multi.Elements[idxuser].History.TOP+1);//jml riwayat
-    for (int it = multi.Elements[idxuser].History.TOP; it >= 0; it--){
+
+    for (int it = multi.Elements[idxuser].History.TOP; it >= 0; it--)
+    {
         writeword(File, multi.Elements[idxuser].History.T[it]);//riwayat
     }
 
-    if(multi.Elements[idxuser].Playlist.Neff==0 && idxuser==user.Neff-1){
-        fprintf(File, "%d", multi.Elements[idxuser].Playlist.Neff);}//jml playlist
-    else{
-        fprintf(File, "%d\n", multi.Elements[idxuser].Playlist.Neff);}//jml playlist
+    if(multi.Elements[idxuser].Playlist.Neff==0 && idxuser==user.Neff-1)
+    {
+        fprintf(File, "%d", multi.Elements[idxuser].Playlist.Neff);//jml playlist untuk user terakhir
+    }
+    else
+    {
+        fprintf(File, "%d\n", multi.Elements[idxuser].Playlist.Neff);//jml playlist
+    }
 
     for (int ip = 0; ip < multi.Elements[idxuser].Playlist.Neff; ip++)
     {
         fprintf(File, "%d ",NbElmt(multi.Elements[idxuser].PlaylistSong[ip].Song));//jml lagu
-        if(idxuser==user.Neff-1 && ip==multi.Elements[idxuser].Playlist.Neff-1){
-            writewordnnl(File, multi.Elements[idxuser].Playlist.A[ip]);}
-        else{
-            writeword(File, multi.Elements[idxuser].Playlist.A[ip]);}//nama playlist
+
+        if(idxuser==user.Neff-1 && ip==multi.Elements[idxuser].Playlist.Neff-1)
+        {
+            writewordnnl(File, multi.Elements[idxuser].Playlist.A[ip]);//nama playlist untuk user terakhir
+        }
+        else
+        {
+            writeword(File, multi.Elements[idxuser].Playlist.A[ip]);//nama playlist
+        }
+
         address s=First(multi.Elements[idxuser].PlaylistSong[ip].Song);
         for (int is = 0; is < NbElmt(multi.Elements[idxuser].PlaylistSong[ip].Song); is++)
         {
-            if(idxuser==user.Neff-1 && ip==multi.Elements[idxuser].Playlist.Neff-1 && is==NbElmt(multi.Elements[idxuser].PlaylistSong[ip].Song)-1){
-                writewordnnl(File, s->info);
+            if(idxuser==user.Neff-1 && ip==multi.Elements[idxuser].Playlist.Neff-1 && is==NbElmt(multi.Elements[idxuser].PlaylistSong[ip].Song)-1)
+            {
+                writewordnnl(File, s->info);//judul lagu untuk line terakhir
             }
-            writeword(File, s->info);//nama lagu
+            else
+            {
+            writeword(File, s->info);//judul lagu
+            }
             s=Next(s);
         }
-        
-    }}
-    
+    }
+    }
     fclose(File);
 }
