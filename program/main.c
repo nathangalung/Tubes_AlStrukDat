@@ -288,12 +288,12 @@ int main()
             {
                 sesi = false;
 
-                printf("keluar dari sesi\n");
+                printf("Keluar dari sesi\n");
             }
             else if (menu)
             {
                 menu = false;
-                printf("Apakah kamu ingin menyimpan data sesi sekarang? (Y/N) : ");
+                printf("Apakah kamu ingin menyimpan data sesi sekarang? (Y) : ");
                 StartWordMark();
                 if (CompareStringWord(currentWord,"Y")){
                     printf("ketik \"<nama_file>.txt\" : ");
@@ -302,12 +302,15 @@ int main()
                     Save(filename, artist, album, album_artist, song_album, user, playing, multi);
                     printf("File berhasil disimpan\n");
                 }
-                printf("keluar dari menu\n");
+                else{
+                    printf("File tidak disimpan\n");
+                }
+                printf("Keluar dari menu\n");
             }
             else if (run)
             {
                 run = false;
-                printf("keluar dari program\n");
+                printf("Keluar dari program\n");
             }
             else
             {
