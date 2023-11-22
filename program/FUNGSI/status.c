@@ -48,6 +48,11 @@ void Status(User multi, StaticList  artist, Set album, StaticList playing, int i
         boolean found_2 = false;
         ctr = 0;
 
+        if (Search(multi.Elements[idx_user].PlaylistSong[i].Song, currentSong))
+        {
+            ctr++;
+        }
+
         while (!found_2 && j < LengthQueue(multi.Elements[idx_user].Queue))
         {
             boolean found_3 = false;
@@ -71,14 +76,14 @@ void Status(User multi, StaticList  artist, Set album, StaticList playing, int i
         i++;
     }
 
-    if (found_1 && (ctr == LengthQueue(multi.Elements[idx_user].Queue)))
+    if (found_1 && (ctr >= LengthQueue(multi.Elements[idx_user].Queue)) && LengthQueue(multi.Elements[idx_user].Queue) > 0)
     {
-        printf("Current Playlist: ");
+        printf("Current Playlist : \n");
         DisplayWord(currentPlaylist);
-        printf("\n");
+        printf("\n\n");
     }
 
-    printf("Now Playing:\n");
+    printf("Now Playing :\n");
     if (CompareStringWord(playing.A[idx_user], MarkStatic))
     {
         printf("No songs have been played yet. Please search for a song to begin playback.\n");
@@ -87,7 +92,6 @@ void Status(User multi, StaticList  artist, Set album, StaticList playing, int i
     {
         DisplayWordDash(currentSong, artist, album);
         printf("\n");
-
     }
 
     printf("\nQueue :\n");
@@ -95,7 +99,7 @@ void Status(User multi, StaticList  artist, Set album, StaticList playing, int i
     {
         for (int i = 0; i < LengthQueue(multi.Elements[idx_user].Queue); i++)
         {
-            printf("%d. ", (i+1));
+            printf("\t%d. ", (i+1));
             DisplayWordDash(multi.Elements[idx_user].Queue.Buffer[i], artist, album);
             printf("\n");
         }
