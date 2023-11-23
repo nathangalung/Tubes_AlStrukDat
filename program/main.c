@@ -29,8 +29,6 @@ int main()
     boolean run = true, menu = false, sesi = false;
     int idx_user = -1;
 
-    CreateEmptyDynamic(&playing);
-
     WelcomeImage();
 
     while (run)
@@ -75,7 +73,7 @@ int main()
             }
             else
             {
-                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
         else if (CompareStringWord(command, "LOGIN"))
@@ -87,7 +85,7 @@ int main()
             }
             else
             {
-                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
         else if (CompareStringWord(command, "LOGOUT"))
@@ -99,7 +97,7 @@ int main()
             }
             else
             {
-                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
         else if (CompareStringWord(SplitWordLeftBlank(command), "LIST"))
@@ -117,12 +115,12 @@ int main()
                 }
                 else
                 {
-                    printf("\nCommand tidak diketahui!\n");
+                    printf("%sCommand tidak diketahui!\n", RED);
                 }
             }
             else
             {
-                printf("\nCommand tidak bisa dieksekusi!\n");
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
         else if (CompareStringWord(SplitWordLeftBlank(command), "PLAY"))
@@ -140,12 +138,12 @@ int main()
                 }
                 else
                 {
-                    printf("%s\nCommand tidak diketahui!\n", RED);
+                    printf("%sCommand tidak diketahui!\n", RED);
                 }
             }
             else
             {
-                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
         else if (CompareStringWord(SplitWordLeftBlank(command), "QUEUE"))
@@ -177,12 +175,12 @@ int main()
                 }
                 else
                 {
-                    printf("%s\nCommand tidak diketahui!\n", RED);
+                    printf("%sCommand tidak diketahui!\n", RED);
                 }
             }
             else
             {
-                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
         else if (CompareStringWord(SplitWordLeftBlank(command), "SONG"))
@@ -200,12 +198,12 @@ int main()
                 }
                 else
                 {
-                    printf("%s\nCommand tidak diketahui!\n", RED);
+                    printf("%sCommand tidak diketahui!\n", RED);
                 }
             }
             else
             {
-                printf("%s\nCommand tidak bisa dieksekusi!\n", RED);
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
         else if (CompareStringWord(SplitWordLeftBlank(command), "PLAYLIST"))
@@ -254,7 +252,7 @@ int main()
             }
             else
             {
-                printf("Command tidak bisa dieksekusi!\n");
+                printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
         else if (CompareStringWord(command, "STATUS"))
@@ -293,9 +291,8 @@ int main()
                 {
                     printf("\nKetik \"<nama_file>.txt\" : ");
                     StartWordMark();
-                    Word filename = ConcatWord(StringToWord("CONFIG/save/"), currentWord);
 
-                    Save(filename, artist, album, album_artist, song_album, user, playing, multi);
+                    Save(currentWord, artist, album, album_artist, song_album, user, playing, multi);
                 }
                 else
                 {

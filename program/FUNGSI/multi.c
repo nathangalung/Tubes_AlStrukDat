@@ -32,10 +32,10 @@ int Login(DynamicList *user, User *multi, int idx_user)
         }
         else
         {
-            printf("\nTidak ada user dengan username \"");
+            printf("%s\nTidak ada user dengan username \"", RED);
             DisplayWord(currentWord);
             printf("\"\n");
-            printf("\nBerikut daftar username yang terdaftar :\n");
+            printf("%s\nBerikut daftar username yang terdaftar :\n", WHITE);
             for (int i = 0; i < LengthListDynamic(*user); i++)
             {
                 printf("\t%d. ", (i+1));
@@ -88,7 +88,7 @@ void Register(DynamicList *user, User *multi)
 
         if (found)
         {
-            printf("\nUsername \"");
+            printf("%s\nUsername \"", RED);
             DisplayWord(currentWord);
             printf("\" sudah didaftarkan, silakan gunakan username lain!\n");
         }
@@ -108,6 +108,6 @@ void Register(DynamicList *user, User *multi)
     }
     else
     {
-        printf("\nMinimal terdapat 3 karakter selain whitespace dalam username user. Silakan coba lagi!");
+        printf("%s\nMinimal terdapat 3 karakter selain whitespace dalam username user. Silakan coba lagi!", RED);
     }
 }

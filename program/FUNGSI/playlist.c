@@ -29,7 +29,7 @@ void PlaylistCreate(User *multi, int idx_user)
     } 
     else 
     {
-        printf("Minimal terdapat 3 karakter selain spasi dalam nama playlist. Silakan coba lagi!\n");
+        printf("%sMinimal terdapat 3 karakter selain spasi dalam nama playlist. Silakan coba lagi!\n", RED);
     }
 }
 // ========================================================================================= PLAYLIST ADD SONG ======================================================================================================== //
@@ -196,7 +196,7 @@ void PlaylistAddSong(StaticList artist, Map album_artist, Map song_album, User *
                         }
                         else
                         {
-                            printf("Lagu ");
+                            printf("%sLagu ", RED);
                             DisplayWord(LaguPilihan);
                             printf(" sudah ada di playlist ");
                             DisplayWord(PlaylistPilihan);
@@ -205,31 +205,31 @@ void PlaylistAddSong(StaticList artist, Map album_artist, Map song_album, User *
                     }
                     else
                     {
-                        printf("Playlist tidak ada dalam daftar. Silakan coba lagi!\n");
+                        printf("%sPlaylist tidak ada dalam daftar. Silakan coba lagi!\n", RED);
                     }
                 }
                 else
                 {
-                    printf("Lagu tidak ada dalam daftar. Silakan coba lagi!\n");
+                    printf("%sLagu tidak ada dalam daftar. Silakan coba lagi!\n", RED);
                 }
             }
             else
             {
-                printf("Album ");
+                printf("%sAlbum ", RED);
                 DisplayWord(currentWord);
                 printf(" tidak ada dalam daftar. Silakan coba lagi!\n");
             }
         }
         else
         {
-            printf("Penyanyi ");
+            printf("%sPenyanyi ", RED);
             DisplayWord(currentWord);
             printf(" tidak ada dalam daftar. Silakan coba lagi!\n");
         }
     }
     else
     {
-        printf("Kamu tidak memiliki playlist. Silakan buat terlebih dahulu!\n");
+        printf("%sKamu tidak memiliki playlist. Silakan buat terlebih dahulu!\n", RED);
     }
 }
 // ========================================================================================= PLAYLIST ADD ALBUM ======================================================================================================== //

@@ -47,7 +47,7 @@ void Save(Word command, StaticList artist, Set album, Map album_artist, Map song
         }
     }
 
-    if (count >= 3)
+    if (count >= 8)
     {
         Word filename = ConcatWord(StringToWord("CONFIG/save/"), command);
         
@@ -159,6 +159,6 @@ void Save(Word command, StaticList artist, Set album, Map album_artist, Map song
     }
     else
     {
-        printf("Minimal terdapat 3 karakter selain spasi dalam nama save file. Silakan coba lagi!\n");
+        printf("%sMinimal terdapat 4 karakter selain \".txt\" dalam nama save file. Silakan coba lagi!\n", RED);
     }
 }

@@ -111,6 +111,6 @@ void Load(Word command, StaticList *artist, Set *album, Map *album_artist, Map *
     }
     else
     {
-        printf("Save file tidak ditemukan. WayangWave88Gacor gagal dijalankan.\n");
+        printf("%sSave file tidak ditemukan. WayangWave88Gacor gagal dijalankan.\n", RED);
     }
 }

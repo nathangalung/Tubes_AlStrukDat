@@ -135,19 +135,19 @@ void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
             }
             else
             {
-                printf("Lagu tidak ada dalam daftar. Silakan coba lagi!\n");
+                printf("%sLagu tidak ada dalam daftar. Silakan coba lagi!\n", RED);
             }
         }
         else
         {
-            printf("Album ");
+            printf("%sAlbum ", RED);
             DisplayWord(currentWord);
             printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
         }
     }
     else
     {
-        printf("Penyanyi ");
+        printf("%sPenyanyi ", RED);
         DisplayWord(currentWord);
         printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
     }
@@ -186,12 +186,12 @@ void QueuePlaylist(User *multi, int idx_user)
         }
         else
         {
-            printf("Playlist tidak ada dalam daftar. Silakan coba lagi!\n");
+            printf("%sPlaylist tidak ada dalam daftar. Silakan coba lagi!\n", RED);
         }
     }
     else
     {
-        printf("Kamu tidak memiliki playlist. Silakan buat terlebih dahulu!\n");
+        printf("%sKamu tidak memiliki playlist. Silakan buat terlebih dahulu!\n", RED);
     }
 }
 // ========================================================================================= QUEUE SWAP ======================================================================================================== //
@@ -222,7 +222,7 @@ void QueueSwap(User *multi, Word word, int idx_user)
     }
     else if (idx_1 == 0 || idx_2 == 0)
     {
-        printf("Tidak ada lagu dengan urutan ke 0. Silakan sertakan urutan yang valid dari lagu yang ingin ditukar!\n");
+        printf("%sTidak ada lagu dengan urutan ke 0. Silakan sertakan urutan yang valid dari lagu yang ingin ditukar!\n", RED);
     }
     else if (idx_1 < 0 || idx_2 < 0)
     {
@@ -230,15 +230,15 @@ void QueueSwap(User *multi, Word word, int idx_user)
     }
     else if ((idx_1 > LengthQueue(multi->Elements[idx_user].Queue)) && (idx_2 > LengthQueue(multi->Elements[idx_user].Queue)))
     {
-        printf("Lagu dengan urutan ke %d dan %d tidak terdapat dalam queue!\n", idx_1, idx_2);
+        printf("%sLagu dengan urutan ke %d dan %d tidak terdapat dalam queue!\n", RED, idx_1, idx_2);
     }
     else if (idx_1 > LengthQueue(multi->Elements[idx_user].Queue))
     {
-        printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", idx_1);
+        printf("%sLagu dengan urutan ke %d tidak terdapat dalam queue!\n", RED, idx_1);
     }
     else
     {
-        printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", idx_2);
+        printf("%sLagu dengan urutan ke %d tidak terdapat dalam queue!\n", RED, idx_2);
     }
 }
 // ========================================================================================= QUEUE REMOVE ======================================================================================================== //
@@ -275,11 +275,11 @@ void QueueRemove(User *multi, Word word, int idx_user)
     }
     else if (idx_1 == 0)
     {
-        printf("Tidak ada lagu dengan urutan ke 0. Silakan sertakan urutan yang valid dari lagu yang ingin ditukar!\n");
+        printf("%sTidak ada lagu dengan urutan ke 0. Silakan sertakan urutan yang valid dari lagu yang ingin ditukar!\n", RED);
     }
     else
     {
-        printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", idx_1);
+        printf("%sLagu dengan urutan ke %d tidak terdapat dalam queue!\n", RED, idx_1);
     }
 }
 // ========================================================================================= QUEUE CLEAR ======================================================================================================== //

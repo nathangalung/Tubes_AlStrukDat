@@ -94,22 +94,22 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
                 }
                 else
                 {
-                    printf("\nNama album tidak ditemukan. Silakan coba lagi!\n");
+                    printf("%s\nNama album tidak ditemukan. Silakan coba lagi!\n", RED);
                 }
             }
             else if (!CompareStringWord(currentWord, "N"))
             {
-                printf("\nTidak terdapat pilihan tersebut. Silakan coba lagi!\n");
+                printf("%s\nTidak terdapat pilihan tersebut. Silakan coba lagi!\n", RED);
             }
         }
         else
         {
-            printf("Nama artis tidak ditemukan. Silakan coba lagi!\n");
+            printf("%sNama artis tidak ditemukan. Silakan coba lagi!\n", RED);
         }
     }
     else if (!CompareStringWord(currentWord, "N"))
     {
-        printf("\nTidak terdapat pilihan tersebut. Silakan coba lagi!\n");
+        printf("%s\nTidak terdapat pilihan tersebut. Silakan coba lagi!\n", RED);
     }
 }
 // ========================================================================================= LIST PLAYLIST ======================================================================================================== //
@@ -162,22 +162,22 @@ void ListPlaylist (User multi, int idx_user)
                 }
                 else
                 {
-                    printf("Tidak ada lagu di playlist ini.\n");
+                    printf("%sTidak ada lagu di playlist ini.\n", RED);
                 }
             }
             else
             {
-                printf("Playlist tidak ada dalam daftar. Silakan coba lagi!\n");
+                printf("%sPlaylist tidak ada dalam daftar. Silakan coba lagi!\n", RED);
             }
         }
         else if (!CompareStringWord(currentWord, "N"))
         {
-            printf("\nTidak terdapat pilihan tersebut. Silakan coba lagi!\n");
+            printf("%s\nTidak terdapat pilihan tersebut. Silakan coba lagi!\n", RED);
         }
     } 
     else 
     {
-        printf("\nKamu tidak memiliki playlist.");
+        printf("%s\nKamu tidak memiliki playlist. Silakan buat playlist terlebih dahulu!", RED);
         printf("\n");
     }
 }
