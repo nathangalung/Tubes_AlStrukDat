@@ -134,7 +134,7 @@ void ListPlaylist (User multi, int idx_user)
         {
             printf("\nMasukkan ID Playlist yang dipilih : ");
             StartWordMark();
-            int ID_Playlist = atoi(currentWord.TabWord);
+            int ID_Playlist = WordToInt(currentWord);
 
             if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic(multi.Elements[idx_user].Playlist))
             {

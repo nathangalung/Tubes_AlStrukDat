@@ -104,7 +104,7 @@ void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
             printf("Masukkan ID Lagu yang dipilih : ");
             StartWordMark();
             printf("\n");
-            int ID_Lagu = atoi(currentWord.TabWord);
+            int ID_Lagu = WordToInt(currentWord);
 
             if (ID_Lagu > 0 && ID_Lagu <= index)
             {
@@ -135,7 +135,7 @@ void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
             }
             else
             {
-                printf("Lagu tidak ada dalam daftar. Silakan coba lagi.\n");
+                printf("Lagu tidak ada dalam daftar. Silakan coba lagi!\n");
             }
         }
         else
@@ -163,22 +163,16 @@ void QueuePlaylist(User *multi, int idx_user)
     Word Playlist;
 
     /* ALGORITMA */
-    printf("Masukkan ID Playlist: ");
-    StartWordMark();
-    Playlist = currentWord;
-    idPlaylist = atoi(currentWord.TabWord);
 
-    idPlaylistValid = false;
-
-    if (!idPlaylistValid)
+    if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
     {
-        if (IsListEmptyDynamic(multi->Elements[idx_user].Playlist) || idPlaylist < 0 || idPlaylist > LengthListDynamic(multi->Elements[idx_user].Playlist))
+        printf("Masukkan ID Playlist yang dipilih : ");
+        StartWordMark();
+        Playlist = currentWord;
+        idPlaylist = WordToInt(currentWord);
+
+        if (idPlaylist > 0 && idPlaylist <= LengthListDynamic(multi->Elements[idx_user].Playlist))
         {
-            printf("\nPlaylist tidak ditemukan.\n");
-        }
-        else
-        {
-            idPlaylistValid = true;
             printf("\nBerhasil menambahkan playlist \"");
             DisplayWord(GetDynamic(multi->Elements[idx_user].Playlist, idPlaylist-1));
             printf("\" ke queue.\n");
@@ -190,6 +184,14 @@ void QueuePlaylist(User *multi, int idx_user)
                 lagu = Next(lagu);
             }
         }
+        else
+        {
+            printf("Playlist tidak ada dalam daftar. Silakan coba lagi!\n");
+        }
+    }
+    else
+    {
+        printf("Kamu tidak memiliki playlist. Silakan buat terlebih dahulu!\n");
     }
 }
 
