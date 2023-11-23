@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
-
+// ========================================================================================= LIST DEFAULT ======================================================================================================== //
 void ListDefault (StaticList artist, Map album_artist, Map song_album)
 {
     printf("Daftar Penyanyi :\n");
@@ -112,7 +112,7 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
         printf("\nTidak terdapat pilihan tersebut. Silakan coba lagi!\n");
     }
 }
-
+// ========================================================================================= LIST PLAYLIST ======================================================================================================== //
 void ListPlaylist (User multi, int idx_user)
 {
     printf("Daftar playlist yang kamu miliki : \n");
