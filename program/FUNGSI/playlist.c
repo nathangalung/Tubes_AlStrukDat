@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "playlist.h"
-
+// ========================================================================================= PLAYLIST CREATE ======================================================================================================== //
 void PlaylistCreate(User *multi, int idx_user)
 {
     int countChar = 0;
@@ -32,7 +32,7 @@ void PlaylistCreate(User *multi, int idx_user)
         printf("Minimal terdapat 3 karakter selain spasi dalam nama playlist. Silakan coba lagi!\n");
     }
 }
-
+// ========================================================================================= PLAYLIST ADD SONG ======================================================================================================== //
 void PlaylistAddSong(StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
 {
     if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
@@ -232,7 +232,7 @@ void PlaylistAddSong(StaticList artist, Map album_artist, Map song_album, User *
         printf("Kamu tidak memiliki playlist. Silakan buat terlebih dahulu!\n");
     }
 }
-
+// ========================================================================================= PLAYLIST ADD ALBUM ======================================================================================================== //
 void PlaylistAddAlbum (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
 {
     if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
@@ -398,7 +398,7 @@ void PlaylistAddAlbum (StaticList artist, Map album_artist, Map song_album, User
         printf("Kamu tidak memiliki playlist. Silakan buat terlebih dahulu!\n");
     }
 }
-
+// ========================================================================================= PLAYLIST SWAP ======================================================================================================== //
 void PlaylistSwap(User *multi, int idx_user, Word word)
 {
     if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
@@ -509,7 +509,7 @@ void PlaylistSwap(User *multi, int idx_user, Word word)
         printf("Kamu tidak memiliki playlist. Silakan buat terlebih dahulu!\n");
     }
 }
-
+// ========================================================================================= PLAYLIST REMOVE ======================================================================================================== //
 void PlaylistRemove(User *multi, int idx_user, Word word)
 {
     if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
