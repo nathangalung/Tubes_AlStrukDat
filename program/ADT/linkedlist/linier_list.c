@@ -60,7 +60,7 @@ address SearchAdress (LinierList L, Word word)
 	}
 }
 
-boolean Search (LinierList L, Word word)
+boolean Search(LinierList L, Word word)
 {
 	address P = First(L);
 	boolean found = false;
@@ -234,27 +234,4 @@ void InversLinierList (LinierList *L)
 		InsertFirst(L, A);
 		Next(P) = B;
 	}
-}
-
-void Konkat1 (LinierList *L1, LinierList *L2, LinierList *L3)
-{
-	CreateEmptyLinier(L3);
-	address lastL1 = First(*L1);
-
-	if (IsEmptyLinier(*L1))
-	{
-		First(*L3) = First(*L2);
-	}
-	else
-	{
-		First(*L3) = First(*L1);
-		while (Next(lastL1) != Nil)
-		{
-			lastL1 = Next(lastL1);
-		}
-		Next(lastL1) = First(*L2);
-	}
-
-	CreateEmptyLinier(L1);
-	CreateEmptyLinier(L2);
 }

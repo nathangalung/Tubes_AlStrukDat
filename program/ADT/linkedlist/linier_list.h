@@ -51,11 +51,11 @@ void Dealokasi (address *P);
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
 address SearchAdress (LinierList L, Word word);
-
-boolean Search (LinierList L, Word word);
 /* Mencari apakah ada elemen list dengan info(P)= X */
 /* Jika ada, mengirimkan address elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
+
+boolean Search (LinierList L, Word word);
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
@@ -125,13 +125,5 @@ void InversLinierList (LinierList *L);
 /* F.S. elemen list dibalik : */
 /* Elemen terakhir menjadi elemen pertama, dan seterusnya. */
 /* Membalik elemen list, tanpa melakukan alokasi/dealokasi. */
-
-void Konkat1 (LinierList *L1, LinierList *L2, LinierList *L3);
-/* I.S. L1 dan L2 sembarang */
-/* F.S. L1 dan L2 kosong, L3 adalah hasil konkatenasi L1 & L2 */
-/* Konkatenasi dua buah list : L1 dan L2    */
-/* menghasilkan L3 yang baru (dengan elemen list L1 dan L2) */
-/* dan L1 serta L2 menjadi list kosong.*/
-/* Tidak ada alokasi/dealokasi pada prosedur ini */
 
 #endif

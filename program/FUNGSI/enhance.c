@@ -1,14 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 #include "enhance.h"
 
-void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, User multi, int idx_user)
+unsigned int rng(unsigned int max)
 {
     time_t t;
     srand((unsigned int)time(&t));
+    static unsigned int seed = 0;
+    seed = (seed << 3) + (unsigned int)time(NULL) + rand() + (unsigned int)pow(seed, 2) + (unsigned int)sqrt(seed);
 
+    return (seed % (max)) + 1;
+}
+
+void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, User multi, int idx_user)
+{
     printf("Berikut daftar playlist yang dimiliki :\n");
     for (int i = 0; i < (LengthListDynamic(multi.Elements[idx_user].Playlist)); i++)
     {
@@ -35,7 +43,7 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
 
     if (found_1)
     {
-        int rand_count = (rand() % 3) + 1;
+        unsigned int rand_count = rng(3);
         
         for (int i = 0; i < rand_count; i++)
         {
@@ -45,7 +53,7 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
             while (!found_2)
             {
                 boolean found_3 = false;
-                int rand_song = (rand() % song_album.Count) + 1, ctr = 0;
+                unsigned int rand_song = rng(song_album.Count), ctr = 0;
                 address P = First(multi.Elements[idx_user].PlaylistSong[idx_playlist].Song);
                 
                 while (!found_3 && ctr < NbElmt(multi.Elements[idx_user].PlaylistSong[idx_playlist].Song))
