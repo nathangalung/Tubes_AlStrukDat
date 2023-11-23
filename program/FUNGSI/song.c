@@ -1,7 +1,7 @@
 #include "song.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+// ========================================================================================= SONG NEXT ======================================================================================================== //
 void SongNext(User *multi, StaticList artist, DynamicList *playing, int idx_user)
 {
     Word currentSong = playing->A[idx_user];
@@ -29,7 +29,7 @@ void SongNext(User *multi, StaticList artist, DynamicList *playing, int idx_user
         printf("\"\n");
     }
 }
-
+// ========================================================================================= SONG PREVIOUS ======================================================================================================== //
 void SongPrevious(User *multi, StaticList artist, DynamicList *playing, int idx_user)
 {
     Word previousSong, currentSong = playing->A[idx_user];
