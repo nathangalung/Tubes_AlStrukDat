@@ -35,7 +35,7 @@ void DisplayWordDash(Word word, StaticList artist, Set album)
     }
     
 }
-
+// ========================================================================================= STATUS ======================================================================================================== //
 void Status(User multi, StaticList  artist, Set album, DynamicList playing, int idx_user)
 {
     boolean found_1 = false;
