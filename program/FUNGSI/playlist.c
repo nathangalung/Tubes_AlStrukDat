@@ -323,27 +323,56 @@ void PlaylistAddAlbum (StaticList artist, Map album_artist, Map song_album, User
                 printf("\n");
                 int ID_Playlist = WordToInt(currentWord);
 
+                int count1 = 0;
+                int count2 = 0;
                 if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic(multi->Elements[idx_user].Playlist))
                 {
                     for (int i = 0; i < song_album.Count; i++)
                     {
                         if (CompareWord(song_album.Elements[i].Value, NamaAlbum))
                         {
+                            count1++;
                             Word MarkSC = {";", 1};
                             Word LaguPilihan = song_album.Elements[i].Key;
                             Word Pilihan = ConcatWord(NamaPenyanyi, MarkSC);
                             Pilihan = ConcatWord(Pilihan, NamaAlbum);
                             Pilihan = ConcatWord(Pilihan, MarkSC);
                             Pilihan = ConcatWord(Pilihan, LaguPilihan);
-                            InsVLast(&multi->Elements[idx_user].PlaylistSong[ID_Playlist-1].Song, Pilihan);
+                            if (!Search((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song, Pilihan))
+                            {
+                                InsVLast(&multi->Elements[idx_user].PlaylistSong[ID_Playlist-1].Song, Pilihan);
+                            }
+                            else
+                            {
+                                count2++;
+                            }
                         }
                     }
                     Word PlaylistPilihan = GetDynamic((multi->Elements[idx_user].Playlist), ID_Playlist-1);
-                    printf("Album dengan judul \"");
-                    DisplayWord(NamaAlbum);
-                    printf("\" berhasil ditambahkan ke dalam playlist pengguna \"");
-                    DisplayWord(PlaylistPilihan);
-                    printf("\".\n");
+                    if (count2 == 0)
+                    {
+                        printf("Album dengan judul \"");
+                        DisplayWord(NamaAlbum);
+                        printf("\" berhasil ditambahkan ke dalam playlist pengguna \"");
+                        DisplayWord(PlaylistPilihan);
+                        printf("\".\n");
+                    }
+                    else if (count1 != count2)
+                    {
+                        printf("Beberapa lagu dari album \"");
+                        DisplayWord(NamaAlbum);
+                        printf("\" berhasil ditambahkan ke dalam playlist pengguna \"");
+                        DisplayWord(PlaylistPilihan);
+                        printf("\".\n");
+                    }
+                    else
+                    {
+                        printf("Album dengan judul \"");
+                        DisplayWord(NamaAlbum);
+                        printf("\" sudah ada dalam playlist pengguna \"");
+                        DisplayWord(PlaylistPilihan);
+                        printf("\".\n");
+                    }
                 }
                 else
                 {
