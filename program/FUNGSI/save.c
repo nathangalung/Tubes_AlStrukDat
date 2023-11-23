@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "save.h"
-
+// ========================================================================================= JUMLAH KEY ======================================================================================================== //
 int jmlkey(Map map, Word value)
 {
     int count = 0;
@@ -16,7 +16,7 @@ int jmlkey(Map map, Word value)
     
     return count;
 }
-
+// ========================================================================================= WRITE WORD ======================================================================================================== //
 void writeword(FILE* File, Word word)
 {
     for (int it = 0; it < word.Length; it++)
@@ -25,7 +25,7 @@ void writeword(FILE* File, Word word)
     }
     fprintf(File,"\n");
 }
-
+// ========================================================================================= WRITE WORD NO NEWLINE ======================================================================================================== //
 void writewordnnl(FILE* File, Word word)
 {
     for (int it = 0; it < word.Length; it++)
@@ -33,7 +33,7 @@ void writewordnnl(FILE* File, Word word)
         fprintf(File,"%c", word.TabWord[it]);
     }
 }
-
+// ========================================================================================= SAVE ======================================================================================================== //
 void Save(Word command, StaticList artist, Set album, Map album_artist, Map song_album, DynamicList user, DynamicList playing, User multi)
 {
     char namafile[50];
