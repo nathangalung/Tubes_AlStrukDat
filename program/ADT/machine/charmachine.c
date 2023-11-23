@@ -21,10 +21,22 @@ void StartBlank()
     AdvBlank();
 }
 
+void WordToString(Word word, char *string)
+{
+    string[word.Length] = '\0';
+
+    for (int i = 0; i < word.Length; i++)
+    {
+        string[i] = word.TabWord[i];
+    }
+}
+
 boolean StartNewline(Word filename)
 {
     boolean found = false;
-    pita = fopen(filename.TabWord, "r");
+    char namafile[50];
+    WordToString(filename,namafile);
+    pita = fopen(namafile, "r");
     
     if (pita == NULL)
     {

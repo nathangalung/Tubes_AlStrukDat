@@ -273,7 +273,7 @@ int main()
             if (menu || sesi)
             {
                 command = SplitWordBlank(command);
-                Word filename = ConcatWord(StringToWord("CONFIG/save"), command);
+                Word filename = ConcatWord(StringToWord("CONFIG/save/"), command);
                 Save(filename, artist, album, album_artist, song_album, user, playing, multi);
                 printf("Save file berhasil disimpan\n");
             }

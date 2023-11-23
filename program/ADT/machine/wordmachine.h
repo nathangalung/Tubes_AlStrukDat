@@ -60,8 +60,6 @@ int WordToInt(Word word);
 
 Word StringToWord(char *s);
 
-void WordToString(Word word, char *string);
-
 Word SplitWordBlank(Word word);
 
 Word SplitWordMark(Word word);

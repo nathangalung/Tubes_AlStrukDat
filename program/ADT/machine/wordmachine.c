@@ -214,16 +214,6 @@ Word StringToWord(char *string)
     return command;
 }
 
-void WordToString(Word word, char *string)
-{
-    string[word.Length] = '\0';
-
-    for (int i = 0; i < word.Length; i++)
-    {
-        string[i] = word.TabWord[i];
-    }
-}
-
 Word SplitWordBlank(Word word)
 {
     Word temp;

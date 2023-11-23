@@ -34,6 +34,8 @@ void StartMark();
 
 void StartBlank();
 
+void WordToString(Word word, char *string);
+
 boolean StartNewline(Word filename);
 
 void AdvMark();
