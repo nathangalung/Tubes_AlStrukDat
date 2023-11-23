@@ -192,7 +192,7 @@ int WordToInt(Word word)
     int i;
     for (i = 0; i < word.Length; i++)
     {
-        val = val * 10 + (int)(word.TabWord[i] % 48);
+        val = val * 10 + (int)(word.TabWord[i] - 48);
     }
 
     return (val);

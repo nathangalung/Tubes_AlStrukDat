@@ -360,12 +360,18 @@ void PlaylistSwap(User *multi, int idx_user, Word word)
 {
     printf("\n");
     int ID_Playlist = atoi(SplitWordLeftBlank(word).TabWord);
-    Word Split1 = SplitWordBlank(word);
-    int idx_1 = atoi(SplitWordLeftBlank(Split1).TabWord);
-    Word Split2 = SplitWordBlank(Split1);
-    int idx_2 = atoi(SplitWordBlank(Split1).TabWord);
+    Word ID_Lagu = SplitWordBlank(word);
+    int idx_1 = WordToInt(SplitWordLeftBlank(ID_Lagu));
+    Word ID_Lagu2 = SplitWordBlank(ID_Lagu);
+    int idx_2 = WordToInt(ID_Lagu2);
     address Song1, Song2, temp;
-
+    DisplayWord(SplitWordLeftBlank(ID_Lagu));
+    printf("\n");
+    DisplayWord(ID_Lagu2);
+    printf("\n");
+  
+    printf ("%d %d %d\n", ID_Playlist, idx_1, idx_2);
+    
     if ((ID_Playlist > 0) && (ID_Playlist  <= LengthListDynamic((*multi).Elements[idx_user].Playlist)))
     {
         Word PlaylistPilihan = GetDynamic(((*multi).Elements[idx_user].Playlist), ID_Playlist-1);
@@ -409,13 +415,17 @@ void PlaylistSwap(User *multi, int idx_user, Word word)
             DisplayWord(PlaylistPilihan);
             printf("\"\n");
         }
-        else if ((idx_1 < 0 || idx_1 > NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)) && (idx_2 < 0 || idx_2 > NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)))
+        else if (idx_1 < 0 || idx_2 < 0)
+        {
+            printf("ID Lagu invalid.\n");
+        }
+        else if ((idx_1 > NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)) && (idx_2 > NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)))
         {
             printf("Tidak ada lagu dengan urutan %d dan %d di playlist \"", idx_1, idx_2);
             DisplayWord(PlaylistPilihan);
             printf("\"\n");
         }
-        else if ((idx_1 < 0 || idx_1 > NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)))
+        else if ((idx_1 > NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)))
         {
             printf("Tidak ada lagu dengan urutan %d di playlist \"", idx_1);
             DisplayWord(PlaylistPilihan);
