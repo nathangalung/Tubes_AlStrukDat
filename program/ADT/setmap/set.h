@@ -38,17 +38,11 @@ boolean IsFullSet(Set set);
 /* Ciri Set penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Set ********* */
-void InsertSet(Set *set, Word word);
+void InsertLastSet(Set *set, Word word);
 /* Menambahkan Elmt sebagai elemen Set S. */
 /* I.S. S mungkin kosong, S tidak penuh
         S mungkin sudah beranggotakan Elmt */
 /* F.S. Elmt menjadi anggota dari S. Jika Elmt sudah merupakan anggota, operasi tidak dilakukan */
-
-void DeleteSet(Set *set, Word word);
-/* Menghapus Elmt dari Set S. */
-/* I.S. S tidak kosong
-        Elmt mungkin anggota / bukan anggota dari S */
-/* F.S. Elmt bukan anggota dari S */
 
 boolean IsMemberSet(Set set, Word word);
 /* Mengembalikan true jika Elmt adalah member dari S */

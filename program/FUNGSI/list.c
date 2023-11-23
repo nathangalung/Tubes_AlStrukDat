@@ -7,10 +7,10 @@
 void ListDefault (StaticList artist, Map album_artist, Map song_album)
 {
     printf("Daftar Penyanyi :\n");
-    for (int index = 0; index < LengthList(artist); index++)
+    for (int index = 0; index < LengthStatic(artist); index++)
     {
         printf("\t%d. ", index+1);
-        DisplayWord(GetList(artist, index));
+        DisplayWord(GetStatic(artist, index));
         printf("\n");
     }
 
@@ -26,7 +26,7 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
         StartWordMark();
         printf("\n");
         int i = 0;
-        while (!penyanyivalid && (i < LengthList(artist)))
+        while (!penyanyivalid && (i < LengthStatic(artist)))
         {
             if (CompareWord(artist.A[i], currentWord))
             {
@@ -59,6 +59,7 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
 
             printf("Ingin melihat lagu yang ada? (Y/N) : ");
             StartWordMark();
+
             if (CompareStringWord(currentWord, "Y")) 
             {
                 boolean albumvalid = false;
@@ -114,14 +115,16 @@ void ListDefault (StaticList artist, Map album_artist, Map song_album)
         printf("%s\nTidak terdapat pilihan tersebut. Silakan coba lagi!\n", RED);
     }
 }
+
 // ========================================================================================= LIST PLAYLIST ======================================================================================================== //
+
 void ListPlaylist (User multi, int idx_user)
 {
     printf("Daftar playlist yang kamu miliki : \n");
-    if (!IsListEmptyDynamic(multi.Elements[idx_user].Playlist))
+    if (!IsEmptyDynamic(multi.Elements[idx_user].Playlist))
     {
         int index = 0;
-        for (int i = 0; i < LengthListDynamic(multi.Elements[idx_user].Playlist); i++)
+        for (int i = 0; i < LengthDynamic(multi.Elements[idx_user].Playlist); i++)
         {
             printf("\t%d. ", index+1);
             DisplayWord(GetDynamic((multi.Elements[idx_user].Playlist), i));
@@ -138,7 +141,7 @@ void ListPlaylist (User multi, int idx_user)
             StartWordMark();
             int ID_Playlist = WordToInt(currentWord);
 
-            if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic(multi.Elements[idx_user].Playlist))
+            if (ID_Playlist > 0 && ID_Playlist <= LengthDynamic(multi.Elements[idx_user].Playlist))
             {
                 if (NbElmt(multi.Elements[idx_user].PlaylistSong[ID_Playlist-1].Song) > 0)
                 {

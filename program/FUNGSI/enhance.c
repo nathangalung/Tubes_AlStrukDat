@@ -22,7 +22,7 @@ unsigned int RNG(unsigned int max)
 void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, User multi, int idx_user)
 {
     printf("Berikut daftar playlist yang dimiliki :\n");
-    for (int i = 0; i < (LengthListDynamic(multi.Elements[idx_user].Playlist)); i++)
+    for (int i = 0; i < (LengthDynamic(multi.Elements[idx_user].Playlist)); i++)
     {
         printf("\t%d. ", (i+1));
         DisplayWord(multi.Elements[idx_user].Playlist.A[i]);
@@ -36,7 +36,7 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
     StartWordMark();
     idx_playlist = atoi(currentWord.TabWord) - 1;
     
-    if (idx_playlist >= 0 && idx_playlist < LengthListDynamic(multi.Elements[idx_user].Playlist))
+    if (idx_playlist >= 0 && idx_playlist < LengthDynamic(multi.Elements[idx_user].Playlist))
     {
         found_1 = true;
     }

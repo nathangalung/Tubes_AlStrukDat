@@ -10,17 +10,17 @@ void CreateEmptyQueue(Queue *queue)
     IDX_TAIL(*queue) = IDX_UNDEF;
 }
 
-boolean IsQueueEmpty(Queue queue)
+boolean IsEmptyQueue(Queue queue)
 {
     return ((IDX_HEAD(queue) == IDX_UNDEF) && (IDX_TAIL(queue) == IDX_UNDEF));
 }
 
-boolean IsQueueFull(Queue queue)
+boolean IsFullQueue(Queue queue)
 {
-    return (LengthQueue(queue) == CAPACITY-1);
+    return (LengthQueue(queue) == MaxElQueue-1);
 }
 
-boolean IsQueueMember(Queue queue, int index)
+boolean IsMemberQueue(Queue queue, int index)
 {
     int i = 0;
     boolean found = false;
@@ -37,7 +37,7 @@ int LengthQueue(Queue queue)
 {
     int length;
 
-    if (IsQueueEmpty(queue))
+    if (IsEmptyQueue(queue))
     {
         length = 0;
     }
@@ -47,7 +47,7 @@ int LengthQueue(Queue queue)
     }
     else
     {
-        length = (IDX_TAIL(queue) - IDX_HEAD(queue)) + (CAPACITY + 1);
+        length = (IDX_TAIL(queue) - IDX_HEAD(queue)) + (MaxElQueue + 1);
     }
 
     return (length);
@@ -55,7 +55,7 @@ int LengthQueue(Queue queue)
 
 void Enqueue(Queue *queue, Word word)
 {
-    if (IsQueueEmpty(*queue))
+    if (IsEmptyQueue(*queue))
     {
         IDX_HEAD(*queue) = 0;
         IDX_TAIL(*queue) = 0;
@@ -71,7 +71,7 @@ void Enqueue(Queue *queue, Word word)
             }
             IDX_TAIL(*queue) += 1;
         } 
-        else if (IDX_TAIL(*queue) == CAPACITY-1)
+        else if (IDX_TAIL(*queue) == MaxElQueue-1)
         {
             IDX_TAIL(*queue) += 1;
         }

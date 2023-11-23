@@ -4,7 +4,7 @@
 #include "../queuestack/queue.h"
 #include "../queuestack/stack.h"
 #include "../list/dynamic_list.h"
-#include "../linkedlist/linier_list.h"
+#include "../list/linier_list.h"
 
 #define NilUser 0
 #define MaxElUser 25

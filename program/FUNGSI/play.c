@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "play.h"
+
 // ========================================================================================= PLAY SONG ======================================================================================================== //
+
 void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, DynamicList *playing, int idx_user)
 {
     /* KAMUS LOKAL */
@@ -12,10 +14,10 @@ void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, 
 
     /* ALGORITMA */
     printf("Daftar Penyanyi :\n");
-    for (index = 0; index < LengthList(artist); index++)
+    for (index = 0; index < LengthStatic(artist); index++)
     {
         printf("\t%d. ", index + 1);
-        DisplayWord(GetList(artist, index));
+        DisplayWord(GetStatic(artist, index));
         printf("\n");
     }
     printf("\n");
@@ -29,7 +31,7 @@ void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, 
     penyanyivalid = false;
 
     int i = 0;
-    while (!penyanyivalid && (i < LengthList(artist)))
+    while (!penyanyivalid && (i < LengthStatic(artist)))
     {
         if (CompareWord(artist.A[i], currentWord))
         {
@@ -151,7 +153,9 @@ void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, 
         printf(" tidak ada dalam daftar. Silakan coba lagi!\n");
     }
 }
+
 // ========================================================================================= PLAY PLAYLIST ======================================================================================================== //
+
 void PlayPlaylist(User *multi, DynamicList *playing, int idx_user)
 {
     /* KAMUS LOKAL */
@@ -166,7 +170,7 @@ void PlayPlaylist(User *multi, DynamicList *playing, int idx_user)
     namaplaylist = currentWord;
     idPlaylist = atoi(currentWord.TabWord);
 
-    if (idPlaylist > 0 && idPlaylist <= LengthListDynamic(multi->Elements[idx_user].Playlist))
+    if (idPlaylist > 0 && idPlaylist <= LengthDynamic(multi->Elements[idx_user].Playlist))
     {
         idPlaylistValid = true;
         printf("\nMemutar playlist \"");
@@ -190,7 +194,7 @@ void PlayPlaylist(User *multi, DynamicList *playing, int idx_user)
 
             for (int i = 0; (i < NbElmt(multi->Elements[idx_user].PlaylistSong[idPlaylist-1].Song) - 1); i++)
             {
-                PushStack(&multi->Elements[idx_user].History, Info(lagu));
+                Push(&multi->Elements[idx_user].History, Info(lagu));
                 Enqueue(&multi->Elements[idx_user].Queue, Info(lagu));
                 lagu = Next(lagu);
             }

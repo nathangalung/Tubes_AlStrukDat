@@ -48,17 +48,11 @@ Word ValueMap(Map M, Word k);
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
-void InsertMap(Map *map, Word k, Word v);
+void InsertLastMap(Map *map, Word k, Word v);
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
-
-void DeleteMap(Map *map, Word k);
-/* Menghapus Elmt dari Map M. */
-/* I.S. M tidak kosong
-        element dengan key k mungkin anggota / bukan anggota dari M */
-/* F.S. element dengan key k bukan anggota dari M */
 
 boolean IsMemberMap(Map map, Word k);
 /* Mengembalikan true jika k adalah member dari M */

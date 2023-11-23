@@ -7,7 +7,7 @@
 
 void CreateEmptyDynamic(DynamicList *list)
 {
-    list->A = (Word *)malloc(MaxEl * sizeof(Word));
+    list->A = (Word *)malloc(MaxElDynamic * sizeof(Word));
     if (list->A != NULL)
     {
         list->Neff = 0;
@@ -20,24 +20,24 @@ void DealokasiDynamic(DynamicList *list)
     list->Neff = 0;
 }
 
-boolean IsListEmptyDynamic(DynamicList list)
+boolean IsEmptyDynamic(DynamicList list)
 {
     return (list.Neff == 0);
+}
+
+boolean IsFullDynamic(DynamicList list)
+{
+    return (list.Neff == MaxElDynamic);
+}
+
+int LengthDynamic(DynamicList list)
+{
+    return (list.Neff);
 }
 
 Word GetDynamic(DynamicList list, IdxType i)
 {
     return (list.A[i]);
-}
-
-boolean IsListFullDynamic(DynamicList list)
-{
-    return (list.Neff == MaxEl);
-}
-
-int LengthListDynamic(DynamicList list)
-{
-    return (list.Neff);
 }
 
 void InsertLastDynamic(DynamicList *list, Word word)

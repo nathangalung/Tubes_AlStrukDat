@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "queue.h"
+
 // ========================================================================================= QUEUE SONG ======================================================================================================== //
+
 void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
 {
 
@@ -14,10 +16,10 @@ void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
     /* ALGORITMA */
     printf("\n");
     printf("Daftar Penyanyi :\n");
-    for (index = 0; index < LengthList(artist); index++)
+    for (index = 0; index < LengthStatic(artist); index++)
     {
         printf("\t%d. ", index + 1);
-        DisplayWord(GetList(artist, index));
+        DisplayWord(GetStatic(artist, index));
         printf("\n");
     }
     printf("\n");
@@ -31,7 +33,7 @@ void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
     penyanyivalid = false;
 
     int i = 0;
-    while (!penyanyivalid && (i < LengthList(artist)))
+    while (!penyanyivalid && (i < LengthStatic(artist)))
     {
         if (CompareWord(artist.A[i], currentWord))
         {
@@ -152,7 +154,9 @@ void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
         printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
     }
 }
+
 // ========================================================================================= QUEUE PLAYLIST ======================================================================================================== //
+
 void QueuePlaylist(User *multi, int idx_user)
 {
     
@@ -164,14 +168,14 @@ void QueuePlaylist(User *multi, int idx_user)
 
     /* ALGORITMA */
 
-    if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
+    if (!IsEmptyDynamic(multi->Elements[idx_user].Playlist))
     {
         printf("Masukkan ID Playlist yang dipilih : ");
         StartWordMark();
         Playlist = currentWord;
         idPlaylist = WordToInt(currentWord);
 
-        if (idPlaylist > 0 && idPlaylist <= LengthListDynamic(multi->Elements[idx_user].Playlist))
+        if (idPlaylist > 0 && idPlaylist <= LengthDynamic(multi->Elements[idx_user].Playlist))
         {
             printf("\nBerhasil menambahkan playlist \"");
             DisplayWord(GetDynamic(multi->Elements[idx_user].Playlist, idPlaylist-1));
@@ -194,7 +198,9 @@ void QueuePlaylist(User *multi, int idx_user)
         printf("%sKamu tidak memiliki playlist. Silakan buat terlebih dahulu!\n", RED);
     }
 }
+
 // ========================================================================================= QUEUE SWAP ======================================================================================================== //
+
 void QueueSwap(User *multi, Word word, int idx_user)
 {
     int ctr = 0;
@@ -214,9 +220,9 @@ void QueueSwap(User *multi, Word word, int idx_user)
             multi->Elements[idx_user].Queue.Buffer[idx_2 - 1] = temp;
 
             printf("Lagu \"");
-            DisplayWord(SplitWordMark(SplitWordMark(multi->Elements[idx_user].Queue.Buffer[idx_1 - 1])));
-            printf("\" berhasil ditukar dengan \"");
             DisplayWord(SplitWordMark(SplitWordMark(multi->Elements[idx_user].Queue.Buffer[idx_2 - 1])));
+            printf("\" berhasil ditukar dengan \"");
+            DisplayWord(SplitWordMark(SplitWordMark(multi->Elements[idx_user].Queue.Buffer[idx_1 - 1])));
             printf("\"\n");
         }
     }
@@ -241,7 +247,9 @@ void QueueSwap(User *multi, Word word, int idx_user)
         printf("%sLagu dengan urutan ke %d tidak terdapat dalam queue!\n", RED, idx_2);
     }
 }
+
 // ========================================================================================= QUEUE REMOVE ======================================================================================================== //
+
 void QueueRemove(User *multi, Word word, int idx_user)
 {
     int ctr = 0;
@@ -282,7 +290,9 @@ void QueueRemove(User *multi, Word word, int idx_user)
         printf("%sLagu dengan urutan ke %d tidak terdapat dalam queue!\n", RED, idx_1);
     }
 }
+
 // ========================================================================================= QUEUE CLEAR ======================================================================================================== //
+
 void QueueClear(User *multi, int idx_user)
 {
     CreateEmptyQueue(&multi->Elements[idx_user].Queue);

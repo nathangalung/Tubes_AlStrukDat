@@ -6,7 +6,7 @@ void DisplayWordDash(Word word, StaticList artist, Set album)
 {
     boolean found = false;
     int i = 0;
-    while (!found && i < LengthList(artist))
+    while (!found && i < LengthStatic(artist))
     {
         if (CompareWord(SplitWordLeftMark(word), artist.A[i]))
         {
@@ -35,7 +35,9 @@ void DisplayWordDash(Word word, StaticList artist, Set album)
     }
     
 }
+
 // ========================================================================================= STATUS ======================================================================================================== //
+
 void Status(User multi, StaticList  artist, Set album, DynamicList playing, int idx_user)
 {
     boolean found_1 = false;
@@ -48,7 +50,7 @@ void Status(User multi, StaticList  artist, Set album, DynamicList playing, int 
         boolean found_2 = false;
         ctr = 0;
 
-        if (Search(multi.Elements[idx_user].PlaylistSong[i].Song, currentSong))
+        if (SearchLinier(multi.Elements[idx_user].PlaylistSong[i].Song, currentSong))
         {
             ctr++;
         }
@@ -57,7 +59,7 @@ void Status(User multi, StaticList  artist, Set album, DynamicList playing, int 
         {
             boolean found_3 = false;
 
-            if (Search(multi.Elements[idx_user].PlaylistSong[i].Song, multi.Elements[idx_user].Queue.Buffer[j]))
+            if (SearchLinier(multi.Elements[idx_user].PlaylistSong[i].Song, multi.Elements[idx_user].Queue.Buffer[j]))
             {
                 ctr++;
                 j++;
@@ -84,7 +86,7 @@ void Status(User multi, StaticList  artist, Set album, DynamicList playing, int 
     }
 
     printf("Now Playing :\n");
-    if (CompareStringWord(playing.A[idx_user], "")||CompareStringWord(playing.A[idx_user], "-"))
+    if (CompareStringWord(playing.A[idx_user], "") || CompareStringWord(playing.A[idx_user], "-"))
     {
         printf("No songs have been played yet. Please search for a song to begin playback.\n");
     }
@@ -95,7 +97,7 @@ void Status(User multi, StaticList  artist, Set album, DynamicList playing, int 
     }
 
     printf("\nQueue :\n");
-    if (!IsQueueEmpty(multi.Elements[idx_user].Queue))
+    if (!IsEmptyQueue(multi.Elements[idx_user].Queue))
     {
         for (int i = 0; i < LengthQueue(multi.Elements[idx_user].Queue); i++)
         {

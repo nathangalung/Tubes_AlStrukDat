@@ -38,13 +38,13 @@ void Load(Word command, StaticList *artist, Set *album, Map *album_artist, Map *
                 count_song = ReadCountWord();
 
                 name_album = ReadNameLine();
-                InsertSet(album, name_album);
-                InsertMap(album_artist, name_album, name_artist);
+                InsertLastSet(album, name_album);
+                InsertLastMap(album_artist, name_album, name_artist);
                 
                 for (int k=0; k<count_song; k++)
                 {                                           
                     name_song = ReadNameLine();
-                    InsertMap(song_album, name_song, name_album);
+                    InsertLastMap(song_album, name_song, name_album);
                 }
             }
         }
@@ -82,13 +82,13 @@ void Load(Word command, StaticList *artist, Set *album, Map *album_artist, Map *
             for (int j=0; j<count_history; j++)
             {
                 name_song = ReadNameLine();
-                PushStack(&temp_stack, name_song);
+                Push(&temp_stack, name_song);
             }
 
             for (int j=0; j<count_history; j++)
             {
-                PopStack(&temp_stack, &temp_word);
-                PushStack(&multi->Elements[i].History, temp_word);
+                Pop(&temp_stack, &temp_word);
+                Push(&multi->Elements[i].History, temp_word);
             }
 
             count_playlist = ReadCountLine();

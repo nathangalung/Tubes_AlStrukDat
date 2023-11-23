@@ -12,7 +12,7 @@
 
 
 /* Kamus Umum */
-#define MaxEl 100
+#define MaxElStatic 100
 #define MarkStatic "-"  /* Nilai tak terdefinisi */
 #define InvalidIdx -1  /* Indeks tak terdefinisi */
 
@@ -20,7 +20,7 @@
 #define IdxType int
 
 typedef struct {
-	Word A[MaxEl];  /* Memori tempat penyimpanan elemen (container) */
+	Word A[MaxElStatic];  /* Memori tempat penyimpanan elemen (container) */
 } StaticList;
 
 #define List(i) L.A(i)
@@ -40,19 +40,24 @@ void CreateEmptyStatic(StaticList *list);
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test list kosong *** */
-boolean IsListEmpty(StaticList list);
+boolean IsEmptyStatic(StaticList list);
 /* Mengirimkan true jika list L kosong, mengirimkan false jika tidak */
 
-/* *** Menghasilkan sebuah elemen *** */
-Word GetList(StaticList list, IdxType i);
-/* Prekondisi : list tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
-/* Mengirimkan elemen list yang ke-i */
+boolean IsFullStatic(StaticList list);
+/* Mengirimkan true jika list L penuh, mengirimkan false jika tidak */
 
 /* ********** SELEKTOR ********** */
 /* *** Banyaknya elemen *** */
-int LengthList(StaticList list);
+int LengthStatic(StaticList list);
 /* Mengirimkan banyaknya elemen efektif list */
 /* Mengirimkan nol jika list kosong */
+
+/* *** Menghasilkan sebuah elemen *** */
+Word GetStatic(StaticList list, IdxType i);
+/* Prekondisi : list tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
+/* Mengirimkan elemen list yang ke-i */
+
+
 
 void InsertLastStatic(StaticList *list, Word word);
 /* I.S. L terdefinisi, mungkin kosong. */

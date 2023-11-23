@@ -9,10 +9,10 @@ int main() {
     printf("Is map full? %s\n", IsFullMap(myMap) ? "Yes" : "No");
 
     Word key1, value1, key2, value2;
-    key1=StringToWord("key1");
-    value1=StringToWord("value1");
-    key2=StringToWord("key2");
-    value2=StringToWord("value2");
+    key1 = StringToWord("key1");
+    value1 = StringToWord("value1");
+    key2 = StringToWord("key2");
+    value2 = StringToWord("value2");
 
     InsertMap(&myMap, key1, value1);
     InsertMap(&myMap, key2, value2);

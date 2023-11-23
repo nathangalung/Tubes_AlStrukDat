@@ -4,8 +4,9 @@
 int main()
 {
     /* Test Konstruktor */
-    List L1 = MakeList();
-    List L2 = MakeList();
+    StaticList L1, L2;
+    CreateEmptyStatic(&L1);
+    CreateEmptyStatic(&L2);
     printf("L1: %d\n", IsListEmpty(L1));
     printf("L2: %d\n", IsListEmpty(L2));
 

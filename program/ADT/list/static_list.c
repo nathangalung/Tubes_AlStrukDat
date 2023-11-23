@@ -7,30 +7,35 @@ void CreateEmptyStatic(StaticList *list)
 {
     int i;
 
-    for (i = 0; i < MaxEl; i++)
+    for (i = 0; i < MaxElStatic; i++)
     {
         (*list).A[i] = StringToWord(MarkStatic);
     }
 }
 
-boolean IsListEmpty(StaticList list)
+boolean IsEmptyStatic(StaticList list)
 {
-    return (LengthList(list) == 0);
+    return (LengthStatic(list) == 0);
 }
 
-Word GetList(StaticList list, IdxType i)
+boolean IsFullStatic(StaticList list)
 {
-    return (list.A[i]);
+    return (LengthStatic(list) == MaxElStatic);
 }
 
-int LengthList(StaticList list)
+int LengthStatic(StaticList list)
 {
     int count = 0;
-    while ((!CompareWord(list.A[count], StringToWord(MarkStatic))) && (count <= MaxEl))
+    while ((!CompareWord(list.A[count], StringToWord(MarkStatic))) && (count <= MaxElStatic))
     {
         count++;
     }
     return count;
+}
+
+Word GetStatic(StaticList list, IdxType i)
+{
+    return (list.A[i]);
 }
 
 void InsertLastStatic(StaticList *list, Word word)

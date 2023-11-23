@@ -16,13 +16,26 @@ boolean IsFullStack(Stack S)
     return (Top(S) == MaxElStack);
 }
 
-void PushStack(Stack *S, Word word)
+int LengthStack(Stack S)
+{
+    int length;
+    if (IsEmptyStack(S))
+    {
+        length = 0;
+    }
+    else
+    {
+        length = Top(S) + 1;
+    }
+}
+
+void Push(Stack *S, Word word)
 {
     Top(*S)++;
     InfoTop(*S) = word;
 }
 
-void PopStack(Stack *S, Word *word)
+void Pop(Stack *S, Word *word)
 {
     (*word) = InfoTop(*S);
     Top(*S)--;

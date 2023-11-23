@@ -11,7 +11,7 @@ int Login(DynamicList *user, User *multi, int idx_user)
         int ctr = 0;
         printf("Masukkan username user WayangWave : ");
         StartWordBlank();
-        while (!found && ctr < LengthListDynamic(*user))
+        while (!found && ctr < LengthDynamic(*user))
         {
             if (CompareWord(currentWord, user->A[ctr]))
             {
@@ -36,7 +36,7 @@ int Login(DynamicList *user, User *multi, int idx_user)
             DisplayWord(currentWord);
             printf("\"\n");
             printf("%s\nBerikut daftar username yang terdaftar :\n", WHITE);
-            for (int i = 0; i < LengthListDynamic(*user); i++)
+            for (int i = 0; i < LengthDynamic(*user); i++)
             {
                 printf("\t%d. ", (i+1));
                 DisplayWord(user->A[i]);
@@ -74,7 +74,7 @@ void Register(DynamicList *user, User *multi)
 
     if (count >= 3)
     {
-        while (!found && ctr < LengthListDynamic(*user))
+        while (!found && ctr < LengthDynamic(*user))
         {
             if (CompareWord(currentWord, user->A[ctr]))
             {
@@ -96,9 +96,9 @@ void Register(DynamicList *user, User *multi)
         {
             found = true;
 
-            CreateEmptyQueue(&multi->Elements[LengthListDynamic(*user)].Queue);
-            CreateEmptyStack(&multi->Elements[LengthListDynamic(*user)].History);
-            CreateEmptyDynamic(&multi->Elements[LengthListDynamic(*user)].Playlist);
+            CreateEmptyQueue(&multi->Elements[LengthDynamic(*user)].Queue);
+            CreateEmptyStack(&multi->Elements[LengthDynamic(*user)].History);
+            CreateEmptyDynamic(&multi->Elements[LengthDynamic(*user)].Playlist);
 
             InsertLastDynamic(user, currentWord);
             printf("\nUsername \"");

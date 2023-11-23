@@ -33,7 +33,7 @@ void Dealokasi (address *P)
 	free(*P);
 }
 
-address SearchAdress (LinierList L, Word word)
+address SearchAddress(LinierList L, Word word)
 {
 	address P = First(L);
 	boolean found = false;
@@ -60,7 +60,7 @@ address SearchAdress (LinierList L, Word word)
 	}
 }
 
-boolean Search(LinierList L, Word word)
+boolean SearchLinier(LinierList L, Word word)
 {
 	address P = First(L);
 	boolean found = false;
@@ -128,7 +128,7 @@ void InsertAfter (LinierList *L, address P, address Prec)
 	Next(Prec) = P;
 }
 
-void InsertLast (LinierList *L, address P)
+void InsertLast(LinierList *L, address P)
 {
 	if (IsEmptyLinier(*L))
 	{
@@ -154,7 +154,7 @@ void DelFirst (LinierList *L, address *P)
 
 void DelP (LinierList *L, Word word)
 {
-	address P = SearchAdress(*L, word);
+	address P = SearchAddress(*L, word);
 
 	if (P != Nil)
 	{

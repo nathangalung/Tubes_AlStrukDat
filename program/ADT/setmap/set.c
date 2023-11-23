@@ -18,40 +18,12 @@ boolean IsFullSet(Set set)
     return (set.Count == MaxElSet);
 }
 
-void InsertSet(Set *set, Word word)
+void InsertLastSet(Set *set, Word word)
 {
     if (!IsMemberSet((*set), word))
     {
         set->Elements[set->Count] = word;
         set->Count++;
-    }
-}
-
-void DeleteSet(Set *set, Word word)
-{
-    int i = 0;
-    boolean found = false;
-
-    while ((i < set->Count) && (!found))
-    {
-        if (CompareWord(set->Elements[i], word))
-        {
-            found = true;
-        }
-        else
-        {
-            i++;
-        }
-    }
-
-    if (found) 
-    {
-        for (int j = i; j < (set->Count - 1); j++)
-        {
-            set->Elements[j] = set->Elements[j + 1];
-        }
-
-        set->Count--;
     }
 }
 

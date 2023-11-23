@@ -54,7 +54,7 @@ void Save(Word command, StaticList artist, Set album, Map album_artist, Map song
         WordToString(filename, namafile);
         FILE *File = fopen(namafile, "w");
 
-        fprintf(File, "%d\n", LengthList(artist)); // jml penyanyi
+        fprintf(File, "%d\n", LengthStatic(artist)); // jml penyanyi
 
         int j=0;
         for (int i = 0; i < album_artist.Count; i=idxjump)
@@ -157,12 +157,12 @@ void Save(Word command, StaticList artist, Set album, Map album_artist, Map song
 
         printf("Save file berhasil disimpan\n");
     }
-    else if (command.Length<4)
+    else if (command.Length < 4)
     {
         printf("%sMinimal terdapat 4 karakter selain \".txt\" dalam nama save file. Silakan coba lagi!\n", RED);
     }
     else
     {
-        printf("\n%sinput harus berakhir dengan \".txt\". Silakan coba lagi!\n", RED);
+        printf("\n%sNama file harus berakhir dengan \".txt\". Silakan coba lagi!\n", RED);
     }
 }

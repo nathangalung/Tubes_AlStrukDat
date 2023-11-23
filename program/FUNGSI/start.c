@@ -34,13 +34,13 @@ void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, D
             count_song = ReadCountWord();
             
             name_album = ReadNameLine();
-            InsertSet(album, name_album);
-            InsertMap(album_artist, name_album, name_artist);
+            InsertLastSet(album, name_album);
+            InsertLastMap(album_artist, name_album, name_artist);
             
             for (int k=0; k<count_song; k++)
             {                                           
                 name_song = ReadNameLine();
-                InsertMap(song_album, name_song, name_album);
+                InsertLastMap(song_album, name_song, name_album);
             }
         }
     }

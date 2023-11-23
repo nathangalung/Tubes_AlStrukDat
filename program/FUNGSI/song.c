@@ -7,7 +7,7 @@ void SongNext(User *multi, StaticList artist, DynamicList *playing, int idx_user
     Word currentSong = playing->A[idx_user];
     Word temp;
     
-    if (IsQueueEmpty(multi->Elements[idx_user].Queue))
+    if (IsEmptyQueue(multi->Elements[idx_user].Queue))
     {
         printf("Queue kosong, memutar kembali lagu \"");
         DisplayWord(SplitWordMark(SplitWordMark(currentSong)));
@@ -18,7 +18,7 @@ void SongNext(User *multi, StaticList artist, DynamicList *playing, int idx_user
     else
     {
         Dequeue(&multi->Elements[idx_user].Queue, &temp);
-        PushStack(&multi->Elements[idx_user].History, currentSong);
+        Push(&multi->Elements[idx_user].History, currentSong);
         playing->A[idx_user] = temp;
         currentSong = playing->A[idx_user];
 
@@ -29,7 +29,9 @@ void SongNext(User *multi, StaticList artist, DynamicList *playing, int idx_user
         printf("\"\n");
     }
 }
+
 // ========================================================================================= SONG PREVIOUS ======================================================================================================== //
+
 void SongPrevious(User *multi, StaticList artist, DynamicList *playing, int idx_user)
 {
     Word previousSong, currentSong = playing->A[idx_user];
@@ -44,7 +46,7 @@ void SongPrevious(User *multi, StaticList artist, DynamicList *playing, int idx_
     }
     else
     {
-        PopStack(&multi->Elements[idx_user].History, &previousSong);
+        Pop(&multi->Elements[idx_user].History, &previousSong);
         Word newQueue;
         Queue temp;
         CreateEmptyQueue(&temp);

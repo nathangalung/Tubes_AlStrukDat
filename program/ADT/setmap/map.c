@@ -41,37 +41,13 @@ Word ValueMap(Map map, Word k)
     return (notFound);
 }
 
-void InsertMap(Map *map, Word k, Word v)
+void InsertLastMap(Map *map, Word k, Word v)
 {
     if (!IsMemberMap((*map), k))
     {
         map->Elements[map->Count].Key = k;
         map->Elements[map->Count].Value = v;
         map->Count++;
-    }
-    
-}
-
-void DeleteMap(Map *map, Word k)
-{
-    if (IsMemberMap((*map), k))
-    {
-        boolean found = false;
-        int i = 0;
-
-        while ((i < map->Count) && (!found))
-        {
-            if (true)
-            {
-                found = true;
-                for (i = i; i < (map->Count - 1); i++)
-                {
-                    map->Elements[i] = map->Elements[i + 1];
-                }
-                map->Count--;
-            }
-            i += 1;
-        }
     }
 }
 

@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "playlist.h"
+
 // ========================================================================================= PLAYLIST CREATE ======================================================================================================== //
+
 void PlaylistCreate(User *multi, int idx_user)
 {
     int countChar = 0;
@@ -20,7 +22,7 @@ void PlaylistCreate(User *multi, int idx_user)
 
     if ((countChar >= 3)) 
     {
-        CreateEmptyLinier(&multi->Elements[idx_user].PlaylistSong[LengthListDynamic(multi->Elements[idx_user].Playlist)].Song);
+        CreateEmptyLinier(&multi->Elements[idx_user].PlaylistSong[LengthDynamic(multi->Elements[idx_user].Playlist)].Song);
         InsertLastDynamic(&multi->Elements[idx_user].Playlist, currentWord);
         printf("Playlist \"");
         DisplayWord(currentWord);
@@ -35,13 +37,13 @@ void PlaylistCreate(User *multi, int idx_user)
 // ========================================================================================= PLAYLIST ADD SONG ======================================================================================================== //
 void PlaylistAddSong(StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
 {
-    if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
+    if (!IsEmptyDynamic(multi->Elements[idx_user].Playlist))
     {
         printf("Daftar Penyanyi :\n");
-        for (int index = 0; index < LengthList(artist); index++)
+        for (int index = 0; index < LengthStatic(artist); index++)
         {
             printf("\t%d. ", index+1);
-            DisplayWord(GetList(artist, index));
+            DisplayWord(GetStatic(artist, index));
             printf("\n");
         }
         printf("\n");
@@ -51,7 +53,7 @@ void PlaylistAddSong(StaticList artist, Map album_artist, Map song_album, User *
         StartWordMark();
         printf("\n");
         int i = 0;
-        while (!penyanyivalid && (i < LengthList(artist)))
+        while (!penyanyivalid && (i < LengthStatic(artist)))
         {
             if (CompareWord(artist.A[i], currentWord))
             {
@@ -140,10 +142,10 @@ void PlaylistAddSong(StaticList artist, Map album_artist, Map song_album, User *
                     }
                     Word LaguPilihan = song_album.Elements[count - 1].Key;
                     printf("Daftar Playlist Pengguna :\n");
-                    if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
+                    if (!IsEmptyDynamic(multi->Elements[idx_user].Playlist))
                     {
                         int index = 0;
-                        for (int i = 0; i < LengthListDynamic(multi->Elements[idx_user].Playlist); i++)
+                        for (int i = 0; i < LengthDynamic(multi->Elements[idx_user].Playlist); i++)
                         {
                             printf("\t%d. ", index+1);
                             DisplayWord(GetDynamic((multi->Elements[idx_user].Playlist), i));
@@ -158,7 +160,7 @@ void PlaylistAddSong(StaticList artist, Map album_artist, Map song_album, User *
                     printf("\n");
                     int ID_Playlist = WordToInt(currentWord);
 
-                    if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic(multi->Elements[idx_user].Playlist))
+                    if (ID_Playlist > 0 && ID_Playlist <= LengthDynamic(multi->Elements[idx_user].Playlist))
                     {
                         Word PlaylistPilihan = GetDynamic((multi->Elements[idx_user].Playlist), ID_Playlist-1);
                         Word MarkSC = {";", 1};
@@ -232,17 +234,19 @@ void PlaylistAddSong(StaticList artist, Map album_artist, Map song_album, User *
         printf("%sKamu tidak memiliki playlist. Silakan buat terlebih dahulu!\n", RED);
     }
 }
+
 // ========================================================================================= PLAYLIST ADD ALBUM ======================================================================================================== //
+
 void PlaylistAddAlbum (StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
 {
-    if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
+    if (!IsEmptyDynamic(multi->Elements[idx_user].Playlist))
     {
         printf("\n");
         printf("Daftar Penyanyi :\n");
-        for (int index = 0; index < LengthList(artist); index++)
+        for (int index = 0; index < LengthStatic(artist); index++)
         {
             printf("\t%d. ", index+1);
-            DisplayWord(GetList(artist, index));
+            DisplayWord(GetStatic(artist, index));
             printf("\n");
         }
         printf("\n");
@@ -252,7 +256,7 @@ void PlaylistAddAlbum (StaticList artist, Map album_artist, Map song_album, User
         StartWordMark();
         printf("\n");
         int i = 0;
-        while (!penyanyivalid && (i < LengthList(artist)))
+        while (!penyanyivalid && (i < LengthStatic(artist)))
         {
             if (CompareWord(artist.A[i], currentWord))
             {
@@ -305,10 +309,10 @@ void PlaylistAddAlbum (StaticList artist, Map album_artist, Map song_album, User
             {
                 Word NamaAlbum = currentWord;
                 printf("Daftar Playlist Pengguna :\n");
-                if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
+                if (!IsEmptyDynamic(multi->Elements[idx_user].Playlist))
                 {
                     int index = 0;
-                    for (int i = 0; i < LengthListDynamic(multi->Elements[idx_user].Playlist); i++)
+                    for (int i = 0; i < LengthDynamic(multi->Elements[idx_user].Playlist); i++)
                     {
                         printf("\t%d. ", index+1);
                         DisplayWord(GetDynamic((multi->Elements[idx_user].Playlist), i));
@@ -325,7 +329,7 @@ void PlaylistAddAlbum (StaticList artist, Map album_artist, Map song_album, User
 
                 int count1 = 0;
                 int count2 = 0;
-                if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic(multi->Elements[idx_user].Playlist))
+                if (ID_Playlist > 0 && ID_Playlist <= LengthDynamic(multi->Elements[idx_user].Playlist))
                 {
                     for (int i = 0; i < song_album.Count; i++)
                     {
@@ -338,7 +342,7 @@ void PlaylistAddAlbum (StaticList artist, Map album_artist, Map song_album, User
                             Pilihan = ConcatWord(Pilihan, NamaAlbum);
                             Pilihan = ConcatWord(Pilihan, MarkSC);
                             Pilihan = ConcatWord(Pilihan, LaguPilihan);
-                            if (!Search((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song, Pilihan))
+                            if (!SearchLinier((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song, Pilihan))
                             {
                                 InsVLast(&multi->Elements[idx_user].PlaylistSong[ID_Playlist-1].Song, Pilihan);
                             }
@@ -398,19 +402,19 @@ void PlaylistAddAlbum (StaticList artist, Map album_artist, Map song_album, User
         printf("Kamu tidak memiliki playlist. Silakan buat terlebih dahulu!\n");
     }
 }
+
 // ========================================================================================= PLAYLIST SWAP ======================================================================================================== //
+
 void PlaylistSwap(User *multi, int idx_user, Word word)
 {
-    if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
+    if (!IsEmptyDynamic(multi->Elements[idx_user].Playlist))
     {
         int ID_Playlist = WordToInt(SplitWordLeftBlank(word));
-        Word ID_Lagu = SplitWordBlank(word);
-        int idx_1 = WordToInt(SplitWordLeftBlank(ID_Lagu));
-        Word ID_Lagu2 = SplitWordBlank(ID_Lagu);
-        int idx_2 = WordToInt(ID_Lagu2);
+        Word ID_Lagu = SplitWordBlank(word), ID_Lagu2 = SplitWordBlank(ID_Lagu);
+        int idx_1 = WordToInt(SplitWordLeftBlank(ID_Lagu)), idx_2 = WordToInt(ID_Lagu2);
         address Song1, Song2, PrevSong1, PrevSong2, NextSong1, NextSong2, temp;
 
-        if ((ID_Playlist > 0) && (ID_Playlist  <= LengthListDynamic((*multi).Elements[idx_user].Playlist)))
+        if ((ID_Playlist > 0) && (ID_Playlist  <= LengthDynamic((*multi).Elements[idx_user].Playlist)))
         {
             Word PlaylistPilihan = GetDynamic(((*multi).Elements[idx_user].Playlist), ID_Playlist-1);
             if ((idx_1 >= 1 && idx_1 <= NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)) && (idx_2 >= 1 && idx_2 <= NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song)))
@@ -509,17 +513,18 @@ void PlaylistSwap(User *multi, int idx_user, Word word)
         printf("Kamu tidak memiliki playlist. Silakan buat terlebih dahulu!\n");
     }
 }
+
 // ========================================================================================= PLAYLIST REMOVE ======================================================================================================== //
+
 void PlaylistRemove(User *multi, int idx_user, Word word)
 {
-    if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
+    if (!IsEmptyDynamic(multi->Elements[idx_user].Playlist))
     {
-        int ID_Playlist = WordToInt(SplitWordLeftBlank(word));
-        int ID_Lagu = WordToInt(SplitWordBlank(word));
+        int ID_Playlist = WordToInt(SplitWordLeftBlank(word)), ID_Lagu = WordToInt(SplitWordBlank(word));
         address Song;
         printf("\n");
 
-        if ((ID_Playlist > 0) && (ID_Playlist <= LengthListDynamic((*multi).Elements[idx_user].Playlist)))
+        if ((ID_Playlist > 0) && (ID_Playlist <= LengthDynamic((*multi).Elements[idx_user].Playlist)))
         {
             Word PlaylistPilihan = GetDynamic(((*multi).Elements[idx_user].Playlist), ID_Playlist-1);
             if (ID_Lagu >= 1 && ID_Lagu <= NbElmt((*multi).Elements[idx_user].PlaylistSong[ID_Playlist-1].Song))
@@ -560,13 +565,13 @@ void PlaylistRemove(User *multi, int idx_user, Word word)
 
 void PlaylistDelete(User *multi, int idx_user)
 {
-    if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
+    if (!IsEmptyDynamic(multi->Elements[idx_user].Playlist))
     {
         printf("Daftar Playlist Pengguna :\n");
-        if (!IsListEmptyDynamic(multi->Elements[idx_user].Playlist))
+        if (!IsEmptyDynamic(multi->Elements[idx_user].Playlist))
         {
             int index = 0;
-            for (int i = 0; i < LengthListDynamic(multi->Elements[idx_user].Playlist); i++)
+            for (int i = 0; i < LengthDynamic(multi->Elements[idx_user].Playlist); i++)
             {
                 printf("\t%d. ", index+1);
                 DisplayWord(GetDynamic((multi->Elements[idx_user].Playlist), i));
@@ -581,16 +586,16 @@ void PlaylistDelete(User *multi, int idx_user)
         printf("\n");
         int ID_Playlist = atoi(currentWord.TabWord);
 
-        if (ID_Playlist > 0 && ID_Playlist <= LengthListDynamic(multi->Elements[idx_user].Playlist))
+        if (ID_Playlist > 0 && ID_Playlist <= LengthDynamic(multi->Elements[idx_user].Playlist))
         {
             Word PlaylistPilihan = GetDynamic((multi->Elements[idx_user].Playlist), ID_Playlist-1);
-            if (ID_Playlist == LengthListDynamic(multi->Elements[idx_user].Playlist))
+            if (ID_Playlist == LengthDynamic(multi->Elements[idx_user].Playlist))
             {
                 multi->Elements[idx_user].Playlist.Neff--;
             }
             else
             {
-                for (int i = ID_Playlist-1; i <= LengthListDynamic(multi->Elements[idx_user].Playlist); i++)
+                for (int i = ID_Playlist-1; i <= LengthDynamic(multi->Elements[idx_user].Playlist); i++)
                 {
                     multi->Elements[idx_user].Playlist.A[i] = multi->Elements[idx_user].Playlist.A[i+1];
                 }

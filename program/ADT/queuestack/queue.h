@@ -8,11 +8,11 @@
 
 
 #define IDX_UNDEF -1
-#define CAPACITY 100
+#define MaxElQueue 100
 
 /* Definisi elemen dan address */
 typedef struct {
-	Word Buffer[CAPACITY]; 
+	Word Buffer[MaxElQueue]; 
 	int IDXHead;
 	int IDXTail;
 } Queue;
@@ -34,14 +34,14 @@ void CreateEmptyQueue(Queue *queue);
 /* Proses : Melakukan alokasi, membuat sebuah q kosong */
 
 /* ********* Prototype ********* */
-boolean IsQueueEmpty(Queue q);
+boolean IsEmptyQueue(Queue q);
 /* Mengirim true jika q kosong: lihat definisi di atas */
 
-boolean IsQueueFull(Queue queue);
+boolean IsFullQueue(Queue queue);
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
 
-boolean IsQueueMember(Queue queue, int index);
+boolean IsMemberQueue(Queue queue, int index);
 /* Mengirim true apabila index lagu ada di dalam queue. */
 
 int LengthQueue(Queue queue);

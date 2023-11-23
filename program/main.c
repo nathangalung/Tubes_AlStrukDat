@@ -304,7 +304,7 @@ int main()
                     }
                     else
                     {                    
-                        printf("\n%sinput harus berakhir dengan \".txt\". Silakan coba lagi!\n", RED);
+                        printf("\n%sNama file harus berakhir dengan \".txt\". Silakan coba lagi!\n", RED);
                     }
                 }
                 else
