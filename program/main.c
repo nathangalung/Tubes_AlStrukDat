@@ -25,9 +25,11 @@ int main()
     Map album_artist, song_album;
     DynamicList user, playing;
     User multi;
-    
+
     boolean run = true, menu = false, sesi = false;
     int idx_user = -1;
+
+    CreateEmptyDynamic(&playing);
 
     Welcome();
 
@@ -57,7 +59,7 @@ int main()
             if (!menu)
             {
                 command = SplitWordBlank(command);
-                
+
                 Load(command, &artist, &album, &album_artist, &song_album, &user, &playing, &multi, &menu);
             }
             else
@@ -163,7 +165,6 @@ int main()
                 {
                     command = SplitWordBlank(command);
                     QueueSwap(&multi, command, idx_user);
-                    
                 }
                 else if (CompareStringWord(SplitWordLeftBlank(command), "REMOVE"))
                 {
@@ -290,7 +291,7 @@ int main()
                 run = false;
                 printf("Apakah kamu ingin menyimpan data sesi sekarang? (Y/N) : ");
                 StartWordMark();
-                if (CompareStringWord(currentWord,"Y"))
+                if (CompareStringWord(currentWord, "Y"))
                 {
                     printf("Ketik \"<nama_file>.txt\" : ");
                     StartWordMark();

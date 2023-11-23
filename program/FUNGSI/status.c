@@ -84,7 +84,7 @@ void Status(User multi, StaticList  artist, Set album, DynamicList playing, int 
     }
 
     printf("Now Playing :\n");
-    if (CompareStringWord(playing.A[idx_user], ""))
+    if (CompareStringWord(playing.A[idx_user], "")||CompareStringWord(playing.A[idx_user], "-"))
     {
         printf("No songs have been played yet. Please search for a song to begin playback.\n");
     }

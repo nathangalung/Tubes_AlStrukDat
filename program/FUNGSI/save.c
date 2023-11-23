@@ -83,7 +83,11 @@ void Save(Word filename, StaticList artist, Set album, Map album_artist, Map son
 
     for(int idxuser=0;idxuser<user.Neff;idxuser++)
     {
-    writeword(File, playing.A[idxuser]);//now playing
+    if(CompareStringWord(playing.A[idxuser],"")){
+        fprintf(File, "-\n");
+    }
+    else
+    {writeword(File, playing.A[idxuser]);}//now playing
 
     fprintf(File,"%d\n", LengthQueue(multi.Elements[idxuser].Queue));//jml queue
 

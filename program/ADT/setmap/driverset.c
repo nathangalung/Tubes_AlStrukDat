@@ -2,48 +2,29 @@
 #include "set.h"
 
 int main() {
-    Set S;
-    CreateEmptyset(&S);
+    Set mySet;
+    CreateEmptySet(&mySet);
 
-    printf("Is set empty? %s\n", IsEmptyset(S) ? "Yes" : "No");
-    printf("Is set full? %s\n", IsFullset(S) ? "Yes" : "No");
+    printf("Is set empty? %s\n", IsEmptySet(mySet) ? "Yes" : "No");
+    printf("Is set full? %s\n", IsFullSet(mySet) ? "Yes" : "No");
 
-    Word word1, word2, word3;
-    word1.Length = 4;
-    word2.Length = 5;
-    word3.Length = 6;
+    Word element1, element2, element3;
+    StringToWord("element1");
+    StringToWord("element2");
+    StringToWord("element3");
 
-    word1.TabWord[0] = 'a';
-    word1.TabWord[1] = 'b';
-    word1.TabWord[2] = 'c';
-    word1.TabWord[3] = 'd';
+    InsertSet(&mySet, element1);
+    InsertSet(&mySet, element2);
 
-    word2.TabWord[0] = 'x';
-    word2.TabWord[1] = 'y';
-    word2.TabWord[2] = 'z';
-    word2.TabWord[3] = 'w';
-    word2.TabWord[4] = 'v';
+    printf("Is set empty? %s\n", IsEmptySet(mySet) ? "Yes" : "No");
+    printf("Is set full? %s\n", IsFullSet(mySet) ? "Yes" : "No");
 
-    word3.TabWord[0] = 'h';
-    word3.TabWord[1] = 'e';
-    word3.TabWord[2] = 'l';
-    word3.TabWord[3] = 'l';
-    word3.TabWord[4] = 'o';
-    word3.TabWord[5] = '!';
+    printf("Is element1 a member of the set? %s\n", IsMemberSet(mySet, element1) ? "Yes" : "No");
+    printf("Is element3 a member of the set? %s\n", IsMemberSet(mySet, element3) ? "Yes" : "No");
 
-    Insertset(&S, word1);
-    Insertset(&S, word2);
+    DeleteSet(&mySet, element1);
 
-    printf("Is set empty? %s\n", IsEmptyset(S) ? "Yes" : "No");
-    printf("Is set full? %s\n", IsFullset(S) ? "Yes" : "No");
+    printf("Is element1 a member of the set? %s\n", IsMemberSet(mySet, element1) ? "Yes" : "No");
 
-    printf("Is 'abcd' in set? %s\n", IsMemberset(S, word1) ? "Yes" : "No");
-    printf("Is 'xyzwv' in set? %s\n", IsMemberset(S, word2) ? "Yes" : "No");
-    printf("Is 'hello!' in set? %s\n", IsMemberset(S, word3) ? "Yes" : "No");
-
-    Deleteset(&S, word2);
-
-    printf("Is 'xyzwv' in set after deletion? %s\n", IsMemberset(S, word2) ? "Yes" : "No");
-    printf("Is 'xyzwv' in set? %s\n", IsMemberset(S, word2) ? "Yes" : "No");
     return 0;
 }

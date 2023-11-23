@@ -1,143 +1,76 @@
 #include <stdio.h>
-#include "listlinier.h"
+#include "linier_list.h"
+
+void printll(LinierList L){
+    address p=First(L);
+    if(IsEmptyLinier(L)){
+        printf("[]\n");
+    }
+    else{
+    printf("[");
+    for(int i=0; i<NbElmt(L);i++){
+    if(i==NbElmt(L)-1){
+        printf("%s]\n", Info(p).TabWord);
+    }
+    else{
+    printf("%s, ", Info(p).TabWord);
+    p=Next(p);}}
+    }
+
+}
 
 int main() {
-    List l;
-    CreateList(&l);
+    LinierList L1, L2, L3;
+    Word word;
+    address P;
 
-    // InsertFirst, InsertLast, InsertAt
-    Word val1, val2, val3, val4, val5;
+    // Inisialisasi list
+    CreateEmptyLinier(&L1);
+    CreateEmptyLinier(&L2);
+    CreateEmptyLinier(&L3);
 
-    // Set elements manually and calculate their lengths
-    val1.Length = 5;
-    val1.TabWord[0] = 'a';
-    val1.TabWord[1] = 'p';
-    val1.TabWord[2] = 'p';
-    val1.TabWord[3] = 'l';
-    val1.TabWord[4] = 'e';
-    insertLast(&l, val1);
+    // Menambahkan elemen ke list
+    InsVFirst(&L1, StringToWord("apple"));
+    InsVLast(&L1, StringToWord("banana"));
+    InsVLast(&L1, StringToWord("cherry"));
 
-    val2.Length = 6;
-    val2.TabWord[0] = 'b';
-    val2.TabWord[1] = 'a';
-    val2.TabWord[2] = 'n';
-    val2.TabWord[3] = 'a';
-    val2.TabWord[4] = 'n';
-    val2.TabWord[5] = 'a';
-    insertLast(&l, val2);
+    printf("List L1:\n");
+    printll(L1);
 
-    val3.Length = 6;
-    val3.TabWord[0] = 'c';
-    val3.TabWord[1] = 'h';
-    val3.TabWord[2] = 'e';
-    val3.TabWord[3] = 'r';
-    val3.TabWord[4] = 'r';
-    val3.TabWord[5] = 'y';
-    insertLast(&l, val3);
-
-    val4.Length = 4;
-    val4.TabWord[0] = 'd';
-    val4.TabWord[1] = 'a';
-    val4.TabWord[2] = 't';
-    val4.TabWord[3] = 'e';
-    insertFirst(&l, val4);
-
-    val5.Length = 3;
-    val5.TabWord[0] = 'f';
-    val5.TabWord[1] = 'i';
-    val5.TabWord[2] = 'g';
-    insertAt(&l, val5, 2);
-
-    // Display List
-    printf("List: ");
-    displayList(l);
-    printf("\n");
-
-    // GetElmt and SetElmt
-    Word wordVal = getElmt(l, 2);
-    printf("Element at index 2: ");
-    for (int i = 0; i < wordVal.Length; i++) {
-        printf("%c", wordVal.TabWord[i]);
-    }
-    printf("\n");
-
-    // Modify element at index 2 manually
-    val2.Length = 5;
-    val2.TabWord[0] = 'g';
-    val2.TabWord[1] = 'r';
-    val2.TabWord[2] = 'a';
-    val2.TabWord[3] = 'p';
-    val2.TabWord[4] = 'e';
-    setElmt(&l, 2, val2);
-
-    // Display List after setting element at index 2
-    printf("Updated List: ");
-    displayList(l);
-    printf("\n");
-
-    // Length
-    printf("Length of the list: %d\n", length(l));
-
-    // Search and SearchPrec
-    Word searchVal;
-
-    // Set search value manually
-    searchVal.Length = 6;
-    searchVal.TabWord[0] = 'c';
-    searchVal.TabWord[1] = 'h';
-    searchVal.TabWord[2] = 'e';
-    searchVal.TabWord[3] = 'r';
-    searchVal.TabWord[4] = 'r';
-    searchVal.TabWord[5] = 'y';
-
-    Address result = searchPrec(l, searchVal);
-    if (result != NULL) {
-        printf("Search result: Found\n");
+    // Mencari elemen dalam list
+    word = StringToWord("banana");
+    if (Search(L1, word)) {
+        printf("'%s' ditemukan dalam list L1\n", word.TabWord);
     } else {
-        printf("Search result: Not Found\n");
+        printf("'%s' tidak ditemukan dalam list L1\n", word.TabWord);
     }
 
-    // DeleteFirst and DeleteLast
-    deleteFirst(&l, &wordVal);
-    deleteLast(&l, &wordVal);
+    // Menghapus elemen dari list
+    DelVFirst(&L1, &word);
+    printf("Elemen pertama dihapus: '%s'\n", word.TabWord);
 
-    // Display List after deletions
-    printf("List after deleteFirst and deleteLast: ");
-    displayList(l);
-    printf("\n");
+    printf("List L1 setelah menghapus elemen pertama:\n");
+    printll(L1);
 
-    // InverseList
-    inverseList(&l);
-    printf("List after inverse: ");
-    displayList(l);
-    printf("\n");
+    // Membuat list terbalik
+    InversLinierList(&L1);
+    printf("List L1 setelah dibalik:\n");
+    printll(L1);
 
-    // SplitList
-    List l1, l2;
-    CreateList(&l1);
-    CreateList(&l2);
+    // Menggabungkan dua list
+    InsVLast(&L2, StringToWord("grape"));
+    InsVLast(&L2, StringToWord("kiwi"));
 
-    splitList(&l1, &l2, l);
+    printf("List L2:\n");
+    printll(L2);
 
-    printf("l1 after split: ");
-    displayList(l1);
-    printf("\n");
+    Konkat1(&L1, &L2, &L3);
+    printf("List L3 setelah menggabungkan L1 dan L2:\n");
+    printll(L3);
 
-    printf("l2 after split: ");
-    displayList(l2);
-    printf("\n");
-
-    // Concat
-    List l3 = concat(l1, l2);
-    printf("l3 after concatenation of l1 and l2: ");
-    displayList(l3);
-    printf("\n");
-
-    // DeleteAll
-    deleteAll(&l3);
-    printf("l3 after deleteAll: ");
-    displayList(l3);
-    printf("\n");
+    // Membersihkan list
+    DelVLast(&L3, &word);
+    printf("Elemen terakhir dihapus dari list L3: '%s'\n", word.TabWord);
 
     return 0;
 }

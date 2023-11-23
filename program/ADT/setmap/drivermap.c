@@ -2,68 +2,38 @@
 #include "map.h"
 
 int main() {
-    Map M;
-    CreateEmptymap(&M);
+    Map myMap;
+    CreateEmptyMap(&myMap);
 
-    printf("Is map empty? %s\n", IsEmptymap(M) ? "Yes" : "No");
-    printf("Is map full? %s\n", IsFullmap(M) ? "Yes" : "No");
+    printf("Is map empty? %s\n", IsEmptyMap(myMap) ? "Yes" : "No");
+    printf("Is map full? %s\n", IsFullMap(myMap) ? "Yes" : "No");
 
-    Word key1, key2, key3;
-    Word value1, value2, value3;
+    Word key1, value1, key2, value2;
+    key1=StringToWord("key1");
+    value1=StringToWord("value1");
+    key2=StringToWord("key2");
+    value2=StringToWord("value2");
 
-    key1.Length = 4;
-    key2.Length = 5;
-    key3.Length = 6;
+    InsertMap(&myMap, key1, value1);
+    InsertMap(&myMap, key2, value2);
 
-    value1.Length = 2;
-    value2.Length = 3;
-    value3.Length = 4;
+    printf("Is map empty? %s\n", IsEmptyMap(myMap) ? "Yes" : "No");
+    printf("Is map full? %s\n", IsFullMap(myMap) ? "Yes" : "No");
 
-    key1.TabWord[0] = 'a';
-    key1.TabWord[1] = 'b';
-    key1.TabWord[2] = 'c';
-    key1.TabWord[3] = 'd';
+    Word result1 = ValueMap(myMap, key1);
+    Word result2 = ValueMap(myMap, key2);
 
-    key2.TabWord[0] = 'x';
-    key2.TabWord[1] = 'y';
-    key2.TabWord[2] = 'z';
-    key2.TabWord[3] = 'w';
-    key2.TabWord[4] = 'v';
+    printf("Value for key1: %s\n", result1.TabWord);
+    printf("Value for key2: %s\n", result2.TabWord);
 
-    key3.TabWord[0] = 'h';
-    key3.TabWord[1] = 'e';
-    key3.TabWord[2] = 'l';
-    key3.TabWord[3] = 'l';
-    key3.TabWord[4] = 'o';
-    key3.TabWord[5] = '!';
+    Word key3;
+    key3=StringToWord("key3");
 
-    value1.TabWord[0] = '1';
-    value1.TabWord[1] = '0';
-    value1.TabWord[2] = '\0';
+    printf("Is key3 a member of the map? %s\n", IsMemberMap(myMap, key3) ? "Yes" : "No");
 
-    value2.TabWord[0] = '2';
-    value2.TabWord[1] = '0';
-    value2.TabWord[2] = '2';
+    DeleteMap(&myMap, key1);
 
-    value3.TabWord[0] = '3';
-    value3.TabWord[1] = '0';
-    value3.TabWord[2] = '3';
-    value3.TabWord[3] = '3';
-
-    Insertmap(&M, key1, value1);
-    Insertmap(&M, key2, value2);
-
-    printf("Is map empty? %s\n", IsEmptymap(M) ? "Yes" : "No");
-    printf("Is map full? %s\n", IsFullmap(M) ? "Yes" : "No");
-
-    printf("Value for key 'abcd': %s\n", Valuemap(M, key1).TabWord);
-    printf("Value for key 'xyzwv': %s\n", Valuemap(M, key2).TabWord);
-    printf("Value for key 'hello!': %s\n", Valuemap(M, key3).TabWord);
-
-    Deletemap(&M, key2);
-
-    printf("Is 'xyzwv' in map after deletion? %s\n", IsMembermap(M, key2) ? "Yes" : "No");
-    printf("Value for key 'xyzwv': %s\n", Valuemap(M, key2).TabWord);
+    printf("Is key1 a member of the map? %s\n", IsMemberMap(myMap, key1) ? "Yes" : "No");
 
     return 0;
 }
