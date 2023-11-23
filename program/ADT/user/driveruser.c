@@ -76,7 +76,7 @@ int main()
         }   
     }
 
-    for (int i = 0; i < LengthUser(multi); i++)
+    for (int i = 0; i < multi.Count; i++)
     {
         printf("\nUser %d :", (i + 1));
 

@@ -58,27 +58,25 @@ void DisplayWord(Word word);
 
 boolean CompareWord(Word word_1, Word word_2);
 
+boolean CompareStringWord(Word word_1, char *string);
+
 int WordToInt(Word word);
 
 Word StringToWord(char *s);
 
 void WordToString(Word word, char *string);
 
-Word SplitWordBlank(Word word);
-
 Word SplitWordMark(Word word);
 
-Word SplitWordLeftBlank(Word word);
+Word SplitWordBlank(Word word);
 
 Word SplitWordLeftMark(Word word);
 
+Word SplitWordLeftBlank(Word word);
+
 Word ConcatWord(Word word_1, Word word_2);
 
-boolean CompareStringWord(Word word_1, char *string);
-
 Word ReadNameLine();
-
-int ReadCountFirst(Word filename);
 
 int ReadCountWord();
 

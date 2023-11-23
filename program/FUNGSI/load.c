@@ -54,6 +54,7 @@ void Load(Word command, StaticList *artist, Set *album, Map *album_artist, Map *
         {
             name_user = ReadNameLine();
             InsertLastDynamic(user, name_user);
+            InsertLastUser(multi);
             CreateEmptyQueue(&multi->Elements[i].Queue);
             CreateEmptyStack(&multi->Elements[i].History);
             CreateEmptyDynamic(&multi->Elements[i].Playlist);

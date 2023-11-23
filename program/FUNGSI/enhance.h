@@ -7,7 +7,7 @@
 #include "../ADT/user/user.h"
 #include "../ADT/pcolor/pcolor.h"
 
-unsigned int rng(unsigned int max);
+unsigned int RNG(unsigned int max);
 
 void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, User multi, int idx_user);
 

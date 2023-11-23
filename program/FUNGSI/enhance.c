@@ -5,7 +5,9 @@
 
 #include "enhance.h"
 
-unsigned int rng(unsigned int max)
+// ========================================================================================= RNG ======================================================================================================== //
+
+unsigned int RNG(unsigned int max)
 {
     time_t t;
     srand((unsigned int)time(&t));
@@ -14,7 +16,9 @@ unsigned int rng(unsigned int max)
 
     return (seed % (max)) + 1;
 }
+
 // ========================================================================================= ENHANCE ======================================================================================================== //
+
 void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, User multi, int idx_user)
 {
     printf("Berikut daftar playlist yang dimiliki :\n");
@@ -43,7 +47,7 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
 
     if (found_1)
     {
-        unsigned int rand_count = rng(3);
+        unsigned int rand_count = RNG(3);
         
         for (int i = 0; i < rand_count; i++)
         {
@@ -53,7 +57,7 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
             while (!found_2)
             {
                 boolean found_3 = false;
-                unsigned int rand_song = rng(song_album.Count), ctr = 0;
+                unsigned int rand_song = RNG(song_album.Count), ctr = 0;
                 address P = First(multi.Elements[idx_user].PlaylistSong[idx_playlist].Song);
                 
                 while (!found_3 && ctr < NbElmt(multi.Elements[idx_user].PlaylistSong[idx_playlist].Song))
@@ -90,9 +94,10 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
                     DisplayWord(song_album.Elements[rand_song].Key);
                     printf(" oleh ");
                     DisplayWord(album_artist.Elements[i].Value);
-                    printf(" ke dalam ID playlist %d.\n", (idx_playlist + 1));
+                    printf(" ke dalam ID playlist %d.", (idx_playlist + 1));
                 }
             }
         }
+        printf("\n");
     }
 }

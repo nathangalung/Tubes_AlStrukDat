@@ -52,6 +52,7 @@ void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, D
         name_user = ReadNameLine();
         InsertLastDynamic(user, name_user);
         InsertLastDynamic(playing, StringToWord("-"));
+        InsertLastUser(multi);
         CreateEmptyQueue(&multi->Elements[i].Queue);
         CreateEmptyStack(&multi->Elements[i].History);
         CreateEmptyDynamic(&multi->Elements[i].Playlist);

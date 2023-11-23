@@ -3,27 +3,30 @@
 #include <time.h>
 
 #include "interface.h"
+
 // ========================================================================================= DELAY LOAD ======================================================================================================== //
+
 void DelayLoad(int seconds)
 {
-    // Converting time into milli_seconds
     int milli_seconds = 500 * seconds;
- 
-    // Storing start time
+
     clock_t start_time = clock();
  
-    // looping till required time is not achieved
     while (clock() < start_time + milli_seconds);
 }
+
 // ========================================================================================= IMAGE ======================================================================================================== //
+
 void Image(FILE *ascii)
 {
     char read_string[MAX_LEN];
     while(fgets(read_string,sizeof(read_string), ascii) != NULL)
-    printf("%s%s", YELLOW ,read_string);
+    printf("%s%s", YELLOW, read_string);
     printf("\n");
 }
+
 // ========================================================================================= WELCOME IMAGE ======================================================================================================== //
+
 void WelcomeImage()
 {
     char *filename;

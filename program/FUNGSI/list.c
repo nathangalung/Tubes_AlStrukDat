@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
+
 // ========================================================================================= LIST DEFAULT ======================================================================================================== //
+
 void ListDefault (StaticList artist, Map album_artist, Map song_album)
 {
     printf("Daftar Penyanyi :\n");

@@ -206,6 +206,13 @@ boolean CompareWord(Word word_1, Word word_2)
     return true;
 }
 
+boolean CompareStringWord(Word word_1, char *string)
+{
+    Word word_2 = StringToWord(string);
+    
+    return (CompareWord(word_1, word_2));
+}
+
 int WordToInt(Word word)
 {
     int val = 0;
@@ -244,29 +251,6 @@ void WordToString(Word word, char *string)
     }
 }
 
-Word SplitWordBlank(Word word)
-{
-    Word temp;
-    int sum = 0, idx;
-    for (int i = 0; i < word.Length; i++)
-    {
-        if (word.TabWord[i] == BLANK)
-        {
-            idx = i;
-            break;
-        }
-    }
-
-    for (int i = (idx + 1); i < word.Length; i++)
-    {
-        temp.TabWord[sum] = word.TabWord[i];
-        sum++;
-    }
-    temp.Length = sum;
-
-    return (temp);
-}
-
 Word SplitWordMark(Word word)
 {
     Word temp;
@@ -290,7 +274,7 @@ Word SplitWordMark(Word word)
     return (temp);
 }
 
-Word SplitWordLeftBlank(Word word)
+Word SplitWordBlank(Word word)
 {
     Word temp;
     int sum = 0, idx;
@@ -303,7 +287,7 @@ Word SplitWordLeftBlank(Word word)
         }
     }
 
-    for (int i = 0; i < idx; i++)
+    for (int i = (idx + 1); i < word.Length; i++)
     {
         temp.TabWord[sum] = word.TabWord[i];
         sum++;
@@ -320,6 +304,29 @@ Word SplitWordLeftMark(Word word)
     for (int i = 0; i < word.Length; i++)
     {
         if (word.TabWord[i] == MARK)
+        {
+            idx = i;
+            break;
+        }
+    }
+
+    for (int i = 0; i < idx; i++)
+    {
+        temp.TabWord[sum] = word.TabWord[i];
+        sum++;
+    }
+    temp.Length = sum;
+
+    return (temp);
+}
+
+Word SplitWordLeftBlank(Word word)
+{
+    Word temp;
+    int sum = 0, idx;
+    for (int i = 0; i < word.Length; i++)
+    {
+        if (word.TabWord[i] == BLANK)
         {
             idx = i;
             break;
@@ -356,27 +363,12 @@ Word ConcatWord(Word word_1, Word word_2)
     return (word);
 }
 
-boolean CompareStringWord(Word word_1, char *string)
-{
-    Word word_2 = StringToWord(string);
-    
-    return (CompareWord(word_1, word_2));
-}
-
 Word ReadNameLine()
 {
     AdvWordNewline();
     Word name_item = currentWord;
 
     return (name_item);
-}
-
-int ReadCountFirst(Word filename)
-{
-    StartWordNewline(filename);
-    int count_item = WordToInt(currentWord);
-
-    return (count_item);
 }
 
 int ReadCountWord()
