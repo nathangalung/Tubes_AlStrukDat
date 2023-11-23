@@ -198,30 +198,41 @@ void QueuePlaylist(User *multi, int idx_user)
 void QueueSwap(User *multi, Word word, int idx_user)
 {
     int ctr = 0;
-    int idx_1 = atoi(SplitWordLeftBlank(word).TabWord), idx_2 = atoi(SplitWordBlank(word).TabWord);
+    int idx_1 = WordToInt(SplitWordLeftBlank(word)), idx_2 = WordToInt(SplitWordBlank(word));
     Word temp;
 
     if ((idx_1 >= 1 && idx_1 <= LengthQueue(multi->Elements[idx_user].Queue)) && (idx_2 >= 1 && idx_2 <= LengthQueue(multi->Elements[idx_user].Queue)))
     {
-        temp = multi->Elements[idx_user].Queue.Buffer[idx_1 - 1];
-        multi->Elements[idx_user].Queue.Buffer[idx_1 - 1] = multi->Elements[idx_user].Queue.Buffer[idx_2 - 1];
-        multi->Elements[idx_user].Queue.Buffer[idx_2 - 1] = temp;
+        if (idx_1 == idx_2)
+        {
+            printf("Tidak dapat menukar lagu dengan urutan yang sama.\n");
+        }
+        else
+        {
+            temp = multi->Elements[idx_user].Queue.Buffer[idx_1 - 1];
+            multi->Elements[idx_user].Queue.Buffer[idx_1 - 1] = multi->Elements[idx_user].Queue.Buffer[idx_2 - 1];
+            multi->Elements[idx_user].Queue.Buffer[idx_2 - 1] = temp;
 
-        printf("Lagu \"");
-        DisplayWord(SplitWordMark(SplitWordMark(multi->Elements[idx_user].Queue.Buffer[idx_1 - 1])));
-        printf("\" berhasil ditukar dengan \"");
-        DisplayWord(SplitWordMark(SplitWordMark(multi->Elements[idx_user].Queue.Buffer[idx_2 - 1])));
-        printf("\"\n");
+            printf("Lagu \"");
+            DisplayWord(SplitWordMark(SplitWordMark(multi->Elements[idx_user].Queue.Buffer[idx_1 - 1])));
+            printf("\" berhasil ditukar dengan \"");
+            DisplayWord(SplitWordMark(SplitWordMark(multi->Elements[idx_user].Queue.Buffer[idx_2 - 1])));
+            printf("\"\n");
+        }
     }
     else if (idx_1 == 0 || idx_2 == 0)
     {
         printf("Tidak ada lagu dengan urutan ke 0. Silakan sertakan urutan yang valid dari lagu yang ingin ditukar!\n");
     }
-    else if ((idx_1 < 0 || idx_1 > LengthQueue(multi->Elements[idx_user].Queue)) && (idx_2 < 0 || idx_2 > LengthQueue(multi->Elements[idx_user].Queue)))
+    else if (idx_1 < 0 || idx_2 < 0)
+    {
+        printf("ID Lagu invalid.\n");
+    }
+    else if ((idx_1 > LengthQueue(multi->Elements[idx_user].Queue)) && (idx_2 > LengthQueue(multi->Elements[idx_user].Queue)))
     {
         printf("Lagu dengan urutan ke %d dan %d tidak terdapat dalam queue!\n", idx_1, idx_2);
     }
-    else if (idx_1 < 0 || idx_1 > LengthQueue(multi->Elements[idx_user].Queue))
+    else if (idx_1 > LengthQueue(multi->Elements[idx_user].Queue))
     {
         printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", idx_1);
     }
