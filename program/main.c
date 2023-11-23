@@ -273,9 +273,8 @@ int main()
             if (menu || sesi)
             {
                 command = SplitWordBlank(command);
-                Word filename = ConcatWord(StringToWord("CONFIG/save/"), command);
 
-                Save(filename, artist, album, album_artist, song_album, user, playing, multi);
+                Save(command, artist, album, album_artist, song_album, user, playing, multi);
                 
             }
             else

@@ -29,7 +29,7 @@ void PlaylistCreate(User *multi, int idx_user)
     } 
     else 
     {
-        printf("Minimal terdapat 3 karakter selain whitespace dalam nama playlist. Silakan coba lagi!\n");
+        printf("Minimal terdapat 3 karakter selain spasi dalam nama playlist. Silakan coba lagi!\n");
     }
 }
 

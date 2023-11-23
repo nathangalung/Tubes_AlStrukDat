@@ -1,13 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "start.h"
 #include "interface.h"
 
 void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, DynamicList *playing, User *multi)
 {
-    int count_artist = 0, count_album = 0, count_song = 0, count_user = 0;
+    int count_user = 0, count_artist = 0, count_album = 0, count_song = 0;
     Word name_artist, name_album, name_song, name_user;
-
     Word filename = {"CONFIG/default.txt", 18};
 
     CreateEmptyStatic(artist);
@@ -19,7 +19,8 @@ void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, D
 
     StartImage();
     
-    count_artist = ReadCountFirst(filename);
+    StartWordNewline(filename);
+    count_artist = atoi(currentWord.TabWord);
         
     for (int i=0; i<count_artist; i++)
     {
@@ -50,7 +51,7 @@ void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, D
     {
         name_user = ReadNameLine();
         InsertLastDynamic(user, name_user);
-
+        InsertLastDynamic(playing, StringToWord("-"));
         CreateEmptyQueue(&multi->Elements[i].Queue);
         CreateEmptyStack(&multi->Elements[i].History);
         CreateEmptyDynamic(&multi->Elements[i].Playlist);

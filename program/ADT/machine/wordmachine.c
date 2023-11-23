@@ -186,6 +186,26 @@ void DisplayWord(Word word)
     }
 }
 
+boolean CompareWord(Word word_1, Word word_2)
+{
+    if (word_1.Length != word_2.Length)
+    {
+        return false;
+    }
+    else
+    {
+        for (int i = 0; i < word_2.Length; i++)
+        {
+            if (word_1.TabWord[i] != word_2.TabWord[i])
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 int WordToInt(Word word)
 {
     int val = 0;

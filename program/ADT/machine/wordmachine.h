@@ -56,6 +56,8 @@ void CopyWordNewline();
 
 void DisplayWord(Word word);
 
+boolean CompareWord(Word word_1, Word word_2);
+
 int WordToInt(Word word);
 
 Word StringToWord(char *s);

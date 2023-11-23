@@ -32,6 +32,8 @@ typedef struct {
 
 void CreateEmptyUser(User *multi);
 
+int LengthUser(User multi);
+
 void InsertLastUser(User *multi);
 
 #endif
