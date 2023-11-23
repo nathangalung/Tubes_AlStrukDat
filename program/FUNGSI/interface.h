@@ -9,8 +9,14 @@
 
 void DelayLoad(int seconds);
 
-void LoadImage(FILE *filename);
+void Image(FILE *filename);
 
-void Welcome();
+void WelcomeImage();
+
+void StartImage();
+
+void LoadImage();
+
+void QuitImage();
 
 #endif

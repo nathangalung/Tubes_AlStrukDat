@@ -16,7 +16,7 @@ void DelayLoad(int seconds)
     while (clock() < start_time + milli_seconds);
 }
 
-void LoadImage(FILE *ascii)
+void Image(FILE *ascii)
 {
     char read_string[MAX_LEN];
     while(fgets(read_string,sizeof(read_string), ascii) != NULL)
@@ -24,7 +24,7 @@ void LoadImage(FILE *ascii)
     printf("\n");
 }
 
-void Welcome()
+void WelcomeImage()
 {
     char *filename;
     FILE *ascii;
@@ -33,22 +33,24 @@ void Welcome()
     {
         if (i == 0)
         {
-            filename = "interface/welcome_1.txt";
+            filename = "interface/welcome/welcome_1.txt";
         }
         else if (i == 1)
         {
-            filename = "interface/welcome_2.txt";
+            filename = "interface/welcome/welcome_2.txt";
         }
         else if (i == 2)
         {
-            filename = "interface/welcome_3.txt";
+            filename = "interface/welcome/welcome_3.txt";
         } 
         else
         {
-            filename = "interface/welcome_4.txt";
-        } 
+            filename = "interface/welcome/welcome_4.txt";
+        }
+
         ascii = NULL;
         ascii = fopen(filename,"r");
+
         if (ascii == NULL)
         {
             printf("error opening %s\n",filename);
@@ -56,7 +58,146 @@ void Welcome()
         else
         {
             system("cls || clear");
-            LoadImage(ascii);
+            Image(ascii);
+            fclose(ascii);
+        }
+        DelayLoad(1);
+    }
+}
+
+void StartImage()
+{
+    char *filename;
+    FILE *ascii;
+    system("cls || clear");
+    for (int i = 0; i < 6; i++)
+    {
+        if (i == 0)
+        {
+            filename = "interface/start/start_1.txt";
+        }
+        else if (i == 1)
+        {
+            filename = "interface/start/start_2.txt";
+        }
+        else if (i == 2)
+        {
+            filename = "interface/start/start_3.txt";
+        } 
+        else if (i == 3)
+        {
+            filename = "interface/start/start_4.txt";
+        }
+        else if (i == 4)
+        {
+            filename = "interface/start/start_5.txt";
+        }
+        else
+        {
+            filename = "interface/start/start_6.txt";
+        }
+
+        ascii = NULL;
+        ascii = fopen(filename,"r");
+
+        if (ascii == NULL)
+        {
+            printf("error opening %s\n",filename);
+        }
+        else
+        {
+            system("cls || clear");
+            Image(ascii);
+            fclose(ascii);
+        }
+        DelayLoad(1);
+    }
+}
+
+void LoadImage()
+{
+    char *filename;
+    FILE *ascii;
+    system("cls || clear");
+    for (int i = 0; i < 6; i++)
+    {
+        if (i == 0)
+        {
+            filename = "interface/load/load_1.txt";
+        }
+        else if (i == 1)
+        {
+            filename = "interface/load/load_2.txt";
+        }
+        else if (i == 2)
+        {
+            filename = "interface/load/load_3.txt";
+        } 
+        else if (i == 3)
+        {
+            filename = "interface/load/load_4.txt";
+        }
+        else if (i == 4)
+        {
+            filename = "interface/load/load_5.txt";
+        }
+        else
+        {
+            filename = "interface/load/load_6.txt";
+        }
+
+        ascii = NULL;
+        ascii = fopen(filename,"r");
+
+        if (ascii == NULL)
+        {
+            printf("error opening %s\n",filename);
+        }
+        else
+        {
+            system("cls || clear");
+            Image(ascii);
+            fclose(ascii);
+        }
+        DelayLoad(1);
+    }
+}
+
+void QuitImage()
+{
+    char *filename;
+    FILE *ascii;
+    system("cls || clear");
+    for (int i = 0; i < 4; i++)
+    {
+        if (i == 0)
+        {
+            filename = "interface/quit/quit_1.txt";
+        }
+        else if (i == 1)
+        {
+            filename = "interface/quit/quit_2.txt";
+        }
+        else if (i == 2)
+        {
+            filename = "interface/quit/quit_3.txt";
+        } 
+        else
+        {
+            filename = "interface/quit/quit_4.txt";
+        }
+
+        ascii = NULL;
+        ascii = fopen(filename,"r");
+
+        if (ascii == NULL)
+        {
+            printf("error opening %s\n",filename);
+        }
+        else
+        {
+            system("cls || clear");
+            Image(ascii);
             fclose(ascii);
         }
         DelayLoad(1);

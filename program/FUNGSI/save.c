@@ -83,62 +83,65 @@ void Save(Word filename, StaticList artist, Set album, Map album_artist, Map son
 
     for(int idxuser=0;idxuser<user.Neff;idxuser++)
     {
-    if(CompareStringWord(playing.A[idxuser],"")){
-        fprintf(File, "-\n");
-    }
-    else
-    {writeword(File, playing.A[idxuser]);}//now playing
-
-    fprintf(File,"%d\n", LengthQueue(multi.Elements[idxuser].Queue));//jml queue
-
-    for (int i = 0; i < LengthQueue(multi.Elements[idxuser].Queue); i++)
-    {
-        writeword(File, multi.Elements[idxuser].Queue.Buffer[i]);//queue
-    }
-
-    fprintf(File, "%d\n", multi.Elements[idxuser].History.TOP+1);//jml riwayat
-
-    for (int it = multi.Elements[idxuser].History.TOP; it >= 0; it--)
-    {
-        writeword(File, multi.Elements[idxuser].History.T[it]);//riwayat
-    }
-
-    if(multi.Elements[idxuser].Playlist.Neff==0 && idxuser==user.Neff-1)
-    {
-        fprintf(File, "%d", multi.Elements[idxuser].Playlist.Neff);//jml playlist untuk user terakhir
-    }
-    else
-    {
-        fprintf(File, "%d\n", multi.Elements[idxuser].Playlist.Neff);//jml playlist
-    }
-
-    for (int ip = 0; ip < multi.Elements[idxuser].Playlist.Neff; ip++)
-    {
-        fprintf(File, "%d ",NbElmt(multi.Elements[idxuser].PlaylistSong[ip].Song));//jml lagu
-
-        if(idxuser==user.Neff-1 && ip==multi.Elements[idxuser].Playlist.Neff-1)
+        if(CompareStringWord(playing.A[idxuser],""))
         {
-            writewordnnl(File, multi.Elements[idxuser].Playlist.A[ip]);//nama playlist untuk user terakhir
+        fprintf(File, "-\n");
         }
         else
         {
-            writeword(File, multi.Elements[idxuser].Playlist.A[ip]);//nama playlist
+            writeword(File, playing.A[idxuser]);
+        }//now playing
+
+        fprintf(File,"%d\n", LengthQueue(multi.Elements[idxuser].Queue));//jml queue
+
+        for (int i = 0; i < LengthQueue(multi.Elements[idxuser].Queue); i++)
+        {
+            writeword(File, multi.Elements[idxuser].Queue.Buffer[i]);//queue
         }
 
-        address s=First(multi.Elements[idxuser].PlaylistSong[ip].Song);
-        for (int is = 0; is < NbElmt(multi.Elements[idxuser].PlaylistSong[ip].Song); is++)
+        fprintf(File, "%d\n", multi.Elements[idxuser].History.TOP+1);//jml riwayat
+
+        for (int it = multi.Elements[idxuser].History.TOP; it >= 0; it--)
         {
-            if(idxuser==user.Neff-1 && ip==multi.Elements[idxuser].Playlist.Neff-1 && is==NbElmt(multi.Elements[idxuser].PlaylistSong[ip].Song)-1)
+            writeword(File, multi.Elements[idxuser].History.T[it]);//riwayat
+        }
+
+        if(multi.Elements[idxuser].Playlist.Neff==0 && idxuser==user.Neff-1)
+        {
+            fprintf(File, "%d", multi.Elements[idxuser].Playlist.Neff);//jml playlist untuk user terakhir
+        }
+        else
+        {
+            fprintf(File, "%d\n", multi.Elements[idxuser].Playlist.Neff);//jml playlist
+        }
+
+        for (int ip = 0; ip < multi.Elements[idxuser].Playlist.Neff; ip++)
+        {
+            fprintf(File, "%d ",NbElmt(multi.Elements[idxuser].PlaylistSong[ip].Song));//jml lagu
+
+            if(idxuser==user.Neff-1 && ip==multi.Elements[idxuser].Playlist.Neff-1)
             {
-                writewordnnl(File, s->info);//judul lagu untuk line terakhir
+                writewordnnl(File, multi.Elements[idxuser].Playlist.A[ip]);//nama playlist untuk user terakhir
             }
             else
             {
-            writeword(File, s->info);//judul lagu
+                writeword(File, multi.Elements[idxuser].Playlist.A[ip]);//nama playlist
             }
-            s=Next(s);
+
+            address s = First(multi.Elements[idxuser].PlaylistSong[ip].Song);
+            for (int is = 0; is < NbElmt(multi.Elements[idxuser].PlaylistSong[ip].Song); is++)
+            {
+                if(idxuser==user.Neff-1 && ip==multi.Elements[idxuser].Playlist.Neff-1 && is==NbElmt(multi.Elements[idxuser].PlaylistSong[ip].Song)-1)
+                {
+                    writewordnnl(File, s->info);//judul lagu untuk line terakhir
+                }
+                else
+                {
+                writeword(File, s->info);//judul lagu
+                }
+                s=Next(s);
+            }
         }
-    }
     }
     fclose(File);
 }

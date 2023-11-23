@@ -31,7 +31,7 @@ int main()
 
     CreateEmptyDynamic(&playing);
 
-    Welcome();
+    WelcomeImage();
 
     while (run)
     {
@@ -275,7 +275,7 @@ int main()
             if (menu || sesi)
             {
                 command = SplitWordBlank(command);
-                Word filename = ConcatWord(StringToWord("CONFIG/"), command);
+                Word filename = ConcatWord(StringToWord("CONFIG/save"), command);
                 Save(filename, artist, album, album_artist, song_album, user, playing, multi);
                 printf("Save file berhasil disimpan\n");
             }
@@ -286,7 +286,7 @@ int main()
         }
         else if (CompareStringWord(command, "QUIT"))
         {
-            if (menu)
+            if (menu || sesi)
             {
                 run = false;
                 printf("Apakah kamu ingin menyimpan data sesi sekarang? (Y/N) : ");
@@ -295,7 +295,7 @@ int main()
                 {
                     printf("Ketik \"<nama_file>.txt\" : ");
                     StartWordMark();
-                    Word filename = ConcatWord(StringToWord("CONFIG/"), currentWord);
+                    Word filename = ConcatWord(StringToWord("CONFIG/save"), currentWord);
                     Save(filename, artist, album, album_artist, song_album, user, playing, multi);
                     printf("\nFile berhasil disimpan\n");
                 }
@@ -304,6 +304,8 @@ int main()
                     printf("\nFile tidak disimpan\n");
                 }
                 printf("\nKamu keluar dari WayangWave88Gacor. Dadah ^_^/\n");
+
+                QuitImage();
             }
             else
             {

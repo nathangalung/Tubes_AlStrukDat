@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "start.h"
+#include "interface.h"
 
 void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, DynamicList *playing, User *multi)
 {
@@ -15,6 +16,8 @@ void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, D
     CreateEmptySet(album);
     CreateEmptyDynamic(user);
     CreateEmptyDynamic(playing);
+
+    StartImage();
     
     count_artist = ReadCountFirst(filename);
         
@@ -53,5 +56,5 @@ void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, D
         CreateEmptyDynamic(&multi->Elements[i].Playlist);
     }  
     
-    printf("File konfigurasi aplikasi berhasil dibaca. WayangWave88Gacor berhasil dijalankan.\n");
+    printf("\nFile konfigurasi aplikasi berhasil dibaca. WayangWave88Gacor berhasil dijalankan.\n");
 }

@@ -2,15 +2,18 @@
 #include <stdlib.h>
 
 #include "load.h"
+#include "interface.h"
 
 void Load(Word command, StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, DynamicList *playing, User *multi, boolean *menu)
 {
-    Word filename = ConcatWord(StringToWord("CONFIG/"), command);
+    Word filename = ConcatWord(StringToWord("CONFIG/save/"), command);
 
     boolean found = StartWordNewline(filename);
     
     if (found)
     {
+        LoadImage();
+
         CreateEmptyStatic(artist);
         CreateEmptyMap(album_artist);
         CreateEmptyMap(song_album);
@@ -103,7 +106,7 @@ void Load(Word command, StaticList *artist, Set *album, Map *album_artist, Map *
                 }
             }
         }
-        printf("Save file berhasil dibaca. WayangWave88Gacor berhasil dijalankan.\n");
+        printf("\nSave file berhasil dibaca. WayangWave88Gacor berhasil dijalankan.\n");
         *menu = true;
     }
     else
