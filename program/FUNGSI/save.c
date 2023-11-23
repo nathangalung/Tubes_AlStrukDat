@@ -144,4 +144,6 @@ void Save(Word filename, StaticList artist, Set album, Map album_artist, Map son
         }
     }
     fclose(File);
+
+    printf("Save file berhasil disimpan\n");
 }

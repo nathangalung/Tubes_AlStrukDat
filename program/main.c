@@ -273,9 +273,10 @@ int main()
             if (menu || sesi)
             {
                 command = SplitWordBlank(command);
-                Word filename = ConcatWord(StringToWord("CONFIG/save"), command);
+                Word filename = ConcatWord(StringToWord("CONFIG/save/"), command);
+
                 Save(filename, artist, album, album_artist, song_album, user, playing, multi);
-                printf("Save file berhasil disimpan\n");
+                
             }
             else
             {
@@ -291,19 +292,19 @@ int main()
                 StartWordMark();
                 if (CompareStringWord(currentWord, "Y"))
                 {
-                    printf("Ketik \"<nama_file>.txt\" : ");
+                    printf("\nKetik \"<nama_file>.txt\" : ");
                     StartWordMark();
-                    Word filename = ConcatWord(StringToWord("CONFIG/save"), currentWord);
+                    Word filename = ConcatWord(StringToWord("CONFIG/save/"), currentWord);
+
                     Save(filename, artist, album, album_artist, song_album, user, playing, multi);
-                    printf("\nFile berhasil disimpan\n");
                 }
                 else
                 {
-                    printf("\nFile tidak disimpan\n");
+                    printf("\nSave file berhasil disimpan\n");
                 }
-                printf("\nKamu keluar dari WayangWave88Gacor. Dadah ^_^/\n");
 
                 QuitImage();
+                printf("\nKamu keluar dari WayangWave88Gacor. Dadah ^_^/\n");
             }
             else
             {

@@ -6,3 +6,8 @@ void CreateEmptyUser(User *multi)
 {
     multi->Count = NilUser;
 }
+
+void InsertLastUser(User *multi)
+{
+    multi->Count++;
+}
