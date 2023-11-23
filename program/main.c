@@ -236,8 +236,6 @@ int main()
                 else if (CompareStringWord(SplitWordLeftBlank(command), "SWAP"))
                 {
                     command = SplitWordBlank(command);
-                    DisplayWord(command);
-                    printf("\n");
                     PlaylistSwap(&multi, idx_user, command);
                 }
                 else if (CompareStringWord(SplitWordLeftBlank(command), "REMOVE"))
