@@ -365,7 +365,12 @@ void PlaylistSwap(User *multi, int idx_user, Word word)
     Word ID_Lagu2 = SplitWordBlank(ID_Lagu);
     int idx_2 = WordToInt(ID_Lagu2);
     address Song1, Song2, temp;
-    
+    DisplayWord(SplitWordLeftBlank(ID_Lagu));
+    printf("\n");
+    DisplayWord(ID_Lagu2);
+    printf("\n");
+  
+    printf ("%d %d %d\n", ID_Playlist, idx_1, idx_2);
     
     if ((ID_Playlist > 0) && (ID_Playlist  <= LengthListDynamic((*multi).Elements[idx_user].Playlist)))
     {
