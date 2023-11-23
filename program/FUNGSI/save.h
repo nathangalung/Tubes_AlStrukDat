@@ -6,6 +6,7 @@
 #include "../ADT/setmap/set.h"
 #include "../ADT/setmap/map.h"
 #include "../ADT/user/user.h"
+#include "../ADT/pcolor/pcolor.h"
 
 int jmlkey(Map map, Word value);
 

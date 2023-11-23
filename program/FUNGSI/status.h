@@ -6,6 +6,7 @@
 #include "../ADT/setmap/set.h"
 #include "../ADT/user/user.h"
 #include "../ADT/machine/wordmachine.h"
+#include "../ADT/pcolor/pcolor.h"
 
 void Status(User multi, StaticList  artist, Set album, DynamicList playing, int idx_user);
 

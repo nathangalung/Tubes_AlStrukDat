@@ -11,6 +11,7 @@
 #include "../ADT/queuestack/queue.h"
 #include "../ADT/setmap/map.h"
 #include "../ADT/user/user.h"
+#include "../ADT/pcolor/pcolor.h"
 
 void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, DynamicList *playing, int idx_user);
 

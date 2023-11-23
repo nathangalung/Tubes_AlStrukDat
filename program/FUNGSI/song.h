@@ -5,6 +5,7 @@
 #include "../ADT/list/static_list.h"
 #include "../ADT/user/user.h"
 #include "../ADT/machine/wordmachine.h"
+#include "../ADT/pcolor/pcolor.h"
 
 void SongNext(User *multi, StaticList artist, DynamicList *playing, int idx_user);
 
