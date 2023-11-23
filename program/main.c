@@ -298,7 +298,7 @@ int main()
                         printf("\nSave file berhasil disimpan\n");
                         printf("\nKamu keluar dari WayangWave88Gacor. Dadah ^_^/\n");
                     }
-                    else if (currentWord.Length<8)
+                    else if (currentWord.Length<4)
                     {
                         printf("\n%sMinimal terdapat 4 karakter selain \".txt\" dalam nama save file. Silakan coba lagi!\n", RED);
                     }
