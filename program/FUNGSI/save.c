@@ -47,7 +47,7 @@ void Save(Word command, StaticList artist, Set album, Map album_artist, Map song
         }
     }
 
-    if (count >= 8)
+    if (count >= 8 && (command.TabWord[command.Length-4]=='.') && (command.TabWord[command.Length-3]=='t') && (command.TabWord[command.Length-2]=='x') && (command.TabWord[command.Length-1]=='t'))
     {
         Word filename = ConcatWord(StringToWord("CONFIG/save/"), command);
         
@@ -157,8 +157,12 @@ void Save(Word command, StaticList artist, Set album, Map album_artist, Map song
 
         printf("Save file berhasil disimpan\n");
     }
-    else
+    else if (command.Length<4)
     {
         printf("%sMinimal terdapat 4 karakter selain \".txt\" dalam nama save file. Silakan coba lagi!\n", RED);
+    }
+    else
+    {
+        printf("\n%sinput harus berakhir dengan \".txt\". Silakan coba lagi!\n", RED);
     }
 }

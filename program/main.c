@@ -284,23 +284,37 @@ int main()
         {
             if (menu || sesi)
             {
-                run = false;
                 printf("Apakah kamu ingin menyimpan data sesi sekarang? (Y/N) : ");
                 StartWordMark();
                 if (CompareStringWord(currentWord, "Y"))
                 {
                     printf("\nKetik \"<nama_file>.txt\" : ");
                     StartWordMark();
-
-                    Save(currentWord, artist, album, album_artist, song_album, user, playing, multi);
+                    if ((currentWord.Length>=8 && currentWord.TabWord[currentWord.Length-4]=='.') && (currentWord.TabWord[currentWord.Length-3]=='t') && (currentWord.TabWord[currentWord.Length-2]=='x') && (currentWord.TabWord[currentWord.Length-1]=='t'))
+                    {
+                        Save(currentWord, artist, album, album_artist, song_album, user, playing, multi);
+                        run=false;
+                        QuitImage();
+                        printf("\nSave file berhasil disimpan\n");
+                        printf("\nKamu keluar dari WayangWave88Gacor. Dadah ^_^/\n");
+                    }
+                    else if (currentWord.Length<8)
+                    {
+                        printf("\n%sMinimal terdapat 4 karakter selain \".txt\" dalam nama save file. Silakan coba lagi!\n", RED);
+                    }
+                    else
+                    {                    
+                        printf("\n%sinput harus berakhir dengan \".txt\". Silakan coba lagi!\n", RED);
+                    }
                 }
                 else
                 {
-                    printf("\nSave file berhasil disimpan\n");
+                    run = false; 
+                    QuitImage();
+                    printf("\nSave file tidak disimpan\n");
+                    printf("\nKamu keluar dari WayangWave88Gacor. Dadah ^_^/\n");
                 }
 
-                QuitImage();
-                printf("\nKamu keluar dari WayangWave88Gacor. Dadah ^_^/\n");
             }
             else
             {
