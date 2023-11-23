@@ -6,7 +6,6 @@
 
 void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, DynamicList *playing, int idx_user)
 {
-
     /* KAMUS LOKAL */
     int index, idlagu;
     Word penyanyi, album_word, lagu;
@@ -135,19 +134,19 @@ void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, 
             }
             else
             {
-                printf("Lagu tidak ada dalam daftar. Silakan coba lagi!\n");
+                printf("%sLagu tidak ada dalam daftar. Silakan coba lagi!\n", RED);
             }
         }
         else
         {
-            printf("Album ");
+            printf("%sAlbum ", RED);
             DisplayWord(currentWord);
             printf(" tidak ada dalam daftar. Silakan coba lagi!\n");
         }
     }
     else
     {
-        printf("Penyanyi ");
+        printf("%sPenyanyi ", RED);
         DisplayWord(currentWord);
         printf(" tidak ada dalam daftar. Silakan coba lagi!\n");
     }
@@ -198,11 +197,11 @@ void PlayPlaylist(User *multi, DynamicList *playing, int idx_user)
         }
         else
         {
-            printf("\nPlaylist %d tidak memiliki lagu", idPlaylist);
+            printf("%s\nPlaylist %d tidak memiliki lagu", RED, idPlaylist);
         }
     }
     else
     {
-        printf("\nPlaylist tidak ditemukan.\n");
+        printf("%s\nPlaylist tidak ditemukan.\n", RED);
     }
 }
