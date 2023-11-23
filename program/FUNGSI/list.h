@@ -8,6 +8,7 @@
 #include "../ADT/setmap/map.h"
 #include "../ADT/machine/wordmachine.h"
 #include "../ADT/user/user.h"
+#include "../ADT/pcolor/pcolor.h"
 
 void ListDefault (StaticList artist, Map album_artist, Map song_album);
 

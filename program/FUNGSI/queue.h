@@ -6,6 +6,7 @@
 #include "../ADT/setmap/map.h"
 #include "../ADT/setmap/set.h"
 #include "../ADT/user/user.h"
+#include "../ADT/pcolor/pcolor.h"
 
 void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user);
 

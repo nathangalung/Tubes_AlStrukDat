@@ -5,6 +5,7 @@
 #include "../ADT/setmap/set.h"
 #include "../ADT/setmap/map.h"
 #include "../ADT/user/user.h"
+#include "../ADT/pcolor/pcolor.h"
 
 unsigned int rng(unsigned int max);
 

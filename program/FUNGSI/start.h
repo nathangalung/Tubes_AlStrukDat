@@ -5,6 +5,7 @@
 #include "../ADT/setmap/set.h"
 #include "../ADT/setmap/map.h"
 #include "../ADT/user/user.h"
+#include "../ADT/pcolor/pcolor.h"
 
 void Start(StaticList *artist, Set *album, Map *album_artist, Map *song_album, DynamicList *user, DynamicList *playing, User *multi);
 

@@ -7,6 +7,7 @@
 #include "../ADT/user/user.h"
 #include "../ADT/list/static_list.h"
 #include "../ADT/setmap/map.h"
+#include "../ADT/pcolor/pcolor.h"
 
 void PlaylistCreate (User *multi, int idx_user);
 
