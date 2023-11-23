@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #include "multi.h"
-
+// ========================================================================================= LOGIN ======================================================================================================== //
 int Login(DynamicList *user, User *multi, int idx_user)
 {
     boolean found = false;
@@ -48,14 +48,14 @@ int Login(DynamicList *user, User *multi, int idx_user)
 
     return idx_user;
 }
-
+// ========================================================================================= LOGOUT ======================================================================================================== //
 void Logout(DynamicList *user, int idx_user)
 {
     printf("Berhasil keluar. Sampai jumpa lagi, \"");
     DisplayWord(user->A[idx_user]);
     printf("\" dan elamat beraktivitas kembali!:)\n");
 }
-
+// ========================================================================================= REGISTER ======================================================================================================== //
 void Register(DynamicList *user, User *multi)
 {
     boolean found = false;
