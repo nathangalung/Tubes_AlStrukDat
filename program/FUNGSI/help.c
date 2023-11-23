@@ -38,10 +38,3 @@ void Help(boolean sesi, boolean menu)
         printf("10. LOGOUT -> Untuk keluar dari sesi dan kembali ke menu utama \n");
     }
 }
-
-// check fungsi help
-// int main()
-// {
-//     help(false, true);
-//     return 0;
-// }

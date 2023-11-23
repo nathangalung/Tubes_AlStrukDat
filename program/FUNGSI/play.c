@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "play.h"
-
+// ========================================================================================= PLAY SONG ======================================================================================================== //
 void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, DynamicList *playing, int idx_user)
 {
     /* KAMUS LOKAL */
@@ -151,7 +151,7 @@ void PlaySong(StaticList artist, Map album_artist, Map song_album, User *multi, 
         printf(" tidak ada dalam daftar. Silakan coba lagi!\n");
     }
 }
-
+// ========================================================================================= PLAY PLAYLIST ======================================================================================================== //
 void PlayPlaylist(User *multi, DynamicList *playing, int idx_user)
 {
     /* KAMUS LOKAL */

@@ -14,7 +14,7 @@ unsigned int rng(unsigned int max)
 
     return (seed % (max)) + 1;
 }
-
+// ========================================================================================= ENHANCE ======================================================================================================== //
 void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, User multi, int idx_user)
 {
     printf("Berikut daftar playlist yang dimiliki :\n");

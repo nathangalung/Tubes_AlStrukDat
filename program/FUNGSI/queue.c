@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "queue.h"
-
+// ========================================================================================= QUEUE SONG ======================================================================================================== //
 void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi, int idx_user)
 {
 
@@ -152,7 +152,7 @@ void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
         printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
     }
 }
-
+// ========================================================================================= QUEUE PLAYLIST ======================================================================================================== //
 void QueuePlaylist(User *multi, int idx_user)
 {
     
@@ -194,7 +194,7 @@ void QueuePlaylist(User *multi, int idx_user)
         printf("%sKamu tidak memiliki playlist. Silakan buat terlebih dahulu!\n", RED);
     }
 }
-
+// ========================================================================================= QUEUE SWAP ======================================================================================================== //
 void QueueSwap(User *multi, Word word, int idx_user)
 {
     int ctr = 0;
@@ -230,7 +230,7 @@ void QueueSwap(User *multi, Word word, int idx_user)
         printf("%sLagu dengan urutan ke %d tidak terdapat dalam queue!\n", RED, idx_2);
     }
 }
-
+// ========================================================================================= QUEUE REMOVE ======================================================================================================== //
 void QueueRemove(User *multi, Word word, int idx_user)
 {
     int ctr = 0;
@@ -271,7 +271,7 @@ void QueueRemove(User *multi, Word word, int idx_user)
         printf("%sLagu dengan urutan ke %d tidak terdapat dalam queue!\n", RED, idx_1);
     }
 }
-
+// ========================================================================================= QUEUE CLEAR ======================================================================================================== //
 void QueueClear(User *multi, int idx_user)
 {
     CreateEmptyQueue(&multi->Elements[idx_user].Queue);
