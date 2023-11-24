@@ -13,14 +13,17 @@
 
 void print_red(char *c);
 /*I.S   -*/
-/*FS    Menampilkan output berupa string dengan warna merah dan setelah selesai kembali ke warna normal/putih*/
+/*FS    Menampilkan output berupa string dengan warna merah
+        Setelah selesai kembali ke warna normal/putih*/
 
 void print_green(char *c);
 /*I.S   -*/
-/*FS    Menampilkan output berupa string dengan warna hijau dan setelah selesai kembali ke warna normal/putih*/
+/*FS    Menampilkan output berupa string dengan warna hijau
+        Setelah selesai kembali ke warna normal/putih*/
 
 void print_yellow(char *c);
 /*I.S   -*/
-/*FS    Menampilkan output berupa string dengan warna kuning dan setelah selesai kembali ke warna normal/putih*/
+/*FS    Menampilkan output berupa string dengan warna kuning
+        Setelah selesai kembali ke warna normal/putih*/
 
 #endif

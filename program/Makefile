@@ -1,3 +1,3 @@
 run:
-		gcc ADT/machine/charmachine.c ADT/machine/wordmachine.c ADT/list/static_list.c ADT/list/dynamic_list.c ADT/setmap/set.c ADT/setmap/map.c ADT/queuestack/queue.c ADT/queuestack/stack.c ADT/list/linier_list.c ADT/user/user.c FUNGSI/start.c FUNGSI/load.c FUNGSI/list.c FUNGSI/play.c FUNGSI/queue.c FUNGSI/song.c FUNGSI/playlist.c FUNGSI/status.c FUNGSI/save.c FUNGSI/help.c FUNGSI/multi.c FUNGSI/enhance.c FUNGSI/interface.c main.c -o WayangWave88Gacor
+		gcc ADT/machine/charmachine.c ADT/machine/wordmachine.c ADT/list/static_list.c ADT/list/dynamic_list.c ADT/setmap/set.c ADT/setmap/map.c ADT/queuestack/queue.c ADT/queuestack/stack.c ADT/list/linier_list.c ADT/user/user.c COMMAND/start.c COMMAND/load.c COMMAND/list.c COMMAND/play.c COMMAND/queue.c COMMAND/song.c COMMAND/playlist.c COMMAND/status.c COMMAND/save.c COMMAND/help.c COMMAND/multi.c COMMAND/enhance.c COMMAND/interface.c main.c -o WayangWave88Gacor
 		./WayangWave88Gacor

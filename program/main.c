@@ -3,20 +3,20 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "FUNGSI/start.h"
-#include "FUNGSI/load.h"
-#include "FUNGSI/list.h"
-#include "FUNGSI/help.h"
-#include "FUNGSI/playlist.h"
-#include "FUNGSI/play.h"
-#include "FUNGSI/queue.h"
-#include "FUNGSI/multi.h"
-#include "FUNGSI/enhance.h"
-#include "FUNGSI/queue.h"
-#include "FUNGSI/status.h"
-#include "FUNGSI/interface.h"
-#include "FUNGSI/song.h"
-#include "FUNGSI/save.h"
+#include "COMMAND/start.h"
+#include "COMMAND/load.h"
+#include "COMMAND/list.h"
+#include "COMMAND/help.h"
+#include "COMMAND/playlist.h"
+#include "COMMAND/play.h"
+#include "COMMAND/queue.h"
+#include "COMMAND/multi.h"
+#include "COMMAND/enhance.h"
+#include "COMMAND/queue.h"
+#include "COMMAND/status.h"
+#include "COMMAND/interface.h"
+#include "COMMAND/song.h"
+#include "COMMAND/save.h"
 
 int main()
 {
