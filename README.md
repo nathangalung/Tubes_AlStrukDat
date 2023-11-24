@@ -80,8 +80,8 @@ make run
 │               ├─── load
 │               ├─── quit
 │               ├─── start
-│               └─── welcome
-└───    
+└───            └─── welcome
+   
 ```
 
 ## Anggota Kelompok
