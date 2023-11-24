@@ -89,7 +89,7 @@ make run
 | -----------------------------------|-----------------|
 | 18222112 - Jeremy Deandito         | ADT Queue       |
 |                                    | List, Playlist  |
-| 18222128 - Anindita Widya Santoso  | ADT List        |
+| 18222128 - Anindita Widya Santoso  | ADT List Statis, List Dinamis      |
 |                                    | Play, Queue, Help|
 | 18222130 - Bryan P. Hutagalung     | ADT Mesin Kata, Mesin Karakter |
 |                                    | Start, Load, Main |
