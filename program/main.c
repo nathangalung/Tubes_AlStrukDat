@@ -65,11 +65,11 @@ int main()
                 printf("%sCommand tidak bisa dieksekusi!\n", RED);
             }
         }
-        else if (CompareStringWord(command, "REGISTER"))
+        else if (CompareStringWord(command, "SIGN UP"))
         {
             if (menu && !sesi)
             {
-                Register(&user, &multi);
+                SignUp(&user, &multi);
             }
             else
             {

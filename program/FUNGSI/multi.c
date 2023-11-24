@@ -56,7 +56,7 @@ void Logout(DynamicList *user, int idx_user)
     printf("\" dan elamat beraktivitas kembali!:)\n");
 }
 // ========================================================================================= REGISTER ======================================================================================================== //
-void Register(DynamicList *user, User *multi)
+void SignUp(DynamicList *user, User *multi)
 {
     boolean found = false;
     int ctr = 0, count = 0;

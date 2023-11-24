@@ -9,6 +9,6 @@ int Login(DynamicList *user, User *multi, int idx_user);
 
 void Logout(DynamicList *user, int idx_user);
 
-void Register(DynamicList *user, User *multi);
+void SignUp(DynamicList *user, User *multi);
 
 #endif
