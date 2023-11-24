@@ -10,14 +10,13 @@ int main() {
 
     // Menambahkan elemen ke static list
     printf("Menambahkan kata 'Halo' ke dalam static list...\n");
-    Word kata1;
-    kata1  = "Halo";
+    Word kata1 = {"Halo",4};
     InsertLastStatic(&myList, kata1);
 
     // Menampilkan isi static list
     printf("\nIsi static list:\n");
     for (int i = 0; i < LengthStatic(myList); i++) {
-        printf("Elemen ke-%d: %s\n", i + 1, GetStatic(myList, i));
+        printf("Elemen ke-%d: %s\n", i + 1, GetStatic(myList, i).TabWord);
     }
 
     // Mengecek apakah static list kosong atau tidak

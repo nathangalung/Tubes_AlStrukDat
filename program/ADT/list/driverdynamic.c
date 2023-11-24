@@ -10,14 +10,15 @@ int main() {
 
     // Menambahkan elemen ke dynamic list
     printf("Menambahkan kata 'Halo' ke dalam dynamic list...\n");
-    Word kata1;
-    kata1 = "Halo";
+
+    Word kata1 = {"Halo",4};
+
     InsertLastDynamic(&myList, kata1);
 
     // Menampilkan isi dynamic list
     printf("\nIsi dynamic list:\n");
     for (int i = 0; i < LengthDynamic(myList); i++) {
-        printf("Elemen ke-%d: %s\n", i + 1, GetDynamic(myList, i));
+        printf("Elemen ke-%d: %s\n", i + 1, GetDynamic(myList, i).TabWord);
     }
 
     // Mengecek apakah dynamic list kosong atau tidak
