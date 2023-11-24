@@ -47,6 +47,8 @@ Word GetDynamic(DynamicList list, IdxType i);
 /* Prekondisi : list tidak kosong, i antara FirstIdxList(L)..LastIdxList(L) */
 /* Mengirimkan elemen list yang ke-i */
 
+/* ********** Menambah elemen ********** */
 void InsertLastDynamic(DynamicList *list, Word word);
+/* Menambahkan kata ke dalam list dinamis */
 
 #endif

@@ -57,8 +57,6 @@ Word GetStatic(StaticList list, IdxType i);
 /* Prekondisi : list tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
 /* Mengirimkan elemen list yang ke-i */
 
-
-
 void InsertLastStatic(StaticList *list, Word word);
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen terakhir L. */

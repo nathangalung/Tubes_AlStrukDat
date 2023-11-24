@@ -3,8 +3,7 @@
 #include <stdio.h>
 #include "static_list.h"
 
-void CreateEmptyStatic(StaticList *list)
-{
+void CreateEmptyStatic(StaticList *list){
     int i;
 
     for (i = 0; i < MaxElStatic; i++)
@@ -13,18 +12,15 @@ void CreateEmptyStatic(StaticList *list)
     }
 }
 
-boolean IsEmptyStatic(StaticList list)
-{
+boolean IsEmptyStatic(StaticList list){
     return (LengthStatic(list) == 0);
 }
 
-boolean IsFullStatic(StaticList list)
-{
+boolean IsFullStatic(StaticList list){
     return (LengthStatic(list) == MaxElStatic);
 }
 
-int LengthStatic(StaticList list)
-{
+int LengthStatic(StaticList list){
     int count = 0;
     while ((!CompareWord(list.A[count], StringToWord(MarkStatic))) && (count <= MaxElStatic))
     {
@@ -33,13 +29,11 @@ int LengthStatic(StaticList list)
     return count;
 }
 
-Word GetStatic(StaticList list, IdxType i)
-{
+Word GetStatic(StaticList list, IdxType i){
     return (list.A[i]);
 }
 
-void InsertLastStatic(StaticList *list, Word word)
-{
+void InsertLastStatic(StaticList *list, Word word){
     int count = 0;
 
     while (!CompareStringWord(list->A[count], MarkStatic))
