@@ -157,7 +157,7 @@ void Save(Word command, StaticList artist, Set album, Map album_artist, Map song
 
         printf("Save file berhasil disimpan\n");
     }
-    else if (command.Length < 4)
+    else if (command.Length<8 && (command.TabWord[command.Length-4]=='.') && (command.TabWord[command.Length-3]=='t') && (command.TabWord[command.Length-2]=='x') && (command.TabWord[command.Length-1]=='t'))
     {
         printf("%sMinimal terdapat 4 karakter selain \".txt\" dalam nama save file. Silakan coba lagi!\n", RED);
     }

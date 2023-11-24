@@ -298,7 +298,7 @@ int main()
                         printf("\nSave file berhasil disimpan\n");
                         printf("\nKamu keluar dari WayangWave88Gacor. Dadah ^_^/\n");
                     }
-                    else if (currentWord.Length<4)
+                    else if (currentWord.Length<8 && (currentWord.TabWord[currentWord.Length-4]=='.') && (currentWord.TabWord[currentWord.Length-3]=='t') && (currentWord.TabWord[currentWord.Length-2]=='x') && (currentWord.TabWord[currentWord.Length-1]=='t'))
                     {
                         printf("\n%sMinimal terdapat 4 karakter selain \".txt\" dalam nama save file. Silakan coba lagi!\n", RED);
                     }
@@ -307,12 +307,16 @@ int main()
                         printf("\n%sNama file harus berakhir dengan \".txt\". Silakan coba lagi!\n", RED);
                     }
                 }
-                else
+                else if (CompareStringWord(currentWord, "N"))
                 {
                     run = false; 
                     QuitImage();
                     printf("\nSave file tidak disimpan\n");
                     printf("\nKamu keluar dari WayangWave88Gacor. Dadah ^_^/\n");
+                }
+                else
+                {
+                    printf("\n%sInput harus Y/N. Silakan coba lagi!\n", RED);
                 }
 
             }
