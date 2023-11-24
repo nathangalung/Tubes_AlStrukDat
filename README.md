@@ -20,12 +20,17 @@
 * `HELP` : Fungsi untuk menampilkan bantuan
 
 ## Daftar ADT
-* ADT List
-* ADT Mesin Karakter dan Mesin Kata
+* ADT List Statis
+* ADT List Dinamis
+* ADT List Linier
+* ADT Mesin Karakter
+* ADT Mesin Kata
 * ADT Queue
 * ADT Stack
-* ADT Set & Map
-* ADT List dengan Struktur Berkait
+* ADT Set
+* ADT Map
+* ADT User
+* ADT Pcolor
 
 ## Cara Kompilasi Program
 1. Masuk ke folder program melalui terminal
@@ -35,10 +40,6 @@ cd program
 2. Ketik "make run" pada terminal
 ```
 make run
-```
-3. Jalankan program WayangWave di terminal
-```
-./WayangWave88Gacor
 ```
 
 ## Struktur Program
@@ -52,25 +53,26 @@ make run
 │
 ├─── program
 │       │ boolean.h
-│       │ console.c
-│       │ console.h
 │       │ main.c
 │       │ Makefile
 │       ├─── ADT
-│       │       ├─── linkedlist
 │       │       ├─── list
 │       │       ├─── machine
 │       │       ├─── pcolor
-│       │       ├─── playlist_song
 │       │       ├─── queuestack
 │       │       ├─── setmap
 │       │       └─── user
 │       ├─── config
-│       │       └───  test.txt
-│       ├─── driver
-│       ├─── fig
+│       │       ├─── save
+│       │       └─── default.txt
 │       ├─── FUNGSI
-└───    └─── interface
+│       └─── INTERFACE
+│               ├─── load
+│               ├─── quit
+│               ├─── start
+│               └─── welcome
+└───    
+
 ```
 
 ## Anggota Kelompok
