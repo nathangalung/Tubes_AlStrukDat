@@ -6,7 +6,14 @@
 
 <p align="justify"> Pemutar musik ini dibuat dengan menggunakan bahasa pemrograman C dengan memanfaatkan ADT yang telah dipelajari di mata kuliah IF2111 dengan beberapa tambahan ADT yang kami buat sendiri.  </p>
 
-## Command
+## Daftar Isi
+[Daftar Command](#command)
+[Daftar ADT](#daftar-adt)
+[Cara Kompilasi Program](#cara-kompilasi-program)
+[Struktur Program](#struktur-program)
+[Anggota Kelompok](#anggota-kelompok)
+
+## Daftar Command
 * `START` : Fungsi untuk memasuki sesi baru
 * `LOAD <file>` : Fungsi untuk memulai sesi berdasarkan file konfigurasi
 * `LOGIN` : Fungsi untuk masuk ke dalam aplikasi dengan username yang sudah ada
@@ -75,7 +82,6 @@ make run
 │               ├─── start
 │               └─── welcome
 └───    
-
 ```
 
 ## Anggota Kelompok
