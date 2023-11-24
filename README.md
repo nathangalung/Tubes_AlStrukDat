@@ -1,17 +1,16 @@
-# Tugas Besar AlStrukDat K03-G01
-
+# Tugas Besar AlStrukDat K03-G01 <!-- omit in toc -->
 <p align="justify"> Bondowoso menyukai Roro Jonggrang dan ingin menunjukkan Roro Jonggrang selera musiknya. Oleh karena itu, Bondowoso ingin membuat aplikasi pengganti perangkat lunak walkman yang  dapat memainkan dan juga menunjukkan lagu-lagu di playlist yang telah Bondowoso buat. </p>
 
 <p align="justify"> WayangWave adalah aplikasi yang dapat melakukan pemutaran musik seperti music streaming service pada umumnya yang pembuatannya berbasis CLI (Command-Line Interface). </p>
 
 <p align="justify"> Pemutar musik ini dibuat dengan menggunakan bahasa pemrograman C dengan memanfaatkan ADT yang telah dipelajari di mata kuliah IF2111 dengan beberapa tambahan ADT yang kami buat sendiri.  </p>
 
-## Daftar Isi
-[Daftar Command](#command)
-[Daftar ADT](#daftar-adt)
-[Cara Kompilasi Program](#cara-kompilasi-program)
-[Struktur Program](#struktur-program)
-[Anggota Kelompok](#anggota-kelompok)
+## Daftar Isi <!-- omit in toc -->
+- [Daftar Command](#daftar-command)
+- [Daftar ADT](#daftar-adt)
+- [Cara Kompilasi Program](#cara-kompilasi-program)
+- [Struktur Program](#struktur-program)
+- [Anggota Kelompok](#anggota-kelompok)
 
 ## Daftar Command
 * `START` : Fungsi untuk memasuki sesi baru
