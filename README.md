@@ -9,6 +9,8 @@
 ## Command
 * `START` : Fungsi untuk memasuki sesi baru
 * `LOAD <file>` : Fungsi untuk memulai sesi berdasarkan file konfigurasi
+* `LOGIN` : Fungsi untuk masuk ke dalam aplikasi dengan username yang sudah ada
+* `SIGN UP` : Fungsi untuk mendaftarkan username baru
 * `LIST` : Fungsi untuk menampilkan daftar playlist, list penyanyi, list album, dan list lagu
 * `PLAY` : Fungsi untuk memutar lagu atau playlist yang pilih 
 * `QUEUE` : Fungsi untuk memanipulasi queue lagu
@@ -16,6 +18,7 @@
 * `PLAYLIST` : Fungsi untuk melakukan basic command playlist
 * `STATUS` : Fungsi untuk menampilkan lagu dan playlist yang sedang diputar, serta queue lagu
 * `SAVE` : Fungsi untuk menyimpan state aplikasi terbaru
+* `ENHANCE` : Fungsi untuk menambahkan lagu-lagu random ke playlist
 * `QUIT` : Fungsi untuk keluar dari aplikasi
 * `HELP` : Fungsi untuk menampilkan bantuan
 
