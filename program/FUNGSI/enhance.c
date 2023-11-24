@@ -42,7 +42,7 @@ void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, Use
     }
     else
     {
-        printf("\nID playlist %d tidak terdapat pada daftar playlist.\n", (idx_playlist + 1));
+        printf("%s\nID playlist %d tidak terdapat pada daftar playlist.\n", RED, (idx_playlist + 1));
     }
 
     if (found_1)

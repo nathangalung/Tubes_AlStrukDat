@@ -517,7 +517,6 @@ void PlaylistRemove(User *multi, int idx_user, Word word)
     {
         int ID_Playlist = WordToInt(SplitWordLeftBlank(word)), ID_Lagu = WordToInt(SplitWordBlank(word));
         address Song;
-        printf("\n");
 
         if ((ID_Playlist > 0) && (ID_Playlist <= LengthDynamic((*multi).Elements[idx_user].Playlist)))
         {

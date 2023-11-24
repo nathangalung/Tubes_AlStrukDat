@@ -11,8 +11,16 @@
 #define CYAN "\x1B[36m"
 #define WHITE "\x1B[37m"
 
-void print_red(char c);
-void print_green(char c);
-void print_blue(char c);
+void print_red(char *c);
+/*I.S   -*/
+/*FS    Menampilkan output berupa string dengan warna merah dan setelah selesai kembali ke warna normal/putih*/
+
+void print_green(char *c);
+/*I.S   -*/
+/*FS    Menampilkan output berupa string dengan warna hijau dan setelah selesai kembali ke warna normal/putih*/
+
+void print_yellow(char *c);
+/*I.S   -*/
+/*FS    Menampilkan output berupa string dengan warna kuning dan setelah selesai kembali ke warna normal/putih*/
 
 #endif
