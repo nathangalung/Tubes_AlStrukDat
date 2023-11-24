@@ -10,5 +10,6 @@
 unsigned int RNG(unsigned int max);
 
 void Enhance(StaticList artist, Set album, Map song_album, Map album_artist, User multi, int idx_user);
+/*Fungsi fitur untuk memasukkan lagu secara random ke dalam satu playlist yang dipilih dengan lagu yang belum ada dalam playlist*/
 
 #endif
