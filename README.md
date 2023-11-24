@@ -65,7 +65,7 @@ make run
 │       ├─── config
 │       │       ├─── save
 │       │       └─── default.txt
-│       ├─── FUNGSI
+│       ├─── COMMAND
 │       └─── INTERFACE
 │               ├─── load
 │               ├─── quit
