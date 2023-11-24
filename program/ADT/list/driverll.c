@@ -19,58 +19,57 @@ void printll(LinierList L){
 
 }
 
+
 int main() {
-    LinierList L1, L2, L3;
-    Word word;
-    address P;
+    LinierList myList;
+    Word word1 = {"apple",5};
+    Word word2 = {"banana",6};
+    Word word3 = {"cherry",6};
+    Word word4 = {"grape",5};
 
-    // Inisialisasi list
-    CreateEmptyLinier(&L1);
-    CreateEmptyLinier(&L2);
-    CreateEmptyLinier(&L3);
+    // Test CreateEmptyLinier, IsEmptyLinier
+    CreateEmptyLinier(&myList);
+    printf("Is the list empty? %s\n", IsEmptyLinier(myList) ? "Yes" : "No");
 
-    // Menambahkan elemen ke list
-    InsVFirst(&L1, StringToWord("apple"));
-    InsVLast(&L1, StringToWord("banana"));
-    InsVLast(&L1, StringToWord("cherry"));
+    // Test InsVFirst, InsVLast
+    InsVFirst(&myList, word1);
+    InsVLast(&myList, word2);
+    InsVLast(&myList, word3);
+    InsVLast(&myList, word4);
 
-    printf("List L1:\n");
-    printll(L1);
+    // Test NbElmt
+    printf("Number of elements in the list: %d\n", NbElmt(myList));
 
-    // Mencari elemen dalam list
-    word = StringToWord("banana");
-    if (Search(L1, word)) {
-        printf("'%s' ditemukan dalam list L1\n", word.TabWord);
-    } else {
-        printf("'%s' tidak ditemukan dalam list L1\n", word.TabWord);
+    // Test SearchLinier
+    Word searchWord = {"banana",6};
+    printf("Is '%s' in the list? %s\n", searchWord.TabWord, SearchLinier(myList, searchWord) ? "Yes" : "No");
+
+    // Test DelP
+    DelP(&myList, word2);
+    printf("After deleting '%s', the number of elements: %d\n", word2.TabWord, NbElmt(myList));
+
+    // Test InversLinierList
+    InversLinierList(&myList);
+    printf("After inverting the list, the number of elements: %d\n", NbElmt(myList));
+
+    // Test DelVLast
+    Word deletedWord;
+    DelVLast(&myList, &deletedWord);
+    printf("Deleted last element with value: %s\n", deletedWord.TabWord);
+
+    // Test DelVFirst
+    DelVFirst(&myList, &deletedWord);
+    printf("Deleted first element with value: %s\n", deletedWord.TabWord);
+
+    // Print the final state of the list
+    printf("Final state of the list:\n");
+    address current = First(myList);
+    int i=1;
+    while (current != Nil) {
+        printf("%d. %s\n", i,Info(current).TabWord);
+        current = Next(current);
+        i++;
     }
-
-    // Menghapus elemen dari list
-    DelVFirst(&L1, &word);
-    printf("Elemen pertama dihapus: '%s'\n", word.TabWord);
-
-    printf("List L1 setelah menghapus elemen pertama:\n");
-    printll(L1);
-
-    // Membuat list terbalik
-    InversLinierList(&L1);
-    printf("List L1 setelah dibalik:\n");
-    printll(L1);
-
-    // Menggabungkan dua list
-    InsVLast(&L2, StringToWord("grape"));
-    InsVLast(&L2, StringToWord("kiwi"));
-
-    printf("List L2:\n");
-    printll(L2);
-
-    Konkat1(&L1, &L2, &L3);
-    printf("List L3 setelah menggabungkan L1 dan L2:\n");
-    printll(L3);
-
-    // Membersihkan list
-    DelVLast(&L3, &word);
-    printf("Elemen terakhir dihapus dari list L3: '%s'\n", word.TabWord);
 
     return 0;
 }
