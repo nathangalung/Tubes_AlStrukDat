@@ -1,39 +1,36 @@
+/* file driver_dynamic_list.c */
+
 #include <stdio.h>
 #include "dynamic_list.h"
 
-int main()
-{
-    /* Test Konstruktor */
-    DynamicList L1 = MakeListDynamic();
-    DynamicList L2 = MakeListDynamic();
-    printf("L1: %d\n", IsListEmptyDynamic(L1));
-    printf("L2: %d\n", IsListEmptyDynamic(L2));
+int main() {
+    // Inisialisasi dynamic list
+    DynamicList myList;
+    CreateEmptyDynamic(&myList);
 
-    /* Test Insert dan Search */
-    ElType elemen1 = 5;
-    ElType elemen2 = 15;
-    ElType elemen3 = 25;
+    // Menambahkan elemen ke dynamic list
+    printf("Menambahkan kata 'Halo' ke dalam dynamic list...\n");
+    Word kata1;
+    kata1 = "Halo";
+    InsertLastDynamic(&myList, kata1);
 
-    L1.A[L1.Neff] = elemen1;
-    L1.Neff++;
-    L1.A[L1.Neff] = elemen2;
-    L1.Neff++;
-    L1.A[L1.Neff] = elemen3;
-    L1.Neff++;
-
-    printf("Isi L1: ");
-    for (int i = 0; i < LengthListDynamic(L1); i++)
-    {
-        printf("%d ", GetDynamic(L1, i));
+    // Menampilkan isi dynamic list
+    printf("\nIsi dynamic list:\n");
+    for (int i = 0; i < LengthDynamic(myList); i++) {
+        printf("Elemen ke-%d: %s\n", i + 1, GetDynamic(myList, i));
     }
-    printf("\n");
-    printf("Search 15 in L1: %s\n", SearchList(L1, 15) ? "Ditemukan" : "Tidak ditemukan");
-    printf("Search 30 in L1: %s\n", SearchList(L1, 30) ? "Ditemukan" : "Tidak ditemukan");
 
-    /* Test Delete */
-    if (SearchList(L1, elemen2))
-    {
-        int idxElemenHapus = -1;
-        for (int i = 0; i < LengthListDynamic(L1); i++)
-    }
+    // Mengecek apakah dynamic list kosong atau tidak
+    printf("\nApakah dynamic list kosong? %s\n", IsEmptyDynamic(myList) ? "Ya" : "Tidak");
+
+    // Mengecek apakah dynamic list penuh atau tidak
+    printf("Apakah dynamic list penuh? %s\n", IsFullDynamic(myList) ? "Ya" : "Tidak");
+
+    // Dealokasi dynamic list
+    DealokasiDynamic(&myList);
+
+    // Mengecek apakah dynamic list kosong setelah dealokasi
+    printf("\nSetelah dealokasi, apakah dynamic list kosong? %s\n", IsEmptyDynamic(myList) ? "Ya" : "Tidak");
+
+    return 0;
 }
