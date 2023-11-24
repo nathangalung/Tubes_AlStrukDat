@@ -9,5 +9,6 @@
 #include "../ADT/pcolor/pcolor.h"
 
 void Status(User multi, StaticList  artist, Set album, DynamicList playing, int idx_user);
+/* Menampilkan lagu yang sedang diputar, queue yang ada, serta playlist asal dari lagu yang diputar */
 
 #endif

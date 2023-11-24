@@ -15,5 +15,6 @@ void writeword(FILE* File, Word word);
 void writewordnnl(FILE* File, Word word);
 
 void Save(Word command, StaticList artist, Set album, Map album_artist, Map song_album, DynamicList user, DynamicList playing, User multi);
+/* Menyimpan file konfigurasi */
 
 #endif

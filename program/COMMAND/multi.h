@@ -6,9 +6,12 @@
 #include "../ADT/pcolor/pcolor.h"
 
 int Login(DynamicList *user, User *multi, int idx_user);
+/* Melakukan login / masuk ke akun yang sudah terdaftar */
 
 void Logout(DynamicList *user, int idx_user);
+/* Melakukan logout / keluar dari akun yang sedang aktif */
 
 void SignUp(DynamicList *user, User *multi);
+/* Melakukan signup / mendaftarkan akun*/
 
 #endif

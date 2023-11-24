@@ -11,7 +11,9 @@
 #include "../ADT/pcolor/pcolor.h"
 
 void ListDefault (StaticList artist, Map album_artist, Map song_album);
+/* Menampilkan daftar artis, album, dan lagu-lagunya */
 
 void ListPlaylist (User multi, int idx_user);
+/* Menampilkan daftar playlist yang dimiliki oleh user */
 
 #endif
