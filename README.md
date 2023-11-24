@@ -57,6 +57,7 @@ make run
 │ .gitignore
 │
 ├─── doc
+│       │ IF2111_TB_03_01.pdf
 │       │ Pedoman Tugas Besar.pdf
 │       │ Spesifikasi Tugas Besar IF2111 2023_2024.pdf
 │
