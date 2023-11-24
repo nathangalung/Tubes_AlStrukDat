@@ -53,7 +53,7 @@ void Logout(DynamicList *user, int idx_user)
 {
     printf("Berhasil keluar. Sampai jumpa lagi, \"");
     DisplayWord(user->A[idx_user]);
-    printf("\" dan elamat beraktivitas kembali!:)\n");
+    printf("\" dan selamat beraktivitas kembali!:)\n");
 }
 // ========================================================================================= REGISTER ======================================================================================================== //
 void SignUp(DynamicList *user, User *multi)

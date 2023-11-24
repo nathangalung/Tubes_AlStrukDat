@@ -14,7 +14,6 @@ void QueueSong(StaticList artist, Map album_artist, Map song_album, User *multi,
     Word penyanyi, album_word, lagu;
 
     /* ALGORITMA */
-    printf("\n");
     printf("Daftar Penyanyi :\n");
     for (index = 0; index < LengthStatic(artist); index++)
     {
@@ -167,10 +166,16 @@ void QueuePlaylist(User *multi, int idx_user)
     Word Playlist;
 
     /* ALGORITMA */
-
     if (!IsEmptyDynamic(multi->Elements[idx_user].Playlist))
     {
-        printf("Masukkan ID Playlist yang dipilih : ");
+        printf("Daftar Playlist Pengguna :\n");
+        for (int i = 0; i < LengthDynamic(multi->Elements[idx_user].Playlist); i++)
+        {
+            printf("\t%d. ", i+1);
+            DisplayWord(GetDynamic((multi->Elements[idx_user].Playlist), i));
+            printf("\n");
+        }
+        printf("\nMasukkan ID Playlist yang dipilih : ");
         StartWordMark();
         Playlist = currentWord;
         idPlaylist = WordToInt(currentWord);
@@ -190,7 +195,7 @@ void QueuePlaylist(User *multi, int idx_user)
         }
         else
         {
-            printf("%sPlaylist tidak ada dalam daftar. Silakan coba lagi!\n", RED);
+            printf("%s\nPlaylist tidak ada dalam daftar. Silakan coba lagi!\n", RED);
         }
     }
     else

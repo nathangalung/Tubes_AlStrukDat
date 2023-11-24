@@ -167,12 +167,12 @@ void ListPlaylist (User multi, int idx_user)
                 }
                 else
                 {
-                    printf("%sTidak ada lagu di playlist ini.\n", RED);
+                    printf("%s\nTidak ada lagu di playlist ini.\n", RED);
                 }
             }
             else
             {
-                printf("%sPlaylist tidak ada dalam daftar. Silakan coba lagi!\n", RED);
+                printf("%s\nPlaylist tidak ada dalam daftar. Silakan coba lagi!\n", RED);
             }
         }
         else if (!CompareStringWord(currentWord, "N"))

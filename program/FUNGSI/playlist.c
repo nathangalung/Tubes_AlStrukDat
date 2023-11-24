@@ -144,12 +144,10 @@ void PlaylistAddSong(StaticList artist, Map album_artist, Map song_album, User *
                     printf("Daftar Playlist Pengguna :\n");
                     if (!IsEmptyDynamic(multi->Elements[idx_user].Playlist))
                     {
-                        int index = 0;
                         for (int i = 0; i < LengthDynamic(multi->Elements[idx_user].Playlist); i++)
                         {
-                            printf("\t%d. ", index+1);
+                            printf("\t%d. ", i+1);
                             DisplayWord(GetDynamic((multi->Elements[idx_user].Playlist), i));
-                            index++;
                             printf("\n");
                         }
                     }
@@ -241,7 +239,6 @@ void PlaylistAddAlbum (StaticList artist, Map album_artist, Map song_album, User
 {
     if (!IsEmptyDynamic(multi->Elements[idx_user].Playlist))
     {
-        printf("\n");
         printf("Daftar Penyanyi :\n");
         for (int index = 0; index < LengthStatic(artist); index++)
         {
@@ -311,12 +308,10 @@ void PlaylistAddAlbum (StaticList artist, Map album_artist, Map song_album, User
                 printf("Daftar Playlist Pengguna :\n");
                 if (!IsEmptyDynamic(multi->Elements[idx_user].Playlist))
                 {
-                    int index = 0;
                     for (int i = 0; i < LengthDynamic(multi->Elements[idx_user].Playlist); i++)
                     {
-                        printf("\t%d. ", index+1);
+                        printf("\t%d. ", i+1);
                         DisplayWord(GetDynamic((multi->Elements[idx_user].Playlist), i));
-                        index++;
                         printf("\n");
                     }
                 }
