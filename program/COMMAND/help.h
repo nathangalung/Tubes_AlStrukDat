@@ -5,5 +5,6 @@
 #include "../ADT/pcolor/pcolor.h"
 
 void Help(boolean sesi, boolean menu);
+/* Memberikan daftar command yang bisa digunakan oleh user */
 
 #endif
