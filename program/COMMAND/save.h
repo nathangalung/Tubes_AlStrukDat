@@ -9,10 +9,13 @@
 #include "../ADT/pcolor/pcolor.h"
 
 int jmlkey(Map map, Word value);
+/* Menghitung jumlah key */
 
 void writeword(FILE* File, Word word);
+/* Menuliskan kata */
 
 void writewordnnl(FILE* File, Word word);
+/* Menuliskan kata tanpa new line */
 
 void Save(Word command, StaticList artist, Set album, Map album_artist, Map song_album, DynamicList user, DynamicList playing, User multi);
 /* Menyimpan file konfigurasi */
